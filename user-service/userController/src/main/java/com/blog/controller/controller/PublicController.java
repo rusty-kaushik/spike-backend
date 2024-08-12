@@ -63,7 +63,7 @@ public class PublicController {
             UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
             String jwt = jwtUtil.generateToken(userDetails.getUsername());
             Map<String, Object> response = new HashMap<>();
-            response.put("jwt token", jwt);
+            response.put("access_token", jwt);
             response.put("userName", userByUsername.getUserName());
             response.put("email", userByUsername.getEmail());
             response.put("role",userByUsername.getRole().getName());
