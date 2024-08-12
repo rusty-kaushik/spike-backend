@@ -1,1 +1,5 @@
 24-08-12 15:15:01.659 [http-nio-8181-exec-3] INFO  c.b.c.controller.PublicController - Processing login request for user: 00000001 
+24-08-12 15:15:56.757 [http-nio-8181-exec-8] WARN  o.s.d.w.c.SpringDataJacksonConfiguration$PageModule$PlainPageSerializationWarning - Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+ 
