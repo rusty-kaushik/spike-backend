@@ -1,0 +1,11 @@
+.metadata/*
+
+/.metadata/
+
+.metadata
+<<<<<<< HEAD
+.sonarlint/
+=======
+
+.sonarlint/
+>>>>>>> 4eb7335e8605256c91648e3be1d3602a7172f93d
