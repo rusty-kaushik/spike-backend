@@ -38,12 +38,12 @@ public class BlogServiceImpl implements BlogService {
         try {
             blogHelper.checkExistenceOfTeam(blogCreationRequest.getTeam_visibility());
             blogHelper.checkExistenceOfDepartment(blogCreationRequest.getDepartment_visibility());
-            List<String> base64Files = new ArrayList<>();
-            for (MultipartFile file : blogCreationRequest.getFiles()) {
-                byte[] fileBytes = file.getBytes();
-                String base64Encoded = Base64.getEncoder().encodeToString(fileBytes);
-                base64Files.add(base64Encoded);
-            }
+//            List<String> base64Files = new ArrayList<>();
+//            for (MultipartFile file : blogCreationRequest.getFiles()) {
+//                byte[] fileBytes = file.getBytes();
+//                String base64Encoded = Base64.getEncoder().encodeToString(fileBytes);
+//                base64Files.add(base64Encoded);
+//            }
             User sender = userRepository.findByUserName(creator);
             blogCreationClient.setUserId(sender.getId());
             blogCreationClient.setUserName(sender.getUserName());
@@ -51,7 +51,7 @@ public class BlogServiceImpl implements BlogService {
             blogCreationClient.setContent(blogCreationRequest.getContent());
             blogCreationClient.setTeam_visibility(blogCreationRequest.getTeam_visibility());
             blogCreationClient.setDepartment_visibility(blogCreationRequest.getDepartment_visibility());
-            blogCreationClient.setFilesBase64Encoded(base64Files);
+            blogCreationClient.setFilesBase64Encoded(blogCreationRequest.getFiles());
             Map<String, Object> response = externalBlogService.postBlog(blogCreationClient);
             return null;
         } catch (TeamNotFoundException | DepartmentNotFoundException e) {

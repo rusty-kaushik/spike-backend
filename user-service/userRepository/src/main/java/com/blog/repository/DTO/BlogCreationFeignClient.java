@@ -1,6 +1,7 @@
 package com.blog.repository.DTO;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class BlogCreationFeignClient {
     private String content;
     private Long[] team_visibility;
     private Long[] department_visibility;
-    private List<String> filesBase64Encoded;
+    private MultipartFile[] filesBase64Encoded;
 
     public Long getUserId() {
         return userId;
@@ -63,11 +64,11 @@ public class BlogCreationFeignClient {
         this.department_visibility = department_visibility;
     }
 
-    public List<String> getFilesBase64Encoded() {
+    public MultipartFile[] getFilesBase64Encoded() {
         return filesBase64Encoded;
     }
 
-    public void setFilesBase64Encoded(List<String> filesBase64Encoded) {
+    public void setFilesBase64Encoded(MultipartFile[] filesBase64Encoded) {
         this.filesBase64Encoded = filesBase64Encoded;
     }
 }
