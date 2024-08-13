@@ -27,6 +27,8 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 
+	//hello everyone 
+	
 	@PostMapping(path = "/post", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<CommentDto> createComment(@ModelAttribute CommentDto commentDto) {
 		try {
