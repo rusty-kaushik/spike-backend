@@ -15,7 +15,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 	@Query(value= "select  * from comment where status='Active' and blog_id =%:blogId% ", nativeQuery = true)
 	List<Comment> findByBlogId(long blogId);
 	
-	List<Comment> findByUserName(String userName);
+	List<Comment> findByAuthorId(String authorId);
 	
 	List<Comment> findByStatus(String status);
 	

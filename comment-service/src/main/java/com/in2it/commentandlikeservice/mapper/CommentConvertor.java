@@ -85,6 +85,7 @@ public class CommentConvertor {
 		commentDto.setAuthorID(comment.getAuthorId());
 //		commentDto.setStatus(comment.getStatus());
 		commentDto.setCreatedDate(comment.getCreatedDate());
+		
 		List<String> filesPath=new ArrayList<>();
 		for(String fileName:comment.getMedia()) {
 		filesPath.add(ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/").path(fileName).toUriString());

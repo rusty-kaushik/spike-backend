@@ -9,13 +9,16 @@ import com.in2it.commentandlikeservice.model.Comment;
 
 public interface CommentService {
 
-	public CommentDto saveComment(CommentDto commentDto, List<MultipartFile> file);
-//	public Comment saveComment(CommentDto commentDto, MultipartFile file);
-//	public List<Comment> getAllComment();
+	public CommentDto saveComment(CommentDto commentDto, Long blogid, List<MultipartFile> file);
+
 //	public List<CommentDto> getAllComment();
 	public List<CommentDto> getByBlogId(Long id);
+
 	public List<CommentDto> getByUserName(String usename);
+
 	public Boolean deleteCommentId(Long id);
+
 //	public List<Comment> deleteByBlogId(Long id);
-	public List<Comment> deleteByBlogId(Long id,Long commentId);
+	public List<Comment> deleteByBlogId(Long id, Long commentId);
+
 }

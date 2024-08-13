@@ -1,23 +1,24 @@
 package com.in2it.commentandlikeservice.service.impl;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.commentandlikeservice.dto.CommentDto;
+import com.in2it.commentandlikeservice.feign.BlogFeign;
 import com.in2it.commentandlikeservice.mapper.CommentConvertor;
 import com.in2it.commentandlikeservice.model.Comment;
+import com.in2it.commentandlikeservice.payload.BlogNotFoundException;
 import com.in2it.commentandlikeservice.payload.IdInvalidException;
 import com.in2it.commentandlikeservice.repository.CommentRepository;
 import com.in2it.commentandlikeservice.service.CommentService;
-import com.in2it.commentandlikeservice.service.FileService;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -27,14 +28,27 @@ public class CommentServiceImpl implements CommentService {
 
 	@Autowired
 	private CommentConvertor objectMapper;
+	@Autowired
+	private BlogFeign feign;
 
-	public CommentDto saveComment(CommentDto commentDto, List<MultipartFile> file) {
+	public CommentDto saveComment(CommentDto commentDto, Long blogId, List<MultipartFile> file) {
 
+		ResponseEntity<BlogDto> response = feign.getBlogById(blogId);
+		BlogDto blog = response.getBody();
+		// it checks if blog exist or not
+		if (blog == null) {
+			throw new BlogNotFoundException("Blog does not exist");
+		}
+		
 		Comment comment = objectMapper.dtoToCommentConvertor(commentDto);
 		Comment com = commentRepository.save(comment);
+		long incrementcount = blog.getCommentCount() + 1;
+		
+		feign.updateComment(blogId, incrementcount);
 		CommentDto dto = objectMapper.commentToDtoConvertor(comment);
 
 		return dto;
+
 	}
 
 	public Comment getByCommentId(Long commentId) {
@@ -57,7 +71,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	public List<CommentDto> getByUserName(String usename) {
-		List<Comment> commentList = commentRepository.findByUserName(usename);
+		List<Comment> commentList = commentRepository.findByAuthorId(usename);
 		List<CommentDto> commentListDto = new ArrayList<>();
 		for (Comment com : commentList) {
 			if (com != null) {
@@ -79,9 +93,15 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
-	public List<Comment> deleteByBlogId(Long id, Long commentId) {
+	public List<Comment> deleteByBlogId(Long blogId, Long commentId) {
 
-		List<Comment> comments = commentRepository.findByBlogId(id);
+		ResponseEntity<BlogDto> response = feign.getBlogById(blogId);
+		BlogDto blog = response.getBody();
+		// it checks if blog exist or not
+		if (blog == null) {
+			throw new BlogNotFoundException("Blog does not exist");
+		}
+		List<Comment> comments = commentRepository.findByBlogId(blogId);
 		List<Comment> deleteComments = new ArrayList<>();
 		Comment commentByCommentId = commentRepository.findById(commentId).get();
 		for (Comment com : comments) {
@@ -90,6 +110,9 @@ public class CommentServiceImpl implements CommentService {
 				com.setStatus("InActive");
 
 				Comment c = commentRepository.save(com);
+				long decrementcount = blog.getCommentCount() - 1;
+				
+				feign.updateComment(blogId, decrementcount);
 				c.setDeletedAt(LocalDateTime.now());
 				deleteComments.add(c);
 			}

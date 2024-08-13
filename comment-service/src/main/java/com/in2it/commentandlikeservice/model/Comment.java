@@ -50,6 +50,8 @@ public class Comment {
 	private LocalDateTime deletedAt;
 	private LocalDateTime updatedDateTime;
 	private List<String> mediaPath;
+	
+	
 
 	
 	
