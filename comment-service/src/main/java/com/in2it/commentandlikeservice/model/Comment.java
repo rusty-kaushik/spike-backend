@@ -1,9 +1,9 @@
 package com.in2it.commentandlikeservice.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -32,9 +32,10 @@ public class Comment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@Column(columnDefinition = "UUID")
+	private UUID id;
 	private String content;
-	private List<String> media;
+	private List<String> mediaPath;
 	@NotNull
 	private long blogId;
 	@NotNull
@@ -47,13 +48,13 @@ public class Comment {
 	private String deletedBy;
 	@Column(updatable = false)
 	private String updatedBy;
-	private LocalDateTime deletedAt;
+
 	private LocalDateTime updatedDateTime;
-	private List<String> mediaPath;
+	private List<String> media;
 	
-	
+	private HashMap<List<String>, List<String>> mediaMap=new HashMap<>();
 
 	
 	
-	
+
 }

@@ -4,10 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import lombok.AllArgsConstructor;
@@ -25,20 +28,24 @@ import lombok.ToString;
 @Setter
 public class CommentDto {
 
-	private long id;
+	@Hidden
+	private UUID id;
 	private String content;
 	@JsonIgnore
-	private List<String> media;
 	private long blogId;
 
 	private String authorID;
-	@JsonIgnore
-	private List<MultipartFile> file;
+	
 
 	@Hidden
 	private LocalDateTime createdDate;
 
-	private List<String> mediaPath;
+	 @JsonProperty(access = Access.WRITE_ONLY)
+	private List<MultipartFile> media;
+	
+	 @Hidden
+	 private List<String> mediaPath;
+	
 
 	
 }

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -33,7 +34,7 @@ public class CommentConvertor {
 			try {
 				Files.createDirectories(Path.of("src\\main\\resources\\static\\CommentImage"));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
@@ -43,23 +44,20 @@ public class CommentConvertor {
 	    	try
 	    	{
 				String path=file.getAbsolutePath();
-				for(MultipartFile image:commentDto.getFile())
+				for(MultipartFile image:commentDto.getMedia())
 				{
 					String path1=path+"\\"+image.getOriginalFilename();
 					mediaName.add(image.getOriginalFilename());
 					image.transferTo(new File(path1));
-					mediaPath.add(path1);
+					String p=ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/").path(image.getOriginalFilename()).toUriString();
+					mediaPath.add(p);
+					
+					System.out.println("path"+path);
+					System.out.println("path1"+path1);
 				}
 
-				
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+	    	}
+			catch (Exception e) {
 				e.printStackTrace();
 			}
 	    }
@@ -72,6 +70,7 @@ public class CommentConvertor {
 		comment.setAuthorId(commentDto.getAuthorID());
 		comment.setCreatedDate(LocalDateTime.now());
 		comment.setStatus("Active");
+//		comment.setMediaMap(comment.getMedia(), comment.getMediaPath());
 		
 		return comment;
 	}
@@ -81,15 +80,16 @@ public class CommentConvertor {
 		commentDto.setBlogId(comment.getBlogId());
 		commentDto.setContent(comment.getContent());
 		commentDto.setId(comment.getId());
-		commentDto.setMedia(comment.getMedia());
+//		commentDto.setMediaPath(comment.getMediaPath());
 		commentDto.setAuthorID(comment.getAuthorId());
 //		commentDto.setStatus(comment.getStatus());
 		commentDto.setCreatedDate(comment.getCreatedDate());
 		
 		List<String> filesPath=new ArrayList<>();
+		
 		for(String fileName:comment.getMedia()) {
-		filesPath.add(ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/").path(fileName).toUriString());
-	}
+			filesPath.add(ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/").path(fileName).toUriString());
+		}
 	commentDto.setMediaPath(filesPath);
 		return commentDto;
 	}
