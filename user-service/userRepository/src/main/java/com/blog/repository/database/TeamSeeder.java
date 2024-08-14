@@ -3,10 +3,6 @@ package com.blog.repository.database;
 import com.blog.repository.entity.Team;
 import com.blog.repository.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 //* The TeamSeeder class initializes the team database upon application startup.
