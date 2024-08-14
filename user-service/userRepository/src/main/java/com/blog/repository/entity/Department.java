@@ -12,11 +12,17 @@ public class Department {
     @Column(name = "name", unique = true, nullable = false)
     private String name;
 
+    @Column(name = "description", length = 200)
+    private String description;
+
     public Department() {
     }
 
-    public Department(String name) {
+    public Department(String name , String description) {
         this.name = name;
+    }
+
+    public Department(String name) {
     }
 
     public Long getId() {
@@ -33,5 +39,13 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

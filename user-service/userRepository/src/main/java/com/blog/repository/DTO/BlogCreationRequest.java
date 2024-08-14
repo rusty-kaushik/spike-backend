@@ -1,12 +1,7 @@
 package com.blog.repository.DTO;
 
-import com.blog.repository.entity.Department;
-import com.blog.repository.entity.Role;
 import com.blog.repository.entity.Team;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.lang.reflect.Array;
-import java.util.List;
 
 public class BlogCreationRequest {
 
