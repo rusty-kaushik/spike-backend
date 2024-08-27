@@ -1,14 +1,11 @@
 package com.in2it.commentandlikeservice.mapper;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,7 +23,7 @@ public class CommentConvertor {
 
 		List<String> mediaName = new ArrayList();
 		List<String> mediaPath = new ArrayList<>();
-
+		HashMap<List<String>, List<String>> mediaMap=new HashMap<>();
 		File file = new File("src\\main\\resources\\static\\CommentImage");
 
 		if(!file.isDirectory())
@@ -49,12 +46,13 @@ public class CommentConvertor {
 					String path1=path+"\\"+image.getOriginalFilename();
 					mediaName.add(image.getOriginalFilename());
 					image.transferTo(new File(path1));
-					String p=ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/").path(image.getOriginalFilename()).toUriString();
-					mediaPath.add(p);
+					String path2=ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/").path(image.getOriginalFilename()).toUriString();
+					mediaPath.add(path2);
 					
 					System.out.println("path"+path);
 					System.out.println("path1"+path1);
 				}
+
 
 	    	}
 			catch (Exception e) {
@@ -63,6 +61,7 @@ public class CommentConvertor {
 	    }
 		
 		Comment comment = new Comment();
+		
 		comment.setContent(commentDto.getContent());
 		comment.setBlogId(commentDto.getBlogId());
 		comment.setMedia(mediaName);
@@ -70,7 +69,18 @@ public class CommentConvertor {
 		comment.setAuthorId(commentDto.getAuthorID());
 		comment.setCreatedDate(LocalDateTime.now());
 		comment.setStatus("Active");
-//		comment.setMediaMap(comment.getMedia(), comment.getMediaPath());
+		
+		// Use iterators to combine the lists
+//		 HashMap<String, String> mediaMap=new HashMap<>();
+//		 
+//        Iterator<String> nameIterator = mediaName.iterator();
+//        Iterator<String> pathIterator = mediaPath.iterator();
+//        while (nameIterator.hasNext()) {
+//            String name = nameIterator.next();
+//            String path = pathIterator.next();
+//           mediaMap.put(name, path);
+//        }
+//		comment.setMediaMap(mediaMap);
 		
 		return comment;
 	}

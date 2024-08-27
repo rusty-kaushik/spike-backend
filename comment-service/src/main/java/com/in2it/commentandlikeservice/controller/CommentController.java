@@ -35,7 +35,7 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 
-	@PostMapping(path = "/post/{blogId}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE })
+	@PostMapping(path = "post/{blogId}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<CommentDto> createComment(@ModelAttribute CommentDto commentDto, @PathVariable Long blogId) {
 		try {
 
@@ -51,7 +51,8 @@ public class CommentController {
 	public ResponseEntity<CommentDto> updateComment(@RequestBody CommentUpdateDto updateDto,
 			@Valid @PathVariable("updatedById") UUID updatedById) {
 
-		if(updateDto.getId()==updatedById) {
+		
+		if(updateDto.getId().equals(updatedById)) {
 		return ResponseEntity.status(HttpStatus.OK).body(commentService.updateComment(updateDto));
 		}
 		else {

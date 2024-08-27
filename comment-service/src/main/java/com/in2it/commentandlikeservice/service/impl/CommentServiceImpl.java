@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.in2it.blogservice.dto.BlogDto;
-import com.in2it.blogservice.dto.BlogUpdateDto;
-import com.in2it.blogservice.model.Blog;
 import com.in2it.commentandlikeservice.dto.CommentDto;
 import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
 import com.in2it.commentandlikeservice.feign.BlogFeign;
@@ -46,11 +44,15 @@ public class CommentServiceImpl implements CommentService {
 		}
 
 		Comment comment = objectMapper.dtoToCommentConvertor(commentDto);
+		
+	
 		Comment com = commentRepository.save(comment);
+	
 		com.setCreatedDate(LocalDateTime.now());
 //		com.setMediaMap(com.getMedia(),com.getMediaPath());
 		long incrementcount = blog.getCommentCount() + 1;
 
+		
 		feign.updateComment(blogId, incrementcount);
 		CommentDto dto = objectMapper.commentToDtoConvertor(comment);
 
@@ -73,8 +75,8 @@ public class CommentServiceImpl implements CommentService {
 				comment.setContent(updateDto.getContent());
 
 			comment.setUpdatedDateTime(LocalDateTime.now());
-			
 			comment.setUpdatedBy(comment.getAuthorId());
+			System.out.println(comment+"+++++++comment");
 			return objectMapper.commentToDtoConvertor(commentRepository.save(comment));
 		} else {
 			throw new UserNotFoundException(
@@ -90,13 +92,20 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	public List<CommentDto> getByBlogId(Long blogId) {
-		List<Comment> commentList = commentRepository.findByBlogId(blogId);
 		List<CommentDto> commentListDto = new ArrayList<>();
+		try {
+		List<Comment> commentList = commentRepository.findByBlogId(blogId);
+		
 		for (Comment com : commentList) {
-			if (com != null) {
+//			if (com != null) {
 				CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
+				System.out.println(commentDtoConvertor);
+				System.out.println(com+"++++++++++++++");
 				commentListDto.add(commentDtoConvertor);
-			}
+//			}
+		}}
+		catch(Exception e) {
+			e.printStackTrace();
 		}
 
 		return commentListDto;
