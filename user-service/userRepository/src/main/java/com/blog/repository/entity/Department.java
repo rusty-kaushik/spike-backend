@@ -1,9 +1,10 @@
 package com.blog.repository.entity;
 
+import com.blog.repository.auditing.Auditable;
 import jakarta.persistence.*;
 
 @Entity
-public class Department {
+public class Department extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

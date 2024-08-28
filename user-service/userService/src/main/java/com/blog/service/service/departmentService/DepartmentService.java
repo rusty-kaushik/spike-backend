@@ -15,7 +15,7 @@ public interface DepartmentService {
 
     Department getDepartmentByName(String name);
 
-    Page<Department> getAllTeams(Pageable pageable);
+    Page<Department> getAllDepartments(Pageable pageable);
 
     Page<Department> searchDepartmentsByName(String name, Pageable pageable);
 
