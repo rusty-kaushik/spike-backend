@@ -33,10 +33,10 @@ public class RestExceptionHandler {
         return buildResponseEntityForExceptions(ex, HttpStatus.FORBIDDEN);
     }
 
-    @ExceptionHandler(value = {TeamNotFoundException.class})
-    public ResponseEntity<Object> handleTeamNotFoundException(TeamNotFoundException ex) {
-        return buildResponseEntityForExceptions(ex, HttpStatus.NOT_FOUND);
-    }
+//    @ExceptionHandler(value = {TeamNotFoundException.class})
+//    public ResponseEntity<Object> handleTeamNotFoundException(TeamNotFoundException ex) {
+//        return buildResponseEntityForExceptions(ex, HttpStatus.NOT_FOUND);
+//    }
 
     @ExceptionHandler(value = {DepartmentNotFoundException.class})
     public ResponseEntity<Object> handleDepartmentNotFoundException(DepartmentNotFoundException ex) {

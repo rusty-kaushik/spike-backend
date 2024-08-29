@@ -36,11 +36,11 @@ public interface UserRepository extends JpaRepository<User,Long> , JpaSpecificat
     Page<Object[]> findByDepartment(@Param("createdBy") String createdBy, @Param("departmentName") String departmentName, Pageable paging);
 
 
-    @Query("SELECT u.userName, t.name FROM User u " +
-            "JOIN u.teams t " +
-            "WHERE u.createdBy = :createdBy " +
-            "AND (:teamName IS NULL OR UPPER(t.name) LIKE UPPER(CAST(:teamName AS text)))")
-    Page<Object[]> findByTeam(@Param("teamName") String teamName, @Param("createdBy") String createdBy, Pageable paging);
+//    @Query("SELECT u.userName, t.name FROM User u " +
+//            "JOIN u.teams t " +
+//            "WHERE u.createdBy = :createdBy " +
+//            "AND (:teamName IS NULL OR UPPER(t.name) LIKE UPPER(CAST(:teamName AS text)))")
+//    Page<Object[]> findByTeam(@Param("teamName") String teamName, @Param("createdBy") String createdBy, Pageable paging);
 
 
     @Query("SELECT u.userName, r.name FROM User u " +

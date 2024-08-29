@@ -9,14 +9,14 @@ public class DatabaseSeederConfig {
 
     private final RoleSeeder roleSeeder;
     private final DepartmentSeeder departmentSeeder;
-    private final TeamSeeder teamSeeder;
+   // private final TeamSeeder teamSeeder;
     private final UserSeeder userSeeder;
 
     public DatabaseSeederConfig(RoleSeeder roleSeeder, DepartmentSeeder departmentSeeder,
-                                TeamSeeder teamSeeder, UserSeeder userSeeder) {
+                                UserSeeder userSeeder) {
         this.roleSeeder = roleSeeder;
         this.departmentSeeder = departmentSeeder;
-        this.teamSeeder = teamSeeder;
+
         this.userSeeder = userSeeder;
     }
 
@@ -25,7 +25,7 @@ public class DatabaseSeederConfig {
         return args -> {
             roleSeeder.seedRoles();        // Run RoleSeeder first
             departmentSeeder.seedDepartments(); // Run DepartmentSeeder next
-            teamSeeder.seedTeams();        // Run TeamSeeder next
+           // teamSeeder.seedTeams();        // Run TeamSeeder next
             userSeeder.seedSuperAdmin();   // Run UserSeeder last
         };
     }

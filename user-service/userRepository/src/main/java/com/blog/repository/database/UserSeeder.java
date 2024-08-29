@@ -46,7 +46,7 @@ public class UserSeeder {
             superAdmin.setBackupEmail("super_admin@in2it.com");
             superAdmin.setEmpCode("00000000");
             superAdmin.setDepartments(null); // or simply don't set this field
-            superAdmin.setTeams(null); // or simply don't set this field
+          //  superAdmin.setTeams(null); // or simply don't set this field
             superAdmin.setRole(superAdminRole);
             userRepository.save(superAdmin);
             System.out.println("Super Admin created.");

@@ -72,13 +72,13 @@ public class User extends Auditable {
     )
     private Set<Department> departments;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_team",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "team_id")
-    )
-    private Set<Team> teams;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "user_team",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "team_id")
+//    )
+//    private Set<Team> teams;
 
     @ManyToOne
     private Role role;
@@ -86,7 +86,7 @@ public class User extends Auditable {
     public User() {
     }
 
-    public User(String userName, String empCode, String email, String password, String name, String address, String mobile, Date joiningDate, String backupEmail, String status, Long managerId, boolean postCreate, Set<Department> departments, Set<Team> teams, Role role) {
+    public User(String userName, String empCode, String email, String password, String name, String address, String mobile, Date joiningDate, String backupEmail, String status, Long managerId, boolean postCreate, Set<Department> departments, Role role) {
         this.userName = userName;
         this.empCode = empCode;
         this.email = email;
@@ -100,7 +100,6 @@ public class User extends Auditable {
         this.managerId = managerId;
         this.postCreate = postCreate;
         this.departments = departments;
-        this.teams = teams;
         this.role = role;
     }
 
@@ -184,13 +183,6 @@ public class User extends Auditable {
         this.role = role;
     }
 
-    public Set<Team> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
-    }
 
     public String getEmpCode() {
         return empCode;
