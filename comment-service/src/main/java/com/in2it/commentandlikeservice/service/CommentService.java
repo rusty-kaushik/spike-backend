@@ -13,16 +13,16 @@ public interface CommentService {
 
 	public CommentDto saveComment(CommentDto commentDto, Long blogid, List<MultipartFile> file);
 
-//	public List<CommentDto> getAllComment();
+	public Comment getByCommentId(UUID commentId);
+
 	public List<CommentDto> getByBlogId(Long blogId);
 
-	public CommentDto updateComment(CommentUpdateDto updateDto);
+	public CommentDto updateComment(CommentUpdateDto updateDto, UUID id);
 
 	public List<CommentDto> getByUserName(String usename);
 
 	public Boolean deleteCommentId(Long id);
 
-//	public List<Comment> deleteByBlogId(Long id);
 	public List<Comment> deleteByBlogId(Long id, UUID commentId);
 
 }

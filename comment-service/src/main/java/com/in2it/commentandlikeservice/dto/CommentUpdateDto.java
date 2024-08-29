@@ -7,6 +7,8 @@ import java.util.UUID;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.in2it.blogservice.dto.BlogUpdateDto;
 
 import io.swagger.v3.oas.annotations.Hidden;
@@ -23,12 +25,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CommentUpdateDto {
 
-	@NotNull
-	private UUID id;
+
 
 	@NotBlank(message = "content cannot be blank")
 	private String content;
 
-	private long blogId;
+
+//	@JsonProperty(access = Access.WRITE_ONLY)
+//	private List<MultipartFile> media;
 
 }

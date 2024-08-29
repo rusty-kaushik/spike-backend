@@ -44,15 +44,13 @@ public class CommentServiceImpl implements CommentService {
 		}
 
 		Comment comment = objectMapper.dtoToCommentConvertor(commentDto);
-		
-	
+
 		Comment com = commentRepository.save(comment);
-	
+
 		com.setCreatedDate(LocalDateTime.now());
-//		com.setMediaMap(com.getMedia(),com.getMediaPath());
+
 		long incrementcount = blog.getCommentCount() + 1;
 
-		
 		feign.updateComment(blogId, incrementcount);
 		CommentDto dto = objectMapper.commentToDtoConvertor(comment);
 
@@ -62,21 +60,19 @@ public class CommentServiceImpl implements CommentService {
 
 	// This method is used to update BLOG with Blog_id with limited permissions
 	@Override
-	public CommentDto updateComment(CommentUpdateDto updateDto) {
+	public CommentDto updateComment(CommentUpdateDto updateDto, UUID id) {
 
 		Comment comment = null;
 
-		comment = commentRepository.findById(updateDto.getId()).get();
+		comment = commentRepository.findById(id).get();
 
-		if (comment != null && comment.getId() == updateDto.getId()
-				&& comment.getBlogId() == updateDto.getBlogId()) {
-
+		if (comment != null && comment.getId().equals(id)) {
 			if (updateDto.getContent() != null)
 				comment.setContent(updateDto.getContent());
 
 			comment.setUpdatedDateTime(LocalDateTime.now());
-			comment.setUpdatedBy(comment.getAuthorId());
-			System.out.println(comment+"+++++++comment");
+			comment.setUpdatedBy(comment.getUserName());
+
 			return objectMapper.commentToDtoConvertor(commentRepository.save(comment));
 		} else {
 			throw new UserNotFoundException(
@@ -94,17 +90,14 @@ public class CommentServiceImpl implements CommentService {
 	public List<CommentDto> getByBlogId(Long blogId) {
 		List<CommentDto> commentListDto = new ArrayList<>();
 		try {
-		List<Comment> commentList = commentRepository.findByBlogId(blogId);
-		
-		for (Comment com : commentList) {
-//			if (com != null) {
+			List<Comment> commentList = commentRepository.findByBlogId(blogId);
+
+			for (Comment com : commentList) {
+
 				CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
-				System.out.println(commentDtoConvertor);
-				System.out.println(com+"++++++++++++++");
 				commentListDto.add(commentDtoConvertor);
-//			}
-		}}
-		catch(Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -112,7 +105,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	public List<CommentDto> getByUserName(String usename) {
-		List<Comment> commentList = commentRepository.findByAuthorId(usename);
+		List<Comment> commentList = commentRepository.findByUserName(usename);
 		List<CommentDto> commentListDto = new ArrayList<>();
 		for (Comment com : commentList) {
 			if (com != null) {
@@ -151,14 +144,14 @@ public class CommentServiceImpl implements CommentService {
 
 				com.setStatus("InActive");
 
-				Comment c = commentRepository.save(com);
-				c.setUpdatedDateTime(LocalDateTime.now());
-				c.setDeletedBy(c.getAuthorId());
+				Comment comment = commentRepository.save(com);
+				comment.setUpdatedDateTime(LocalDateTime.now());
+				comment.setDeletedBy(comment.getUserName());
 				long decrementcount = blog.getCommentCount() - 1;
 
 				feign.updateComment(blogId, decrementcount);
 
-				deleteComments.add(c);
+				deleteComments.add(comment);
 			}
 		}
 		return deleteComments;

@@ -42,7 +42,7 @@ public class Comment {
 	@NotNull
 	private long blogId;
 	@NotNull
-	private String authorId;
+	private String userName;
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String status;
 	@Column(nullable = false, updatable = false)

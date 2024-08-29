@@ -23,11 +23,10 @@ public class CommentConvertor {
 
 		List<String> mediaName = new ArrayList();
 		List<String> mediaPath = new ArrayList<>();
-		HashMap<List<String>, List<String>> mediaMap=new HashMap<>();
+
 		File file = new File("src\\main\\resources\\static\\CommentImage");
 
-		if(!file.isDirectory())
-		{
+		if (!file.isDirectory()) {
 			try {
 				Files.createDirectories(Path.of("src\\main\\resources\\static\\CommentImage"));
 			} catch (IOException e) {
@@ -35,53 +34,37 @@ public class CommentConvertor {
 				e.printStackTrace();
 			}
 		}
-		
-		if(file.isDirectory())
-	    {
-	    	try
-	    	{
-				String path=file.getAbsolutePath();
-				for(MultipartFile image:commentDto.getMedia())
-				{
-					String path1=path+"\\"+image.getOriginalFilename();
+
+		if (file.isDirectory()) {
+			try {
+				String path = file.getAbsolutePath();
+				for (MultipartFile image : commentDto.getMedia()) {
+					String path1 = path + "\\" + image.getOriginalFilename();
 					mediaName.add(image.getOriginalFilename());
 					image.transferTo(new File(path1));
-					String path2=ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/").path(image.getOriginalFilename()).toUriString();
+					String path2 = ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/")
+							.path(image.getOriginalFilename()).toUriString();
 					mediaPath.add(path2);
-					
-					System.out.println("path"+path);
-					System.out.println("path1"+path1);
+
+					System.out.println("path" + path);
+					System.out.println("path1" + path1);
 				}
 
-
-	    	}
-			catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	    }
-		
+		}
+
 		Comment comment = new Comment();
-		
+
 		comment.setContent(commentDto.getContent());
 		comment.setBlogId(commentDto.getBlogId());
 		comment.setMedia(mediaName);
 		comment.setMediaPath(mediaPath);
-		comment.setAuthorId(commentDto.getAuthorID());
+		comment.setUserName(commentDto.getUserName());
 		comment.setCreatedDate(LocalDateTime.now());
 		comment.setStatus("Active");
-		
-		// Use iterators to combine the lists
-//		 HashMap<String, String> mediaMap=new HashMap<>();
-//		 
-//        Iterator<String> nameIterator = mediaName.iterator();
-//        Iterator<String> pathIterator = mediaPath.iterator();
-//        while (nameIterator.hasNext()) {
-//            String name = nameIterator.next();
-//            String path = pathIterator.next();
-//           mediaMap.put(name, path);
-//        }
-//		comment.setMediaMap(mediaMap);
-		
+
 		return comment;
 	}
 
@@ -90,17 +73,18 @@ public class CommentConvertor {
 		commentDto.setBlogId(comment.getBlogId());
 		commentDto.setContent(comment.getContent());
 		commentDto.setId(comment.getId());
-//		commentDto.setMediaPath(comment.getMediaPath());
-		commentDto.setAuthorID(comment.getAuthorId());
-//		commentDto.setStatus(comment.getStatus());
+
+		commentDto.setUserName(comment.getUserName());
+
 		commentDto.setCreatedDate(comment.getCreatedDate());
-		
-		List<String> filesPath=new ArrayList<>();
-		
-		for(String fileName:comment.getMedia()) {
-			filesPath.add(ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/").path(fileName).toUriString());
+
+		List<String> filesPath = new ArrayList<>();
+
+		for (String fileName : comment.getMedia()) {
+			filesPath.add(ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/").path(fileName)
+					.toUriString());
 		}
-	commentDto.setMediaPath(filesPath);
+		commentDto.setMediaPath(filesPath);
 		return commentDto;
 	}
 

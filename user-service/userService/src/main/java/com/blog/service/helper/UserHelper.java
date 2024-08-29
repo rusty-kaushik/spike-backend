@@ -1,6 +1,7 @@
 package com.blog.service.helper;
 
 import com.blog.repository.DTO.UserRequest;
+import com.blog.repository.entity.Department;
 import com.blog.repository.entity.Role;
 import com.blog.repository.entity.Team;
 import com.blog.repository.entity.User;

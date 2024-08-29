@@ -1,8 +1,6 @@
 package com.in2it.commentandlikeservice.dto;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import io.swagger.v3.oas.annotations.Hidden;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,12 +33,13 @@ public class CommentDto {
 	@JsonIgnore
 	private long blogId;
 
-	private String authorID;
+	private String userName;
 	
 
 	@Hidden
 	private LocalDateTime createdDate;
 
+	@Size(max = 1_000_000) // 1 MB
 	 @JsonProperty(access = Access.WRITE_ONLY)
 	private List<MultipartFile> media;
 	
