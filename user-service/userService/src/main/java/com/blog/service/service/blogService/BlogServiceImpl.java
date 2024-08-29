@@ -5,17 +5,12 @@ import com.blog.repository.DTO.BlogCreationRequest;
 import com.blog.repository.entity.User;
 import com.blog.repository.repository.UserRepository;
 import com.blog.service.exceptions.DepartmentNotFoundException;
-import com.blog.service.exceptions.TeamNotFoundException;
 import com.blog.service.externalServices.ExternalBlogService;
 import com.blog.service.helper.BlogHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -36,7 +31,7 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Map<String, Object> createBlog(String creator, BlogCreationRequest blogCreationRequest) throws IOException {
         try {
-            blogHelper.checkExistenceOfTeam(blogCreationRequest.getTeam_visibility());
+            //blogHelper.checkExistenceOfTeam(blogCreationRequest.getTeam_visibility());
             blogHelper.checkExistenceOfDepartment(blogCreationRequest.getDepartment_visibility());
 //            List<String> base64Files = new ArrayList<>();
 //            for (MultipartFile file : blogCreationRequest.getFiles()) {
@@ -54,7 +49,7 @@ public class BlogServiceImpl implements BlogService {
             blogCreationClient.setFilesBase64Encoded(blogCreationRequest.getFiles());
             Map<String, Object> response = externalBlogService.postBlog(blogCreationClient);
             return null;
-        } catch (TeamNotFoundException | DepartmentNotFoundException e) {
+        } catch (DepartmentNotFoundException e) {
             throw e;
         } catch (Exception e) {
             throw new IOException("Error creating blog: " + e.getMessage());

@@ -3,11 +3,9 @@ package com.blog.service.helper;
 import com.blog.repository.DTO.UserRequest;
 import com.blog.repository.entity.Department;
 import com.blog.repository.entity.Role;
-import com.blog.repository.entity.Team;
 import com.blog.repository.entity.User;
 import com.blog.repository.repository.DepartmentRepository;
 import com.blog.repository.repository.RoleRepository;
-import com.blog.repository.repository.TeamRepository;
 import com.blog.repository.repository.UserRepository;
 import com.blog.service.exceptions.EmployeeNotFoundException;
 import com.blog.service.exceptions.InvalidRoleAssignmentException;
@@ -28,8 +26,6 @@ public class UserHelper {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    @Autowired
-    private TeamRepository teamRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -48,12 +44,12 @@ public class UserHelper {
                 .collect(Collectors.toSet());
     }
 
-    public Set<Team> assignTeamsToUser(UserRequest userRequest) {
-        return userRequest.getTeam().stream()
-                .map(teamName -> teamRepository.findByName(teamName)
-                        .orElseThrow(() -> new IllegalArgumentException("Team not found: " + teamName)))
-                .collect(Collectors.toSet());
-    }
+//    public Set<Team> assignTeamsToUser(UserRequest userRequest) {
+//        return userRequest.getTeam().stream()
+//                .map(teamName -> teamRepository.findByName(teamName)
+//                        .orElseThrow(() -> new IllegalArgumentException("Team not found: " + teamName)))
+//                .collect(Collectors.toSet());
+//    }
 
     public void validateAdminDTO(UserRequest userRequest) {
         // Validate role
@@ -130,9 +126,9 @@ public class UserHelper {
         user.setJoiningDate(userRequest.getJoinDate());
         user.setPassword(passwordEncoder.encode("in2it" )); //* Encoding password
         user.setUserName(userRequest.getEmpCode()); //* Assuming userName is same as emp code which can be later changed
-        if (userRequest.getTeam() != null) {
-            user.setTeams(assignTeamsToUser(userRequest));
-        }
+//        if (userRequest.getTeam() != null) {
+//            user.setTeams(assignTeamsToUser(userRequest));
+//        }
         // Assign role, departments, and teams is null
         user.setRole(assignRoleToUser(userRequest));
         user.setDepartments(assignDepartmentsToUser(userRequest));
@@ -161,7 +157,7 @@ public class UserHelper {
         userDetails.put("joiningDate", user.getJoiningDate());
         userDetails.put("role", user.getRole().getName());
         userDetails.put("departments", user.getDepartments().stream().map(Department::getName).collect(Collectors.toList()));
-        userDetails.put("teams", user.getTeams().stream().map(Team::getName).collect(Collectors.toList()));
+       // userDetails.put("teams", user.getTeams().stream().map(Team::getName).collect(Collectors.toList()));
         if (user.getManagerId() != null) {
             User manager = userRepository.findById(user.getManagerId()).orElseThrow(() -> new EmployeeNotFoundException("Couldn't find a manager"));
             userDetails.put("manager", manager.getName());
@@ -175,7 +171,7 @@ public class UserHelper {
     public Map<String, Object> setUserTeamAndDepartment(User user) {
         Map<String, Object> userDetails = new HashMap<>();
         userDetails.put("departments", user.getDepartments().stream().map(Department::getName).collect(Collectors.toList()));
-        userDetails.put("teams", user.getTeams().stream().map(Team::getName).collect(Collectors.toList()));
+      // userDetails.put("teams", user.getTeams().stream().map(Team::getName).collect(Collectors.toList()));
         return userDetails;
     }
 
@@ -190,9 +186,9 @@ public class UserHelper {
                     details.addAll(user.getDepartments().stream()
                             .map(department -> "Department: " + department.getName())
                             .collect(Collectors.toList()));
-                    details.addAll(user.getTeams().stream()
-                            .map(team -> "Team: " + team.getName())
-                            .collect(Collectors.toList()));
+//                    details.addAll(user.getTeams().stream()
+//                            .map(team -> "Team: " + team.getName())
+//                            .collect(Collectors.toList()));
                     return details;
                 }
         ));

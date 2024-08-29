@@ -1,0 +1,28 @@
+24-08-29 11:42:54.960 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final 
+24-08-29 11:42:54.998 [main] INFO  c.b.controller.UserModuleApplication - Starting UserModuleApplication using Java 20.0.2.1 with PID 21912 (D:\spike-backend\user-service\userController\target\classes started by shubham.rathee in D:\spike-backend\user-service) 
+24-08-29 11:42:54.999 [main] INFO  c.b.controller.UserModuleApplication - No active profile set, falling back to 1 default profile: "default" 
+24-08-29 11:42:55.450 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+24-08-29 11:42:55.484 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30 ms. Found 3 JPA repository interfaces. 
+24-08-29 11:42:55.597 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=55d98fab-903d-3c71-af0b-24988709637c 
+24-08-29 11:42:55.933 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8181 (http) 
+24-08-29 11:42:55.941 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8181"] 
+24-08-29 11:42:55.943 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat] 
+24-08-29 11:42:55.943 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26] 
+24-08-29 11:42:55.992 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext 
+24-08-29 11:42:55.993 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 961 ms 
+24-08-29 11:42:56.084 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default] 
+24-08-29 11:42:56.114 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final 
+24-08-29 11:42:56.133 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled 
+24-08-29 11:42:56.315 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer 
+24-08-29 11:42:56.331 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting... 
+24-08-29 11:42:56.425 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54496c2d 
+24-08-29 11:42:56.425 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed. 
+24-08-29 11:42:56.440 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) 
+24-08-29 11:42:57.008 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) 
+24-08-29 11:42:57.071 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default' 
+24-08-29 11:42:57.216 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used. 
+24-08-29 11:42:57.670 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+24-08-29 11:42:57.777 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. 
+24-08-29 11:42:58.188 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8181"] 
+24-08-29 11:42:58.198 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8181 (http) with context path '/' 
+24-08-29 11:42:58.222 [main] INFO  c.b.controller.UserModuleApplication - Started UserModuleApplication in 3.451 seconds (process running for 3.743) 

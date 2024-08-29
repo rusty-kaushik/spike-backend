@@ -47,9 +47,6 @@ private UserServiceImpl userService;
         if (departmentName != null ) {
             return result = userService.getUsersByDepartment(userName, departmentName, pageNo, pageSize);
         }
-        else if (teamName != null) {
-            return result = userService.getUsersByTeam(userName, teamName, pageNo, pageSize);
-        }
         else if (roleName != null) {
             return  result = userService.getUsersByRolename(userName, roleName, pageNo, pageSize);
         }

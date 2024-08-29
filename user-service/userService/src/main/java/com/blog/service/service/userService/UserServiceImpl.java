@@ -7,7 +7,6 @@ import com.blog.repository.entity.Role;
 import com.blog.repository.entity.User;
 import com.blog.repository.repository.DepartmentRepository;
 import com.blog.repository.repository.RoleRepository;
-import com.blog.repository.repository.TeamRepository;
 import com.blog.repository.repository.UserRepository;
 import com.blog.service.exceptions.*;
 import com.blog.service.helper.UserHelper;
@@ -39,8 +38,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    @Autowired
-    private TeamRepository teamRepository;
+//    @Autowired
+//    private TeamRepository teamRepository;
 
     @Autowired
     private UserHelper userHelper;
@@ -231,28 +230,28 @@ public class UserServiceImpl implements UserService {
     }
 
     //this method will fetch all the users with their name and team created by loggen in user
-    public Map<String, List<String>> getUsersByTeam(String userName, String teamName, int pageNo, int pageSize) {
-
-        try {
-            Pageable paging = PageRequest.of(pageNo, pageSize);
-            Page<Object[]> data = userRepository.findByTeam(userName, teamName, paging);
-            //if user doesn't exist it will throw this exception
-            if (data == null) {
-                throw new EmployeeNotFoundException("User not found");
-            }
-            //it will return the page content as list
-            List<Object[]> results = (List<Object[]>) data.getContent();
-            return results.stream()
-                    .collect(Collectors.groupingBy(
-                            result -> (String) result[0], // UserName
-                            Collectors.mapping(result -> (String) result[1], // Team
-                                    Collectors.toList())
-                    ));
-            //* Handle any other  exceptions
-        } catch (Exception ex) {
-            throw new UnexpectedException("An unexpected error occurred while fetching user details", ex);
-        }
-    }
+//    public Map<String, List<String>> getUsersByTeam(String userName, String teamName, int pageNo, int pageSize) {
+//
+//        try {
+//            Pageable paging = PageRequest.of(pageNo, pageSize);
+//            Page<Object[]> data = userRepository.findByTeam(userName, teamName, paging);
+//            //if user doesn't exist it will throw this exception
+//            if (data == null) {
+//                throw new EmployeeNotFoundException("User not found");
+//            }
+//            //it will return the page content as list
+//            List<Object[]> results = (List<Object[]>) data.getContent();
+//            return results.stream()
+//                    .collect(Collectors.groupingBy(
+//                            result -> (String) result[0], // UserName
+//                            Collectors.mapping(result -> (String) result[1], // Team
+//                                    Collectors.toList())
+//                    ));
+//            //* Handle any other  exceptions
+//        } catch (Exception ex) {
+//            throw new UnexpectedException("An unexpected error occurred while fetching user details", ex);
+//        }
+//    }
 
     //this method will fetch username and rolename of the users created by admin
     public Map<String, List<String>> getUsersByRolename(String userName, String roleName, int pageNo, int pageSize) {
