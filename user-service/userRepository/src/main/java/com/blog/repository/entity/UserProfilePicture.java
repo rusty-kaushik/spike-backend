@@ -15,17 +15,23 @@ public class UserProfilePicture extends Auditable {
     private Long user_id;
     @Column(name="file_name")
     private String file_name;
-    @Column(name="file_path")
+    @Column(name="file_path",nullable = false)
     private String file_path;
+    @Column(name="file_type" , nullable = false)
+    private String file_type;
+    @Column(name="file_size", nullable = false)
+    private Long file_size;
 
     public UserProfilePicture() {
     }
 
-    public UserProfilePicture(Long id, Long user_id, String file_name, String file_path) {
+    public UserProfilePicture(Long id, Long user_id, String file_name, String file_path, String file_type, Long file_size) {
         this.id = id;
         this.user_id = user_id;
         this.file_name = file_name;
         this.file_path = file_path;
+        this.file_type = file_type;
+        this.file_size = file_size;
     }
 
     public Long getId() {
@@ -58,5 +64,21 @@ public class UserProfilePicture extends Auditable {
 
     public void setFile_path(String file_path) {
         this.file_path = file_path;
+    }
+
+    public String getFile_type() {
+        return file_type;
+    }
+
+    public void setFile_type(String file_type) {
+        this.file_type = file_type;
+    }
+
+    public Long getFile_size() {
+        return file_size;
+    }
+
+    public void setFile_size(Long file_size) {
+        this.file_size = file_size;
     }
 }

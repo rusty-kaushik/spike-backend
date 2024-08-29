@@ -59,8 +59,11 @@ public class User extends Auditable {
     @Column(name = "status", nullable = false)
     private String status = "ACTIVE";
 
-    @Column(name = "manager_id")
+    @Column(name = "manager_id", nullable = false)
     private Long managerId;
+
+    @Column(name = "salary",nullable = false)
+    private String salary;
 
 
     @Column(name="designation" , nullable =false)
@@ -78,8 +81,10 @@ public class User extends Auditable {
     private Set<Department> departments;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
+
 
     @OneToOne
     private UserSocials userSocials;
@@ -90,25 +95,31 @@ public class User extends Auditable {
     @OneToMany(cascade=CascadeType.ALL)
     private Set<UserAddress> userAddress;
 
+
     public User() {
     }
 
-    public User(String userName, String empCode, String email, String password, String name, String address, String mobile, Date joiningDate, String backupEmail, String status, Long managerId, boolean postCreate, Set<Department> departments, Role role) {
+    public User(Long id, String userName, String empCode, String email, String password, String name, String address, String mobile, Date joiningDate, String backupEmail, String status, Long managerId, String designation, boolean postCreate, Set<Department> departments, Role role, UserSocials userSocials, UserProfilePicture profilePicture, Set<UserAddress> userAddress,String salary) {
+        this.id = id;
         this.userName = userName;
         this.empCode = empCode;
         this.email = email;
         this.password = password;
         this.name = name;
+        this.salary= salary;
         this.address = address;
         this.mobile = mobile;
         this.joiningDate = joiningDate;
         this.backupEmail = backupEmail;
         this.status = status;
         this.managerId = managerId;
+        this.designation = designation;
         this.postCreate = postCreate;
         this.departments = departments;
-
         this.role = role;
+        this.userSocials = userSocials;
+        this.profilePicture = profilePicture;
+        this.userAddress = userAddress;
     }
 
     public Long getId() {
@@ -125,6 +136,14 @@ public class User extends Auditable {
 
     public void setUserName(@Size(min = 3, max = 50) String userName) {
         this.userName = userName;
+    }
+
+    public @Size(min = 3, max = 50) String getEmpCode() {
+        return empCode;
+    }
+
+    public void setEmpCode(@Size(min = 3, max = 50) String empCode) {
+        this.empCode = empCode;
     }
 
     public @Email String getEmail() {
@@ -151,6 +170,46 @@ public class User extends Auditable {
         this.name = name;
     }
 
+    public @Size(min = 1, max = 100) String getAddress() {
+        return address;
+    }
+
+    public void setAddress(@Size(min = 1, max = 100) String address) {
+        this.address = address;
+    }
+
+    public @Size(min = 10, max = 10) String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(@Size(min = 10, max = 10) String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public Date getJoiningDate() {
+        return joiningDate;
+    }
+
+    public void setJoiningDate(Date joiningDate) {
+        this.joiningDate = joiningDate;
+    }
+
+    public @Email String getBackupEmail() {
+        return backupEmail;
+    }
+
+    public void setBackupEmail(@Email String backupEmail) {
+        this.backupEmail = backupEmail;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -165,6 +224,14 @@ public class User extends Auditable {
 
     public void setManagerId(Long managerId) {
         this.managerId = managerId;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
     }
 
     public boolean isPostCreate() {
@@ -191,44 +258,27 @@ public class User extends Auditable {
         this.role = role;
     }
 
-
-    public String getEmpCode() {
-        return empCode;
+    public UserSocials getUserSocials() {
+        return userSocials;
     }
 
-    public void setEmpCode(String empCode) {
-        this.empCode = empCode;
+    public void setUserSocials(UserSocials userSocials) {
+        this.userSocials = userSocials;
     }
 
-    public @Size(min = 1, max = 100) String getAddress() {
-        return address;
+    public UserProfilePicture getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setAddress(@Size(min = 1, max = 100) String address) {
-        this.address = address;
+    public void setProfilePicture(UserProfilePicture profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
-    public @Size(min = 10, max = 10) String getMobile() {
-        return mobile;
+    public Set<UserAddress> getUserAddress() {
+        return userAddress;
     }
 
-    public void setMobile(@Size(min = 10, max = 10) String mobile) {
-        this.mobile = mobile;
-    }
-
-    public Date getJoiningDate() {
-        return joiningDate;
-    }
-
-    public void setJoiningDate(Date joiningDate) {
-        this.joiningDate = joiningDate;
-    }
-
-    public @Email String getBackupEmail() {
-        return backupEmail;
-    }
-
-    public void setBackupEmail(@Email String backupEmail) {
-        this.backupEmail = backupEmail;
+    public void setUserAddress(Set<UserAddress> userAddress) {
+        this.userAddress = userAddress;
     }
 }

@@ -38,6 +38,7 @@ public class UserAddress extends Auditable {
     @Column(name = "nearest_landmark")
     private String nearestLandmark;
     @Column(name = "type")
+    @Enumerated(EnumType.ORDINAL)
     private Type type;
     @Column(name = "country", nullable = false)
     private String country;

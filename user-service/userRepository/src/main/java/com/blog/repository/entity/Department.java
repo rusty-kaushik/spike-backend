@@ -21,9 +21,11 @@ public class Department extends Auditable {
 
     public Department(String name , String description) {
         this.name = name;
+        this.description=description;
     }
 
     public Department(String name) {
+        this.name = name;
     }
 
     public Long getId() {
