@@ -1,9 +1,10 @@
 package com.blog.repository.entity;
 
+import com.blog.repository.auditing.Auditable;
 import jakarta.persistence.*;
 
 @Entity
-public class Department {
+public class Department extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +21,11 @@ public class Department {
 
     public Department(String name , String description) {
         this.name = name;
+        this.description=description;
     }
 
     public Department(String name) {
+        this.name = name;
     }
 
     public Long getId() {

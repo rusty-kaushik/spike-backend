@@ -31,7 +31,7 @@ public interface UserService {
 
     Map<String, List<String>> getUsersByDepartment(String createdBy, String departmentName, int pageNo, int pageSize);
 
-    Map<String, List<String>> getUsersByTeam(String userName, String teamName, int pageNo, int pageSize);
+    //Map<String, List<String>> getUsersByTeam(String userName, String teamName, int pageNo, int pageSize);
 
     Map<String, List<String>> getUsersByRolename(String userName, String roleName, int pageNo, int pageSize);
 

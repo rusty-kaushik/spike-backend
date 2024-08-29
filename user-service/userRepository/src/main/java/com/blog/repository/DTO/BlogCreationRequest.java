@@ -1,6 +1,5 @@
 package com.blog.repository.DTO;
 
-import com.blog.repository.entity.Team;
 import org.springframework.web.multipart.MultipartFile;
 
 public class BlogCreationRequest {

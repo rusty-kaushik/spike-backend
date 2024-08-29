@@ -55,9 +55,9 @@ public class PublicController {
         try {
             logger.info("Processing login request for user: {}", user.getUsername());
             User userByUsername = internalServiceProviderServiceImpl.findUserByUsername(user.getUsername());
-            if(userByUsername.getDeletedAt() != null) {
-                return ResponseHandler.responseBuilder("USER LOGIN UNSUCCESSFUL", HttpStatus.GONE, "USER IS DELETED" );
-            }
+//            if(userByUsername.getDeletedAt() != null) {
+//                return ResponseHandler.responseBuilder("USER LOGIN UNSUCCESSFUL", HttpStatus.GONE, "USER IS DELETED" );
+//            }
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
             UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());

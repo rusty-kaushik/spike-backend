@@ -39,7 +39,7 @@ public class CommentDto {
 	@Hidden
 	private LocalDateTime createdDate;
 
-	@Size(max = 1_000_000) // 1 MB
+	
 	 @JsonProperty(access = Access.WRITE_ONLY)
 	private List<MultipartFile> media;
 	
