@@ -1,6 +1,5 @@
 package com.in2it.blogservice.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,15 +12,17 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BlogUpdateDto {
 
+//	@NotNull
+//	private UUID id;
+	
 	@NotNull
-	private long id;
-	
+	private String authorId; 
 	private String title;
-	
-	@NotBlank(message = "content cannot be blank")
+//	@NotBlank(message = "content cannot be blank")
 	private String content;
 	
-	private String visiblity;
+	
+//	private String visiblity;
 	
 //	@JsonProperty(access = Access.WRITE_ONLY)
 //	private List<MultipartFile> media;

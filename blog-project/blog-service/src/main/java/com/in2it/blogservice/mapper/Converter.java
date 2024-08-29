@@ -46,13 +46,14 @@ public class Converter {
 		blog.setMediaPath(uploadedPath);
 		
 		blog.setTitle(dto.getTitle());
-		blog.setVisiblity(dto.getVisiblity());
+//		blog.setVisiblity(dto.getVisiblity());
+//		blog.setVisiblity("TEAM");
 
 		
 		//set to current date&time
 		blog.setCretedDateTime(LocalDateTime.now());
 
-		blog.setTeamId(dto.getTeamId());
+//		blog.setTeamId(dto.getTeamId());
 		blog.setDepartmentId(dto.getDepartmentId());
 
 		blog.setLikeCount(dto.getLikeCount());
@@ -77,8 +78,8 @@ public class Converter {
 		dto.setAuthorId(blog.getAuthorId());
 
 		dto.setTitle(blog.getTitle());
-		dto.setVisiblity(blog.getVisiblity());
-		dto.setTeamId(blog.getTeamId());
+//		dto.setVisiblity(blog.getVisiblity());
+//		dto.setTeamId(blog.getTeamId());
 		dto.setDepartmentId(blog.getDepartmentId());
 
 	
@@ -91,6 +92,7 @@ public class Converter {
         dto.setMediaFile(blog.getMediaFile()); 
         dto.setMediaPath(blog.getMediaPath());
         
+        dto.setUpdatedBy(blog.getUpdatedBy());
         dto.setCretedDateTime(blog.getCretedDateTime());
 	    dto.setUpdatedDateTime(blog.getUpdatedDateTime());
 		return dto;
@@ -174,7 +176,8 @@ public class Converter {
 	
 	
 	
-	// Generating Random Id
+	
+	// Generating Random Id its genrate hash code 
 	  public static int generateUniqueId() {      
 	        UUID idOne = UUID.randomUUID();
 	        String str=""+idOne;        

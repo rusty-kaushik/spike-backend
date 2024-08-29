@@ -2,6 +2,7 @@ package com.in2it.blogservice.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,19 +26,19 @@ import lombok.ToString;
 @Setter
 public class Blog {
 	
+
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private UUID id;
 	
 	
 	@NotNull
 	private long departmentId;
 	
-	@NotNull
-	private long teamId;
 	
 	@NotNull
-	private String authorId;
+	private String authorId;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
 	
 	@NotNull
 	private String title;
@@ -45,16 +46,18 @@ public class Blog {
 	@NotNull
 	@Column(length = 10000)
 	private String content;
-	@NotNull
-	private String visiblity; 
+	
+//	@NotNull
+//	private String visiblity; 
 	
 	private long commentCount;
+	
 	private long likeCount;
 
 	@Column(updatable = false)
 	private String deletedBy;  // Basically   its RoleId whose delete the BLOG
 	
-	@Column(updatable = false)
+//	@Column(updatable = false)
 	private String updatedBy;   // Basically   its RoleId whose update the BLOG
 	
 	
@@ -66,7 +69,6 @@ public class Blog {
 	 
 	 private LocalDateTime updatedDateTime;
 	 
-	 private LocalDateTime deletedDateTime;
 	 
 	 private List<String> mediaFile;
 	 

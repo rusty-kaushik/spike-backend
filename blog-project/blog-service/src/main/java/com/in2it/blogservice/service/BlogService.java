@@ -1,6 +1,7 @@
 package com.in2it.blogservice.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,14 +15,14 @@ public interface BlogService {
 //	BlogDto saveBlog(BlogDto blogDto);
 	BlogDto	saveBlogWithFile(BlogDto blogDto,List<MultipartFile> multipartFile);
 	
-	BlogDto updateBlog(BlogUpdateDto updateDto, String updatedBy);
-	BlogDto updateLike(Long totallikeCount ,Long id);
-	BlogDto updateComment(Long totalCommentCount,Long id);
+	BlogDto updateBlog(BlogUpdateDto updateDto,  UUID blogId);
+	BlogDto updateLike(Long totallikeCount ,UUID id);
+	BlogDto updateComment(Long totalCommentCount,UUID id);
 	
-	Boolean deleteBlog(long id, String userId);
-	Boolean deleteBlogByTitle(String title, long blogId);
+	Boolean deleteBlog(UUID id, String userId);
+	Boolean deleteBlogByTitle(String title, UUID blogId);
 	
-	BlogDto getBlogById(Long id);
+	BlogDto getBlogById(UUID id);
 	List<BlogDto> getBlogTitle(String title);
 	List<BlogDto> getBlog();
 	List<BlogDto> getByAutherID(String userId);

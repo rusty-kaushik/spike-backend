@@ -2,6 +2,7 @@ package com.in2it.blogservice.repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,7 +15,7 @@ import com.in2it.blogservice.model.Blog;
 
 
 @Repository
-public interface BlogRepository extends JpaRepository<Blog, Long>{
+public interface BlogRepository extends JpaRepository<Blog,UUID>{
     
 
 //	@Query(value= "select  * from blog where status='ACTIVE' and title like %:title% ", nativeQuery = true)
@@ -28,17 +29,17 @@ public interface BlogRepository extends JpaRepository<Blog, Long>{
 	 List<Blog> findAll();
 	
 	@Query(value= "select  * from blog where id=%:id% and status='ACTIVE'", nativeQuery = true)
-	Blog getByBlogId(long id);
+	Blog getByBlogId(UUID id);
 		
 	
 	@Modifying
-	@Query(value= "update  blog set  status='INACTIVE', deleted_by=%:deletedBy%  , deleted_date_time=%:time% where  id=%:id%", nativeQuery = true)
-	 void deleteBlogById(long id , String deletedBy ,LocalDateTime time);
+	@Query(value= "update  blog set  status='INACTIVE', deleted_by=%:deletedBy%  , updated_date_time=%:time% where  id=%:id%", nativeQuery = true)
+	 void deleteBlogById(UUID id , String deletedBy ,LocalDateTime time);
 	
 	@Modifying
-	@Query(value= "update  blog set  status='INACTIVE', deleted_by=%:autherId%  , deleted_date_time=%:time% where  id=%:blogId%", nativeQuery = true)
-	void deleteByTitleContainingAllIgnoringCaseAndStatus(long blogId, String autherId ,LocalDateTime time);
+	@Query(value= "update  blog set  status='INACTIVE', deleted_by=%:autherId%  , updated_date_time=%:time% where  id=%:blogId%", nativeQuery = true)
+	void deleteByTitleContainingAllIgnoringCaseAndStatus(UUID blogId, String autherId ,LocalDateTime time);
 	
-	@Query(value= "select  * from blog where status='ACTIVE'and team_id=%:teamId%", nativeQuery = true)
-	List<Blog> getByTeamId(long teamId);
+	@Query(value= "select  * from blog where status='ACTIVE'and department_id=%:departmentId%", nativeQuery = true)
+	List<Blog> getByDepartmentId(long departmentId);
 }

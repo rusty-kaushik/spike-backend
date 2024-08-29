@@ -3,6 +3,7 @@ package com.in2it.blogservice.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,13 +30,13 @@ public class BlogDto {
 	
 
 	@Hidden
-	private long id;
+	private UUID id;
 	
 	@NotNull
 	private long departmentId;
 	
-	@NotNull
-	private long teamId;
+//	@NotNull
+//	private long teamId;
 	
 	@NotNull
 	private String authorId;    // Taking autherId as  userName
@@ -46,7 +47,9 @@ public class BlogDto {
 	
 	@NotBlank(message = "content cannot be blank")
 	private String content;
-	private String visiblity;
+	
+//	@Hidden
+//	private String visiblity;
 	
 	@Hidden
 	private long commentCount;
@@ -66,6 +69,7 @@ public class BlogDto {
 	 @Hidden
 	 private LocalDateTime updatedDateTime;
 
+	 private String updatedBy;
 	 
 	 @JsonProperty(access = Access.WRITE_ONLY)
 	 private List<MultipartFile> media;

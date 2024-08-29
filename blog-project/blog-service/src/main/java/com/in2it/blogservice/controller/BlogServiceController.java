@@ -1,7 +1,10 @@
 package com.in2it.blogservice.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +24,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.in2it.blogservice.customException.InfoMissingException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
+import com.in2it.blogservice.reponse.ResponseHandler;
 import com.in2it.blogservice.service.impl.BlogServiceImpl;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
@@ -37,72 +43,92 @@ public class BlogServiceController {
 	 * This method is used to insert blog in database.
 	 */
 
+	
+	@Tag(name = "called post-blog method", description = "After calling this method its return a map. ")
 	@PostMapping(path = "/posts", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-	public ResponseEntity<?> saveBlogWithFile(@ModelAttribute BlogDto blogDto) {
+	public ResponseEntity<Map<String, Object>> saveBlogWithFile(@ModelAttribute BlogDto blogDto) {
+
 		List<MultipartFile> media = blogDto.getMedia();
 		BlogDto saveBlogWithFile = serviceImpl.saveBlogWithFile(blogDto, media);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(saveBlogWithFile);
+
+		return ResponseHandler.reponseHandler(saveBlogWithFile, HttpStatus.OK, "Blog post successfully.");
 	}
 
-	@PutMapping(path = "/update/{updatedByUserId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-	public ResponseEntity<BlogDto> updateBlog(@RequestBody BlogUpdateDto updateDto,
-			@Valid @PathVariable("updatedByUserId") String updatedBy) {
+	
+	
+	
 
-		return ResponseEntity.status(HttpStatus.OK).body(serviceImpl.updateBlog(updateDto, updatedBy));
+	@PutMapping(path = "/update/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	@Operation(summary = "Update an blog", description = "Update an existing blog. Using blog blog id can update blog title and content only.")
+	public ResponseEntity<Map<String, Object>> updateBlog( @PathVariable UUID blogId, @RequestBody BlogUpdateDto updateDto) {
 
+		System.out.println(updateDto);
+		return ResponseHandler.reponseHandler(serviceImpl.updateBlog(updateDto, blogId), HttpStatus.OK, "Blog modefy successfully.");
 	}
 
+	
 	@PutMapping("/updateLike")
-	public ResponseEntity<BlogDto> updateLike(@RequestParam Long blogId, @RequestParam Long totalLikeCount) {
-		return ResponseEntity.status(HttpStatus.OK).body(serviceImpl.updateLike(totalLikeCount, blogId));
+	@Operation(summary = "update like count")
+	public ResponseEntity<Map<String, Object>> updateLike(@RequestParam UUID blogId, @RequestParam Long totalLikeCount) {
+	
+		return ResponseHandler.reponseHandler(serviceImpl.updateLike(totalLikeCount, blogId), HttpStatus.ACCEPTED, "like");
 	}
 
 	@PutMapping("/updateComment")
-	public ResponseEntity<BlogDto> updateComment(@RequestParam Long blogId, @RequestParam Long totalCommentCount) {
-		return ResponseEntity.status(HttpStatus.OK).body(serviceImpl.updateComment(totalCommentCount, blogId));
+	@Operation(summary = "update comment count")
+	public ResponseEntity<Map<String, Object>> updateComment(@RequestParam UUID blogId, @RequestParam Long totalCommentCount) {
+		return ResponseHandler.reponseHandler(serviceImpl.updateComment(totalCommentCount, blogId), HttpStatus.ACCEPTED, "commented");
 	}
 
 	@DeleteMapping("/deleteByBlogId/{blogId}")
-	public ResponseEntity<Boolean> deleteBlog(@PathVariable Long blogId, @RequestParam String deletedBy) {
+	@Operation(summary = "delete blog by blogId")
+	public ResponseEntity<Map<String, Object>> deleteBlog(@PathVariable UUID blogId, @RequestParam String deletedBy) {
 
-		return ResponseEntity.status(HttpStatus.OK).body(serviceImpl.deleteBlog(blogId, deletedBy));
+		return ResponseHandler.reponseHandler(serviceImpl.deleteBlog(blogId, deletedBy), HttpStatus.OK, "Your blog has been deleted successfully.");
 
 	}
 
 	@DeleteMapping("/deleteByTitle/{title}")
-	public ResponseEntity<Boolean> deleteBlogBytitle(@PathVariable String title, @RequestParam Long blogId) {
-		return ResponseEntity.status(HttpStatus.OK).body(serviceImpl.deleteBlogByTitle(title, blogId));
+	@Operation(summary = "delete blog by title")
+	public ResponseEntity<Map<String, Object>> deleteBlogBytitle(@PathVariable String title, @RequestParam UUID blogId) {
+		
+		return ResponseHandler.reponseHandler(serviceImpl.deleteBlogByTitle(title, blogId), HttpStatus.OK, "Your blog has been deleted successfully.");
 	}
 
-	// pagination
 
-	// pagination
-	@GetMapping("/get")
-	public ResponseEntity<List<BlogDto>> getAllBlog() {
-		return ResponseEntity.status(HttpStatus.OK).body(serviceImpl.getBlog());
+
+	// using search technique
+	@GetMapping("/getAll")
+	@Operation(summary = "Get a all Blogs", description = "Returns  all blogs  ")
+	public ResponseEntity<Map<String, Object>> getAllBlog() {
+		
+		return ResponseHandler.reponseHandler(serviceImpl.getBlog(), HttpStatus.OK, "Data retrieved successfully.");
 	}
 
 	// pagination
 
 	@GetMapping("/getByAutherId/{autherId}")
-	public ResponseEntity<List<BlogDto>> getBlogsByAutherId(@PathVariable @Valid String autherId) {
+	@Operation(summary = "Get a blog by autherId", description = "Returns a Blog as per the autherId.")
+	public ResponseEntity<Map<String, Object>> getBlogsByAutherId(@PathVariable @Valid String autherId) {
 
-		return ResponseEntity.status(HttpStatus.OK).body(serviceImpl.getByAutherID(autherId));
-
+	
+		return ResponseHandler.reponseHandler(serviceImpl.getByAutherID(autherId), HttpStatus.OK, "Data retrieved successfully.");
 	}
 
 	@GetMapping("/getByBlogId/{blogId}")
-	public ResponseEntity<BlogDto> getBlogById(@PathVariable(value = "blogId") @Valid Long blogId) {
-		return ResponseEntity.status(HttpStatus.OK).body(serviceImpl.getBlogById(blogId));
+	@Operation(summary = "Get a blog by blogId", description = "Returns a blog as per the blogId.")
+	public ResponseEntity<Map<String, Object>> getBlogById(@PathVariable(value = "blogId") @Valid UUID blogId) {
+		
+		return ResponseHandler.reponseHandler(serviceImpl.getBlogById(blogId), HttpStatus.OK, "Data retrieved successfully.");
 	}
 
 	// pagination
 	@GetMapping("/getByTitle/{blogTitle}")
-	public ResponseEntity<List<BlogDto>> getBlogByTitle(@PathVariable(value = "blogTitle") String title) {
+	@Operation(summary = "Get a blogs by blogTitle", description = "Returns a blogs as list by  blogTitle.")
+	public ResponseEntity<Map<String, Object>> getBlogByTitle(@PathVariable(value = "blogTitle") String title) {
 		if(title!=null) {
 			
-			return ResponseEntity.status(HttpStatus.OK).body(serviceImpl.getBlogTitle(title));
+			return ResponseHandler.reponseHandler(serviceImpl.getBlogTitle(title), HttpStatus.OK, "Data retrieved successfully.");
 		}else {
 			
 			throw new InfoMissingException("please write valid info");
@@ -110,21 +136,14 @@ public class BlogServiceController {
 	}
 	
 	
-	@GetMapping("/getByTeamId/{teamId}")
-	public ResponseEntity< List<BlogDto>> getByVisibility(@PathVariable long teamId){
+	
+	@GetMapping("/getByDepartmentId/{departmentId}")
+	@Operation(summary = "Get a blog by teamId", description = "Returns a blog as per the teamId.")
+	public ResponseEntity<Map<String, Object>> getByVisibility(@PathVariable long departmentId){
 		
-		return ResponseEntity.status(HttpStatus.OK).body(serviceImpl.getByVisibility(teamId));
-		
+		return ResponseHandler.reponseHandler(serviceImpl.getByVisibility(departmentId), HttpStatus.OK, "Data retrieved successfully.");
 	}
 	
-	
-	@GetMapping("/showAllVigibility")
-	public List<String> showVidibility(){
-		
-		List<String> visibility= Arrays.asList("TEAM","EVERYONE");
-		
-		return  visibility;
-		
-	}
+
 
 }
