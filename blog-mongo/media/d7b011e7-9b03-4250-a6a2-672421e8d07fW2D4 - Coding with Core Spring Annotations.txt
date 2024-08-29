@@ -1,0 +1,103 @@
+Coding with Core Spring Annotations
+
+IDE
+
+IDE Shortcuts:
+	F3: Get inside class/method
+		Alt + [- / Alt + -]
+
+	Ctrl + O: All internals of your class
+
+	Ctrl + T: Type hierarchy
+
+	Ctrl + Shift + r: any file open
+	Ctrl + shift + t : java type open
+
+	To open implementation in child, 
+		ctrl + T on the interface abstract method.
+
+	Project => Clean
+	mvn clean install
+	mvn clean package
+	mvn clean spring-boot:run
+
+	ctrl + d
+	
+	move code: alt + Up & down arrow
+
+	search forward & backwork: ctrl + k, ctrl + shift + k
+
+	rename via refactor option, rightclick=>refactor=> rename(alt + shift + r)
+
+	organize import: ctrl + shift + o
+	Call hierarcy: ctrl + alt + h
+
+
+GET
+http://localhost:8080/api/students/1
+
+
+Create:
+
+POST
+http://localhost:8080/api/students
+Request structure
+{
+    private Long id;
+    private String name;
+    private String phone;
+}
+
+
+
+
+	RtClik => Close / open project.
+	
+
+
+How to dynamically reflect code changes while the spring application is up & running.
+
+	devtools
+
+
+Browser default passes the GET method
+
+PostMan (API Testing)
+
+
+Spring Boot (Spring):
+
+Dependency Inject - Spring create objects(dependent objets) for you, and injects it in your needed class, so you can directly use it. As a developer you dont need to create objects
+
+IoC - Inversion of Control.
+	Full lifecycle maintaince of this classes.
+	
+
+Controller
+
+Start as Debug Mode. Use breakpoints to navigate through the source code. Step Into, Step Over
+
+Service
+	Interface
+	IMpl
+DAO
+	Interface
+	IMpl
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
