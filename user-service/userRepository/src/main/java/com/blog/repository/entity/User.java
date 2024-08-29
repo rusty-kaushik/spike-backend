@@ -8,8 +8,10 @@ import jakarta.validation.constraints.Size;
 import java.util.Date;
 import java.util.Set;
 
+
 @Entity
 @Table(name = "user_master")
+
 public class User extends Auditable {
 
     @Id
@@ -23,17 +25,17 @@ public class User extends Auditable {
     @Size(min = 3, max = 50)
     @Column(name = "employee_code", nullable = false, unique = true, length = 50)
     private String empCode;
-    
+
     @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    
+
     @Size(min = 8)
     @Column(name = "password", nullable = false)
     private String password;
 
-    
+
     @Size(min = 1, max = 100)
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -61,6 +63,9 @@ public class User extends Auditable {
     private Long managerId;
 
 
+    @Column(name="designation" , nullable =false)
+    private String designation;
+
     @Column(name = "post_create", nullable = false)
     private boolean postCreate = true;
 
@@ -72,16 +77,18 @@ public class User extends Auditable {
     )
     private Set<Department> departments;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "user_team",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "team_id")
-//    )
-//    private Set<Team> teams;
 
     @ManyToOne
     private Role role;
+
+    @OneToOne
+    private UserSocials userSocials;
+
+    @OneToOne
+    private UserProfilePicture profilePicture;
+
+    @OneToMany(cascade=CascadeType.ALL)
+    private Set<UserAddress> userAddress;
 
     public User() {
     }
@@ -100,6 +107,7 @@ public class User extends Auditable {
         this.managerId = managerId;
         this.postCreate = postCreate;
         this.departments = departments;
+
         this.role = role;
     }
 

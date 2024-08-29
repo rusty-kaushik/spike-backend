@@ -30,7 +30,6 @@ public class FetchDetailsController {
     @GetMapping("/fetchusers")
     private ResponseEntity<Object> getUsers(
             @RequestParam(name = "departmentName", required = false) String departmentName,
-            @RequestParam(name = "teamName", required = false) String teamName,
             @RequestParam(name = "roleName", required = false) String roleName,
             @RequestParam(defaultValue = "0", name = "pageNo") int pageNo,
             @RequestParam(defaultValue = "10", name = "pageSize") int pageSize
@@ -39,7 +38,7 @@ public class FetchDetailsController {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String userName = authentication.getName();
             AuditorAwareImpl.setCurrentAuditor(userName);
-            Map<String, List<String>> result = controllerHelper.fetchInfo(userName, departmentName, teamName, roleName, pageNo, pageSize);
+            Map<String, List<String>> result = controllerHelper.fetchInfo(userName, departmentName, roleName, pageNo, pageSize);
             return ResponseHandler.responseBuilder("Users fetched successfully", HttpStatus.OK, result);
 
         } finally {

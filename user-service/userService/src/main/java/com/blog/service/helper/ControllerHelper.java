@@ -42,7 +42,7 @@ private UserServiceImpl userService;
         response.put("totalPages", result.getTotalPages());
         return response;
     }
-    public Map<String, List<String>> fetchInfo(String userName, String departmentName, String teamName, String roleName , int pageNo, int pageSize) {
+    public Map<String, List<String>> fetchInfo(String userName, String departmentName,  String roleName , int pageNo, int pageSize) {
         Map<String, List<String>> result ;
         if (departmentName != null ) {
             return result = userService.getUsersByDepartment(userName, departmentName, pageNo, pageSize);

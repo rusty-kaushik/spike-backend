@@ -75,11 +75,11 @@ public abstract class Auditable {
         this.deletedBy = deletedBy;
     }
 
-    public LocalDateTime getDeletedAt() {
-        return deletedAt;
-    }
-
-    public void setDeletedAt(LocalDateTime deletedAt) {
-        this.deletedAt = deletedAt;
-    }
+//    public LocalDateTime getDeletedAt() {
+//        return deletedAt;
+//    }
+//
+//    public void setDeletedAt(LocalDateTime deletedAt) {
+//        this.deletedAt = deletedAt;
+//    }
 }
