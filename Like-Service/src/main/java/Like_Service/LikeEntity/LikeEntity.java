@@ -2,6 +2,7 @@ package Like_Service.LikeEntity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -13,6 +14,7 @@ public class LikeEntity {
     private UUID id;
     private Long blogid;
     private long userid;
+    private LocalDateTime createdAt;
 
     public UUID getId() {
         return id;
@@ -36,5 +38,13 @@ public class LikeEntity {
 
     public void setUserid(long userid) {
         this.userid = userid;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

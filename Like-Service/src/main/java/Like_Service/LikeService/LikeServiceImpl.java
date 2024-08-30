@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -48,6 +49,7 @@ public class LikeServiceImpl implements LikeService {
             LikeEntity like = new LikeEntity();
             like.setBlogid(blogid);
             like.setUserid(userid);
+            like.setCreatedAt(LocalDateTime.now());
             likeRepository.save(like);
             long likeCount = blog.getLikeCount();
             long incrementLikeCount = likeCount + 1;
