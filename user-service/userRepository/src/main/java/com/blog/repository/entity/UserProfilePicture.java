@@ -11,21 +11,22 @@ public class UserProfilePicture extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="user_id")
-    private Long user_id;
+    @JoinColumn (name="user_id")
+    private User user_id;
+    //for now kept file path , name and size as nullable=true(default) , can be change later to nullable false when required
     @Column(name="file_name")
     private String file_name;
-    @Column(name="file_path",nullable = false)
+    @Column(name="file_path")
     private String file_path;
-    @Column(name="file_type" , nullable = false)
+    @Column(name="file_type" )
     private String file_type;
-    @Column(name="file_size", nullable = false)
+    @Column(name="file_size")
     private Long file_size;
 
     public UserProfilePicture() {
     }
 
-    public UserProfilePicture(Long id, Long user_id, String file_name, String file_path, String file_type, Long file_size) {
+    public UserProfilePicture(Long id, User user_id, String file_name, String file_path, String file_type, Long file_size) {
         this.id = id;
         this.user_id = user_id;
         this.file_name = file_name;
@@ -42,11 +43,11 @@ public class UserProfilePicture extends Auditable {
         this.id = id;
     }
 
-    public Long getUser_id() {
+    public User getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Long user_id) {
+    public void setUser_id(User user_id) {
         this.user_id = user_id;
     }
 
