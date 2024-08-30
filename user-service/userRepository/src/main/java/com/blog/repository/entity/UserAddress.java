@@ -15,8 +15,9 @@ public class UserAddress extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull(message = "User ID cannot be null")
-    @Column(name = "user_id", nullable = false)
-    private Long user_id;
+    @ManyToOne
+    @JoinColumn (name = "user_id", nullable = false)
+    private User user_id;
     @NotNull(message = "Address Line 1 cannot be null")
     @Column(name = "address_line1", nullable = false)
     private String addressLine1;
@@ -29,7 +30,7 @@ public class UserAddress extends Auditable {
     @Column(name = "district", nullable = false)
     private String district;
     @NotBlank(message = "Zip code cannot be blank")
-    @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "Invalid zip code format")
+   // @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "Invalid zip code format")
     @Column(name = "zip", nullable = false, length = 10)
     private String zip;
     @NotNull(message = "City cannot be null")
@@ -46,7 +47,7 @@ public class UserAddress extends Auditable {
     public UserAddress() {
     }
 
-    public UserAddress(Long id, Long user_id, String addressLine1, String addressLine2, State state, String district, String zip, String city, String nearestLandmark, Type type, String country) {
+    public UserAddress(Long id, User user_id, String addressLine1, String addressLine2, State state, String district, String zip, String city, String nearestLandmark, Type type, String country) {
         this.id = id;
         this.user_id = user_id;
         this.addressLine1 = addressLine1;
@@ -68,11 +69,11 @@ public class UserAddress extends Auditable {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public User getUserId() {
         return user_id;
     }
 
-    public void setUserId(Long user_id) {
+    public void setUserId(User user_id) {
         this.user_id = user_id;
     }
 

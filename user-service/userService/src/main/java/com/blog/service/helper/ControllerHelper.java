@@ -42,6 +42,7 @@ private UserServiceImpl userService;
         response.put("totalPages", result.getTotalPages());
         return response;
     }
+    //it will fetch user based on paramters provided , if departmnet is provided it will return user created by admin based on department and if role is provided then will show the list of user with roles and if both role and department not provided then show all the user with their role and department
     public Map<String, List<String>> fetchInfo(String userName, String departmentName,  String roleName , int pageNo, int pageSize) {
         Map<String, List<String>> result ;
         if (departmentName != null ) {

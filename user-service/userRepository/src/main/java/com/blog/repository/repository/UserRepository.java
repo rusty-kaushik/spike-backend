@@ -25,7 +25,7 @@ public interface UserRepository extends JpaRepository<User,Long> , JpaSpecificat
     User findByUserName(String username);
 
     @Query("SELECT e FROM User e WHERE " +
-            "CONCAT(e.userName, ' ', e.empCode, ' ', e.email, ' ', e.name, ' ', e.address, ' ', e.mobile) LIKE %:keyword%")
+            "CONCAT(e.userName, ' ', e.empCode, ' ', e.email, ' ', e.name, ' ', e.mobile) LIKE %:keyword%")
     Page<User> searchAllColumns(@Param("keyword") String keyword, Pageable pageable);
 
 

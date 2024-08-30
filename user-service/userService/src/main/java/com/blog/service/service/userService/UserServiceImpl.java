@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
             }
             //* Update user details
             existingUser.setUserName(user.getUserName());
-            existingUser.setAddress(user.getAddress());
+           // existingUser.setAddress(user.getAddress());
             existingUser.setMobile(user.getMobile());
             existingUser.setJoiningDate(user.getJoiningDate());
             existingUser.setBackupEmail(user.getBackupEmail());

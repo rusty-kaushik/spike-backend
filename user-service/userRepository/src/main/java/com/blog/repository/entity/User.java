@@ -40,9 +40,6 @@ public class User extends Auditable {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Size(min = 1, max = 100)
-    @Column(name = "address", nullable = false, length = 100)
-    private String address;
 
     @Size(min = 10, max = 10)
     @Column(name = "mobile_number", nullable = false, length = 10)
@@ -99,7 +96,7 @@ public class User extends Auditable {
     public User() {
     }
 
-    public User(Long id, String userName, String empCode, String email, String password, String name, String address, String mobile, Date joiningDate, String backupEmail, String status, Long managerId, String designation, boolean postCreate, Set<Department> departments, Role role, UserSocials userSocials, UserProfilePicture profilePicture, Set<UserAddress> userAddress,String salary) {
+    public User(Long id, String userName, String empCode, String email, String password, String name, String mobile, Date joiningDate, String backupEmail, String status, Long managerId, String designation, boolean postCreate, Set<Department> departments, Role role, UserSocials userSocials, UserProfilePicture profilePicture, Set<UserAddress> userAddress,String salary) {
         this.id = id;
         this.userName = userName;
         this.empCode = empCode;
@@ -107,7 +104,6 @@ public class User extends Auditable {
         this.password = password;
         this.name = name;
         this.salary= salary;
-        this.address = address;
         this.mobile = mobile;
         this.joiningDate = joiningDate;
         this.backupEmail = backupEmail;
@@ -170,13 +166,6 @@ public class User extends Auditable {
         this.name = name;
     }
 
-    public @Size(min = 1, max = 100) String getAddress() {
-        return address;
-    }
-
-    public void setAddress(@Size(min = 1, max = 100) String address) {
-        this.address = address;
-    }
 
     public @Size(min = 10, max = 10) String getMobile() {
         return mobile;

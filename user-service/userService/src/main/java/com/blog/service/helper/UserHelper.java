@@ -120,7 +120,7 @@ public class UserHelper {
         user.setName(userRequest.getName());
         user.setEmpCode(userRequest.getEmpCode());
         user.setManagerId(creator.getId());
-        user.setAddress(userRequest.getAddress());
+       // user.setAddress(userRequest.getAddress());
         user.setMobile(userRequest.getMobile());
         user.setBackupEmail(userRequest.getBackupEmail());
         user.setJoiningDate(userRequest.getJoinDate());
@@ -151,7 +151,7 @@ public class UserHelper {
         userDetails.put("email", user.getEmail());
         userDetails.put("name", user.getName());
         userDetails.put("empCode", user.getEmpCode());
-        userDetails.put("address", user.getAddress());
+      //  userDetails.put("address", user.getAddress());
         userDetails.put("mobile", user.getMobile());
         userDetails.put("backupEmail", user.getBackupEmail());
         userDetails.put("joiningDate", user.getJoiningDate());

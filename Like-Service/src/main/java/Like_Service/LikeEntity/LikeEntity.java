@@ -2,22 +2,23 @@ package Like_Service.LikeEntity;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name="like_table")
-public class Like {
+public class LikeEntity {
 
     @Id
-    @GeneratedValue(generator= "like_seq")
-    @SequenceGenerator(name="like_seq",initialValue =1,  allocationSize=1)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private Long blogid;
-    private long userid=3;
+    private long userid;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
