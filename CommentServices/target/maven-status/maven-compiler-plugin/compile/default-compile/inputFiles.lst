@@ -1,0 +1,17 @@
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\auditable\Auditable.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\CommentServicesApplication.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\controller\CommentController.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\dto\CommentDto.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\dto\CommentUpdateDto.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\dto\CreateCommentDto.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\mapper\CommentConvertor.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\model\Comment.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\payload\ExceptionStatus.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\payload\GlobalExceptionHandler.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\payload\IdInvalidException.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\payload\InfoMissingException.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\payload\UserNotFoundException.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\repository\CommentRepository.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\service\CommentService.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\service\impl\CommentServiceImpl.java
+D:\Comment Services\CommentServices\src\main\java\com\in2it\commentService\validator\CommentValidator.java

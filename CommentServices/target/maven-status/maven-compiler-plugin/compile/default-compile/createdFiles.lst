@@ -1,0 +1,16 @@
+com\in2it\commentService\controller\CommentController.class
+com\in2it\commentService\mapper\CommentConvertor.class
+com\in2it\commentService\service\CommentService.class
+com\in2it\commentService\CommentServicesApplication.class
+com\in2it\commentService\auditable\Auditable.class
+com\in2it\commentService\model\Comment.class
+com\in2it\commentService\service\impl\CommentServiceImpl.class
+com\in2it\commentService\dto\CreateCommentDto.class
+com\in2it\commentService\repository\CommentRepository.class
+com\in2it\commentService\payload\IdInvalidException.class
+com\in2it\commentService\payload\InfoMissingException.class
+com\in2it\commentService\payload\ExceptionStatus.class
+com\in2it\commentService\payload\UserNotFoundException.class
+com\in2it\commentService\payload\GlobalExceptionHandler.class
+com\in2it\commentService\dto\CommentDto.class
+com\in2it\commentService\dto\CommentUpdateDto.class
