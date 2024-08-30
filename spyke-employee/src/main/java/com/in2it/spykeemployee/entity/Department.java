@@ -30,34 +30,10 @@ import lombok.Setter;
 @Builder
 public class Department {
 	
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.UUID)
-//	private UUID id;
-//	
-//    @NotBlank
-//    @Size(max = 100)
-//    @Column(unique = true, nullable = false)
-//	private String name;
-//    
-//    @Size(max = 500)
-//	private String discription;
-//    
-//    @NotBlank
-//	private String managerId;
-//    
-//    @NotBlank
-//	private String adminId;
-	
 
-//    @ManyToMany
-//    @JoinTable(
-//        name = "department_employees",
-//        joinColumns = @JoinColumn(name = "department_id"),
-//        inverseJoinColumns = @JoinColumn(name = "employee_id")
-//    )
-//	private List<Employee> employees;
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // Adjust strategy if UUIDs are used
+    @GeneratedValue(strategy = GenerationType.UUID) 
     private UUID id;
 
     @NotBlank
@@ -68,11 +44,11 @@ public class Department {
     private String description;
 
     @OneToOne
-    @JoinColumn(name = "manager_id") // Assuming 'managerId' should be a foreign key
+    @JoinColumn(name = "manager_id")
     private Employee manager;
 
     @OneToOne
-    @JoinColumn(name = "admin_id") // Assuming 'adminId' should be a foreign key
+    @JoinColumn(name = "admin_id")
     private Employee admin;
 
     @ManyToMany(mappedBy = "departments")
