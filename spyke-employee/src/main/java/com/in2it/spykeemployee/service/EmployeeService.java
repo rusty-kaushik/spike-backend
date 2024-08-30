@@ -18,13 +18,13 @@ public interface EmployeeService {
 //    void removeRoleFromUser(Long userId, Long roleId);
 //    User updateUser(Long id, String username, String email, String password);
 
-	Employee createEmployee(String firstName, String lastName, String username, String password, String gender);
+	Employee createEmployee(String firstName, String lastName, String username, String password, String gender, String desingnation);
 
 	Optional<Employee> getEmployeeById(String id);
 
 	Optional<Employee> getEmployeeByUsername(String username);
 
-//	Optional<Employee> getEmployeeByEmployeeId(String email);
+	Optional<Employee> getEmployeeByEmployeeId(String email);
 
 	List<Employee> getAllEmployees();
 
@@ -35,5 +35,9 @@ public interface EmployeeService {
 	void removeRoleFromEmployee(String userId, int roleId);
 
 	Employee updateEmployee(String id, String firstName, String lastName, String username, String email, String password);
+	
+	
+	
+	
 
 }

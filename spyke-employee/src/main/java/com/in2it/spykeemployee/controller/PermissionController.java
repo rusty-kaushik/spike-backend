@@ -19,7 +19,7 @@ import com.in2it.spykeemployee.entity.Permission;
 import com.in2it.spykeemployee.service.PermissionService;
 
 @RestController
-@RequestMapping("in2it/employees/roles/permission")
+@RequestMapping("in2it/employees/roles/permissions")
 public class PermissionController {
 	
 
@@ -32,7 +32,7 @@ public class PermissionController {
         return new ResponseEntity<>(createdPermission, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/permission/{id}")
     public ResponseEntity<Permission> getPermissionById(@PathVariable int id) {
         Optional<Permission> permission = permissionService.getPermissionById(id);
         return permission.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -50,7 +50,7 @@ public class PermissionController {
         return ResponseEntity.ok(permissions);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/permission/{id}")
     public ResponseEntity<Void> deletePermission(@PathVariable int id) {
         permissionService.deletePermission(id);
         return ResponseEntity.noContent().build();

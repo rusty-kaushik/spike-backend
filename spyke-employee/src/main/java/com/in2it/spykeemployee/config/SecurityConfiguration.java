@@ -2,6 +2,7 @@ package com.in2it.spykeemployee.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -16,6 +17,7 @@ import com.in2it.spykeemployee.exception.JwtAccessDeniedHandler;
 import com.in2it.spykeemployee.exception.JwtAuthEntryPoint;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 
@@ -23,6 +25,7 @@ import lombok.AllArgsConstructor;
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 @AllArgsConstructor
+@Slf4j
 public class SecurityConfiguration {
 	
 	
@@ -44,9 +47,10 @@ public class SecurityConfiguration {
 				.requestMatchers(WHITE_LIST_URL).permitAll()
 				.requestMatchers("in2it/v1/auth/register").permitAll()
 				.requestMatchers("in2it/employees/roles").hasRole("SUPER_ADMIN")
-				.requestMatchers("in2it/employees/roles/permission").hasRole("SUPER_ADMIN")
-				.requestMatchers("in2it/employees/**").hasAnyRole("SUPER_ADMIN","ADMIN","EMPLOYEE")
-				
+				.requestMatchers("in2it/employees/roles/permissions").hasRole("SUPER_ADMIN")
+//				.requestMatchers("in2it/employees/**").hasAnyRole("SUPER_ADMIN","ADMIN","EMPLOYEE")
+				.requestMatchers(HttpMethod.GET,"in2it/employees/**").hasAnyAuthority("READ_PRIVILEGES")
+				.requestMatchers(HttpMethod.POST,"in2it/employees/**").hasAnyAuthority("WRITE_PRIVILEGES")
 				.anyRequest().authenticated()
 				)
 

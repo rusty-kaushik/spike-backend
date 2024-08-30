@@ -62,7 +62,7 @@ public class AuthService {
 			// Generate Token
 			// Return the token
 		try {
-			
+		
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 		} catch (Exception e) {
 			throw new BadCredentialsException(" Invalid Username or Password  !!");

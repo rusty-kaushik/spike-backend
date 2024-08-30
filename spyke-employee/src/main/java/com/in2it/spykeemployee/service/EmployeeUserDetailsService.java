@@ -1,7 +1,11 @@
 package com.in2it.spykeemployee.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +41,29 @@ public class EmployeeUserDetailsService implements UserDetailsService {
         }
 
         Employee employee = employeeOptional.get();
+        
+        Set<SimpleGrantedAuthority> permissions = employee.getRoles().stream()
+        .flatMap(role -> role.getPermissions().stream())
+      .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+      .collect(Collectors.toSet());
+        
+        List<SimpleGrantedAuthority> roles = employee.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName()))
+        .collect(Collectors.toList());
+        
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.addAll(roles);
+        authorities.addAll(permissions);
+
+        
 
         return new org.springframework.security.core.userdetails.User(
                 employee.getUsername(),
                 employee.getPassword(),
-                employee.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName()))
-//                        .flatMap(role -> role.getPermissions().stream())
-//                        .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
-                        .collect(Collectors.toList())
+                authorities
+//                employee.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName()))
+////                        .flatMap(role -> role.getPermissions().stream())
+////                        .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+//                        .collect(Collectors.toList())
         );
 //      return new org.springframework.security.core.userdetails.User(
 //      employee.getUsername(),

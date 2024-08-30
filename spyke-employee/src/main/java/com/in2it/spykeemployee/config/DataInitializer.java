@@ -26,11 +26,11 @@ public class DataInitializer {
                            PermissionRepository permissionRepository) {
         return args -> {
             // Create and save roles
-            Role superAdminRole = createAndSaveRole(roleRepository, "SUPER_ADMIN");
-            Role adminRole = createAndSaveRole(roleRepository, "ADMIN");
-            Role employeeRole = createAndSaveRole(roleRepository, "EMPLOYEE");
-            Role traineeRole = createAndSaveRole(roleRepository, "TRAINEE");
-            Role newJoineeRole = createAndSaveRole(roleRepository, "NEW_JOINEE");
+            Role superAdminRole = createAndSaveRole(roleRepository, "ROLE_SUPER_ADMIN");
+            Role adminRole = createAndSaveRole(roleRepository, "ROLE_ADMIN");
+            Role employeeRole = createAndSaveRole(roleRepository, "ROLE_EMPLOYEE");
+            Role traineeRole = createAndSaveRole(roleRepository, "ROLE_TRAINEE");
+            Role newJoineeRole = createAndSaveRole(roleRepository, "ROLE_NEW_JOINEE");
 
             // Create and save permissions
             Permission readPermission = createAndSavePermission(permissionRepository, "READ_PRIVILEGES");

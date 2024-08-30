@@ -16,6 +16,6 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
 
 	Optional<Employee> findByUsername(String username);
-//	Optional<Employee> List<Employee> findByOrderByEmployeeId(String employeeId);(String email);
+	Optional<Employee> findByEmployeeId(String employeeId);
 	
 }
