@@ -3,6 +3,8 @@ package com.in2it.spykeemployee.entity;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,6 +37,7 @@ public class Contact {
 	private String email;
 	private String backupEmail;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "contact")
 	private Employee employee;
 
