@@ -51,6 +51,7 @@ public class SecurityConfiguration {
 				.requestMatchers("in2it/employees/roles/permissions").hasRole("SUPER_ADMIN")
 				.requestMatchers("in2it/departments").hasRole("SUPER_ADMIN")
 				.requestMatchers("in2it/employees/contacts").hasRole("SUPER_ADMIN")
+				.requestMatchers("in2it/projects").hasAnyRole("SUPER_ADMIN","ADMIN")
 //				.requestMatchers("in2it/employees/**").hasAnyRole("SUPER_ADMIN","ADMIN","EMPLOYEE")
 				.requestMatchers(HttpMethod.GET,"in2it/employees/**").hasAnyAuthority("READ_PRIVILEGES")
 				.requestMatchers(HttpMethod.GET,"in2it/departments/**").hasAnyAuthority("READ_PRIVILEGES")
