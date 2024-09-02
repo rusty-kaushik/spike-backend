@@ -14,6 +14,8 @@ public class LikeEntity {
     private UUID id;
     private Long blogid;
     private long userid;
+    @Enumerated(EnumType.STRING)
+    private status status;
     private LocalDateTime createdAt;
 
     public UUID getId() {
@@ -38,6 +40,14 @@ public class LikeEntity {
 
     public void setUserid(long userid) {
         this.userid = userid;
+    }
+
+    public Like_Service.LikeEntity.status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Like_Service.LikeEntity.status status) {
+        this.status = status;
     }
 
     public LocalDateTime getCreatedAt() {

@@ -4,6 +4,7 @@ import Like_Service.ExceptionHandling.BlogNotFoundException;
 import Like_Service.ExceptionHandling.UserNotFoundException;
 import Like_Service.FeignInterface.BlogClient;
 import Like_Service.LikeEntity.LikeEntity;
+import Like_Service.LikeEntity.status;
 import Like_Service.LikeRepository.LikeRepository;
 import com.in2it.blogservice.dto.BlogDto;
 import jakarta.persistence.EntityManager;
@@ -36,8 +37,12 @@ public class LikeServiceImpl implements LikeService {
         }
 
         LikeEntity existingLike = likeRepository.findByBlogidAndUserid(blogid, userid);
-        if (existingLike != null) {
-            likeRepository.delete(existingLike);
+        if (existingLike != null && existingLike.getStatus()==status.Liked) {
+            existingLike.setStatus(status.Unliked);
+            existingLike.setBlogid(blogid);
+            existingLike.setUserid(userid);
+            existingLike.setCreatedAt(LocalDateTime.now());
+            likeRepository.save(existingLike);
             long likeCount = blog.getLikeCount();
             if(likeCount>0) {
                 long decrementLikeCount = likeCount - 1;
@@ -45,11 +50,24 @@ public class LikeServiceImpl implements LikeService {
 
             }
             return "user unliked this blog";
-        } else {
+        }
+        else if (existingLike!=null && existingLike.getStatus() == status.Unliked){
+            existingLike.setStatus(status.Liked);
+            existingLike.setBlogid(blogid);
+            existingLike.setUserid(userid);
+            existingLike.setCreatedAt(LocalDateTime.now());
+            likeRepository.save(existingLike);
+            long likeCount = blog.getLikeCount();
+            long incrementLikeCount = likeCount + 1;
+            feign.updateLike(blogid, incrementLikeCount);
+            return "user liked this blog";
+        }
+        else {
             LikeEntity like = new LikeEntity();
             like.setBlogid(blogid);
             like.setUserid(userid);
             like.setCreatedAt(LocalDateTime.now());
+            like.setStatus(status.Liked);
             likeRepository.save(like);
             long likeCount = blog.getLikeCount();
             long incrementLikeCount = likeCount + 1;
