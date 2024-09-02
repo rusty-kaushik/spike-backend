@@ -24,7 +24,7 @@ public interface BlogService {
 	
 	BlogDto getBlogById(UUID id);
 	List<BlogDto> getBlogTitleWithPage(int pageNum, int pageSize,String title);
-	List<BlogDto> getBlog();
+	List<BlogDto> getBlog(int pageNum, int pageSize);
 	List<BlogDto> getByAutherID(String userId);
 	
 	

@@ -47,7 +47,7 @@ public class Converter {
 	{
 		Blog blog=new Blog();
 		blog.setContent(dto.getContent());
-		blog.setAuthorId(dto.getAuthorId());
+		blog.setAuthorId(dto.getUserId());
 
 		blog.setMediaFile(fileName);
 		blog.setMediaPath(uploadedPath);
@@ -77,7 +77,7 @@ public class Converter {
 		dto.setId(blog.getId()); 
 		
 		dto.setContent(blog.getContent());
-		dto.setAuthorId(blog.getAuthorId());
+		dto.setUserId(blog.getAuthorId());
 
 		dto.setTitle(blog.getTitle());
 
@@ -89,7 +89,7 @@ public class Converter {
 	    dto.setStatus(blog.getStatus());
 	    
         dto.setMediaFile(getEncodeFile(blog.getMediaFile())); 
-        dto.setMediaPath(blog.getMediaPath());
+//        dto.setMediaPath(blog.getMediaPath());
         
         dto.setUpdatedBy(blog.getUpdatedBy());
         dto.setCretedDateTime(blog.getCretedDateTime());

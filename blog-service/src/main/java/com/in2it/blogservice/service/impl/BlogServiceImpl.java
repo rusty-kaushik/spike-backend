@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -46,27 +47,25 @@ public class BlogServiceImpl implements BlogService {
 	public BlogDto saveBlogWithFile(BlogDto blogDto, List<MultipartFile> multipartFile) {
 		Blog blog = null;
 
-		log.info("------------------------"+blogDto);
+		log.info("------------------------" + blogDto);
 		// Set original file name is this list.
-		List<String> originalFilenames =null;
-		List<String> paths=null;
+		List<String> originalFilenames = null;
+		List<String> paths = null;
 		if (!multipartFile.isEmpty() && blogDto != null) {
 
 			// calling uploadFile method to save media in file
 			Map<String, List<String>> uploadFilePath = objectMapper.uploadFile(multipartFile);
 
-		     for (Map.Entry<String,List<String>> entry : uploadFilePath.entrySet()) { 
-		            if(entry.getKey().equals("media_path")) {
-		            	
-		            paths= entry.getValue();
-		            }
-		            else if(entry.getKey().equals("file_name")) {
-		      
-		            	originalFilenames=entry.getValue();
-		            }
-		    } 
-		     Blog dtoToBlogConverter = objectMapper.dtoToBlogConverter(blogDto, originalFilenames, paths);
-			
+			for (Map.Entry<String, List<String>> entry : uploadFilePath.entrySet()) {
+				if (entry.getKey().equals("media_path")) {
+
+					paths = entry.getValue();
+				} else if (entry.getKey().equals("file_name")) {
+
+					originalFilenames = entry.getValue();
+				}
+			}
+			Blog dtoToBlogConverter = objectMapper.dtoToBlogConverter(blogDto, originalFilenames, paths);
 
 			// converting DTO to Entity
 
@@ -88,15 +87,15 @@ public class BlogServiceImpl implements BlogService {
 
 		blog = repo.getByBlogId(blogId);
 
-		log.info("===================" + updateDto.getAuthorId());
+		log.info("===================" + updateDto.getUserId());
 
-		if ((blog != null && updateDto.getAuthorId() != null) && blog.getId().equals(blogId)) {
+		if ((blog != null && updateDto.getUserId() != null) && blog.getId().equals(blogId)) {
 			if (!updateDto.getContent().isEmpty())
 				blog.setContent(updateDto.getContent());
 			if (!updateDto.getTitle().isEmpty())
 				blog.setTitle(updateDto.getTitle());
 			blog.setUpdatedDateTime(LocalDateTime.now());
-			blog.setUpdatedBy(updateDto.getAuthorId());
+			blog.setUpdatedBy(updateDto.getUserId());
 
 			log.info("blog" + blog);
 			return objectMapper.blogToDtoConverter(repo.save(blog));
@@ -163,18 +162,18 @@ public class BlogServiceImpl implements BlogService {
 		boolean flag = false;
 
 		List<BlogDto> blog = getBlogTitle(title);
-		                     
-		log.info("-----------"+blog);
+
+		log.info("-----------" + blog);
 
 		if (!blog.isEmpty()) {
 
 			for (BlogDto blogDto : blog) {
 
-			
 				if (title != null && blogDto.getId().equals(blogId)) {
 					System.out.println("hello ");
 
-					repo.deleteByTitleContainingAllIgnoringCaseAndStatus(blogDto.getId(),LocalDateTime.now(), updatedBy);
+					repo.deleteByTitleContainingAllIgnoringCaseAndStatus(blogDto.getId(), LocalDateTime.now(),
+							updatedBy);
 
 					flag = true;
 
@@ -210,14 +209,14 @@ public class BlogServiceImpl implements BlogService {
 
 		return blogDtoList;
 	}
-	
-	// SEARCH BLOG BY TITLE WITH PAGEINATION
-	public List<BlogDto> getBlogTitleWithPage(int pageNum, int pageSize,String title) {
 
-		
-		PageRequest	pageable = PageRequest.of(pageNum, pageSize);
-		
-		List<Blog> blog = repo.findByTitleContainingAllIgnoringCaseAndStatus(pageable,title, "ACTIVE");
+	// SEARCH BLOG BY TITLE WITH PAGEINATION
+	@Override
+	public List<BlogDto> getBlogTitleWithPage(int pageNum, int pageSize, String title) {
+
+		PageRequest pageable = PageRequest.of(pageNum, pageSize);
+
+		List<Blog> blog = repo.findByTitleContainingAllIgnoringCaseAndStatus(pageable, title, "ACTIVE");
 		List<BlogDto> blogDtoList = new ArrayList<>();
 		for (Blog blog2 : blog) {
 
@@ -235,9 +234,11 @@ public class BlogServiceImpl implements BlogService {
 
 	// get all blog
 	@Override
-	public List<BlogDto> getBlog() {
+	public List<BlogDto> getBlog(int pageNum, int pageSize) {
 
-		List<Blog> blog = repo.findAll();
+		PageRequest pageable = PageRequest.of(pageNum, pageSize);
+
+		Page<Blog> blog = repo.findAll(pageable);
 
 		log.info("----------------------------------" + blog);
 
@@ -258,6 +259,7 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	// Get blog by userId or we can say unique userName
+	@Override
 	public List<BlogDto> getByAutherID(String autherId) {
 
 		List<Blog> byAuthorId = repo.findByAuthorId(autherId);

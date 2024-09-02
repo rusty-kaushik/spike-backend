@@ -33,7 +33,7 @@ import jakarta.validation.Valid;
 
 @RestController
 
-@RequestMapping("/in2it-blog")
+@RequestMapping("/spike/blog")
 public class BlogServiceController {
 	@Autowired
 	private BlogServiceImpl serviceImpl;
@@ -43,9 +43,9 @@ public class BlogServiceController {
 	 */
 
 	
-	@Tag(name = "called post-blog method", description = "After calling this method its return a map. ")
+	@Tag(name = "post-blog method", description = "This method used to create a blog post. After calling this method its return a map. ")
 	@PostMapping(path = "/posts", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-	public ResponseEntity<Map<String, Object>> saveBlogWithFile(@ModelAttribute BlogDto blogDto) throws IOException {
+	public ResponseEntity<Object> saveBlogWithFile(@ModelAttribute BlogDto blogDto) throws IOException {
 
 		List<MultipartFile> media = blogDto.getMedia();
 
@@ -62,7 +62,7 @@ public class BlogServiceController {
 
 	@PutMapping(path = "/update/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	@Operation(summary = "Update an blog", description = "Update an existing blog. Using blog blog id can update blog title and content only.")
-	public ResponseEntity<Map<String, Object>> updateBlog( @PathVariable UUID blogId, @RequestBody BlogUpdateDto updateDto) {
+	public  ResponseEntity<Object> updateBlog( @PathVariable UUID blogId, @RequestBody BlogUpdateDto updateDto) {
 
 		System.out.println(updateDto);
 		return ResponseHandler.reponseHandler(serviceImpl.updateBlog(updateDto, blogId), HttpStatus.OK, "Blog modefy successfully.");
@@ -71,20 +71,20 @@ public class BlogServiceController {
 	
 	@PutMapping("/updateLike")
 	@Operation(summary = "update like count")
-	public ResponseEntity<Map<String, Object>> updateLike(@RequestParam UUID blogId, @RequestParam Long totalLikeCount) {
+	public  ResponseEntity<Object> updateLike(@RequestParam UUID blogId, @RequestParam Long totalLikeCount) {
 	
 		return ResponseHandler.reponseHandler(serviceImpl.updateLike(totalLikeCount, blogId), HttpStatus.ACCEPTED, "like");
 	}
 
 	@PutMapping("/updateComment")
 	@Operation(summary = "update comment count")
-	public ResponseEntity<Map<String, Object>> updateComment(@RequestParam UUID blogId, @RequestParam Long totalCommentCount) {
+	public  ResponseEntity<Object> updateComment(@RequestParam UUID blogId, @RequestParam Long totalCommentCount) {
 		return ResponseHandler.reponseHandler(serviceImpl.updateComment(totalCommentCount, blogId), HttpStatus.ACCEPTED, "commented");
 	}
 
 	@DeleteMapping("/deleteByBlogId/{blogId}")
 	@Operation(summary = "delete blog by blogId ,in updatedBy we can pass whose login then store his userid i.e. Admin123")
-	public ResponseEntity<Map<String, Object>> deleteBlog(@PathVariable UUID blogId, @RequestParam String updatedBy) {
+	public  ResponseEntity<Object> deleteBlog(@PathVariable UUID blogId, @RequestParam String updatedBy) {
 
 		return ResponseHandler.reponseHandler(serviceImpl.deleteBlog(blogId, updatedBy), HttpStatus.OK, "Your blog has been deleted successfully.");
 
@@ -92,7 +92,7 @@ public class BlogServiceController {
 
 	@DeleteMapping("/deleteByTitle/{title}")
 	@Operation(summary = "delete blog by title, in updatedBy we can pass whose login then store his userid i.e. Admin123")
-	public ResponseEntity<Map<String, Object>> deleteBlogBytitle(@PathVariable String title, @RequestParam UUID blogId,@RequestParam String updatedBy) {
+	public ResponseEntity<Object> deleteBlogBytitle(@PathVariable String title, @RequestParam UUID blogId,@RequestParam String updatedBy) {
 		
 		return ResponseHandler.reponseHandler(serviceImpl.deleteBlogByTitle(title, blogId,updatedBy), HttpStatus.OK, "Your blog has been deleted successfully.");
 	}
@@ -102,24 +102,25 @@ public class BlogServiceController {
 	// using search technique
 	@GetMapping("/getAll")
 	@Operation(summary = "Get a all Blogs", description = "Returns  all blogs  ")
-	public ResponseEntity<Map<String, Object>> getAllBlog() {
+	public  ResponseEntity<Object> getAllBlog(@RequestParam(defaultValue = "0") int pageNum,
+            @RequestParam(defaultValue = "5") int pageSize) {
 		
-		return ResponseHandler.reponseHandler(serviceImpl.getBlog(), HttpStatus.OK, "Data retrieved successfully.");
+		return ResponseHandler.reponseHandler(serviceImpl.getBlog(pageNum,pageSize), HttpStatus.OK, "Data retrieved successfully.");
 	}
 
 	// pagination
 
-	@GetMapping("/getByAutherId/{autherId}")
+	@GetMapping("/getByUserId/{userId}")
 	@Operation(summary = "Get a blog by autherId", description = "Returns a Blog as per the autherId.")
-	public ResponseEntity<Map<String, Object>> getBlogsByAutherId(@PathVariable @Valid String autherId) {
+	public  ResponseEntity<Object> getBlogsByAutherId(@PathVariable @Valid String userId) {
 
 	
-		return ResponseHandler.reponseHandler(serviceImpl.getByAutherID(autherId), HttpStatus.OK, "Data retrieved successfully.");
+		return ResponseHandler.reponseHandler(serviceImpl.getByAutherID(userId), HttpStatus.OK, "Data retrieved successfully.");
 	}
 
 	@GetMapping("/getByBlogId/{blogId}")
 	@Operation(summary = "Get a blog by blogId", description = "Returns a blog as per the blogId.")
-	public ResponseEntity<Map<String, Object>> getBlogById(@PathVariable(value = "blogId") @Valid UUID blogId) {
+	public  ResponseEntity<Object> getBlogById(@PathVariable(value = "blogId") @Valid UUID blogId) {
 		
 		return ResponseHandler.reponseHandler(serviceImpl.getBlogById(blogId), HttpStatus.OK, "Data retrieved successfully.");
 	}
@@ -127,11 +128,14 @@ public class BlogServiceController {
 	
 	@GetMapping("/getByTitle/{blogTitle}")
 	@Operation(summary = "Get a blogs by blogTitle", description = "Returns a blogs as list by  blogTitle.")
-	public ResponseEntity<Map<String, Object>> getBlogByTitle(@RequestParam(defaultValue = "0") int pageNum,
+	public  ResponseEntity<Object> getBlogByTitle(@RequestParam(defaultValue = "0") int pageNum,
             @RequestParam(defaultValue = "5") int pageSize,@PathVariable(value = "blogTitle") String title) {
-		if(title!=null) {
+		
+		List<BlogDto> blogTitleWithPage = serviceImpl.getBlogTitleWithPage(pageNum,pageSize,title);
+		
+		if(!blogTitleWithPage.isEmpty()) {
 			
-			return ResponseHandler.reponseHandler(serviceImpl.getBlogTitleWithPage(pageNum,pageSize,title), HttpStatus.OK, "Data retrieved successfully.");
+			return ResponseHandler.reponseHandler(blogTitleWithPage, HttpStatus.OK, "Data retrieved successfully.");
 		}else {
 			
 			throw new InfoMissingException("please write valid info");
@@ -142,7 +146,7 @@ public class BlogServiceController {
 	
 	@GetMapping("/getByDepartmentId/{departmentId}")
 	@Operation(summary = "Get a blog by teamId", description = "Returns a blog as per the teamId.")
-	public ResponseEntity<Map<String, Object>> getByVisibility(@PathVariable long departmentId){
+	public  ResponseEntity<Object> getByVisibility(@PathVariable long departmentId){
 		
 		return ResponseHandler.reponseHandler(serviceImpl.getByVisibility(departmentId), HttpStatus.OK, "Data retrieved successfully.");
 	}

@@ -38,7 +38,7 @@ public class BlogDto {
 //	private long teamId;
 	
 	@NotNull
-	private String authorId;    // Taking autherId as  userName
+	private String userId;    // Taking autherId as  userName
 	
 	@Size(max = 50,min = 2,message = "title must not be longer than 50 characters and not be less than 3 characters")
 	@NotBlank(message = "title cannot be blank") 
@@ -78,8 +78,8 @@ public class BlogDto {
 	 private List<String> mediaFile;
 
 
-	 @Hidden
-	 private List<String> mediaPath;
+//	 @Hidden
+//	 private List<String> mediaPath;
 	
 	 
 
