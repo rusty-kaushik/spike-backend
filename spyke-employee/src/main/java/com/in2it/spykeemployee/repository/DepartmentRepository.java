@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface DepartmentRepository extends JpaRepository<Department, UUID> {
 
 	Optional<Department> findByName(String name);
+	
 
 	
 }

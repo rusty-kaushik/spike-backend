@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import com.in2it.spykeemployee.exception.JwtAccessDeniedHandler;
 import com.in2it.spykeemployee.exception.JwtAuthEntryPoint;
@@ -48,8 +49,10 @@ public class SecurityConfiguration {
 				.requestMatchers("in2it/v1/auth/register").permitAll()
 				.requestMatchers("in2it/employees/roles").hasRole("SUPER_ADMIN")
 				.requestMatchers("in2it/employees/roles/permissions").hasRole("SUPER_ADMIN")
+				.requestMatchers("in2it/departments").hasRole("SUPER_ADMIN")
 //				.requestMatchers("in2it/employees/**").hasAnyRole("SUPER_ADMIN","ADMIN","EMPLOYEE")
 				.requestMatchers(HttpMethod.GET,"in2it/employees/**").hasAnyAuthority("READ_PRIVILEGES")
+//				.requestMatchers(HttpMethod.GET,"in2it/departments/**").hasAnyAuthority("READ_PRIVILEGES")
 				.requestMatchers(HttpMethod.POST,"in2it/employees/**").hasAnyAuthority("WRITE_PRIVILEGES")
 				.anyRequest().authenticated()
 				)

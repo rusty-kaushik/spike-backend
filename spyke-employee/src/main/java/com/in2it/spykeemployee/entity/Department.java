@@ -1,5 +1,6 @@
 package com.in2it.spykeemployee.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,7 +12,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -45,15 +45,19 @@ public class Department {
 
     @OneToOne
     @JoinColumn(name = "manager_id")
+    @JsonIgnore
     private Employee manager;
 
     @OneToOne
     @JoinColumn(name = "admin_id")
+    @JsonIgnore
     private Employee admin;
 
     @ManyToMany(mappedBy = "departments")
     @JsonIgnore
-    private List<Employee> employees;
-
+    private List<Employee> employees = new ArrayList<>();
+    
+    
+    
 
 }

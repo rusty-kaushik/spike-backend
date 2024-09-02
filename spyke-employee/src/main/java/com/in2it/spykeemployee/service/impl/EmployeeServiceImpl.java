@@ -18,10 +18,10 @@ import com.in2it.spykeemployee.service.EmployeeService;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-	
+
 	Random random = new Random();
-	
-	int randomId = random.nextInt(100,65100);
+
+	int randomId = random.nextInt(100, 65100);
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
@@ -33,14 +33,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
-	public Employee createEmployee(String firstName, String lastName, String username, String password, String gender, String desingnation) {
+	public Employee createEmployee(String firstName, String lastName, String username, String password, String gender,
+			String desingnation) {
 		Employee employee = new Employee();
 		employee.setFirstName(firstName);
 		employee.setLastName(lastName);
 		employee.setUsername(username);
 		employee.setPassword(passwordEncoder.encode(password));
 		employee.setGender(gender);
-		employee.setEmployeeId(randomId+lastName+firstName);
+		employee.setEmployeeId(randomId + lastName + firstName);
 		employee.setDesignation(desingnation);
 		employee.setRoles(Set.of(roleRepository.findByName("ROLE_EMPLOYEE").get()));
 		return employeeRepository.save(employee);
@@ -56,10 +57,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findByUsername(username);
 	}
 
-	    @Override
-	    public Optional<Employee> getEmployeeByEmployeeId(String employeeId) {
-	        return employeeRepository.findByEmployeeId(employeeId);
-	    }
+	@Override
+	public Optional<Employee> getEmployeeByEmployeeId(String employeeId) {
+		return employeeRepository.findByEmployeeId(employeeId);
+	}
 
 	@Override
 	public List<Employee> getAllEmployees() {

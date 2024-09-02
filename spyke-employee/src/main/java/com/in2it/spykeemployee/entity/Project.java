@@ -32,7 +32,7 @@ public class Project {
 	private UUID id;
 	
 	@NotBlank
-    @Size(max = 100) // Example size limit for project name
+    @Size(max = 100) 
     @Column(unique = true, nullable = false)
 	private String name;
 	
