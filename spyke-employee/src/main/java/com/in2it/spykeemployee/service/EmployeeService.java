@@ -3,8 +3,10 @@ package com.in2it.spykeemployee.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.in2it.spykeemployee.dto.EmployeeDto;
 import com.in2it.spykeemployee.entity.Employee;
 import com.in2it.spykeemployee.request.dto.CreateEmployeeDto;
+import com.in2it.spykeemployee.request.dto.UpdateEmployeeDto;
 import com.in2it.spykeemployee.responce.dto.CreateEmployeeResponceDto;
 
 
@@ -33,8 +35,7 @@ public interface EmployeeService {
 	
 	public CreateEmployeeResponceDto createEmployee(CreateEmployeeDto employeeDto);
 	
+	UpdateEmployeeDto updateEmployee(String employeeId,UpdateEmployeeDto employeeDto);
 	
 	
-	
-
 }

@@ -24,8 +24,8 @@ public class ExceptionHandlerController {
 	@ExceptionHandler(DepartmentNotFoundException.class)
 	public ResponseEntity<?> requiredFieldException(DepartmentNotFoundException exception, WebRequest request) {
 
-		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.EXPECTATION_FAILED.value(),
-				HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(),
+				HttpStatus.NOT_FOUND.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 
 	}
@@ -33,8 +33,8 @@ public class ExceptionHandlerController {
 	@ExceptionHandler(ContactNotFoundException.class)
 	public ResponseEntity<?> validationException(ContactNotFoundException exception, WebRequest request) {
 
-		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),
-				HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(),
+				HttpStatus.NOT_FOUND.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 
 	}
@@ -42,8 +42,8 @@ public class ExceptionHandlerController {
 	@ExceptionHandler(ProjectNotFoundException.class)
 	public ResponseEntity<?> emptyDataException(ProjectNotFoundException exception, WebRequest request) {
 
-		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NO_CONTENT.value(),
-				HttpStatus.NO_CONTENT.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(),
+				HttpStatus.NOT_FOUND.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 
 	}
@@ -51,20 +51,29 @@ public class ExceptionHandlerController {
 	@ExceptionHandler(RoleNotFoundException.class)
 	public ResponseEntity<Object> validDateException(RoleNotFoundException exception, WebRequest request) {
 
-		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NO_CONTENT.value(),
-				HttpStatus.NO_CONTENT.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(),
+				HttpStatus.NOT_FOUND.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 
 	}
-	
-	
+		
 	
 	@ExceptionHandler(UsernameNotFoundException.class)
 	public ResponseEntity<Object> validDateException(UsernameNotFoundException exception, WebRequest request) {
 		
-		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NO_CONTENT.value(),
-				HttpStatus.NO_CONTENT.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(),
+				HttpStatus.NOT_FOUND.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+		
+	}
+	
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<Object> validDateException(IllegalArgumentException exception, WebRequest request) {
+		
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),
+				HttpStatus.NO_CONTENT.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 		
 	}
 }

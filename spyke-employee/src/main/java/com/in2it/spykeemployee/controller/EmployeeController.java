@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.in2it.spykeemployee.entity.Employee;
+import com.in2it.spykeemployee.exception.EmployeeNotFoundException;
 import com.in2it.spykeemployee.request.dto.CreateEmployeeDto;
+import com.in2it.spykeemployee.request.dto.UpdateEmployeeDto;
 import com.in2it.spykeemployee.responce.dto.CreateEmployeeResponceDto;
 import com.in2it.spykeemployee.service.EmployeeService;
 
@@ -61,12 +63,13 @@ public class EmployeeController {
 	@Operation(summary = "Get employee by ID  ")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Employee found", content = {
 			@Content(mediaType = "application/json", schema = @Schema(implementation = Employee.class)) }) })
-
 	@GetMapping("/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable String id) {
 		Optional<Employee> employee = employeeService.getEmployeeById(id);
 		return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 	}
+	
+
 
 	@GetMapping("/username/{username}")
 	public ResponseEntity<Employee> getEmployeeByUsername(@PathVariable String username) {
@@ -121,5 +124,20 @@ public class EmployeeController {
 		Employee updatedEmployee = employeeService.updateEmployee(id, firstName, lastName, username, email, password);
 		return ResponseEntity.ok(updatedEmployee);
 	}
+	
+	
+	@PutMapping("employee/{employeeId}")
+    public ResponseEntity<UpdateEmployeeDto> updateEmployee(
+            @PathVariable String employeeId,
+            @RequestBody UpdateEmployeeDto employeeDto) {
+        try {
+            UpdateEmployeeDto updatedEmployeeDto = employeeService.updateEmployee(employeeId, employeeDto);
+            return new ResponseEntity<>(updatedEmployeeDto, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (EmployeeNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

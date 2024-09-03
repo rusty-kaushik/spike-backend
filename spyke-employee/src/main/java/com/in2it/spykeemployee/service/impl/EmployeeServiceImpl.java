@@ -7,16 +7,22 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.apache.catalina.mapper.Mapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.in2it.spykeemployee.dto.EmployeeDto;
 import com.in2it.spykeemployee.entity.Employee;
 import com.in2it.spykeemployee.entity.Role;
+import com.in2it.spykeemployee.exception.EmployeeNotFoundException;
 import com.in2it.spykeemployee.exception.RoleNotFoundException;
 import com.in2it.spykeemployee.repository.EmployeeRepository;
 import com.in2it.spykeemployee.repository.RoleRepository;
 import com.in2it.spykeemployee.request.dto.CreateEmployeeDto;
+import com.in2it.spykeemployee.request.dto.UpdateEmployeeDto;
 import com.in2it.spykeemployee.responce.dto.CreateEmployeeResponceDto;
 import com.in2it.spykeemployee.service.EmployeeService;
 
@@ -24,7 +30,9 @@ import com.in2it.spykeemployee.service.EmployeeService;
 public class EmployeeServiceImpl implements EmployeeService {
 
 	Random random = new Random();
-
+	
+	@Autowired
+	ModelMapper mapper;
 	
 
 	@Autowired
@@ -140,7 +148,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 			.username(randomId + employeeDto.getFirstName())
 			.employeeId(randomId + employeeDto.getFirstName())
 			.roles(Set.of(roleRepository.findByName("ROLE_EMPLOYEE").orElseThrow(() -> new RoleNotFoundException("Role dosent't exist."))))
-			.build());
+			.build());	 
+			
 		}
 		if(employee!=null) {
 			return CreateEmployeeResponceDto.builder()
@@ -160,5 +169,84 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return CreateEmployeeResponceDto.builder()
 				.build();
 	}
+
+//	@Override
+//	public UpdateEmployeeDto updateEmployee(String employeeId, UpdateEmployeeDto employeeDto) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	@Override
+	public UpdateEmployeeDto updateEmployee(String employeeId, UpdateEmployeeDto employeeDto) {
+	   
+	    if (employeeId == null || employeeDto == null) {
+	        throw new IllegalArgumentException("Employee ID and EmployeeDto cannot be null");
+	    }
+
+	  
+	    Employee existingEmployee = employeeRepository.findById(UUID.fromString(employeeId))
+	            .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with given Id"));
+
+	    // Update employee details
+//	    existingEmployee.setFirstName(employeeDto.getFirstName());
+//	    existingEmployee.setLastName(employeeDto.getLastName());
+//	    existingEmployee.setGender(employeeDto.getGender());
+//	    existingEmployee.setDesignation(employeeDto.getDesignation());
+//	    existingEmployee.setDateOfBirth(employeeDto.getDateOfBirth());
+//	    existingEmployee.setDateOfJoining(employeeDto.getDateOfJoining());
+
+	    
+	    if (employeeDto.getPassword() != null && !employeeDto.getPassword().isEmpty()) {
+	        existingEmployee.setPassword(passwordEncoder.encode(employeeDto.getPassword()));
+	    }
+	    
+	    if (employeeDto.getFirstName() != null && !employeeDto.getFirstName().isEmpty()) {
+	    	existingEmployee.setFirstName(employeeDto.getFirstName());
+	    }
+	    
+	    if (employeeDto.getLastName() != null && !employeeDto.getLastName().isEmpty()) {
+	    	existingEmployee.setLastName(employeeDto.getLastName());
+	    }
+	    
+	    if (employeeDto.getGender() != null && !employeeDto.getGender().isEmpty()) {
+	    	existingEmployee.setGender(employeeDto.getGender());
+	    }
+	    if (employeeDto.getDesignation() != null && !employeeDto.getDesignation().isEmpty()) {
+	    	existingEmployee.setDesignation(employeeDto.getDesignation());
+	    }
+	    if (employeeDto.getDateOfBirth() != null ) {
+	    	existingEmployee.setDateOfBirth(employeeDto.getDateOfBirth());
+	    }
+		if (employeeDto.getDateOfJoining() != null) {
+			existingEmployee.setDateOfJoining(employeeDto.getDateOfJoining());
+		}
+		if (employeeDto.getSalary() >= 0) {
+			existingEmployee.setSalary(employeeDto.getSalary());
+		}
+
+
+	    Employee updatedEmployee = employeeRepository.save(existingEmployee);
+
+	  
+	    return UpdateEmployeeDto.builder()
+	            
+	            .firstName(updatedEmployee.getFirstName())
+	            .lastName(updatedEmployee.getLastName())
+	            .password("**************************")
+	            .designation(updatedEmployee.getDesignation())
+	            .salary(updatedEmployee.getSalary())
+	            .dateOfBirth(updatedEmployee.getDateOfBirth())
+	            .dateOfJoining(updatedEmployee.getDateOfJoining())
+	            .gender(updatedEmployee.getGender())
+	            
+	            .build();
+	}
+
+	
+
+
+	
+	
+
 
 }
