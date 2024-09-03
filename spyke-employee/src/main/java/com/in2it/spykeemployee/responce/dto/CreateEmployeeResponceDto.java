@@ -23,6 +23,7 @@ public class CreateEmployeeResponceDto {
 	private String password;
 	private String employeeId;
 	private String designation;
+	private long salary;
 	private LocalDate dateOfJoining;
 	private LocalDate dateOfBirth;
 	private String gender;

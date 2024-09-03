@@ -7,14 +7,12 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.apache.catalina.mapper.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.GsonBuilderUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.in2it.spykeemployee.dto.EmployeeDto;
 import com.in2it.spykeemployee.entity.Employee;
 import com.in2it.spykeemployee.entity.Role;
 import com.in2it.spykeemployee.exception.EmployeeNotFoundException;
@@ -30,6 +28,8 @@ import com.in2it.spykeemployee.service.EmployeeService;
 public class EmployeeServiceImpl implements EmployeeService {
 
 	Random random = new Random();
+	
+	
 	
 	@Autowired
 	ModelMapper mapper;
@@ -148,6 +148,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			.username(randomId + employeeDto.getFirstName())
 			.employeeId(randomId + employeeDto.getFirstName())
 			.roles(Set.of(roleRepository.findByName("ROLE_EMPLOYEE").orElseThrow(() -> new RoleNotFoundException("Role dosent't exist."))))
+			.salary(employeeDto.getSalary())
 			.build());	 
 			
 		}
@@ -163,6 +164,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 					.dateOfBirth(employee.getDateOfBirth())
 					.dateOfJoining(employee.getDateOfJoining())
 					.gender(employee.getGender())
+					.salary(employee.getSalary())
 					.rolesName(employee.getRoles().stream().map(role -> role.getName()).collect(Collectors.toSet()))
 					.build(); 
 		}

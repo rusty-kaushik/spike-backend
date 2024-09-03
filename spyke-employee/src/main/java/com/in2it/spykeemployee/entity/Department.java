@@ -1,17 +1,18 @@
 package com.in2it.spykeemployee.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
@@ -46,7 +47,7 @@ public class Department {
 
     @OneToOne
     @JoinColumn(name = "manager_id")
-    @JsonIgnore
+    @JsonManagedReference
     private Employee manager;
 
     @OneToOne
@@ -55,8 +56,8 @@ public class Department {
     private Employee admin;
 
     @OneToMany(mappedBy = "department")
-    @JsonIgnore
-    private List<Employee> employees = new ArrayList<>();
+    @JsonBackReference
+    private Set<Employee> employees = new HashSet<>();
     
     
     

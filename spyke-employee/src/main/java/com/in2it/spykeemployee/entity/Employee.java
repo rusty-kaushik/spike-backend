@@ -1,9 +1,12 @@
 package com.in2it.spykeemployee.entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -50,7 +53,6 @@ public class Employee {
 
 	@NotNull
 	@Size(min = 5, max = 50)
-	@Pattern(regexp = "^[a-zA-Z0-9_]*$")
 	@Column(unique = true)
 	private String username;
 
@@ -58,7 +60,7 @@ public class Employee {
 	@Size(min = 8)
 	private String password;
 
-//	@NotNull
+
 	@Size(min = 1, max = 20)
 	private String employeeId;
 
@@ -67,17 +69,16 @@ public class Employee {
 
 	@Past
 	private LocalDate dateOfJoining;
-	
+
 	@Past
 	private LocalDate dateOfBirth;
-	
-//	@NotNull
-    @Pattern(regexp = "^(Male|Female|Other)$")
+
+
 	private String gender;
-	
+
 	@Min(value = 0)
 	private long salary;
-	
+
 	@Pattern(regexp = "^(ACTIVE|INACTIVE)$")
 	private String status;
 //	private MediaFile profilePic;
@@ -93,6 +94,7 @@ public class Employee {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "deparment_id")
+	@JsonBackReference
 	private Department department;
 
 	@ManyToMany
@@ -102,5 +104,8 @@ public class Employee {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "employee_roles", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
+
+	
+
 
 }

@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import javax.crypto.SecretKey;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,9 @@ import io.jsonwebtoken.security.SignatureException;
 @Service
 public class JwtService {
 
-    private static final String SECRET = "865386532653286532865323fcbsnnh863bccferfywertbcrt37r34"; // Consider using a more secure way to manage this key
-
+//    private static final String SECRET = "865386532653286532865323fcbsnnh863bccferfywertbcrt37r34"; // Consider using a more secure way to manage this key
+	@Value("${auth.token.jwtSecret}")
+	private String SECRET;
     // Generate JWT Token
     public String generateToken(UserDetails user) {
         Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
@@ -45,6 +47,7 @@ public class JwtService {
 
     // Get signing key
     private SecretKey getSigningKey() {
+    	System.out.println(SECRET);
         byte[] keyBytes = Base64.getDecoder().decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }

@@ -2,6 +2,7 @@ package com.in2it.spykeemployee.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public Department addEmployeeToDepartment(String departmentId, List<String> employeeIds) {
 		Department department = repository.findById(UUID.fromString(departmentId))
 				.orElseThrow(() -> new DepartmentNotFoundException("Department dosen't exist with given Id"));
-		List<Employee> employees = department.getEmployees();
+		Set<Employee> employees = department.getEmployees();
 		employeeIds.forEach((id -> {
 
 			Employee employee = employeeRepository.findById(UUID.fromString(id))
@@ -73,7 +74,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		Department department = repository.findById(UUID.fromString(departmentId))
 				.orElseThrow(() -> new DepartmentNotFoundException("Department doesn't exist with given Id"));
 
-		List<Employee> employees = department.getEmployees();
+		Set<Employee> employees = department.getEmployees();
 
 		employeeIds.forEach(id -> {
 			Employee employee = employeeRepository.findById(UUID.fromString(id))

@@ -2,8 +2,6 @@ package com.in2it.spykeemployee.request.dto;
 
 import java.time.LocalDate;
 
-import org.modelmapper.internal.bytebuddy.implementation.bind.annotation.Default;
-
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,5 +24,7 @@ public class CreateEmployeeDto {
 	private LocalDate dateOfJoining;
 	private LocalDate dateOfBirth;
 	private String gender;
+	private long salary;
+	
 
 }
