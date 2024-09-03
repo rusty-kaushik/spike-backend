@@ -4,19 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import com.in2it.spykeemployee.entity.Employee;
+import com.in2it.spykeemployee.request.dto.CreateEmployeeDto;
+import com.in2it.spykeemployee.responce.dto.CreateEmployeeResponceDto;
 
 
 public interface EmployeeService {
 
-//	Employee createUser(String username, String password, String email);
-//    Optional<User> getUserById(Long id);
-//    Optional<User> getUserByUsername(String username);
-//    Optional<User> getUserByEmail(String email);
-//    List<User> getAllUsers();
-//    void deleteUser(Long id);
-//    void addRoleToUser(Long userId, Long roleId);
-//    void removeRoleFromUser(Long userId, Long roleId);
-//    User updateUser(Long id, String username, String email, String password);
+
 
 	Employee createEmployee(String firstName, String lastName, String username, String password, String gender, String desingnation);
 
@@ -35,6 +29,9 @@ public interface EmployeeService {
 	void removeRoleFromEmployee(String userId, int roleId);
 
 	Employee updateEmployee(String id, String firstName, String lastName, String username, String email, String password);
+	
+	
+	public CreateEmployeeResponceDto createEmployee(CreateEmployeeDto employeeDto);
 	
 	
 	
