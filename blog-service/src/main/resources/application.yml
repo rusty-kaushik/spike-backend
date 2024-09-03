@@ -1,0 +1,16 @@
+eureka:
+  instance:
+    ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8085/eureka
+      
+      
+      
+#logging:
+#  level:
+#    root: INFO
+#    com.example.yourpackage: DEBUG
+#    org.springframework.web: ERROR
