@@ -48,11 +48,7 @@ public class ProjectServiceImpl implements ProjectService {
 		return repository.save(project);
 	}
 
-//	@Override
-//	public Project removeEmployeeFromProject(String projectId, List<String> employeeIds) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
 
 	@Override
 	public Project removeEmployeeFromProject(String projectId, List<String> employeeIds) {
@@ -78,6 +74,12 @@ public class ProjectServiceImpl implements ProjectService {
 		project.setEmployees(employees);
 
 		return repository.save(project);
+	}
+
+	@Override
+	public List<Project> getAllProject() {
+		
+		return repository.findAll();
 	}
 
 }

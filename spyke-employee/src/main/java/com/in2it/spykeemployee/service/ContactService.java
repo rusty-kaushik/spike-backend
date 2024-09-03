@@ -4,11 +4,11 @@ import com.in2it.spykeemployee.entity.Contact;
 
 public interface ContactService {
 	
-	Contact createContact(String primaryMobileNo, String secondryMobileNo, String email, String employeeId, String backupEmail);
-	Contact updateContact(String contactId,String primaryMobileNo, String secondryMobileNo, String email, String backupEmail);
-	Contact getContactByContactId(String contactId);
-	Contact getContactByEmployeeId(String employeeId);
-	void deleteContact(String contactId);
+	public Contact createContact(String primaryMobileNo, String secondryMobileNo, String email, String employeeId, String backupEmail);
+	public Contact updateContact(String contactId,String primaryMobileNo, String secondryMobileNo, String email, String backupEmail);
+	public Contact getContactByContactId(String contactId);
+	public Contact getContactByEmployeeId(String employeeId);
+	public void deleteContact(String contactId);
 	
 
 }

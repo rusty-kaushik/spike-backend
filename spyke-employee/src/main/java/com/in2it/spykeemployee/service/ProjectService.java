@@ -9,5 +9,6 @@ public interface ProjectService {
 	public Project createProject(String name, String Description);
 	public Project addEmployeeToProject(String projectId, List<String> employeeIds);
 	public Project removeEmployeeFromProject(String projectId, List<String> employeeIds);
+	public List<Project> getAllProject();
 
 }

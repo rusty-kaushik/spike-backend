@@ -17,7 +17,7 @@ public class ContactController {
 	ContactService service;
 
 	@PostMapping("create-contact")
-	Contact createContact(@RequestParam String primaryMobileNo, @RequestParam String secondryMobileNo,
+	public Contact createContact(@RequestParam String primaryMobileNo, @RequestParam String secondryMobileNo,
 			@RequestParam String email, @RequestParam String employeeId, @RequestParam String backupEmail) {
 		return service.createContact(primaryMobileNo, secondryMobileNo, email, employeeId, backupEmail);
 	}
