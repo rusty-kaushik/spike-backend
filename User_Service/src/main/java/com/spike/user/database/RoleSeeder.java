@@ -17,13 +17,15 @@ public class RoleSeeder {
 
     @Autowired
     private RoleRepository roleRepository;
+
     @PostConstruct
     public void seedRoles() {
         System.out.println("Started RoleSeeder");
 
-        List<String> roleNames = Arrays.asList("ADMIN", "MANAGER", "EMPLOYEE");
+        // Iterate over enum values
+        Arrays.stream(RoleType.values()).forEach(roleType -> {
+            String roleName = roleType.name();
 
-        for (String roleName : roleNames) {
             roleRepository.findByName(roleName).ifPresentOrElse(
                     existingRole -> System.out.println(roleName + " already exists."),
                     () -> {
@@ -33,6 +35,6 @@ public class RoleSeeder {
                         System.out.println(roleName + " role created.");
                     }
             );
-        }
+        });
     }
 }

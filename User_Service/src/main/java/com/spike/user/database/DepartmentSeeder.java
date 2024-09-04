@@ -15,12 +15,9 @@ public class DepartmentSeeder {
     private DepartmentRepository departmentRepository;
 
     public void seedDepartments() {
-        String[] departmentNames = {
-                "JAVA", "PYTHON", "PHP", "ANGULAR", "DATABASE",
-                "UI", "HR", "IT", "SALES", "QA", "SUPPORT"
-        };
+        for (DepartmentType departmentType : DepartmentType.values()) {
+            String name = departmentType.name();
 
-        for (String name : departmentNames) {
             if (departmentRepository.findByName(name).isEmpty()) {
                 Department department = new Department();
                 department.setName(name);
