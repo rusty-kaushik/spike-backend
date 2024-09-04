@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class LikeServiceImpl implements LikeService {
@@ -25,7 +26,7 @@ public class LikeServiceImpl implements LikeService {
 
 
     @Override
-    public String likeandUnlikepost(long blogId, long userId) {
+    public String likeandUnlikepost(UUID blogId, long userId) {
         ResponseEntity<BlogDto> response = blogClient.getBlogById(blogId);
         BlogDto blog = response.getBody();
 
@@ -63,8 +64,8 @@ public class LikeServiceImpl implements LikeService {
 
 
     @Override
-    public List<Long> getUserIds(long blogid) {
-        List<Long> userids = likeRepository.findByBlogId(blogid);
+    public List<UUID> getUserIds(UUID blogid) {
+        List<UUID> userids = likeRepository.findByBlogId(blogid);
         if (userids.isEmpty()) {
             throw new UserNotFoundException("no user has liked this blog");
         }

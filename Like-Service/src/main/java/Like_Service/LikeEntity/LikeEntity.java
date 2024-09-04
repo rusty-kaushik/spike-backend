@@ -12,7 +12,7 @@ public class LikeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private Long blogid;
+    private UUID blogid;
     private long userid;
     @Enumerated(EnumType.STRING)
     private status status;
@@ -26,11 +26,11 @@ public class LikeEntity {
         this.id = id;
     }
 
-    public long getBlogid() {
+    public UUID getBlogid() {
         return blogid;
     }
 
-    public void setBlogid(long blogid) {
+    public void setBlogid(UUID blogid) {
         this.blogid = blogid;
     }
 

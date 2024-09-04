@@ -7,16 +7,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @FeignClient(name="blog-service" , url="http://localhost:8282/spike/blog")
 public interface BlogClient {
 
     //get api to get  blog by using feign client
     @GetMapping("/getByBlogId/{blogId}")
-    public ResponseEntity<BlogDto> getBlogById(@PathVariable(value = "blogId") @Valid Long blogId) ;
+    public ResponseEntity<BlogDto> getBlogById(@PathVariable(value = "blogId") @Valid UUID blogId) ;
 
    //put api to update like count in blog
     @PutMapping("/updateLike")
-    public ResponseEntity<BlogDto> updateLike(@RequestParam Long blogId, @RequestParam Long totalLikeCount);
+    public ResponseEntity<BlogDto> updateLike(@RequestParam  UUID blogId, @RequestParam Long totalLikeCount);
 
 
 }
