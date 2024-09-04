@@ -25,3 +25,115 @@
 2024-09-04T11:09:30.083+05:30 DEBUG 4976 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
 2024-09-04T11:09:30.224+05:30  INFO 4976 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
 2024-09-04T11:09:30.243+05:30  INFO 4976 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.725 seconds (process running for 6.808)
+2024-09-04T11:18:35.169+05:30  INFO 4976 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-04T11:18:35.171+05:30  INFO 4976 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-04T11:18:35.172+05:30  INFO 4976 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-04T11:18:37.424+05:30  INFO 32588 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Starting LikeServiceApplication using Java 22.0.2 with PID 32588 (D:\spike-backend\spike-backend\Like-Service\target\classes started by vanshika.rana in D:\spike-backend\spike-backend\Like-Service)
+2024-09-04T11:18:37.425+05:30  INFO 32588 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : No active profile set, falling back to 1 default profile: "default"
+2024-09-04T11:18:37.921+05:30  INFO 32588 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-04T11:18:37.961+05:30  INFO 32588 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 1 JPA repository interface.
+2024-09-04T11:18:38.087+05:30  INFO 32588 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=24e52cd5-e790-36aa-a26f-b798b2c7633c
+2024-09-04T11:18:38.376+05:30  INFO 32588 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8484 (http)
+2024-09-04T11:18:38.386+05:30  INFO 32588 --- [Like-Service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-04T11:18:38.387+05:30  INFO 32588 --- [Like-Service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-04T11:18:38.433+05:30  INFO 32588 --- [Like-Service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-04T11:18:38.433+05:30  INFO 32588 --- [Like-Service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 977 ms
+2024-09-04T11:18:38.559+05:30  INFO 32588 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-04T11:18:38.611+05:30  INFO 32588 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-04T11:18:38.638+05:30  INFO 32588 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-04T11:18:38.822+05:30  INFO 32588 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-04T11:18:38.844+05:30  INFO 32588 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-04T11:18:38.988+05:30  INFO 32588 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@632d4cf2
+2024-09-04T11:18:38.989+05:30  INFO 32588 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-04T11:18:39.468+05:30  INFO 32588 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-04T11:18:39.566+05:30  INFO 32588 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-04T11:18:39.691+05:30  INFO 32588 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-04T11:18:40.192+05:30  WARN 32588 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-04T11:18:40.378+05:30 DEBUG 32588 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-04T11:18:40.458+05:30 DEBUG 32588 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-04T11:18:40.488+05:30 DEBUG 32588 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-04T11:18:40.512+05:30 DEBUG 32588 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-04T11:18:40.667+05:30  INFO 32588 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
+2024-09-04T11:18:40.678+05:30  INFO 32588 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.636 seconds (process running for 3.883)
+2024-09-04T11:19:10.073+05:30  INFO 32588 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-04T11:19:10.075+05:30  INFO 32588 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-04T11:19:10.076+05:30  INFO 32588 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-04T11:19:12.154+05:30  INFO 17848 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Starting LikeServiceApplication using Java 22.0.2 with PID 17848 (D:\spike-backend\spike-backend\Like-Service\target\classes started by vanshika.rana in D:\spike-backend\spike-backend\Like-Service)
+2024-09-04T11:19:12.156+05:30  INFO 17848 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : No active profile set, falling back to 1 default profile: "default"
+2024-09-04T11:19:12.663+05:30  INFO 17848 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-04T11:19:12.697+05:30  INFO 17848 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 1 JPA repository interface.
+2024-09-04T11:19:12.836+05:30  INFO 17848 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=24e52cd5-e790-36aa-a26f-b798b2c7633c
+2024-09-04T11:19:13.136+05:30  INFO 17848 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8484 (http)
+2024-09-04T11:19:13.146+05:30  INFO 17848 --- [Like-Service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-04T11:19:13.147+05:30  INFO 17848 --- [Like-Service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-04T11:19:13.195+05:30  INFO 17848 --- [Like-Service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-04T11:19:13.196+05:30  INFO 17848 --- [Like-Service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1011 ms
+2024-09-04T11:19:13.323+05:30  INFO 17848 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-04T11:19:13.365+05:30  INFO 17848 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-04T11:19:13.383+05:30  INFO 17848 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-04T11:19:13.546+05:30  INFO 17848 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-04T11:19:13.567+05:30  INFO 17848 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-04T11:19:13.703+05:30  INFO 17848 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4fa5cc73
+2024-09-04T11:19:13.704+05:30  INFO 17848 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-04T11:19:14.165+05:30  INFO 17848 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-04T11:19:14.227+05:30  INFO 17848 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-04T11:19:14.397+05:30  INFO 17848 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-04T11:19:14.831+05:30  WARN 17848 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-04T11:19:14.960+05:30 DEBUG 17848 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-04T11:19:15.030+05:30 DEBUG 17848 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-04T11:19:15.056+05:30 DEBUG 17848 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-04T11:19:15.080+05:30 DEBUG 17848 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-04T11:19:15.222+05:30  INFO 17848 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
+2024-09-04T11:19:15.229+05:30  INFO 17848 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.452 seconds (process running for 3.685)
+2024-09-04T11:19:18.867+05:30  INFO 17848 --- [Like-Service] [http-nio-8484-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-04T11:19:18.867+05:30  INFO 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-04T11:19:18.868+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-09-04T11:19:18.868+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-09-04T11:19:18.868+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-09-04T11:19:18.868+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4ceac22d
+2024-09-04T11:19:18.869+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@4867f5cf
+2024-09-04T11:19:18.869+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-09-04T11:19:18.869+05:30  INFO 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-04T11:19:18.874+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-initializer.js", parameters={}
+2024-09-04T11:19:18.877+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-04T11:19:18.906+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:19:18.912+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/IN2IT-BLOG/swagger-config", parameters={}
+2024-09-04T11:19:18.913+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2024-09-04T11:19:18.920+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json]
+2024-09-04T11:19:18.922+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Writing [{configUrl=/IN2IT-BLOG/swagger-config, oauth2RedirectUrl=http://localhost:8484/swagger-ui/oauth2-red (truncated)...]
+2024-09-04T11:19:18.925+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:19:18.932+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/IN2IT-BLOG", parameters={}
+2024-09-04T11:19:18.932+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2024-09-04T11:19:19.018+05:30  INFO 17848 --- [Like-Service] [http-nio-8484-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 80 ms
+2024-09-04T11:19:19.040+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [application/json, */*] and supported [application/json]
+2024-09-04T11:19:19.041+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 48, 46, 49, 34, 44, 34, 105, 110, 10 (truncated)...]
+2024-09-04T11:19:19.041+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:19:24.271+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/like/getuserids/wholikedblog/1", parameters={}
+2024-09-04T11:19:24.271+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#getUserIdsWhoLikedBlog(long)
+2024-09-04T11:19:24.347+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler Like_Service.ExceptionHandling.ExceptionHandling#handleIllegalArgumentException(UserNotFoundException)
+2024-09-04T11:19:24.349+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:19:24.349+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{error=Validation Failed, message=no user has liked this blog, status=400}]
+2024-09-04T11:19:24.349+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [Like_Service.ExceptionHandling.UserNotFoundException: no user has liked this blog]
+2024-09-04T11:19:24.349+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2024-09-04T11:20:16.520+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-5] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/1/1", parameters={}
+2024-09-04T11:20:16.520+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(long, long)
+2024-09-04T11:20:16.551+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-5] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:20:16.601+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-5] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:20:16.603+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:20:16.603+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User liked this blog}]
+2024-09-04T11:20:16.604+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:20:20.227+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-6] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/1/2", parameters={}
+2024-09-04T11:20:20.228+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(long, long)
+2024-09-04T11:20:20.232+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:20:20.239+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:20:20.239+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:20:20.240+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User liked this blog}]
+2024-09-04T11:20:20.240+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:20:25.539+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/like/getuserids/wholikedblog/1", parameters={}
+2024-09-04T11:20:25.539+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#getUserIdsWhoLikedBlog(long)
+2024-09-04T11:20:25.542+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:20:25.542+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=userid fetched successfully, HttpStatus=302 FOUND, message=[1, 2]}]
+2024-09-04T11:20:25.543+05:30 DEBUG 17848 --- [Like-Service] [http-nio-8484-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 302 FOUND
+2024-09-04T11:21:05.172+05:30  INFO 17848 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-04T11:21:05.173+05:30  INFO 17848 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-04T11:21:05.174+05:30  INFO 17848 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

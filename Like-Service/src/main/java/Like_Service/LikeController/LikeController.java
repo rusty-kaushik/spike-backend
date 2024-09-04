@@ -42,8 +42,8 @@ public class LikeController {
     public ResponseEntity<Object> getUserIdsWhoLikedBlog(@PathVariable("blogid") long blogid) {
         //it will provide the list of userids who liked blog with the provided blogid
         List<Long> likes =likeService.getUserIds(blogid);
-     //return ResponseHandler.response(HttpStatus.FOUND, String.valueOf(likes), "userid fetched successfully");
-        return ResponseEntity.ok().body(likes);
+     return ResponseHandler.response(HttpStatus.OK, String.valueOf(likes), "userid fetched successfully");
+
 
 
 }
