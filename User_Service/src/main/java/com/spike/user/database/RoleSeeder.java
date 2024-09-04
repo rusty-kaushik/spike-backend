@@ -3,6 +3,9 @@ package com.spike.user.database;
 import com.spike.user.entity.Role;
 import com.spike.user.repository.RoleRepository;
 import jakarta.annotation.PostConstruct;
+import lombok.extern.flogger.Flogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +21,8 @@ public class RoleSeeder {
     @Autowired
     private RoleRepository roleRepository;
 
+    private static final Logger logger = LoggerFactory.getLogger(RoleSeeder.class);
+
     @PostConstruct
     public void seedRoles() {
         System.out.println("Started RoleSeeder");
@@ -27,12 +32,12 @@ public class RoleSeeder {
             String roleName = roleType.name();
 
             roleRepository.findByName(roleName).ifPresentOrElse(
-                    existingRole -> System.out.println(roleName + " already exists."),
+                    existingRole -> logger.info("{} already exists.", roleName),
                     () -> {
                         Role newRole = new Role();
                         newRole.setName(roleName);
                         roleRepository.save(newRole);
-                        System.out.println(roleName + " role created.");
+                        logger.info("{} role created.", roleName);
                     }
             );
         });

@@ -15,7 +15,7 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(value = {UnexpectedException.class})
     public ResponseEntity<Object> handleUnexpectedException(UnexpectedException ex) {
-        return buildResponseEntityForExceptions(ex, HttpStatus.FORBIDDEN);
+        return buildResponseEntityForExceptions(ex, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(value = {DepartmentNotFoundException.class})
@@ -25,6 +25,16 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(value = {PasswordNotMatchException.class})
     public ResponseEntity<Object> handlePasswordNotMatchException(PasswordNotMatchException ex) {
+        return buildResponseEntityForExceptions(ex, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {DtoToEntityConversionException.class})
+    public ResponseEntity<Object> handleDtoToEntityConversionException(DtoToEntityConversionException ex) {
+        return buildResponseEntityForExceptions(ex, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {RoleNotFoundException.class})
+    public ResponseEntity<Object> handleRoleNotFoundException(RoleNotFoundException ex) {
         return buildResponseEntityForExceptions(ex, HttpStatus.NOT_FOUND);
     }
 
