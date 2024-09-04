@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name="blog-service" , url="http://localhost:8080/in2it-blog")
+@FeignClient(name="blog-service" , url="http://localhost:8282/spike/blog")
 public interface BlogClient {
 
     //get api to get  blog by using feign client

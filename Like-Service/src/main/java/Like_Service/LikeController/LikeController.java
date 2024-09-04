@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/in2it/like")
+@RequestMapping("/spike/blog/like")
 public class LikeController {
 
     @Autowired
@@ -23,8 +23,7 @@ public class LikeController {
     @Autowired
     private LikeRepository likeRepository;
 
-//    @Autowired
-//    private UserClient userClient;
+
 
     //Put Api to Like and unlike a Post
     //require blogid and user id as parameters
@@ -39,11 +38,11 @@ public class LikeController {
 
 
     //api to get userids who liked the blog
-    @GetMapping("getusernames/wholikedblog/{blogid}")
-    public ResponseEntity<Object> getUsernamesWhoLikedBlog(@PathVariable("blogid") long blogid) {
+    @GetMapping("getuserids/wholikedblog/{blogid}")
+    public ResponseEntity<Object> getUserIdsWhoLikedBlog(@PathVariable("blogid") long blogid) {
         //it will provide the list of userids who liked blog with the provided blogid
         List<Long> likes =likeService.getUserIds(blogid);
-    //  return ResponseHandler.response(HttpStatus.FOUND, String.valueOf(likes), "usernames fetched successfully");
+     //return ResponseHandler.response(HttpStatus.FOUND, String.valueOf(likes), "userid fetched successfully");
         return ResponseEntity.ok().body(likes);
 
 

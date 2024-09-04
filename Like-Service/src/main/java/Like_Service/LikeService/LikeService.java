@@ -7,5 +7,5 @@ import java.util.List;
 public interface LikeService {
     String likeandUnlikepost(long blogid, long userid);
 
-    List<Long> getUserIds(long blogid);
+     List<Long> getUserIds(long blogid);
 }

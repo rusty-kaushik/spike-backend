@@ -1,0 +1,27 @@
+2024-09-04T11:09:26.912+05:30  INFO 4976 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Starting LikeServiceApplication using Java 22.0.2 with PID 4976 (D:\spike-backend\spike-backend\Like-Service\target\classes started by vanshika.rana in D:\spike-backend\spike-backend\Like-Service)
+2024-09-04T11:09:26.912+05:30  INFO 4976 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : No active profile set, falling back to 1 default profile: "default"
+2024-09-04T11:09:27.465+05:30  INFO 4976 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-04T11:09:27.503+05:30  INFO 4976 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 1 JPA repository interface.
+2024-09-04T11:09:27.639+05:30  INFO 4976 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=24e52cd5-e790-36aa-a26f-b798b2c7633c
+2024-09-04T11:09:27.938+05:30  INFO 4976 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8484 (http)
+2024-09-04T11:09:27.954+05:30  INFO 4976 --- [Like-Service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-04T11:09:27.954+05:30  INFO 4976 --- [Like-Service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-04T11:09:28.001+05:30  INFO 4976 --- [Like-Service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-04T11:09:28.001+05:30  INFO 4976 --- [Like-Service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1063 ms
+2024-09-04T11:09:28.174+05:30  INFO 4976 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-04T11:09:28.221+05:30  INFO 4976 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-04T11:09:28.252+05:30  INFO 4976 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-04T11:09:28.441+05:30  INFO 4976 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-04T11:09:28.473+05:30  INFO 4976 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-04T11:09:28.615+05:30  INFO 4976 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3feebf9c
+2024-09-04T11:09:28.615+05:30  INFO 4976 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-04T11:09:29.116+05:30  INFO 4976 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-04T11:09:29.199+05:30  INFO 4976 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-04T11:09:29.364+05:30  INFO 4976 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-04T11:09:29.753+05:30  WARN 4976 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-04T11:09:29.957+05:30 DEBUG 4976 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-04T11:09:30.030+05:30 DEBUG 4976 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-04T11:09:30.051+05:30 DEBUG 4976 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-04T11:09:30.083+05:30 DEBUG 4976 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-04T11:09:30.224+05:30  INFO 4976 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
+2024-09-04T11:09:30.243+05:30  INFO 4976 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.725 seconds (process running for 6.808)
