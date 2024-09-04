@@ -17,10 +17,8 @@ public interface CommentService {
 
 	public List<CommentDto> getByBlogId(Long blogId);
 
-	public CommentDto updateComment(CommentUpdateDto updateDto, String id);
+	public CommentDto updateComment(CommentUpdateDto updateDto, String commentId);
 
-	public List<CommentDto> getByUserName(String usename);
-
-	public List<Comment> deleteByBlogId(Long id, String commentId);
+	public List<Comment> deleteByBlogId(Long blogId, String commentId);
 
 }

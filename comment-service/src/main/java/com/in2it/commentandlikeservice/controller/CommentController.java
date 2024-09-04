@@ -29,13 +29,13 @@ import com.in2it.commentandlikeservice.service.CommentService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/spike/blog/comment")
 public class CommentController {
 
 	@Autowired
 	private CommentService commentService;
 
-	@PostMapping(path = "post/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	@PostMapping(path = "/create/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<CommentDto> createComment(@ModelAttribute CommentDto commentDto, @PathVariable Long blogId) {
 		try {
 
@@ -47,21 +47,21 @@ public class CommentController {
 		}
 	}
 
-	@PutMapping(path = "/update/{updatedById}")
+	@PutMapping(path = "/update/{commentId}")
 	public ResponseEntity<CommentDto> updateComment(@RequestBody CommentUpdateDto updateDto,
-			@Valid @PathVariable("updatedById") String updatedById) {
+			@Valid @PathVariable("commentId") String commentId) {
 
-		Comment comment = commentService.getByCommentId(updatedById);
+		Comment comment = commentService.getByCommentId(commentId);
 
-		if (comment.getId().equals(updatedById)) {
-			return ResponseEntity.status(HttpStatus.OK).body(commentService.updateComment(updateDto, updatedById));
+		if (comment.getId().equals(commentId)) {
+			return ResponseEntity.status(HttpStatus.OK).body(commentService.updateComment(updateDto, commentId));
 		} else {
 			throw new UserNotFoundException(
 					" Insufficient information, Please ! try again with sufficient information.");
 		}
 	}
 
-	@GetMapping("/get/{blogId}, method = RequestMethod.GET")
+	@GetMapping("/get-all/{blogId}, method = RequestMethod.GET")
 	public ResponseEntity<List<CommentDto>> getCommentByBlogId(@PathVariable Long blogId) {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(commentService.getByBlogId(blogId));
@@ -70,10 +70,10 @@ public class CommentController {
 		}
 	}
 
-	@GetMapping("/get/{id}")
-	public ResponseEntity<Comment> getCommentById(@PathVariable String id) {
+	@GetMapping("/get/{commentId}")
+	public ResponseEntity<Comment> getCommentById(@PathVariable String commentId) {
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(commentService.getByCommentId(id));
+			return ResponseEntity.status(HttpStatus.OK).body(commentService.getByCommentId(commentId));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}

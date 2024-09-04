@@ -39,12 +39,11 @@ public class CommentServiceImpl implements CommentService {
 	private CommentConvertor objectMapper;
 	@Autowired
 	private BlogFeign feign;
-	
-	   @Autowired
-	    private MongoTemplate mongoTemplate;
-	
-	private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
 
+	@Autowired
+	private MongoTemplate mongoTemplate;
+
+	private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
 
 	public CommentDto saveComment(CommentDto commentDto, Long blogId, List<MultipartFile> file) {
 
@@ -72,13 +71,13 @@ public class CommentServiceImpl implements CommentService {
 
 	// This method is used to update BLOG with Blog_id with limited permissions
 	@Override
-	public CommentDto updateComment(CommentUpdateDto updateDto, String id) {
+	public CommentDto updateComment(CommentUpdateDto updateDto, String commentId) {
 
 		Comment comment = null;
 
-		comment = commentRepository.findById(id.toString()).get();
+		comment = commentRepository.findById(commentId.toString()).get();
 
-		if (comment != null && comment.getId().equals(id)) {
+		if (comment != null && comment.getId().equals(commentId)) {
 			if (updateDto.getContent() != null)
 				comment.setContent(updateDto.getContent());
 
@@ -102,41 +101,26 @@ public class CommentServiceImpl implements CommentService {
 	public List<CommentDto> getByBlogId(Long blogId) {
 		List<CommentDto> commentListDto = new ArrayList<>();
 		try {
-//			List<Comment> commentList = commentRepository.findByBlogId(blogId);
-	
+
 			List<Comment> commentList = commentRepository.findByBlogIdAndStatus(blogId, "Active");
-			System.out.println(commentList+"++++++++++");
-			if(commentList.isEmpty()) {
+			System.out.println(commentList + "++++++++++");
+			if (commentList.isEmpty()) {
 				System.out.println("list is empty");
-			}else {
-				
-			
-			for (Comment com : commentList) {
-				
-				CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
-				commentListDto.add(commentDtoConvertor);
-				System.out.println(commentDtoConvertor+"***********");
-			}}
-		} catch (Exception e) {
-			 logger.error("Error fetching comments by blogId: {}", blogId, e);
-		}
+			} else {
 
-		return commentListDto;
-	}
+				for (Comment com : commentList) {
 
-	public List<CommentDto> getByUserName(String usename) {
-		List<Comment> commentList = commentRepository.findByUserName(usename);
-		List<CommentDto> commentListDto = new ArrayList<>();
-		for (Comment com : commentList) {
-			if (com != null) {
-				CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
-				commentListDto.add(commentDtoConvertor);
+					CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
+					commentListDto.add(commentDtoConvertor);
+					System.out.println(commentDtoConvertor + "***********");
+				}
 			}
+		} catch (Exception e) {
+			logger.error("Error fetching comments by blogId: {}", blogId, e);
 		}
+
 		return commentListDto;
 	}
-
-
 
 	public List<Comment> deleteByBlogId(Long blogId, String commentId) {
 
@@ -146,15 +130,15 @@ public class CommentServiceImpl implements CommentService {
 		if (blog == null) {
 			throw new BlogNotFoundException("Blog does not exist");
 		}
-//		List<Comment> comments = commentRepository.findByBlogId(blogId);
-		List<Comment> comments = commentRepository.findByBlogIdAndStatus( blogId, "Active");
+
+		List<Comment> comments = commentRepository.findByBlogIdAndStatus(blogId, "Active");
 		System.out.println(comments);
 		List<Comment> deleteComments = new ArrayList<>();
 		Comment commentByCommentId = commentRepository.findById(commentId).get();
 
 		for (Comment com : comments) {
-			System.out.println(commentByCommentId.getId()+"commentByCommentId.getId()");
-			System.out.println(com.getId()+"com");
+			System.out.println(commentByCommentId.getId() + "commentByCommentId.getId()");
+			System.out.println(com.getId() + "com");
 			if (com.getId().equals(commentByCommentId.getId())) {
 
 				com.setStatus("InActive");
@@ -171,8 +155,5 @@ public class CommentServiceImpl implements CommentService {
 		}
 		return deleteComments;
 	}
-	
-	
-	
 
 }
