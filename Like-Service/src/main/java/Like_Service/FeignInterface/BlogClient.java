@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@FeignClient(name="blog-service" , url="http://localhost:8282/spike/blog")
+@FeignClient(name="blog-service" , url = "${feign.client.url}")
 public interface BlogClient {
 
     //get api to get  blog by using feign client
