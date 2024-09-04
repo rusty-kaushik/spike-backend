@@ -35,15 +35,15 @@ public class UserSeeder {
             admin.setBackupEmail("backup_admin@in2it.com");
             admin.setDesignation("ADMIN");
             admin.setEmail("admin@in2it.com");
-            admin.setEmpCode("00000000");
+            admin.setEmployeeCode("00000001");
             admin.setJoiningDate(new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime());
             admin.setManagerId(null);
             admin.setName("Admin");
             admin.setPassword(passwordEncoder.encode("in2it"));
             admin.setPostCreate(true);
-            admin.setPrimaryMobile("0000000000");
+            admin.setPrimaryMobileNumber("9958032167");
             admin.setSalary(0.0);
-            admin.setSecondaryMobile("0000000000");
+            admin.setSecondaryMobileNumber("9958032167");
             admin.setUsername("admin");
             admin.setProfilePicture(null);
             admin.setRole(adminRole);

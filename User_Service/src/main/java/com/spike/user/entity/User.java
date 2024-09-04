@@ -31,7 +31,7 @@ public class User extends Auditable {
 
     @Size(min = 3, max = 50)
     @Column(name = "employee_code", nullable = false, unique = true, length = 50)
-    private String empCode;
+    private String employeeCode;
 
     @Email
     @Column(name = "email", nullable = false, unique = true)
@@ -47,11 +47,11 @@ public class User extends Auditable {
 
     @Size(min = 10, max = 10)
     @Column(name = "primary_mobile_number", nullable = false, length = 10)
-    private String primaryMobile;
+    private String primaryMobileNumber;
 
     @Size(min = 10, max = 10)
     @Column(name = "secondary_mobile_number", nullable = true, length = 10)
-    private String secondaryMobile;
+    private String secondaryMobileNumber;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "joining_date")

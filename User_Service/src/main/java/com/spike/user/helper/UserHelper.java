@@ -1,5 +1,7 @@
 package com.spike.user.helper;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spike.user.customMapper.UserMapper;
 import com.spike.user.dto.UserAddressDTO;
 import com.spike.user.dto.UserCreationRequestDTO;
 import com.spike.user.entity.*;
@@ -25,6 +27,9 @@ import java.util.stream.Collectors;
 public class UserHelper {
 
     @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
     private RoleRepository roleRepository;
 
     @Autowired
@@ -36,56 +41,42 @@ public class UserHelper {
     @Value("${file.upload-dir}")
     private String uploadDir;
 
+    @Autowired
+    private UserMapper userMapper;
+
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public User dtoToEntityForUserMaster(UserCreationRequestDTO userRequest1){
-        User user = new User();
-        user.setUsername(userRequest1.getEmployeeCode());
-        user.setEmpCode(userRequest1.getEmployeeCode());
-        user.setEmail(userRequest1.getEmail());
-        user.setPassword(passwordEncoder.encode("in2it"));
-        user.setName(userRequest1.getName());
-        user.setPrimaryMobile(userRequest1.getPrimaryMobileNumber());
-        user.setSecondaryMobile(userRequest1.getSecondaryMobileNumber());
-        user.setJoiningDate(userRequest1.getJoiningDate());
-        user.setBackupEmail(userRequest1.getBackupEmail());
-        user.setManagerId(userRequest1.getManagerId());
-        user.setSalary(userRequest1.getSalary());
-        user.setDesignation(userRequest1.getDesignation());
+    public User dtoToEntityForUserMaster(UserCreationRequestDTO userRequest){
+        try{
+            User user = userMapper.dtoToEntity(userRequest);
 
-        Set<Department> departments = userRequest1.getDepartment().stream()
-                .map(deptName -> departmentRepository.findByName(deptName)
-                        .orElseThrow(() -> new IllegalArgumentException("Department not found: " + deptName)))
-                .collect(Collectors.toSet());
-        user.setDepartments(departments);
+            user.setPassword(passwordEncoder.encode("in2it")); // Set the password manually
 
-        Role role = roleRepository.findByName(userRequest1.getRole())
-                .orElseThrow(() -> new IllegalArgumentException("Role not found: " + userRequest1.getRole()));
-        user.setRole(role);
+            // Handle complex fields or relations
+            Set<Department> departments = userRequest.getDepartment().stream()
+                    .map(deptName -> departmentRepository.findByName(deptName)
+                            .orElseThrow(() -> new IllegalArgumentException("Department not found: " + deptName)))
+                    .collect(Collectors.toSet());
+            user.setDepartments(departments);
 
-        return user;
+            Role role = roleRepository.findByName(userRequest.getRole())
+                    .orElseThrow(() -> new IllegalArgumentException("Role not found: " + userRequest.getRole()));
+            user.setRole(role);
+
+            return user;
+        }
+        catch (Exception e){
+            throw new RuntimeException(e);
+        }
+
     }
 
     public UserAddress dtoToEntityForUserAddress(UserAddressDTO userAddressDTO){
-        UserAddress userAddress  = new UserAddress();
-        userAddress.setAddressLine1(userAddressDTO.getLine1());
-        userAddress.setAddressLine2(userAddressDTO.getLine2());
-        userAddress.setState(userAddressDTO.getState());
-        userAddress.setDistrict(userAddressDTO.getDistrict());
-        userAddress.setZip(userAddressDTO.getZip());
-        userAddress.setCity(userAddressDTO.getCity());
-        userAddress.setNearestLandmark(userAddressDTO.getNearestLandmark());
-        userAddress.setCountry(userAddressDTO.getCountry());
-        userAddress.setType(userAddressDTO.getType());
-        return userAddress;
+        return userMapper.dtoToEntityAddress(userAddressDTO);
     }
 
-    public UserSocials dtoToEntityForUserSocials(UserCreationRequestDTO userRequest1){
-        UserSocials userSocials  = new UserSocials();
-        userSocials.setInstagram_url(userRequest1.getInstagramUrl());
-        userSocials.setLinkedin_url(userRequest1.getLinkedinUrl());
-        userSocials.setFacebookUrl(userRequest1.getFacebookUrl());
-        return userSocials;
+    public UserSocials dtoToEntityForUserSocials(UserCreationRequestDTO userRequest){
+        return userMapper.dtoToEntitySocials(userRequest);
     }
 
     public UserProfilePicture dtoToEntityForUserPicture(MultipartFile profilePicture, UserCreationRequestDTO userRequest1) throws IOException {
@@ -94,12 +85,11 @@ public class UserHelper {
             String originalFileName = profilePicture.getOriginalFilename();
             String fileType = profilePicture.getContentType();
             Long fileSize = profilePicture.getSize();
-
             String fileExtension = originalFileName != null ? originalFileName.substring(originalFileName.lastIndexOf('.')) : "";
             String newFileName = userRequest1.getEmployeeCode() + "_profile_picture" + fileExtension;
             String filePath = uploadDir + File.separator + newFileName;
-
             Path path = Paths.get(filePath);
+
             Files.copy(profilePicture.getInputStream(), path);
 
             UserProfilePicture userProfilePicture = new UserProfilePicture();

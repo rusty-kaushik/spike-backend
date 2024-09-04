@@ -23,9 +23,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // ObjectMapper instance to handle JSON conversion
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
+    @Autowired
+    private ObjectMapper objectMapper;
 
     // API TO CREATE A NEW USER
     @PostMapping(value = "/new-user/{username}" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

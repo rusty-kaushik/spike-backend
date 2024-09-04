@@ -32,19 +32,19 @@ public class UserServiceImpl implements UserService {
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
-    public User createNewUser(MultipartFile profilePicture, UserCreationRequestDTO userRequest1) {
+    public User createNewUser(MultipartFile profilePicture, UserCreationRequestDTO userRequest) {
         try {
             // SETS USER
-            User user = userHelper.dtoToEntityForUserMaster(userRequest1);
+            User user = userHelper.dtoToEntityForUserMaster(userRequest);
             // SETS ADDRESSES
-            for (UserAddressDTO addressDTO : userRequest1.getAddresses()) {
+            for (UserAddressDTO addressDTO : userRequest.getAddresses()) {
                 UserAddress userAddress = userHelper.dtoToEntityForUserAddress(addressDTO);
                 user.addAddress(userAddress);
             }
             //SETS SOCIAL URL
-            user.addSocial(userHelper.dtoToEntityForUserSocials(userRequest1));
+            user.addSocial(userHelper.dtoToEntityForUserSocials(userRequest));
             //SETS PROFILE PICTURE
-            user.addPicture(userHelper.dtoToEntityForUserPicture(profilePicture, userRequest1));
+            user.addPicture(userHelper.dtoToEntityForUserPicture(profilePicture, userRequest));
 
             return userRepository.save(user);
         } catch ( Exception e ) {

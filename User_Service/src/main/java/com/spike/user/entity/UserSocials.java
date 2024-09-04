@@ -26,7 +26,7 @@ public class UserSocials extends Auditable {
 
     @Size(max=255)
     @Column(name="linkedin_url")
-    private String linkedin_url;
+    private String linkedinUrl;
 
     @Size(max=255)
     @Column(name="facebook_url")
@@ -34,5 +34,5 @@ public class UserSocials extends Auditable {
 
     @Size(max=255)
     @Column(name="instagram_url")
-    private String instagram_url;
+    private String instagramUrl;
 }

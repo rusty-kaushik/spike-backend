@@ -30,10 +30,10 @@ public class UserAddress extends Auditable {
 
     @NotNull(message = "Address Line 1 cannot be null")
     @Column(name = "address_line1", nullable = false)
-    private String addressLine1;
+    private String line1;
 
     @Column(name = "address_line2", nullable = true)
-    private String addressLine2;
+    private String line2;
 
     @NotNull(message = "State cannot be null")
     @Column(name = "state", nullable = false)
