@@ -538,3 +538,248 @@ feign.FeignException$BadRequest: [400] during [GET] to [http://localhost:8282/sp
 2024-09-04T11:56:53.885+05:30  INFO 31248 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-09-04T11:56:53.886+05:30  INFO 31248 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-09-04T11:56:53.888+05:30  INFO 31248 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-04T11:57:10.796+05:30  INFO 11928 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Starting LikeServiceApplication using Java 22.0.2 with PID 11928 (D:\Like\spike-backend\Like-Service\target\classes started by vanshika.rana in D:\Like\spike-backend\Like-Service)
+2024-09-04T11:57:10.798+05:30  INFO 11928 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : No active profile set, falling back to 1 default profile: "default"
+2024-09-04T11:57:11.347+05:30  INFO 11928 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-04T11:57:11.382+05:30  INFO 11928 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 1 JPA repository interface.
+2024-09-04T11:57:11.526+05:30  INFO 11928 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=24e52cd5-e790-36aa-a26f-b798b2c7633c
+2024-09-04T11:57:11.852+05:30  INFO 11928 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8484 (http)
+2024-09-04T11:57:11.862+05:30  INFO 11928 --- [Like-Service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-04T11:57:11.863+05:30  INFO 11928 --- [Like-Service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-04T11:57:11.920+05:30  INFO 11928 --- [Like-Service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-04T11:57:11.920+05:30  INFO 11928 --- [Like-Service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1093 ms
+2024-09-04T11:57:12.083+05:30  INFO 11928 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-04T11:57:12.145+05:30  INFO 11928 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-04T11:57:12.167+05:30  INFO 11928 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-04T11:57:12.348+05:30  INFO 11928 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-04T11:57:12.370+05:30  INFO 11928 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-04T11:57:12.514+05:30  INFO 11928 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@46524ebe
+2024-09-04T11:57:12.515+05:30  INFO 11928 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-04T11:57:12.986+05:30  INFO 11928 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-04T11:57:13.061+05:30  INFO 11928 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-04T11:57:13.226+05:30  INFO 11928 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-04T11:57:13.630+05:30  WARN 11928 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-04T11:57:13.854+05:30 DEBUG 11928 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-04T11:57:13.939+05:30 DEBUG 11928 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-04T11:57:13.971+05:30 DEBUG 11928 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-04T11:57:13.998+05:30 DEBUG 11928 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-04T11:57:14.152+05:30  INFO 11928 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
+2024-09-04T11:57:14.161+05:30  INFO 11928 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.741 seconds (process running for 3.967)
+2024-09-04T11:57:40.289+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90", parameters={}
+2024-09-04T11:57:40.289+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-04T11:57:40.289+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-4] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:57:40.304+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:57:40.304+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:57:40.304799900, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:57:40.304+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:57:53.807+05:30  INFO 11928 --- [Like-Service] [http-nio-8484-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-04T11:57:53.807+05:30  INFO 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-04T11:57:53.807+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-09-04T11:57:53.807+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-09-04T11:57:53.807+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-09-04T11:57:53.808+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2080ee70
+2024-09-04T11:57:53.808+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@1b914e36
+2024-09-04T11:57:53.808+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-09-04T11:57:53.808+05:30  INFO 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-04T11:57:53.813+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.html", parameters={}
+2024-09-04T11:57:53.817+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-04T11:57:53.827+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 304 NOT_MODIFIED
+2024-09-04T11:57:53.833+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-initializer.js", parameters={}
+2024-09-04T11:57:53.834+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-04T11:57:53.849+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:57:53.860+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/IN2IT-BLOG/swagger-config", parameters={}
+2024-09-04T11:57:53.862+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2024-09-04T11:57:53.869+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json]
+2024-09-04T11:57:53.870+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [{configUrl=/IN2IT-BLOG/swagger-config, oauth2RedirectUrl=http://localhost:8484/swagger-ui/oauth2-red (truncated)...]
+2024-09-04T11:57:53.872+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:57:53.878+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/IN2IT-BLOG", parameters={}
+2024-09-04T11:57:53.878+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2024-09-04T11:57:53.954+05:30  INFO 11928 --- [Like-Service] [http-nio-8484-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 69 ms
+2024-09-04T11:57:53.982+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [application/json, */*] and supported [application/json]
+2024-09-04T11:57:53.982+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 48, 46, 49, 34, 44, 34, 105, 110, 10 (truncated)...]
+2024-09-04T11:57:53.984+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:00.084+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-5] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90/1", parameters={}
+2024-09-04T11:58:00.085+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(UUID, long)
+2024-09-04T11:58:00.091+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90", parameters={}
+2024-09-04T11:58:00.092+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-04T11:58:00.094+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-5] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:58:00.095+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:00.095+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:58:00.095976800, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:58:00.097+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:00.110+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-5] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:58:00.200+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-6] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/updateLike?blogId=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90&totalLikeCount=1", parameters={masked}
+2024-09-04T11:58:00.200+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#updateLike(UUID, Long)
+2024-09-04T11:58:00.203+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-6] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:58:00.208+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:00.209+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:58:00.208852100, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:58:00.210+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-5] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:58:00.210+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:00.213+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:00.213+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User liked this blog}]
+2024-09-04T11:58:00.214+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:02.858+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-6] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90/1", parameters={}
+2024-09-04T11:58:02.858+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(UUID, long)
+2024-09-04T11:58:02.859+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90", parameters={}
+2024-09-04T11:58:02.860+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-04T11:58:02.862+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-8] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:58:02.863+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:02.863+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:58:02.863926900, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:58:02.864+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:58:02.865+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:02.879+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-9] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/updateLike?blogId=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90&totalLikeCount=-1", parameters={masked}
+2024-09-04T11:58:02.879+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#updateLike(UUID, Long)
+2024-09-04T11:58:02.881+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-9] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:58:02.883+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:02.884+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:58:02.883297600, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:58:02.885+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:58:02.885+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:02.885+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:02.886+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User unliked this blog}]
+2024-09-04T11:58:02.886+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:08.003+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-7] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90/2", parameters={}
+2024-09-04T11:58:08.004+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(UUID, long)
+2024-09-04T11:58:08.005+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90", parameters={}
+2024-09-04T11:58:08.005+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-04T11:58:08.007+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-7] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:58:08.008+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:08.008+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:58:08.008467700, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:58:08.009+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-7] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:58:08.010+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:08.016+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-10] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/updateLike?blogId=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90&totalLikeCount=1", parameters={masked}
+2024-09-04T11:58:08.017+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#updateLike(UUID, Long)
+2024-09-04T11:58:08.018+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-10] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:58:08.020+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:08.021+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:58:08.020739600, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:58:08.021+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-7] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:58:08.022+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:08.022+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:08.022+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User liked this blog}]
+2024-09-04T11:58:08.023+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:15.832+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-8] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90/2", parameters={}
+2024-09-04T11:58:15.833+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(UUID, long)
+2024-09-04T11:58:15.834+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90", parameters={}
+2024-09-04T11:58:15.834+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-04T11:58:15.836+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-1] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:58:15.837+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:15.838+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:58:15.837390500, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:58:15.838+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-8] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:58:15.839+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:15.847+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-2] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/updateLike?blogId=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90&totalLikeCount=-1", parameters={masked}
+2024-09-04T11:58:15.847+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#updateLike(UUID, Long)
+2024-09-04T11:58:15.848+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-2] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:58:15.851+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:15.853+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:58:15.851391200, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:58:15.854+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-8] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:58:15.854+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:15.854+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:15.854+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User unliked this blog}]
+2024-09-04T11:58:15.855+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:29.190+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-9] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90/3", parameters={}
+2024-09-04T11:58:29.191+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(UUID, long)
+2024-09-04T11:58:29.192+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90", parameters={}
+2024-09-04T11:58:29.192+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-04T11:58:29.194+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-3] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:58:29.195+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:29.195+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:58:29.195478300, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:58:29.196+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-9] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:58:29.196+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:29.203+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-4] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/updateLike?blogId=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90&totalLikeCount=1", parameters={masked}
+2024-09-04T11:58:29.203+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#updateLike(UUID, Long)
+2024-09-04T11:58:29.205+05:30  INFO 31856 --- [blog-service] [http-nio-8282-exec-4] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\480536282kanha.jpg
+2024-09-04T11:58:29.207+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:29.208+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-04T11:58:29.207472300, data=BlogDto(id=9d5b5afa-59a7-4fe1-b1f2-512cb627fa90, depa (truncated)...]
+2024-09-04T11:58:29.208+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-9] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-04T11:58:29.209+05:30 DEBUG 31856 --- [blog-service] [http-nio-8282-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T11:58:29.209+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T11:58:29.209+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User liked this blog}]
+2024-09-04T11:58:29.210+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-04T12:01:23.991+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/like/getuserids/wholikedblog/9d5b5afa-59a7-4fe1-b1f2-512cb627fa90", parameters={}
+2024-09-04T12:01:23.991+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#getUserIdsWhoLikedBlog(UUID)
+2024-09-04T12:01:24.000+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] o.s.web.servlet.DispatcherServlet        : Failed to complete request: org.springframework.core.convert.ConversionFailedException: Failed to convert from type [java.util.ArrayList<?>] to type [@org.springframework.data.jpa.repository.Query java.util.List<java.util.UUID>] for value [[...]]
+2024-09-04T12:01:24.000+05:30 ERROR 11928 --- [Like-Service] [http-nio-8484-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.core.convert.ConversionFailedException: Failed to convert from type [java.util.ArrayList<?>] to type [@org.springframework.data.jpa.repository.Query java.util.List<java.util.UUID>] for value [[...]]] with root cause
+
+org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.Long] to type [@org.springframework.data.jpa.repository.Query java.util.UUID]
+	at org.springframework.core.convert.support.GenericConversionService.handleConverterNotFound(GenericConversionService.java:294) ~[spring-core-6.1.11.jar:6.1.11]
+	at org.springframework.core.convert.support.GenericConversionService.convert(GenericConversionService.java:185) ~[spring-core-6.1.11.jar:6.1.11]
+	at org.springframework.core.convert.support.CollectionToCollectionConverter.convert(CollectionToCollectionConverter.java:89) ~[spring-core-6.1.11.jar:6.1.11]
+	at org.springframework.core.convert.support.ConversionUtils.invokeConverter(ConversionUtils.java:41) ~[spring-core-6.1.11.jar:6.1.11]
+	at org.springframework.core.convert.support.GenericConversionService.convert(GenericConversionService.java:182) ~[spring-core-6.1.11.jar:6.1.11]
+	at org.springframework.core.convert.ConversionService.convert(ConversionService.java:92) ~[spring-core-6.1.11.jar:6.1.11]
+	at org.springframework.data.repository.core.support.QueryExecutionResultHandler.postProcessInvocationResult(QueryExecutionResultHandler.java:167) ~[spring-data-commons-3.3.2.jar:3.3.2]
+	at org.springframework.data.repository.core.support.QueryExecutionResultHandler.postProcessInvocationResult(QueryExecutionResultHandler.java:77) ~[spring-data-commons-3.3.2.jar:3.3.2]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.3.2.jar:3.3.2]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.11.jar:6.1.11]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70) ~[spring-data-commons-3.3.2.jar:3.3.2]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.11.jar:6.1.11]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:379) ~[spring-tx-6.1.11.jar:6.1.11]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.11.jar:6.1.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.11.jar:6.1.11]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.1.11.jar:6.1.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.11.jar:6.1.11]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:136) ~[spring-data-jpa-3.3.2.jar:3.3.2]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.11.jar:6.1.11]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.1.11.jar:6.1.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.11.jar:6.1.11]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223) ~[spring-aop-6.1.11.jar:6.1.11]
+	at jdk.proxy2/jdk.proxy2.$Proxy126.findByBlogId(Unknown Source) ~[na:na]
+	at Like_Service.LikeService.LikeServiceImpl.getUserIds(LikeServiceImpl.java:68) ~[classes/:na]
+	at Like_Service.LikeController.LikeController.getUserIdsWhoLikedBlog(LikeController.java:45) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.11.jar:6.1.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.11.jar:6.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.26.jar:10.1.26]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-09-04T12:01:24.017+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-09-04T12:01:24.017+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2024-09-04T12:01:24.017+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-04T12:01:24.017+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Wed Sep 04 12:01:24 IST 2024, status=500, error=Internal Server Error, path=/spike/blog/l (truncated)...]
+2024-09-04T12:01:24.033+05:30 DEBUG 11928 --- [Like-Service] [http-nio-8484-exec-2] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 500
+2024-09-04T12:02:36.381+05:30  INFO 31856 --- [blog-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-04T12:02:36.384+05:30  INFO 31856 --- [blog-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-04T12:02:36.386+05:30  INFO 31856 --- [blog-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-04T12:02:38.015+05:30  INFO 11928 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-04T12:02:38.016+05:30  INFO 11928 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-04T12:02:38.017+05:30  INFO 11928 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

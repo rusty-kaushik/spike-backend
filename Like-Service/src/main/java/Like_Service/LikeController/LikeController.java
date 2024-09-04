@@ -42,7 +42,7 @@ public class LikeController {
     @GetMapping("getuserids/wholikedblog/{blogid}")
     public ResponseEntity<Object> getUserIdsWhoLikedBlog(@PathVariable("blogid") UUID blogid) {
         //it will provide the list of userids who liked blog with the provided blogid
-        List<UUID> likes =likeService.getUserIds(blogid);
+        List<Long> likes =likeService.getUserIds(blogid);
      return ResponseHandler.response(HttpStatus.OK, String.valueOf(likes), "userid fetched successfully");
 
 

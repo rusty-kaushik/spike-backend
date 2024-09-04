@@ -8,5 +8,5 @@ import java.util.UUID;
 public interface LikeService {
     String likeandUnlikepost(UUID blogid, long userid);
 
-     List<UUID> getUserIds(UUID blogid);
+     List<Long> getUserIds(UUID blogid);
 }

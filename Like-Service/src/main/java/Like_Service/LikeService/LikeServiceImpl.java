@@ -64,8 +64,8 @@ public class LikeServiceImpl implements LikeService {
 
 
     @Override
-    public List<UUID> getUserIds(UUID blogid) {
-        List<UUID> userids = likeRepository.findByBlogId(blogid);
+    public List<Long> getUserIds(UUID blogid) {
+        List<Long> userids = likeRepository.findByBlogId(blogid);
         if (userids.isEmpty()) {
             throw new UserNotFoundException("no user has liked this blog");
         }
