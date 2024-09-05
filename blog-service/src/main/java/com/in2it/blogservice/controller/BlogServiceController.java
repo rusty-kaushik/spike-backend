@@ -65,7 +65,7 @@ public class BlogServiceController {
 			@RequestBody BlogUpdateDto updateDto) {
 
 		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.updateBlog(updateDto, blogId),
-				"Blog modefy successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+				"Blog modify successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
 		return ResponseEntity.ok(response);
 	}
 

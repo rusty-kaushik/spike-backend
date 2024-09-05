@@ -67,7 +67,7 @@ public class BlogDto {
 	 @JsonProperty(access = Access.WRITE_ONLY)
 	 private List<MultipartFile> media;
 	 
-//	 @Hidden
+
 	 @JsonProperty(access = Access.READ_ONLY)
 	 private List<String> mediaFile;
 

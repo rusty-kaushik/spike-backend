@@ -97,9 +97,9 @@ public class BlogServiceImpl implements BlogService {
 			blog.setUpdatedDateTime(LocalDateTime.now());
 			blog.setUpdatedBy(updateDto.getUserId());
 
-			log.info("blog" + blog);
 			return objectMapper.blogToDtoConverter(repo.save(blog));
 		} else {
+		
 			throw new UserNotFoundException(
 					" Insufficient information, Please ! try again with sufficient information.");
 		}
@@ -110,6 +110,7 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public BlogDto updateLike(Long totallikeCount, UUID id) {
 
+		System.out.println(id);
 		Blog blog = repo.getByBlogId(id);
 
 		if (blog != null) {
