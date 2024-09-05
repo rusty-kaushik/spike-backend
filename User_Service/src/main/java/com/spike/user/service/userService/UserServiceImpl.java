@@ -9,6 +9,7 @@ import com.spike.user.exceptions.*;
 import com.spike.user.helper.UserHelper;
 import com.spike.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserHelper userHelper;
+
 
     @Autowired
     private UserRepository userRepository;

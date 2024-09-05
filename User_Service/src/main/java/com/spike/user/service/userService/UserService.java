@@ -1,6 +1,7 @@
 package com.spike.user.service.userService;
 
 import com.spike.user.dto.UserChangePasswordDTO;
+import com.spike.user.dto.UserContactsDTO;
 import com.spike.user.dto.UserCreationRequestDTO;
 import com.spike.user.entity.User;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,4 +15,6 @@ public interface UserService {
     List<User> getAllUsers();
 
     String updateSelfPassword(String username, UserChangePasswordDTO userChangePasswordDTO);
+
+
 }

@@ -14,7 +14,7 @@ public class UserAddressDTO {
     private String city;
     private String nearestLandmark;
     private String country;
-    private String type;
+
 }
 
 

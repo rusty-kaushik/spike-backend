@@ -1,13 +1,13 @@
 package com.spike.user.service.userService;
 
 
-
 import com.spike.user.dto.UserAddressDTO;
 import com.spike.user.dto.UserContactsDTO;
 import com.spike.user.entity.User;
 import com.spike.user.entity.UserProfilePicture;
 import com.spike.user.exceptions.EmployeeNotFoundException;
 import com.spike.user.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,8 +27,11 @@ public class UserContactServiceImpl implements UserContactService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ModelMapper mapper;
 
-    public List<UserContactsDTO> getUserContacts(String name , int pageno, int pagesize, String sort) {
+
+    public List<UserContactsDTO> getUserContacts(String name, int pageno, int pagesize, String sort) {
 
 
         String[] sortParams = sort.split(",");
@@ -46,7 +49,6 @@ public class UserContactServiceImpl implements UserContactService {
 
     @Override
     public List<UserContactsDTO> getAllUsersContact(int pagesize, int pageno, String sort) {
-
         String[] sortParams = sort.split(",");
         Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);
         PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
@@ -60,7 +62,6 @@ public class UserContactServiceImpl implements UserContactService {
     }
 
 
-
     private UserContactsDTO userToUserContacsDto(User user) {
         UserContactsDTO userContactsDto = new UserContactsDTO();
         userContactsDto.setName(user.getName() != null ? user.getName() : null);
@@ -68,22 +69,10 @@ public class UserContactServiceImpl implements UserContactService {
         userContactsDto.setPrimaryMobile(user.getPrimaryMobileNumber() != null ? user.getPrimaryMobileNumber() : null);
         // Filter and set primary address
 
-
         List<UserAddressDTO> primaryAddress = user.getAddresses().stream()
                 .filter(address -> "PRIMARY".equals(address.getType()))
-                .map(address -> {
-                    UserAddressDTO userAddressDto = new UserAddressDTO();
-                    userAddressDto.setLine1(address.getLine1());
-                    userAddressDto.setLine2(address.getLine2());
-                    userAddressDto.setNearestLandmark(address.getNearestLandmark());
-                    userAddressDto.setDistrict(address.getDistrict());
-                    userAddressDto.setCity(address.getCity());
-                    userAddressDto.setState(address.getState());
-                    userAddressDto.setZip(address.getZip());
-                    userAddressDto.setCountry(address.getCountry());
-                    //userAddressDto.setType(address.getType());
-                    return userAddressDto;
-                }).collect(Collectors.toList());
+                .map(address -> mapper.map(address, UserAddressDTO.class))
+                .collect(Collectors.toList());
 
         userContactsDto.setPrimaryAddress(primaryAddress);
         userContactsDto.setInstagramUrl(user.getUserSocials() != null ? user.getUserSocials().getInstagramUrl() : null);
@@ -103,8 +92,7 @@ public class UserContactServiceImpl implements UserContactService {
             } catch (IOException e) {
                 userContactsDto.setProfilePicture(null);
             }
-        }
-        else {
+        } else {
             userContactsDto.setProfilePicture(null);
         }
         return userContactsDto;

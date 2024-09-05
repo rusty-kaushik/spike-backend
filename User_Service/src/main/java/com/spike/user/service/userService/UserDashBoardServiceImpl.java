@@ -4,7 +4,7 @@ package com.spike.user.service.userService;
 
 import com.spike.user.dto.UserDashboardDTO;
 import com.spike.user.entity.User;
-import com.spike.user.helper.UserDashboardHelper;
+import com.spike.user.helper.UserHelper;
 import com.spike.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class UserDashBoardServiceImpl implements UserDashBoardService {
 
     @Autowired
-    private UserDashboardHelper userDashboardHelper;
+    private UserHelper userDashboardHelper ;
 
     @Autowired
     private UserRepository userRepository;
@@ -51,6 +51,17 @@ public class UserDashBoardServiceImpl implements UserDashBoardService {
 
     }
 
+
+    //this service will return the list of all users and set it in userDashboardDto for user dashboard
+    @Override
+    public List<UserDashboardDTO> getUsersForDashboard(int pagesize, int pageno, String sort) {
+        String[] sortParams = sort.split(",");
+        Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);
+        PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
+        Page<User> users = userRepository.findAll(pageRequest);
+        return users.stream().map(this::userToUserDashboardDto).collect(Collectors.toList());
+
+    }
     //this method will set data of user in userDashboardDto
     private UserDashboardDTO userToUserDashboardDto(User user) {
         UserDashboardDTO userDashboardDTO = new UserDashboardDTO();
@@ -78,18 +89,6 @@ public class UserDashBoardServiceImpl implements UserDashBoardService {
         }
 
         return userDashboardDTO;
-    }
-
-
-    //this service will return the list of all users and set it in userDashboardDto for user dashboard
-    @Override
-    public List<UserDashboardDTO> getUsersForDashboard(int pagesize, int pageno, String sort) {
-        String[] sortParams = sort.split(",");
-        Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);
-        PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
-        Page<User> users = userRepository.findAll(pageRequest);
-        return users.stream().map(this::userToUserDashboardDto).collect(Collectors.toList());
-
     }
 }
 

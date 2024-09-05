@@ -1,9 +1,15 @@
 package com.spike.user.controller;
 
 import com.spike.user.dto.UserDashboardDTO;
+import com.spike.user.exceptions.EmployeeNotFoundException;
 import com.spike.user.response.ResponseHandler;
 import com.spike.user.service.userService.UserDashBoardService;
 import com.spike.user.service.userService.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +30,17 @@ public class UserDashBoardController {
 
 
     //get api to display list of users on dashboard with filtration , pagination and sorting
+    @Operation(
+            summary = "Fetch user details for dashboard",
+            description = "fetch user details by user name , email , joiningDate, salary",
+            tags = { "Admin","Manager","Employee", "get" }
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "302", description = "user details found successfully",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class)) }),
+            @ApiResponse(responseCode = "404", description = "Not-Found",
+                    content = { @Content(schema = @Schema()) })   })
     @GetMapping("/userinfo-dashboard")
     public ResponseEntity<Object> getSpecificUserInfoByUsername(@RequestParam(name = "name", required = false) String name,
                                                                 @RequestParam(name = "email", required = false) String email,
@@ -35,19 +52,38 @@ public class UserDashBoardController {
         try {
             List<UserDashboardDTO> userDashBoard = userDashBoardService.getUserFilteredDashboard(name, email, joiningDate, salary, page, size, sort);
             return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.FOUND, userDashBoard);
-        } catch (Exception e) {
+        }
+        catch (EmployeeNotFoundException ex) {
+            throw ex;
+        }
+        catch (Exception e) {
             throw new RuntimeException("Error fetching user", e.getCause());
         }
     }
 
 
     //get api to display list of all users on dashboard
+    @Operation(
+            summary = "Fetch all users details for dashboard",
+            description = "fetch all users detail for user dashboard",
+            tags = { "Admin","Manager","Employee", "get" }
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "302", description = "user details found successfully",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class)) }),
+            @ApiResponse(responseCode = "404", description = "Not-Found",
+                    content = { @Content(schema = @Schema()) })   })
     @GetMapping("user-dashboard")
     public ResponseEntity<Object> getAllUsersDashBoard(@RequestParam(name = "pagesize", required = false, defaultValue = "6") int pagesize, @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno, @RequestParam(name = "sort", defaultValue = "name,asc") String sort) {
         try {
             List<UserDashboardDTO> userDashBoard = userDashBoardService.getUsersForDashboard(pagesize, pageno, sort);
             return ResponseHandler.responseBuilder("users dashboard displayed successfully", HttpStatus.FOUND, userDashBoard);
-        } catch (Exception e) {
+        }
+        catch (EmployeeNotFoundException ex) {
+            throw ex;
+        }
+        catch (Exception e) {
             throw new RuntimeException("Error fetching user", e.getCause());
         }
     }
