@@ -36,7 +36,7 @@ public class Blog {
 	
 	
 	@NotNull
-	private String authorId;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
+	private String userId;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
 	
 	@NotNull
 	private String title;
@@ -52,7 +52,7 @@ public class Blog {
 	private long likeCount;
 
 	
-//	@Column(updatable = false)
+
 	private String updatedBy;   // Basically   its RoleId whose update the BLOG
 	
 	
