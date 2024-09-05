@@ -1,0 +1,47 @@
+24-09-05 11:13:47.834 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default' 
+24-09-05 11:13:47.842 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated... 
+24-09-05 11:13:47.844 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed. 
+24-09-05 11:13:50.807 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final 
+24-09-05 11:13:50.911 [main] INFO  c.spike.user.UserServiceApplication - Starting UserServiceApplication using Java 22.0.2 with PID 37696 (D:\Like-Service\spike-backend\User_Service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service) 
+24-09-05 11:13:50.911 [main] INFO  c.spike.user.UserServiceApplication - The following 1 profile is active: "dev" 
+24-09-05 11:13:51.527 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+24-09-05 11:13:51.567 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 36 ms. Found 6 JPA repository interfaces. 
+24-09-05 11:13:52.036 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8181 (http) 
+24-09-05 11:13:52.052 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8181"] 
+24-09-05 11:13:52.055 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat] 
+24-09-05 11:13:52.055 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+24-09-05 11:13:52.108 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext 
+24-09-05 11:13:52.108 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1169 ms 
+24-09-05 11:13:52.229 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default] 
+24-09-05 11:13:52.287 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final 
+24-09-05 11:13:52.316 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled 
+24-09-05 11:13:52.506 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer 
+24-09-05 11:13:52.523 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting... 
+24-09-05 11:13:52.647 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2c56eba5 
+24-09-05 11:13:52.648 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed. 
+24-09-05 11:13:52.672 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default) 
+24-09-05 11:13:53.358 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration) 
+24-09-05 11:13:53.436 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default' 
+24-09-05 11:13:53.862 [main] INFO  com.spike.user.database.RoleSeeder - ADMIN already exists. 
+24-09-05 11:13:53.863 [main] INFO  com.spike.user.database.RoleSeeder - MANAGER already exists. 
+24-09-05 11:13:53.864 [main] INFO  com.spike.user.database.RoleSeeder - EMPLOYEE already exists. 
+24-09-05 11:13:53.945 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+24-09-05 11:13:54.233 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8181"] 
+24-09-05 11:13:54.249 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8181 (http) with context path '/' 
+24-09-05 11:13:54.255 [main] INFO  c.spike.user.UserServiceApplication - Started UserServiceApplication in 3.62 seconds (process running for 3.981) 
+24-09-05 11:13:54.258 [main] INFO  com.spike.user.database.RoleSeeder - ADMIN already exists. 
+24-09-05 11:13:54.260 [main] INFO  com.spike.user.database.RoleSeeder - MANAGER already exists. 
+24-09-05 11:13:54.261 [main] INFO  com.spike.user.database.RoleSeeder - EMPLOYEE already exists. 
+24-09-05 11:13:54.265 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'JAVA' already exists. 
+24-09-05 11:13:54.266 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'PYTHON' already exists. 
+24-09-05 11:13:54.267 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'PHP' already exists. 
+24-09-05 11:13:54.269 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'ANGULAR' already exists. 
+24-09-05 11:13:54.270 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'DATABASE' already exists. 
+24-09-05 11:13:54.271 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'UI' already exists. 
+24-09-05 11:13:54.272 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'HR' already exists. 
+24-09-05 11:13:54.273 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'IT' already exists. 
+24-09-05 11:13:54.274 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'SALES' already exists. 
+24-09-05 11:13:54.275 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'QA' already exists. 
+24-09-05 11:13:54.276 [main] INFO  c.s.user.database.DepartmentSeeder - Department 'SUPPORT' already exists. 
+24-09-05 11:13:54.276 [main] INFO  com.spike.user.database.UserSeeder - Started UserSeeder 
+24-09-05 11:13:54.284 [main] INFO  com.spike.user.database.UserSeeder - Admin already exists. 

@@ -1527,3 +1527,531 @@ Caused by: org.hibernate.HibernateException: Unable to determine Dialect without
 2024-09-04T20:25:56.810+05:30  INFO 14164 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-09-04T20:25:57.175+05:30  INFO 14164 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-09-04T20:25:57.320+05:30  INFO 14164 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-05T09:25:50.200+05:30  INFO 20288 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : Starting BlogServiceApplication using Java 22.0.2 with PID 20288 (D:\Blog\spike-backend\blog-service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T09:25:50.201+05:30  INFO 20288 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-09-05T09:25:50.256+05:30  INFO 20288 --- [blog-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-05T09:25:50.256+05:30  INFO 20288 --- [blog-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-05T09:25:50.882+05:30  INFO 20288 --- [blog-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T09:25:50.924+05:30  INFO 20288 --- [blog-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 1 JPA repository interface.
+2024-09-05T09:25:51.065+05:30  INFO 20288 --- [blog-service] [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=b42aa2bd-6d2d-386f-9357-0acb28dcf314
+2024-09-05T09:25:51.531+05:30  INFO 20288 --- [blog-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8282 (http)
+2024-09-05T09:25:51.540+05:30  INFO 20288 --- [blog-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-05T09:25:51.540+05:30  INFO 20288 --- [blog-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-05T09:25:51.577+05:30  INFO 20288 --- [blog-service] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-05T09:25:51.577+05:30  INFO 20288 --- [blog-service] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1320 ms
+2024-09-05T09:25:51.601+05:30  INFO 20288 --- [blog-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-05T09:25:51.786+05:30  INFO 20288 --- [blog-service] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@40a2e178
+2024-09-05T09:25:51.787+05:30  INFO 20288 --- [blog-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-05T09:25:51.793+05:30  INFO 20288 --- [blog-service] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/blog'
+2024-09-05T09:25:51.893+05:30  INFO 20288 --- [blog-service] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T09:25:51.953+05:30  INFO 20288 --- [blog-service] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-05T09:25:51.979+05:30  INFO 20288 --- [blog-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T09:25:52.186+05:30  INFO 20288 --- [blog-service] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T09:25:52.699+05:30  INFO 20288 --- [blog-service] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T09:25:52.782+05:30  INFO 20288 --- [blog-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:25:52.950+05:30  INFO 20288 --- [blog-service] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-05T09:25:53.118+05:30  WARN 20288 --- [blog-service] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T09:25:53.209+05:30 DEBUG 20288 --- [blog-service] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 17 mappings in 'requestMappingHandlerMapping'
+2024-09-05T09:25:53.276+05:30 DEBUG 20288 --- [blog-service] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T09:25:53.318+05:30 DEBUG 20288 --- [blog-service] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T09:25:53.367+05:30 DEBUG 20288 --- [blog-service] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T09:25:53.487+05:30  INFO 20288 --- [blog-service] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-05T09:25:53.541+05:30  INFO 20288 --- [blog-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8282 (http) with context path '/'
+2024-09-05T09:25:53.551+05:30  INFO 20288 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : Started BlogServiceApplication in 3.77 seconds (process running for 4.184)
+2024-09-05T09:29:54.247+05:30  INFO 6624 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Starting LikeServiceApplication using Java 22.0.2 with PID 6624 (D:\Like-Service\spike-backend\Like-Service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T09:29:54.248+05:30  INFO 6624 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : The following 1 profile is active: "default"
+2024-09-05T09:29:54.774+05:30  INFO 6624 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T09:29:54.810+05:30  INFO 6624 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 1 JPA repository interface.
+2024-09-05T09:29:54.954+05:30  INFO 6624 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=24e52cd5-e790-36aa-a26f-b798b2c7633c
+2024-09-05T09:29:55.276+05:30  INFO 6624 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8484 (http)
+2024-09-05T09:29:55.285+05:30  INFO 6624 --- [Like-Service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-05T09:29:55.285+05:30  INFO 6624 --- [Like-Service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-05T09:29:55.336+05:30  INFO 6624 --- [Like-Service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-05T09:29:55.336+05:30  INFO 6624 --- [Like-Service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1059 ms
+2024-09-05T09:29:55.466+05:30  INFO 6624 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T09:29:55.509+05:30  INFO 6624 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-05T09:29:55.526+05:30  INFO 6624 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T09:29:55.691+05:30  INFO 6624 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T09:29:55.715+05:30  INFO 6624 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-05T09:29:55.863+05:30  INFO 6624 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4aab7195
+2024-09-05T09:29:55.864+05:30  INFO 6624 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-05T09:29:56.280+05:30  INFO 6624 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T09:29:56.331+05:30  INFO 6624 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:29:56.510+05:30  INFO 6624 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-05T09:29:56.956+05:30  WARN 6624 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T09:29:57.142+05:30 DEBUG 6624 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-05T09:29:57.219+05:30 DEBUG 6624 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T09:29:57.255+05:30 DEBUG 6624 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T09:29:57.287+05:30 DEBUG 6624 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T09:29:57.439+05:30  INFO 6624 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
+2024-09-05T09:29:57.445+05:30  INFO 6624 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.589 seconds (process running for 3.84)
+2024-09-05T09:30:45.194+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-05T09:30:45.194+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-05T09:30:45.194+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-09-05T09:30:45.194+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-09-05T09:30:45.194+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-09-05T09:30:45.195+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@9367bf8
+2024-09-05T09:30:45.196+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@5788a93b
+2024-09-05T09:30:45.196+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-09-05T09:30:45.196+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-09-05T09:30:45.206+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-initializer.js", parameters={}
+2024-09-05T09:30:45.224+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-05T09:30:45.272+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:45.277+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/IN2IT-BLOG/swagger-config", parameters={}
+2024-09-05T09:30:45.278+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2024-09-05T09:30:45.294+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json]
+2024-09-05T09:30:45.297+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [{configUrl=/IN2IT-BLOG/swagger-config, oauth2RedirectUrl=http://localhost:8282/swagger-ui/oauth2-red (truncated)...]
+2024-09-05T09:30:45.302+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:45.307+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/IN2IT-BLOG", parameters={}
+2024-09-05T09:30:45.308+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2024-09-05T09:30:45.586+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 266 ms
+2024-09-05T09:30:45.626+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [application/json, */*] and supported [application/json]
+2024-09-05T09:30:45.626+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 48, 46, 49, 34, 44, 34, 105, 110, 10 (truncated)...]
+2024-09-05T09:30:45.626+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:49.294+05:30  INFO 6624 --- [Like-Service] [http-nio-8484-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-05T09:30:49.295+05:30  INFO 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-05T09:30:49.295+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-09-05T09:30:49.295+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-09-05T09:30:49.295+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-09-05T09:30:49.296+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2408ca4c
+2024-09-05T09:30:49.296+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@19740583
+2024-09-05T09:30:49.297+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-09-05T09:30:49.297+05:30  INFO 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-09-05T09:30:49.305+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.html", parameters={}
+2024-09-05T09:30:49.315+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-05T09:30:49.350+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui.css", parameters={}
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/index.css", parameters={}
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/swagger-initializer.js", parameters={}
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-05T09:30:49.353+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:49.367+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:49.370+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:49.381+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:49.391+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:49.477+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/IN2IT-BLOG/swagger-config", parameters={}
+2024-09-05T09:30:49.478+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/swagger-ui/favicon-32x32.png", parameters={}
+2024-09-05T09:30:49.479+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2024-09-05T09:30:49.479+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-05T09:30:49.480+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:49.495+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json]
+2024-09-05T09:30:49.497+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Writing [{configUrl=/IN2IT-BLOG/swagger-config, oauth2RedirectUrl=http://localhost:8484/swagger-ui/oauth2-red (truncated)...]
+2024-09-05T09:30:49.501+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:30:49.513+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/IN2IT-BLOG", parameters={}
+2024-09-05T09:30:49.513+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2024-09-05T09:30:49.638+05:30  INFO 6624 --- [Like-Service] [http-nio-8484-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 117 ms
+2024-09-05T09:30:49.687+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [application/json, */*] and supported [application/json]
+2024-09-05T09:30:49.687+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 48, 46, 49, 34, 44, 34, 105, 110, 10 (truncated)...]
+2024-09-05T09:30:49.687+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:31:20.711+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/spike/blog/posts", parameters={multipart}
+2024-09-05T09:31:20.736+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#saveBlogWithFile(BlogDto)
+2024-09-05T09:31:20.753+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-2] c.i.b.service.impl.BlogServiceImpl       : ------------------------BlogDto(id=null, departmentId=1, userId=1, title=1, content=1, commentCount=0, likeCount=0, deletedBy=null, status=null, cretedDateTime=null, updatedDateTime=null, updatedBy=null, media=[org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@3504ad41], mediaFile=null)
+2024-09-05T09:31:20.803+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-2] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:31:20.921+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:31:20.921+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:31:20.919493200, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:31:20.938+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:31:39.032+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-10] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/ec581e7a-043e-4106-8046-e2bb27be31f3/1", parameters={}
+2024-09-05T09:31:39.032+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(UUID, long)
+2024-09-05T09:31:39.087+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/ec581e7a-043e-4106-8046-e2bb27be31f3", parameters={}
+2024-09-05T09:31:39.087+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-05T09:31:39.272+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-6] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:31:39.288+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:31:39.288+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:31:39.288409300, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:31:39.293+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:31:39.305+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-10] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-05T09:31:39.505+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-5] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/updateLike?blogId=ec581e7a-043e-4106-8046-e2bb27be31f3&totalLikeCount=1", parameters={masked}
+2024-09-05T09:31:39.505+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#updateLike(UUID, Long)
+2024-09-05T09:31:39.512+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-5] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:31:39.521+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:31:39.521+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:31:39.521407500, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:31:39.536+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-10] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-05T09:31:39.537+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:31:39.537+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:31:39.537+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User liked this blog}]
+2024-09-05T09:31:39.537+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:31:43.256+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/spike/blog/posts", parameters={multipart}
+2024-09-05T09:31:43.256+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#saveBlogWithFile(BlogDto)
+2024-09-05T09:31:43.256+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-8] c.i.b.service.impl.BlogServiceImpl       : ------------------------BlogDto(id=null, departmentId=1, userId=1, title=1, content=1, commentCount=0, likeCount=0, deletedBy=null, status=null, cretedDateTime=null, updatedDateTime=null, updatedBy=null, media=[org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@7ad1095a], mediaFile=null)
+2024-09-05T09:31:43.256+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-8] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\1973933506kanha.jpg
+2024-09-05T09:31:43.269+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:31:43.269+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:31:43.269697900, data=BlogDto(id=bc658c62-5d85-40f6-9cc7-80de51fa9599, depa (truncated)...]
+2024-09-05T09:31:43.269+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:31:55.661+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/ec581e7a-043e-4106-8046-e2bb27be31f3", parameters={}
+2024-09-05T09:31:55.662+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-05T09:31:55.662+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-7] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:31:55.662+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:31:55.662+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:31:55.662114900, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:31:55.671+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:00.477+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-6] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/ec581e7a-043e-4106-8046-e2bb27be31f3/2", parameters={}
+2024-09-05T09:32:00.479+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(UUID, long)
+2024-09-05T09:32:00.479+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/ec581e7a-043e-4106-8046-e2bb27be31f3", parameters={}
+2024-09-05T09:32:00.479+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-05T09:32:00.487+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-1] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:00.487+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:00.487+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:00.487103900, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:32:00.487+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-05T09:32:00.487+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:00.504+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-3] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/updateLike?blogId=ec581e7a-043e-4106-8046-e2bb27be31f3&totalLikeCount=1", parameters={masked}
+2024-09-05T09:32:00.504+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#updateLike(UUID, Long)
+2024-09-05T09:32:00.504+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-3] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:00.504+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:00.504+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:00.504424600, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:32:00.504+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-05T09:32:00.504+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:00.504+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:00.504+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User liked this blog}]
+2024-09-05T09:32:00.504+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:04.115+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/ec581e7a-043e-4106-8046-e2bb27be31f3", parameters={}
+2024-09-05T09:32:04.116+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-05T09:32:04.120+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-4] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:04.120+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:04.120+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:04.120085100, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:32:04.120+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:14.936+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/ec581e7a-043e-4106-8046-e2bb27be31f3", parameters={}
+2024-09-05T09:32:14.937+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-05T09:32:14.937+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-2] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:14.937+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:14.937+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:14.937497500, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:32:14.937+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:20.699+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-8] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/ec581e7a-043e-4106-8046-e2bb27be31f3/3", parameters={}
+2024-09-05T09:32:20.699+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(UUID, long)
+2024-09-05T09:32:20.703+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/ec581e7a-043e-4106-8046-e2bb27be31f3", parameters={}
+2024-09-05T09:32:20.703+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-05T09:32:20.703+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-6] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:20.703+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:20.703+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:20.703419100, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:32:20.703+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-8] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-05T09:32:20.703+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:20.720+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-5] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/updateLike?blogId=ec581e7a-043e-4106-8046-e2bb27be31f3&totalLikeCount=1", parameters={masked}
+2024-09-05T09:32:20.720+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#updateLike(UUID, Long)
+2024-09-05T09:32:20.736+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-5] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:20.737+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:20.737+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:20.737171800, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:32:20.737+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-8] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-05T09:32:20.737+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:20.737+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:20.737+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User liked this blog}]
+2024-09-05T09:32:20.737+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:23.233+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/ec581e7a-043e-4106-8046-e2bb27be31f3", parameters={}
+2024-09-05T09:32:23.233+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-05T09:32:23.236+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-8] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:23.236+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:23.236+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:23.236974, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, departm (truncated)...]
+2024-09-05T09:32:23.236+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:32.244+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/like/post/ec581e7a-043e-4106-8046-e2bb27be31f3/3", parameters={}
+2024-09-05T09:32:32.244+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to Like_Service.LikeController.LikeController#blogLikeAndUnlike(UUID, long)
+2024-09-05T09:32:32.244+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/ec581e7a-043e-4106-8046-e2bb27be31f3", parameters={}
+2024-09-05T09:32:32.244+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-05T09:32:32.253+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-10] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:32.254+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:32.254+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:32.254636600, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:32:32.254+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-05T09:32:32.254+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:32.270+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-9] o.s.web.servlet.DispatcherServlet        : PUT "/spike/blog/updateLike?blogId=ec581e7a-043e-4106-8046-e2bb27be31f3&totalLikeCount=-1", parameters={masked}
+2024-09-05T09:32:32.270+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#updateLike(UUID, Long)
+2024-09-05T09:32:32.270+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-9] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:32.270+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:32.286+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:32.270649700, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:32:32.287+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] o.s.w.c.HttpMessageConverterExtractor    : Reading to [com.in2it.blogservice.dto.BlogDto]
+2024-09-05T09:32:32.287+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:32.287+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:32.287+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{data=Success, HttpStatus=200 OK, message=User unliked this blog}]
+2024-09-05T09:32:32.287+05:30 DEBUG 6624 --- [Like-Service] [http-nio-8484-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:34.339+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/ec581e7a-043e-4106-8046-e2bb27be31f3", parameters={}
+2024-09-05T09:32:34.339+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-05T09:32:34.339+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-7] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:34.339+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:34.339+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:34.339560900, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:32:34.339+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:32:35.693+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/spike/blog/getByBlogId/ec581e7a-043e-4106-8046-e2bb27be31f3", parameters={}
+2024-09-05T09:32:35.694+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.in2it.blogservice.controller.BlogServiceController#getBlogById(UUID)
+2024-09-05T09:32:35.695+05:30  INFO 20288 --- [blog-service] [http-nio-8282-exec-1] com.in2it.blogservice.mapper.Converter   : file name D:\Blog\spike-backend\blog-service\target\classes\static\image\711232812kanha.jpg
+2024-09-05T09:32:35.695+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-09-05T09:32:35.695+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timeStamp=2024-09-05T09:32:35.695005700, data=BlogDto(id=ec581e7a-043e-4106-8046-e2bb27be31f3, depa (truncated)...]
+2024-09-05T09:32:35.703+05:30 DEBUG 20288 --- [blog-service] [http-nio-8282-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-05T09:33:14.969+05:30  INFO 20288 --- [blog-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:33:14.971+05:30  INFO 20288 --- [blog-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-05T09:33:14.973+05:30  INFO 20288 --- [blog-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-05T09:33:16.549+05:30  INFO 6624 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:33:16.550+05:30  INFO 6624 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-05T09:33:16.551+05:30  INFO 6624 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-05T09:54:16.019+05:30  INFO 35608 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : Starting BlogServiceApplication using Java 22.0.2 with PID 35608 (D:\Blog\spike-backend\blog-service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T09:54:16.020+05:30  INFO 35608 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-09-05T09:54:16.069+05:30  INFO 35608 --- [blog-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-05T09:54:16.069+05:30  INFO 35608 --- [blog-service] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-05T09:54:16.757+05:30  INFO 35608 --- [blog-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T09:54:16.809+05:30  INFO 35608 --- [blog-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 1 JPA repository interface.
+2024-09-05T09:54:16.934+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=b42aa2bd-6d2d-386f-9357-0acb28dcf314
+2024-09-05T09:54:17.465+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8282 (http)
+2024-09-05T09:54:17.475+05:30  INFO 35608 --- [blog-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-05T09:54:17.475+05:30  INFO 35608 --- [blog-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-05T09:54:17.511+05:30  INFO 35608 --- [blog-service] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-05T09:54:17.511+05:30  INFO 35608 --- [blog-service] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1441 ms
+2024-09-05T09:54:17.534+05:30  INFO 35608 --- [blog-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-05T09:54:17.731+05:30  INFO 35608 --- [blog-service] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@203be5eb
+2024-09-05T09:54:17.732+05:30  INFO 35608 --- [blog-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-05T09:54:17.738+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/blog'
+2024-09-05T09:54:17.826+05:30  INFO 35608 --- [blog-service] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T09:54:17.896+05:30  INFO 35608 --- [blog-service] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-05T09:54:17.921+05:30  INFO 35608 --- [blog-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T09:54:18.140+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T09:54:18.682+05:30  INFO 35608 --- [blog-service] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T09:54:18.784+05:30  INFO 35608 --- [blog-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:54:18.929+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-05T09:54:19.095+05:30  WARN 35608 --- [blog-service] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T09:54:19.160+05:30 DEBUG 35608 --- [blog-service] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 17 mappings in 'requestMappingHandlerMapping'
+2024-09-05T09:54:19.212+05:30 DEBUG 35608 --- [blog-service] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T09:54:19.233+05:30 DEBUG 35608 --- [blog-service] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T09:54:19.255+05:30 DEBUG 35608 --- [blog-service] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T09:54:19.365+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-05T09:54:19.439+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8282 (http) with context path '/'
+2024-09-05T09:54:19.448+05:30  INFO 35608 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : Started BlogServiceApplication in 3.855 seconds (process running for 4.513)
+2024-09-05T09:58:40.251+05:30  INFO 35608 --- [blog-service] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 29 class path changes (0 additions, 27 deletions, 2 modifications)
+2024-09-05T09:58:40.258+05:30  INFO 35608 --- [blog-service] [Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:58:40.263+05:30  INFO 35608 --- [blog-service] [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-05T09:58:40.266+05:30  INFO 35608 --- [blog-service] [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-05T09:58:40.326+05:30  INFO 35608 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : Starting BlogServiceApplication using Java 22.0.2 with PID 35608 (D:\Blog\spike-backend\blog-service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T09:58:40.326+05:30  INFO 35608 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-09-05T09:58:40.441+05:30  INFO 35608 --- [blog-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T09:58:40.445+05:30  INFO 35608 --- [blog-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 0 JPA repository interfaces.
+2024-09-05T09:58:40.474+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=69a04616-076c-3c16-aa00-505d218158ac
+2024-09-05T09:58:40.516+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8282 (http)
+2024-09-05T09:58:40.517+05:30  INFO 35608 --- [blog-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-05T09:58:40.517+05:30  INFO 35608 --- [blog-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-05T09:58:40.535+05:30  INFO 35608 --- [blog-service] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-05T09:58:40.535+05:30  INFO 35608 --- [blog-service] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 208 ms
+2024-09-05T09:58:40.541+05:30  INFO 35608 --- [blog-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2024-09-05T09:58:40.605+05:30  INFO 35608 --- [blog-service] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@26bed71c
+2024-09-05T09:58:40.606+05:30  INFO 35608 --- [blog-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2024-09-05T09:58:40.606+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/blog'
+2024-09-05T09:58:40.629+05:30  INFO 35608 --- [blog-service] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T09:58:40.630+05:30  INFO 35608 --- [blog-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T09:58:40.634+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T09:58:40.649+05:30  INFO 35608 --- [blog-service] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T09:58:40.649+05:30  INFO 35608 --- [blog-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:58:40.666+05:30  WARN 35608 --- [blog-service] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T09:58:40.678+05:30 DEBUG 35608 --- [blog-service] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 6 mappings in 'requestMappingHandlerMapping'
+2024-09-05T09:58:40.704+05:30 DEBUG 35608 --- [blog-service] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T09:58:40.708+05:30 DEBUG 35608 --- [blog-service] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T09:58:40.710+05:30 DEBUG 35608 --- [blog-service] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T09:58:40.739+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-05T09:58:40.756+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8282 (http) with context path '/'
+2024-09-05T09:58:40.760+05:30  INFO 35608 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : Started BlogServiceApplication in 0.457 seconds (process running for 265.826)
+2024-09-05T09:58:40.763+05:30  INFO 35608 --- [blog-service] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-05T09:58:42.166+05:30  INFO 35608 --- [blog-service] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 20 class path changes (20 additions, 0 deletions, 0 modifications)
+2024-09-05T09:58:42.170+05:30  INFO 35608 --- [blog-service] [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:58:42.170+05:30  INFO 35608 --- [blog-service] [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2024-09-05T09:58:42.172+05:30  INFO 35608 --- [blog-service] [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2024-09-05T09:58:42.213+05:30  INFO 35608 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : Starting BlogServiceApplication using Java 22.0.2 with PID 35608 (D:\Blog\spike-backend\blog-service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T09:58:42.213+05:30  INFO 35608 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-09-05T09:58:42.306+05:30  INFO 35608 --- [blog-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T09:58:42.311+05:30  INFO 35608 --- [blog-service] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 1 JPA repository interface.
+2024-09-05T09:58:42.329+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=b42aa2bd-6d2d-386f-9357-0acb28dcf314
+2024-09-05T09:58:42.354+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8282 (http)
+2024-09-05T09:58:42.354+05:30  INFO 35608 --- [blog-service] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-05T09:58:42.354+05:30  INFO 35608 --- [blog-service] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-05T09:58:42.371+05:30  INFO 35608 --- [blog-service] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-05T09:58:42.371+05:30  INFO 35608 --- [blog-service] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 157 ms
+2024-09-05T09:58:42.377+05:30  INFO 35608 --- [blog-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2024-09-05T09:58:42.433+05:30  INFO 35608 --- [blog-service] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@150cd606
+2024-09-05T09:58:42.433+05:30  INFO 35608 --- [blog-service] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2024-09-05T09:58:42.433+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/blog'
+2024-09-05T09:58:42.442+05:30  INFO 35608 --- [blog-service] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T09:58:42.443+05:30  INFO 35608 --- [blog-service] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T09:58:42.447+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T09:58:42.475+05:30  INFO 35608 --- [blog-service] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T09:58:42.544+05:30  INFO 35608 --- [blog-service] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:58:42.589+05:30  WARN 35608 --- [blog-service] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T09:58:42.600+05:30 DEBUG 35608 --- [blog-service] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 17 mappings in 'requestMappingHandlerMapping'
+2024-09-05T09:58:42.609+05:30 DEBUG 35608 --- [blog-service] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T09:58:42.612+05:30 DEBUG 35608 --- [blog-service] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T09:58:42.614+05:30 DEBUG 35608 --- [blog-service] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T09:58:42.627+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-05T09:58:42.640+05:30  INFO 35608 --- [blog-service] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8282 (http) with context path '/'
+2024-09-05T09:58:42.643+05:30  INFO 35608 --- [blog-service] [restartedMain] c.i.blogservice.BlogServiceApplication   : Started BlogServiceApplication in 0.445 seconds (process running for 267.708)
+2024-09-05T09:58:42.644+05:30  INFO 35608 --- [blog-service] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-05T09:58:44.610+05:30  INFO 22268 --- [Like-Service] [main] L.LikeServiceApplicationTests            : Starting LikeServiceApplicationTests using Java 22.0.2 with PID 22268 (started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T09:58:44.611+05:30  INFO 22268 --- [Like-Service] [main] L.LikeServiceApplicationTests            : The following 1 profile is active: "dev"
+2024-09-05T09:58:44.639+05:30 DEBUG 22268 --- [Like-Service] [main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@2f6bbeb0
+2024-09-05T09:58:45.196+05:30  INFO 22268 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T09:58:45.232+05:30  INFO 22268 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 1 JPA repository interface.
+2024-09-05T09:58:45.357+05:30  INFO 22268 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9360859a-170c-3550-942b-3a498c155a08
+2024-09-05T09:58:45.588+05:30  INFO 22268 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T09:58:45.639+05:30  INFO 22268 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-05T09:58:45.660+05:30  INFO 22268 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T09:58:45.880+05:30  INFO 22268 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T09:58:45.904+05:30  INFO 22268 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-05T09:58:46.070+05:30  INFO 22268 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@604c7e9b
+2024-09-05T09:58:46.071+05:30  INFO 22268 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-05T09:58:46.521+05:30  INFO 22268 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T09:58:46.590+05:30  INFO 22268 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:58:46.730+05:30  INFO 22268 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-05T09:58:47.279+05:30  WARN 22268 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T09:58:47.495+05:30 DEBUG 22268 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-05T09:58:47.622+05:30 DEBUG 22268 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T09:58:47.651+05:30 DEBUG 22268 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T09:58:47.677+05:30 DEBUG 22268 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T09:58:47.804+05:30  INFO 22268 --- [Like-Service] [main] L.LikeServiceApplicationTests            : Started LikeServiceApplicationTests in 3.519 seconds (process running for 4.124)
+2024-09-05T09:58:48.168+05:30 DEBUG 22268 --- [Like-Service] [SpringApplicationShutdownHook] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@2f6bbeb0, started on Thu Sep 05 09:58:44 IST 2024
+2024-09-05T09:58:48.172+05:30  INFO 22268 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:58:48.173+05:30  INFO 22268 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-05T09:58:48.175+05:30  INFO 22268 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-05T09:58:57.037+05:30  INFO 35608 --- [blog-service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:58:57.038+05:30  INFO 35608 --- [blog-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2024-09-05T09:58:57.039+05:30  INFO 35608 --- [blog-service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2024-09-05T09:59:01.978+05:30  INFO 39940 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Starting LikeServiceApplication using Java 22.0.2 with PID 39940 (D:\Like-Service\spike-backend\Like-Service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T09:59:01.979+05:30  INFO 39940 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : The following 1 profile is active: "dev"
+2024-09-05T09:59:02.503+05:30  INFO 39940 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T09:59:02.540+05:30  INFO 39940 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 1 JPA repository interface.
+2024-09-05T09:59:02.676+05:30  INFO 39940 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=24e52cd5-e790-36aa-a26f-b798b2c7633c
+2024-09-05T09:59:02.986+05:30  INFO 39940 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8484 (http)
+2024-09-05T09:59:02.996+05:30  INFO 39940 --- [Like-Service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-05T09:59:02.996+05:30  INFO 39940 --- [Like-Service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-05T09:59:03.050+05:30  INFO 39940 --- [Like-Service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-05T09:59:03.051+05:30  INFO 39940 --- [Like-Service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1040 ms
+2024-09-05T09:59:03.206+05:30  INFO 39940 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T09:59:03.261+05:30  INFO 39940 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-05T09:59:03.283+05:30  INFO 39940 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T09:59:03.467+05:30  INFO 39940 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T09:59:03.487+05:30  INFO 39940 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-05T09:59:03.631+05:30  INFO 39940 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@58fbcb71
+2024-09-05T09:59:03.632+05:30  INFO 39940 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-05T09:59:04.111+05:30  INFO 39940 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T09:59:04.182+05:30  INFO 39940 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:59:04.304+05:30  INFO 39940 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-05T09:59:04.769+05:30  WARN 39940 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T09:59:05.023+05:30 DEBUG 39940 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-05T09:59:05.094+05:30 DEBUG 39940 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T09:59:05.137+05:30 DEBUG 39940 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T09:59:05.166+05:30 DEBUG 39940 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T09:59:05.321+05:30  INFO 39940 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
+2024-09-05T09:59:05.329+05:30  INFO 39940 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.745 seconds (process running for 3.989)
+2024-09-05T09:59:29.560+05:30  INFO 39940 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:59:29.561+05:30  INFO 39940 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-05T09:59:29.563+05:30  INFO 39940 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-05T09:59:31.092+05:30  INFO 23472 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Starting LikeServiceApplication using Java 22.0.2 with PID 23472 (D:\Like-Service\spike-backend\Like-Service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T09:59:31.094+05:30  INFO 23472 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : The following 1 profile is active: "dev"
+2024-09-05T09:59:31.620+05:30  INFO 23472 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T09:59:31.657+05:30  INFO 23472 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 1 JPA repository interface.
+2024-09-05T09:59:31.806+05:30  INFO 23472 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=24e52cd5-e790-36aa-a26f-b798b2c7633c
+2024-09-05T09:59:32.116+05:30  INFO 23472 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8484 (http)
+2024-09-05T09:59:32.124+05:30  INFO 23472 --- [Like-Service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-05T09:59:32.125+05:30  INFO 23472 --- [Like-Service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-05T09:59:32.177+05:30  INFO 23472 --- [Like-Service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-05T09:59:32.178+05:30  INFO 23472 --- [Like-Service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1049 ms
+2024-09-05T09:59:32.309+05:30  INFO 23472 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T09:59:32.359+05:30  INFO 23472 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-05T09:59:32.380+05:30  INFO 23472 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T09:59:32.555+05:30  INFO 23472 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T09:59:32.579+05:30  INFO 23472 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-05T09:59:32.726+05:30  INFO 23472 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4a122e68
+2024-09-05T09:59:32.727+05:30  INFO 23472 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-05T09:59:33.163+05:30  INFO 23472 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T09:59:33.242+05:30  INFO 23472 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T09:59:33.407+05:30  INFO 23472 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-05T09:59:33.824+05:30  WARN 23472 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T09:59:33.973+05:30 DEBUG 23472 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-05T09:59:34.059+05:30 DEBUG 23472 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T09:59:34.107+05:30 DEBUG 23472 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T09:59:34.140+05:30 DEBUG 23472 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T09:59:34.294+05:30  INFO 23472 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
+2024-09-05T09:59:34.302+05:30  INFO 23472 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.631 seconds (process running for 3.864)
+2024-09-05T10:01:08.730+05:30  INFO 23472 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T10:01:08.731+05:30  INFO 23472 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-05T10:01:08.733+05:30  INFO 23472 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-05T10:01:10.981+05:30  INFO 4700 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Starting LikeServiceApplication using Java 22.0.2 with PID 4700 (D:\Like-Service\spike-backend\Like-Service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T10:01:10.982+05:30  INFO 4700 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : The following 1 profile is active: "dev"
+2024-09-05T10:01:11.514+05:30  INFO 4700 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T10:01:11.550+05:30  INFO 4700 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 1 JPA repository interface.
+2024-09-05T10:01:11.690+05:30  INFO 4700 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=24e52cd5-e790-36aa-a26f-b798b2c7633c
+2024-09-05T10:01:12.002+05:30  INFO 4700 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8484 (http)
+2024-09-05T10:01:12.012+05:30  INFO 4700 --- [Like-Service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-05T10:01:12.013+05:30  INFO 4700 --- [Like-Service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-05T10:01:12.062+05:30  INFO 4700 --- [Like-Service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-05T10:01:12.063+05:30  INFO 4700 --- [Like-Service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1050 ms
+2024-09-05T10:01:12.199+05:30  INFO 4700 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T10:01:12.249+05:30  INFO 4700 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-05T10:01:12.267+05:30  INFO 4700 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T10:01:12.438+05:30  INFO 4700 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T10:01:12.460+05:30  INFO 4700 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-05T10:01:12.611+05:30  INFO 4700 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4aab7195
+2024-09-05T10:01:12.612+05:30  INFO 4700 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-05T10:01:13.074+05:30  INFO 4700 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T10:01:13.137+05:30  INFO 4700 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T10:01:13.262+05:30  INFO 4700 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-05T10:01:13.731+05:30  WARN 4700 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T10:01:13.871+05:30 DEBUG 4700 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-05T10:01:13.966+05:30 DEBUG 4700 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T10:01:14.018+05:30 DEBUG 4700 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T10:01:14.056+05:30 DEBUG 4700 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T10:01:14.215+05:30  INFO 4700 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
+2024-09-05T10:01:14.223+05:30  INFO 4700 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.643 seconds (process running for 3.888)
+2024-09-05T10:01:32.628+05:30  INFO 4700 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T10:01:32.629+05:30  INFO 4700 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-05T10:01:32.631+05:30  INFO 4700 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-05T10:01:34.114+05:30  INFO 18024 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Starting LikeServiceApplication using Java 22.0.2 with PID 18024 (D:\Like-Service\spike-backend\Like-Service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T10:01:34.115+05:30  INFO 18024 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : The following 1 profile is active: "dev"
+2024-09-05T10:01:34.650+05:30  INFO 18024 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T10:01:34.687+05:30  INFO 18024 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 1 JPA repository interface.
+2024-09-05T10:01:34.842+05:30  INFO 18024 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=24e52cd5-e790-36aa-a26f-b798b2c7633c
+2024-09-05T10:01:35.139+05:30  INFO 18024 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8484 (http)
+2024-09-05T10:01:35.150+05:30  INFO 18024 --- [Like-Service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-05T10:01:35.150+05:30  INFO 18024 --- [Like-Service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-05T10:01:35.205+05:30  INFO 18024 --- [Like-Service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-05T10:01:35.205+05:30  INFO 18024 --- [Like-Service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1058 ms
+2024-09-05T10:01:35.330+05:30  INFO 18024 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T10:01:35.365+05:30  INFO 18024 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-05T10:01:35.385+05:30  INFO 18024 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T10:01:35.556+05:30  INFO 18024 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T10:01:35.582+05:30  INFO 18024 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-05T10:01:35.728+05:30  INFO 18024 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4a122e68
+2024-09-05T10:01:35.729+05:30  INFO 18024 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-05T10:01:36.210+05:30  INFO 18024 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T10:01:36.297+05:30  INFO 18024 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T10:01:36.414+05:30  INFO 18024 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-05T10:01:36.875+05:30  WARN 18024 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T10:01:37.116+05:30 DEBUG 18024 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-05T10:01:37.188+05:30 DEBUG 18024 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T10:01:37.231+05:30 DEBUG 18024 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T10:01:37.277+05:30 DEBUG 18024 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T10:01:37.456+05:30  INFO 18024 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
+2024-09-05T10:01:37.465+05:30  INFO 18024 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.753 seconds (process running for 3.995)
+2024-09-05T10:02:34.720+05:30  INFO 18024 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T10:02:34.721+05:30  INFO 18024 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-05T10:02:34.723+05:30  INFO 18024 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-05T10:06:51.310+05:30  INFO 14300 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Starting LikeServiceApplication using Java 22.0.2 with PID 14300 (D:\Like-Service\spike-backend\Like-Service\target\classes started by vanshika.rana in D:\Like-Service\spike-backend\Like-Service)
+2024-09-05T10:06:51.311+05:30  INFO 14300 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : The following 1 profile is active: "dev"
+2024-09-05T10:06:51.838+05:30  INFO 14300 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-05T10:06:51.874+05:30  INFO 14300 --- [Like-Service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 1 JPA repository interface.
+2024-09-05T10:06:52.019+05:30  INFO 14300 --- [Like-Service] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=24e52cd5-e790-36aa-a26f-b798b2c7633c
+2024-09-05T10:06:52.314+05:30  INFO 14300 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8484 (http)
+2024-09-05T10:06:52.323+05:30  INFO 14300 --- [Like-Service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-05T10:06:52.323+05:30  INFO 14300 --- [Like-Service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-05T10:06:52.374+05:30  INFO 14300 --- [Like-Service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-05T10:06:52.374+05:30  INFO 14300 --- [Like-Service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1035 ms
+2024-09-05T10:06:52.501+05:30  INFO 14300 --- [Like-Service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-05T10:06:52.549+05:30  INFO 14300 --- [Like-Service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-05T10:06:52.572+05:30  INFO 14300 --- [Like-Service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-05T10:06:52.746+05:30  INFO 14300 --- [Like-Service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-05T10:06:52.768+05:30  INFO 14300 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-05T10:06:52.919+05:30  INFO 14300 --- [Like-Service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1de85972
+2024-09-05T10:06:52.920+05:30  INFO 14300 --- [Like-Service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-05T10:06:53.322+05:30  INFO 14300 --- [Like-Service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-05T10:06:53.402+05:30  INFO 14300 --- [Like-Service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T10:06:53.562+05:30  INFO 14300 --- [Like-Service] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-05T10:06:53.968+05:30  WARN 14300 --- [Like-Service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-05T10:06:54.106+05:30 DEBUG 14300 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2024-09-05T10:06:54.188+05:30 DEBUG 14300 --- [Like-Service] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-05T10:06:54.227+05:30 DEBUG 14300 --- [Like-Service] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-05T10:06:54.253+05:30 DEBUG 14300 --- [Like-Service] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-05T10:06:54.408+05:30  INFO 14300 --- [Like-Service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8484 (http) with context path '/'
+2024-09-05T10:06:54.418+05:30  INFO 14300 --- [Like-Service] [main] Like_Service.LikeServiceApplication      : Started LikeServiceApplication in 3.507 seconds (process running for 3.742)
+2024-09-05T10:15:36.624+05:30  INFO 14300 --- [Like-Service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-05T10:15:36.626+05:30  INFO 14300 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-05T10:15:36.628+05:30  INFO 14300 --- [Like-Service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
