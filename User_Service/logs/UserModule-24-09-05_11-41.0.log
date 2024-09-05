@@ -1,0 +1,4 @@
+24-09-05 11:41:25.638 [http-nio-8181-exec-5] INFO  c.s.user.controller.UserController - Received request to update addresses for user ID: 2 
+24-09-05 11:41:25.644 [http-nio-8181-exec-5] INFO  c.s.u.s.userService.UserServiceImpl - Starting address update for user ID: 2 
+24-09-05 11:41:25.649 [http-nio-8181-exec-5] INFO  c.s.u.s.userService.UserServiceImpl - Addresses updated for user ID: 2 
+24-09-05 11:41:25.662 [http-nio-8181-exec-5] INFO  c.s.user.controller.UserController - User addresses updated successfully for user ID: 2 

@@ -116,19 +116,27 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User updateUser(Long userId, UserCreationRequestDTO userRequest) throws IOException {
         logger.info("Starting update process for user ID: {}", userId);
+        try {
+            User existingUser = userRepository.findById(userId)
+                    .orElseThrow(() -> {
+                        logger.error("User not found with id: {}", userId);
+                        return new EntityNotFoundException("User not found with id: " + userId);
+                    });
 
-        User existingUser = userRepository.findById(userId)
-                .orElseThrow(() -> {
-                    logger.error("User not found with id: {}", userId);
-                    return new EntityNotFoundException("User not found with id: " + userId);
-                });
+            // update user fields
+            setUserFields(existingUser, userRequest);
+            logger.info("User fields updated for user ID: {}", userId);
 
-        // update user fields
-        setUserFields(existingUser, userRequest);
-        logger.info("User fields updated for user ID: {}", userId);
-
-        return userRepository.save(existingUser);
+            return userRepository.save(existingUser);
+        } catch (EntityNotFoundException e) {
+            logger.error("Error updating user - user not found with id: {}", userId, e);
+            throw e;
+        } catch (Exception e) {
+            logger.error("Unexpected error updating user with id: {}", userId, e);
+            throw new RuntimeException("Unexpected error updating user", e);
+        }
     }
+
 
     // it will set the fields to update the user - logic
     private void setUserFields(User user, UserCreationRequestDTO userRequest) {
@@ -147,18 +155,26 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User updateSocialUrls(Long userId, UserCreationRequestDTO userRequest) throws IOException {
         logger.info("Starting social URL update for user ID: {}", userId);
+        try {
+            User existingUser = userRepository.findById(userId)
+                    .orElseThrow(() -> {
+                        logger.error("User not found with id: {}", userId);
+                        return new EntityNotFoundException("User not found with id: " + userId);
+                    });
 
-        User existingUser = userRepository.findById(userId)
-                .orElseThrow(() -> {
-                    logger.error("User not found with id: {}", userId);
-                    return new EntityNotFoundException("User not found with id: " + userId);
-                });
+            setSocialUrls(existingUser, userRequest);
+            logger.info("Social URLs updated for user ID: {}", userId);
 
-        setSocialUrls(existingUser, userRequest);
-        logger.info("Social URLs updated for user ID: {}", userId);
-
-        return userRepository.save(existingUser);
+            return userRepository.save(existingUser);
+        } catch (EntityNotFoundException e) {
+            logger.error("Error updating social URLs - user not found with id: {}", userId, e);
+            throw e;
+        } catch (Exception e) {
+            logger.error("Unexpected error updating social URLs for user with id: {}", userId, e);
+            throw new RuntimeException("Unexpected error updating social URLs", e);
+        }
     }
+
 
     // it will take fields that we need to update - logic
     private void setSocialUrls(User user, UserCreationRequestDTO userRequest) {
@@ -180,18 +196,26 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User updateAddresses(Long userId, List<UserAddressDTO> addresses) throws IOException {
         logger.info("Starting address update for user ID: {}", userId);
+        try {
+            User existingUser = userRepository.findById(userId)
+                    .orElseThrow(() -> {
+                        logger.error("User not found with id: {}", userId);
+                        return new EntityNotFoundException("User not found with id: " + userId);
+                    });
 
-        User existingUser = userRepository.findById(userId)
-                .orElseThrow(() -> {
-                    logger.error("User not found with id: {}", userId);
-                    return new EntityNotFoundException("User not found with id: " + userId);
-                });
+            setUserAddresses(existingUser, addresses);
+            logger.info("Addresses updated for user ID: {}", userId);
 
-        setUserAddresses(existingUser, addresses);
-        logger.info("Addresses updated for user ID: {}", userId);
-
-        return userRepository.save(existingUser);
+            return userRepository.save(existingUser);
+        } catch (EntityNotFoundException e) {
+            logger.error("Error updating addresses - user not found with id: {}", userId, e);
+            throw e;
+        } catch (Exception e) {
+            logger.error("Unexpected error updating addresses for user with id: {}", userId, e);
+            throw new RuntimeException("Unexpected error updating addresses", e);
+        }
     }
+
 
     // it will take fields that we need to update - logic
     private void setUserAddresses(User existingUser, List<UserAddressDTO> newAddresses) {
@@ -221,56 +245,67 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUserProfilePicture(Long userId, MultipartFile profilePicture) throws IOException {
         logger.info("Starting profile picture update for user ID: {}", userId);
-
-        User existingUser = userRepository.findById(userId)
-                .orElseThrow(() -> {
-                    logger.error("User not found with id: {}", userId);
-                    return new EntityNotFoundException("User not found with id: " + userId);
-                });
-
-        UserProfilePicture userProfilePicture = existingUser.getProfilePicture();
-        String currentProfilePictureFilename = userProfilePicture != null ? userProfilePicture.getFileName() : null;
-
-        // Delete old profile picture
-        if (currentProfilePictureFilename != null) {
-            Path oldFilePath = Paths.get(uploadDirectory + currentProfilePictureFilename);
-            try {
-                Files.deleteIfExists(oldFilePath);
-                logger.info("Deleted old profile picture for user ID: {}", userId);
-            } catch (IOException e) {
-                logger.error("Failed to delete old profile picture for user ID: {}", userId, e);
-                throw new IOException("Failed to delete old profile picture", e);
-            }
-        }
-
-        // Save new profile picture
-        String newProfilePictureFilename = profilePicture.getOriginalFilename();
-        Path newFilePath = Paths.get(uploadDirectory + newProfilePictureFilename);
         try {
-            Files.write(newFilePath, profilePicture.getBytes());
-            logger.info("Saved new profile picture for user ID: {}", userId);
+            User existingUser = userRepository.findById(userId)
+                    .orElseThrow(() -> {
+                        logger.error("User not found with id: {}", userId);
+                        return new EntityNotFoundException("User not found with id: " + userId);
+                    });
+
+            UserProfilePicture userProfilePicture = existingUser.getProfilePicture();
+            String currentProfilePictureFilename = userProfilePicture != null ? userProfilePicture.getFileName() : null;
+
+            // Delete old profile picture
+            if (currentProfilePictureFilename != null) {
+                Path oldFilePath = Paths.get(uploadDirectory + currentProfilePictureFilename);
+                try {
+                    Files.deleteIfExists(oldFilePath);
+                    logger.info("Deleted old profile picture for user ID: {}", userId);
+                } catch (IOException e) {
+                    logger.error("Failed to delete old profile picture for user ID: {}", userId, e);
+                    throw new IOException("Failed to delete old profile picture", e);
+                }
+            }
+
+            // Save new profile picture
+            String newProfilePictureFilename = profilePicture.getOriginalFilename();
+            Path newFilePath = Paths.get(uploadDirectory + newProfilePictureFilename);
+            try {
+                Files.write(newFilePath, profilePicture.getBytes());
+                logger.info("Saved new profile picture for user ID: {}", userId);
+            } catch (IOException e) {
+                logger.error("Failed to save new profile picture for user ID: {}", userId, e);
+                throw new IOException("Failed to save new profile picture", e);
+            }
+
+            // Update UserProfilePicture entity
+            if (userProfilePicture == null) {
+                userProfilePicture = new UserProfilePicture();
+                userProfilePicture.setUser(existingUser);
+            }
+
+            userProfilePicture.setOriginalFileName(profilePicture.getOriginalFilename());
+            userProfilePicture.setFileName(newProfilePictureFilename);
+            userProfilePicture.setFilePath(newFilePath.toString());
+            userProfilePicture.setFileType(profilePicture.getContentType());
+            userProfilePicture.setFileSize(profilePicture.getSize());
+
+            userProfilePictureRepository.save(userProfilePicture);
+            existingUser.setProfilePicture(userProfilePicture);
+
+            userRepository.save(existingUser);
+        } catch (EntityNotFoundException e) {
+            logger.error("User not found with id: {}", userId, e);
+            throw e;
         } catch (IOException e) {
-            logger.error("Failed to save new profile picture for user ID: {}", userId, e);
-            throw new IOException("Failed to save new profile picture", e);
+            logger.error("File operation error for profile picture update of user ID: {}", userId, e);
+            throw e;
+        } catch (Exception e) {
+            logger.error("Unexpected error updating profile picture for user with id: {}", userId, e);
+            throw new RuntimeException("Unexpected error updating profile picture", e);
         }
-
-        // Update UserProfilePicture entity
-        if (userProfilePicture == null) {
-            userProfilePicture = new UserProfilePicture();
-            userProfilePicture.setUser(existingUser);
-        }
-
-        userProfilePicture.setOriginalFileName(profilePicture.getOriginalFilename());
-        userProfilePicture.setFileName(newProfilePictureFilename);
-        userProfilePicture.setFilePath(newFilePath.toString());
-        userProfilePicture.setFileType(profilePicture.getContentType());
-        userProfilePicture.setFileSize(profilePicture.getSize());
-
-        userProfilePictureRepository.save(userProfilePicture);
-        existingUser.setProfilePicture(userProfilePicture);
-
-        userRepository.save(existingUser);
     }
+
 
     @Override
     public void deleteUser(Long userId) {
