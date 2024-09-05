@@ -132,7 +132,7 @@ public class UserController {
 
     // API TO UPDATE USER DETAILS
     @Operation(
-            summary = "Admin updates a user",
+            summary = "Self updates a user",
             description = "Updates an existing user. Pass the JSON body in the 'data' part.",
             tags = { "Admin", "put" }
     )
@@ -146,7 +146,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema()))
     })
-    @PutMapping(value = "/update-user/{userId}")
+    @PutMapping(value = "/self/{userId}")
     public ResponseEntity<Object> updateUser(
             @PathVariable("userId") Long userId,
             @RequestPart("data") String data
@@ -177,7 +177,7 @@ public class UserController {
 
     // API TO UPDATE USER SOCIAL URLS
     @Operation(
-            summary = "Admin updates user's social URLs",
+            summary = "Self updates user's social URLs",
             description = "Updates the social media URLs of a user.",
             tags = { "EMPLOYEE", "put" }
     )
@@ -191,7 +191,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema()))
     })
-    @PutMapping("/update-user/socials/{userId}")
+    @PutMapping("/self/socials/{userId}")
     public ResponseEntity<Object> updateSocialUrls(
             @PathVariable Long userId,
             @RequestBody UserCreationRequestDTO userRequest) {
@@ -211,7 +211,7 @@ public class UserController {
 
     // API TO UPDATE USER ADDRESSES
     @Operation(
-            summary = "Admin updates user's addresses",
+            summary = "Self updates user's addresses",
             description = "Updates the addresses of a user.",
             tags = { "Admin", "put" }
     )
@@ -225,7 +225,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema()))
     })
-    @PutMapping(value = "/update-user/addresses/{userId}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/self/addresses/{userId}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> updateAddresses(
             @PathVariable Long userId,
             @RequestBody List<UserAddressDTO> addresses) {
@@ -245,7 +245,7 @@ public class UserController {
 
     // API TO UPDATE USER PROFILE PICTURE
     @Operation(
-            summary = "Admin updates user's profile picture",
+            summary = "Self updates user's profile picture",
             description = "Updates the profile picture of a user.",
             tags = { "Admin", "put" }
     )
@@ -259,7 +259,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema()))
     })
-    @PutMapping(value = "/update-user/profile-picture/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PutMapping(value = "/self/profile-picture/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Object> updateProfilePicture(
             @PathVariable Long userId,
             @RequestPart("profilePicture") MultipartFile profilePicture) {
