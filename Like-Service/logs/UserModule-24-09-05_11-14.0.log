@@ -1,4 +1,0 @@
-24-09-05 11:14:20.136 [http-nio-8181-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
-24-09-05 11:14:20.139 [http-nio-8181-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
-24-09-05 11:14:20.140 [http-nio-8181-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms 
-24-09-05 11:14:20.172 [http-nio-8181-exec-1] INFO  c.s.user.controller.UserController - getting user contact information John Doe 
