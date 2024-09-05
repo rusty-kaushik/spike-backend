@@ -22,8 +22,8 @@ import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
 import com.in2it.commentandlikeservice.dto.CommentDto;
 import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
+import com.in2it.commentandlikeservice.exception.UserNotFoundException;
 import com.in2it.commentandlikeservice.model.Comment;
-import com.in2it.commentandlikeservice.payload.UserNotFoundException;
 import com.in2it.commentandlikeservice.service.CommentService;
 
 import jakarta.validation.Valid;
@@ -82,6 +82,12 @@ public class CommentController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
+	}
+	
+	
+	@GetMapping("/comment/{commentId}")
+	public ResponseEntity<CommentDto> getCommentByCommentId(@PathVariable String commentId) {
+		return ResponseEntity.ok(commentService.getCommentById(commentId));
 	}
 
 	@DeleteMapping("/delete/{blogId}/{commentId}")

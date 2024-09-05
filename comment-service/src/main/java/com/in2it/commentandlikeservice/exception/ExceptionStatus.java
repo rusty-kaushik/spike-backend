@@ -1,4 +1,4 @@
-package com.in2it.commentandlikeservice.payload;
+package com.in2it.commentandlikeservice.exception;
 
 import java.time.LocalDateTime;
 

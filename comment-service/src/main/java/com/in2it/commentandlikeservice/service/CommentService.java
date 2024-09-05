@@ -14,6 +14,8 @@ public interface CommentService {
 	public CommentDto saveComment(CommentDto commentDto, UUID blogid, List<MultipartFile> file);
 
 	public Comment getByCommentId(String commentId);
+	public CommentDto getCommentById(String commentId);
+	
 
 	public List<CommentDto> getByBlogId(UUID blogId);
 

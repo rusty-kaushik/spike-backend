@@ -3,6 +3,7 @@ package com.in2it.commentandlikeservice.service.impl;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -20,12 +21,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.commentandlikeservice.dto.CommentDto;
 import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
+import com.in2it.commentandlikeservice.exception.BlogNotFoundException;
+import com.in2it.commentandlikeservice.exception.CommentNotFoundException;
+import com.in2it.commentandlikeservice.exception.IdInvalidException;
+import com.in2it.commentandlikeservice.exception.UserNotFoundException;
 import com.in2it.commentandlikeservice.feign.BlogFeign;
 import com.in2it.commentandlikeservice.mapper.CommentConvertor;
 import com.in2it.commentandlikeservice.model.Comment;
-import com.in2it.commentandlikeservice.payload.BlogNotFoundException;
-import com.in2it.commentandlikeservice.payload.IdInvalidException;
-import com.in2it.commentandlikeservice.payload.UserNotFoundException;
 import com.in2it.commentandlikeservice.repository.CommentRepository;
 import com.in2it.commentandlikeservice.service.CommentService;
 
@@ -157,6 +159,12 @@ public class CommentServiceImpl implements CommentService {
 			}
 		}
 		return deleteComments;
+	}
+
+	@Override
+	public CommentDto getCommentById(String commentId) {
+		Comment comment = commentRepository.findById(commentId).orElseThrow(()-> new CommentNotFoundException("Comment dosen't exist with given Id"));
+		return objectMapper.commentToDtoConvertor(comment);
 	}
 
 }
