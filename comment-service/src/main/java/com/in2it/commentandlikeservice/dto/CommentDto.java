@@ -2,6 +2,7 @@ package com.in2it.commentandlikeservice.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,21 +30,20 @@ public class CommentDto {
 	private String id;
 	private String content;
 	@JsonIgnore
-	private long blogId;
+	private UUID blogId;
 
 	private String userName;
-	
 
 	@Hidden
 	private LocalDateTime createdDate;
 
-	
-	 @JsonProperty(access = Access.WRITE_ONLY)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<MultipartFile> media;
-	
-	 @Hidden
-	 private List<String> mediaPath;
-	
 
-	
+	@Hidden
+	private List<String> mediaPath;
+
+	@Hidden
+	List<String> mediaData;
+
 }

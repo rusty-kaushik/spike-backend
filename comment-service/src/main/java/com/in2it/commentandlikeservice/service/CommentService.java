@@ -11,14 +11,14 @@ import com.in2it.commentandlikeservice.model.Comment;
 
 public interface CommentService {
 
-	public CommentDto saveComment(CommentDto commentDto, Long blogid, List<MultipartFile> file);
+	public CommentDto saveComment(CommentDto commentDto, UUID blogid, List<MultipartFile> file);
 
 	public Comment getByCommentId(String commentId);
 
-	public List<CommentDto> getByBlogId(Long blogId);
+	public List<CommentDto> getByBlogId(UUID blogId);
 
 	public CommentDto updateComment(CommentUpdateDto updateDto, String commentId);
 
-	public List<Comment> deleteByBlogId(Long blogId, String commentId);
+	public List<Comment> deleteByBlogId(UUID blogId, String commentId);
 
 }

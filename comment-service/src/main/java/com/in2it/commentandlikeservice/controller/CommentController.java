@@ -27,26 +27,29 @@ import com.in2it.commentandlikeservice.payload.UserNotFoundException;
 import com.in2it.commentandlikeservice.service.CommentService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/spike/blog/comment")
+@Slf4j
 public class CommentController {
 
 	@Autowired
 	private CommentService commentService;
 
 	@PostMapping(path = "/create/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-	public ResponseEntity<CommentDto> createComment(@ModelAttribute CommentDto commentDto, @PathVariable Long blogId) {
+	public ResponseEntity<CommentDto> createComment(@ModelAttribute CommentDto commentDto, @PathVariable UUID blogId) {
 		try {
-
 			CommentDto createComment = commentService.saveComment(commentDto, blogId, commentDto.getMedia());
-
 			return ResponseEntity.status(HttpStatus.CREATED).body(createComment);
 		} catch (Exception e) {
+
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
 
+	
+	
 	@PutMapping(path = "/update/{commentId}")
 	public ResponseEntity<CommentDto> updateComment(@RequestBody CommentUpdateDto updateDto,
 			@Valid @PathVariable("commentId") String commentId) {
@@ -61,8 +64,10 @@ public class CommentController {
 		}
 	}
 
+	
+	
 	@GetMapping("/get-all/{blogId}, method = RequestMethod.GET")
-	public ResponseEntity<List<CommentDto>> getCommentByBlogId(@PathVariable Long blogId) {
+	public ResponseEntity<List<CommentDto>> getCommentByBlogId(@PathVariable UUID blogId) {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(commentService.getByBlogId(blogId));
 		} catch (Exception e) {
@@ -80,7 +85,7 @@ public class CommentController {
 	}
 
 	@DeleteMapping("/delete/{blogId}/{commentId}")
-	public ResponseEntity<List<Comment>> deleteCommentByBlogId(@PathVariable Long blogId,
+	public ResponseEntity<List<Comment>> deleteCommentByBlogId(@PathVariable UUID blogId,
 			@PathVariable String commentId) {
 
 		try {
