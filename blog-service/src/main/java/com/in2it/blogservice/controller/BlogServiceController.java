@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,10 +45,10 @@ public class BlogServiceController {
 
 	@Tag(name = "post-blog method", description = "This method used to create a blog post. After calling this method its return a map. ")
 	@PostMapping(path = "/posts", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-	public ResponseEntity<ResponseHandler<BlogDto>> saveBlogWithFile(@ModelAttribute BlogDto blogDto)
+	public ResponseEntity<ResponseHandler<BlogDto>> saveBlogWithFile(@RequestPart(value = "media" ,required=false) List<MultipartFile> mediaFile,BlogDto blogDto)
 			throws IOException {
 
-		List<MultipartFile> media = blogDto.getMedia();
+		List<MultipartFile> media = mediaFile;
 
 		BlogDto saveBlogWithFile = serviceImpl.saveBlogWithFile(blogDto, media);
 
@@ -56,7 +57,6 @@ public class BlogServiceController {
 
 		return ResponseEntity.ok(response);
 
-//		return ResponseEntity<ResponseHandlersaveBlogWithFile, HttpStatus.OK,HttpStatus.OK.value(),"Blog post successfully.")>;
 	}
 
 	@PutMapping(path = "/update/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })

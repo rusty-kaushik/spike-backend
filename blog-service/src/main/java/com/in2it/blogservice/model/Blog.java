@@ -58,7 +58,7 @@ public class Blog {
 	
 	
 
-	 private String status;
+	 private boolean status;
 	 
 	 @Column(nullable = false, updatable = false)
 	 private LocalDateTime cretedDateTime;
