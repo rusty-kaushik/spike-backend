@@ -24,11 +24,11 @@ public class CommentConvertor {
 		List<String> mediaName = new ArrayList();
 		List<String> mediaPath = new ArrayList<>();
 
-		File file = new File("src\\main\\resources\\static\\CommentImage");
+		File file = new File("D:\\path\\media\\CommentImage");
 
 		if (!file.isDirectory()) {
 			try {
-				Files.createDirectories(Path.of("src\\main\\resources\\static\\CommentImage"));
+				Files.createDirectories(Path.of("D:\\path\\media\\CommentImage"));
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -87,5 +87,9 @@ public class CommentConvertor {
 		commentDto.setMediaPath(filesPath);
 		return commentDto;
 	}
+
+
+	
+
 
 }
