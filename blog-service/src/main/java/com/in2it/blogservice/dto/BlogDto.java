@@ -34,9 +34,7 @@ public class BlogDto {
 	@NotNull
 	private long departmentId;
 	
-//	@NotNull
-//	private long teamId;
-	
+
 	@NotNull
 	private String userId;    // Taking autherId as  userName
 	
@@ -47,25 +45,20 @@ public class BlogDto {
 	@NotBlank(message = "content cannot be blank")
 	private String content;
 	
-//	@Hidden
-//	private String visiblity;
+
 	
-	@Hidden
+	 @JsonProperty(access = Access.READ_ONLY)
 	private long commentCount;
 	
-	@Hidden
+	 @JsonProperty(access = Access.READ_ONLY)
 	private long likeCount;
 
-	@Hidden
-	private String deletedBy;
-	
-	 @Hidden
-	 @JsonProperty(access = Access.WRITE_ONLY)
+	 @JsonProperty(access = Access.READ_ONLY)
 	 private String status;
 	 
-	 @Hidden
+	 @JsonProperty(access = Access.READ_ONLY)
 	 private LocalDateTime cretedDateTime;
-	 @Hidden
+	 @JsonProperty(access = Access.READ_ONLY)
 	 private LocalDateTime updatedDateTime;
 
 	 @JsonProperty(access = Access.READ_ONLY)
@@ -74,7 +67,8 @@ public class BlogDto {
 	 @JsonProperty(access = Access.WRITE_ONLY)
 	 private List<MultipartFile> media;
 	 
-	 @Hidden
+
+	 @JsonProperty(access = Access.READ_ONLY)
 	 private List<String> mediaFile;
 
 
