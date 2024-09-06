@@ -1,9 +1,14 @@
 package com.in2it.commentandlikeservice.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -21,7 +26,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Document(collection = "comments")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -31,27 +36,30 @@ import lombok.Setter;
 public class Comment {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private String id;
 	private String content;
-	private List<String> media;
+	private List<String> mediaPath;
 	@NotNull
-	private long blogId;
+	private UUID blogId;
 	@NotNull
-	private String authorId;
+	private String userName;
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String status;
-	@Column(nullable = false, updatable = false)
+
 	private LocalDateTime createdDate;
-	@Column(updatable = false)
+
 	private String deletedBy;
-	@Column(updatable = false)
+
 	private String updatedBy;
-	private LocalDateTime deletedAt;
+
 	private LocalDateTime updatedDateTime;
-	private List<String> mediaPath;
+	private List<String> media;
+	
+	
+
+	
 
 	
 	
-	
+
 }
