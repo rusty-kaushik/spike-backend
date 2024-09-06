@@ -148,16 +148,15 @@ public class UserController {
     @PutMapping(value = "/self/{userId}")
     public ResponseEntity<Object> updateUser(
             @PathVariable("userId") Long userId,
-            @RequestPart("data") String data
-    ) throws JsonProcessingException {
+            @RequestBody UserUpdateDTO userRequest
+    ) {
         logger.info("Received request to update user with ID: {}", userId);
         try {
             AuditorAwareImpl.setCurrentAuditor("ADMIN");
             logger.info("Setting current auditor to 'ADMIN'");
 
-            UserCreationRequestDTO userRequest = objectMapper.readValue(data, UserCreationRequestDTO.class);
+            // Perform the update operation
             logger.info("Updating user with ID: {}", userId);
-
             User updatedUser = userService.updateUser(userId, userRequest);
             logger.info("User updated successfully with ID: {}", userId);
 
@@ -165,14 +164,15 @@ public class UserController {
         } catch (EntityNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId, e.getMessage());
             return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
-        } catch (IOException e) {
-            logger.error("Error parsing user update request data: {}", e.getMessage());
-            return ResponseHandler.responseBuilder("Invalid user update request data", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
+        } catch (Exception e) {
+            logger.error("Error updating user: {}", e.getMessage());
+            return ResponseHandler.responseBuilder("Error updating user", HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         } finally {
             logger.info("Clearing current auditor");
             AuditorAwareImpl.clear();
         }
     }
+
 
     // API TO UPDATE USER SOCIAL URLS
     @Operation(
@@ -193,7 +193,7 @@ public class UserController {
     @PutMapping("/self/socials/{userId}")
     public ResponseEntity<Object> updateSocialUrls(
             @PathVariable Long userId,
-            @RequestBody UserCreationRequestDTO userRequest) {
+            @RequestBody UserSocialDTO userRequest) {
         logger.info("Received request to update socials for user ID: {}", userId);
         try {
             User updatedUser = userService.updateSocialUrls(userId, userRequest);
@@ -202,7 +202,7 @@ public class UserController {
         } catch (EntityNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId);
             return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error("Error updating socials for user ID {}: {}", userId, e.getMessage());
             return ResponseHandler.responseBuilder("User social update unsuccessful", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
         }
@@ -236,7 +236,7 @@ public class UserController {
         } catch (EntityNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId);
             return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error("Error updating addresses for user ID {}: {}", userId, e.getMessage());
             return ResponseHandler.responseBuilder("User addresses update unsuccessful", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
         }
@@ -270,7 +270,7 @@ public class UserController {
         } catch (EntityNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId);
             return ResponseHandler.responseBuilder("User profile not found", HttpStatus.NOT_FOUND, e.getMessage());
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error("Error updating profile picture for user ID {}: {}", userId, e.getMessage());
             return ResponseHandler.responseBuilder("User profile update unsuccessful", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
         }
