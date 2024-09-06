@@ -11,6 +11,7 @@ import java.util.Base64;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,7 +20,9 @@ import com.in2it.commentandlikeservice.model.Comment;
 
 @Component
 public class CommentConvertor {
-	String dirPath="D:\\path\\media\\CommentImage";
+//	String dirPath="D:\\path\\media\\CommentImage";
+	@Value("${media.path}")
+	String dirPath;
 	public Comment dtoToCommentConvertor(CommentDto commentDto) {
 
 		List<String> mediaName = new ArrayList();

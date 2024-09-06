@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,8 +32,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Converter {
 	
+	@Autowired
+	ModelMapper mapper;
+	
 	/*static way to create file path*/
-//	public final String fileUploadDir="D:\\blog-project\\blog-service\\src\\main\\resources\\static\\image";
+//	public final String fileUploadDir="C:\\Users\\Vaseem.akhtar\\Desktop\\Blog_file";
 	
 	/* dynamic way to create file path*/
     public final String fileUploadDir=new ClassPathResource("static/image/").getFile().getAbsolutePath();
@@ -45,23 +50,12 @@ public class Converter {
 	// Here we changed DtoModel to Entity
 	public Blog dtoToBlogConverter(BlogDto dto, List<String> fileName, List<String> uploadedPath)
 	{
-		Blog blog=new Blog();
-		blog.setContent(dto.getContent());
-		blog.setAuthorId(dto.getUserId());
-
+		 Blog blog = mapper.map(dto, Blog.class);
+		
+		blog.setCretedDateTime(LocalDateTime.now());
 		blog.setMediaFile(fileName);
 		blog.setMediaPath(uploadedPath);
-		
-		blog.setTitle(dto.getTitle());
-
-		//set to current date&time
-		blog.setCretedDateTime(LocalDateTime.now());
-		blog.setDepartmentId(dto.getDepartmentId());
-
-		blog.setLikeCount(dto.getLikeCount());
-		blog.setCommentCount(dto.getCommentCount());
-//		blog.setDeletedBy(dto.getDeletedBy());
-	    blog.setStatus("ACTIVE");
+	    blog.setStatus(true);
 		
 		
 		return blog;
@@ -71,30 +65,14 @@ public class Converter {
 	// Here we changed Entity to DtoModel
 	public BlogDto blogToDtoConverter(Blog blog)
 	{
-		BlogDto dto=new BlogDto();
+		mapper.getConfiguration().setAmbiguityIgnored(true);
+		BlogDto dto = mapper.map(blog, BlogDto.class);
 		
-		
-		dto.setId(blog.getId()); 
-		
-		dto.setContent(blog.getContent());
-		dto.setUserId(blog.getAuthorId());
 
-		dto.setTitle(blog.getTitle());
-
-		dto.setDepartmentId(blog.getDepartmentId());
-
-	
-		dto.setLikeCount(blog.getLikeCount());
-		dto.setCommentCount(blog.getCommentCount());
-	    dto.setStatus(blog.getStatus());
-	    
-        dto.setMediaFile(getEncodeFile(blog.getMediaFile())); 
-//        dto.setMediaPath(blog.getMediaPath());
-        
-        dto.setUpdatedBy(blog.getUpdatedBy());
-        dto.setCretedDateTime(blog.getCretedDateTime());
-	    dto.setUpdatedDateTime(blog.getUpdatedDateTime());
-	    
+	    if(blog.getMediaFile()!=null) {
+	    	
+	    	dto.setMediaFile(getEncodeFile(blog.getMediaFile())); 
+	    }
 	  
 	  
 		return dto;
@@ -113,30 +91,8 @@ public class Converter {
 		
 		List<String> originalFilenames = new ArrayList<>();
 		List<String> paths=new ArrayList<>();
-//		String uniqueID = UUID.randomUUID().toString();
 	
 		try {
-			
-			
-			
-			// read data from multipartFile type 1
-			/*
-			fullPath=fileUploadDir+File.separator+multipartFile2.getOriginalFilename();
-			InputStream stream=file.getInputStream();
-			byte[] data=new byte[stream.available()];
-			stream.read(data);
-			
-			// file write data 
-			
-			System.out.println("full path +++++"+ fullPath);
-			FileOutputStream outputStream=new FileOutputStream(fullPath);
-			outputStream.write(data);
-			
-			outputStream.flush();
-			outputStream.close();
-			
-			*/
-			
 			// replaced code in one line  type 2
 			
               for (MultipartFile multipartFile2 : multipartFile) {
@@ -171,33 +127,24 @@ public class Converter {
 	public List<String> genrateUriLink(List<MultipartFile> multipartFile){
 		
 		List<String> fileLink = new ArrayList<>();
-		
-		for (MultipartFile multipart : multipartFile) {
-
-			String uriString = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/")
-					.path(randomId+multipart.getOriginalFilename()).toUriString();
-			       fileLink.add(uriString);
-			       
+		if(multipartFile!=null) {
+			
+			for (MultipartFile multipart : multipartFile) {
+				
+				String uriString = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/")
+						.path(randomId+multipart.getOriginalFilename()).toUriString();
+				fileLink.add(uriString);
+				
+			}
 		}
 		return fileLink;
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+
 	// Generating Random Id its generate hash code  its use for rename file 
-	  public static int generateUniqueId() {      
-	        UUID idOne = UUID.randomUUID();
-	        String str=""+idOne;        
-	        int uid=str.hashCode();
-	        String filterStr=""+uid;
-	        str=filterStr.replaceAll("-", "");
-	        return Integer.parseInt(str);
+	  public static long generateUniqueId() {       
+		  return System.currentTimeMillis();
 	    }
 	
 	

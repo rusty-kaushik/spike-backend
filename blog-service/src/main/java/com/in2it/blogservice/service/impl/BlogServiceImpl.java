@@ -51,7 +51,7 @@ public class BlogServiceImpl implements BlogService {
 		// Set original file name is this list.
 		List<String> originalFilenames = null;
 		List<String> paths = null;
-		if (!multipartFile.isEmpty() && blogDto != null) {
+		if (multipartFile!=null && blogDto != null) {
 
 			// calling uploadFile method to save media in file
 			Map<String, List<String>> uploadFilePath = objectMapper.uploadFile(multipartFile);
@@ -65,15 +65,15 @@ public class BlogServiceImpl implements BlogService {
 					originalFilenames = entry.getValue();
 				}
 			}
-			Blog dtoToBlogConverter = objectMapper.dtoToBlogConverter(blogDto, originalFilenames, paths);
-
-			// converting DTO to Entity
-
-			// calling random generating URI in converter class
-			dtoToBlogConverter.setMediaPath(objectMapper.genrateUriLink(multipartFile));
-
-			blog = repo.save(dtoToBlogConverter);
 		}
+		Blog dtoToBlogConverter = objectMapper.dtoToBlogConverter(blogDto, originalFilenames, paths);
+		
+		// converting DTO to Entity
+		
+		// calling random generating URI in converter class
+		dtoToBlogConverter.setMediaPath(objectMapper.genrateUriLink(multipartFile));
+		
+		blog = repo.save(dtoToBlogConverter);
 
 		return objectMapper.blogToDtoConverter(blog);
 
@@ -97,9 +97,9 @@ public class BlogServiceImpl implements BlogService {
 			blog.setUpdatedDateTime(LocalDateTime.now());
 			blog.setUpdatedBy(updateDto.getUserId());
 
-			log.info("blog" + blog);
 			return objectMapper.blogToDtoConverter(repo.save(blog));
 		} else {
+		
 			throw new UserNotFoundException(
 					" Insufficient information, Please ! try again with sufficient information.");
 		}
@@ -110,6 +110,7 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public BlogDto updateLike(Long totallikeCount, UUID id) {
 
+		System.out.println(id);
 		Blog blog = repo.getByBlogId(id);
 
 		if (blog != null) {
@@ -194,7 +195,7 @@ public class BlogServiceImpl implements BlogService {
 	// Get blog with title
 	public List<BlogDto> getBlogTitle(String title) {
 
-		List<Blog> blog = repo.findByTitleContainingAllIgnoringCaseAndStatus(title, "ACTIVE");
+		List<Blog> blog = repo.findByTitleContainingAllIgnoringCaseAndStatus(title, true);
 		List<BlogDto> blogDtoList = new ArrayList<>();
 		for (Blog blog2 : blog) {
 
@@ -216,7 +217,7 @@ public class BlogServiceImpl implements BlogService {
 
 		PageRequest pageable = PageRequest.of(pageNum, pageSize);
 
-		List<Blog> blog = repo.findByTitleContainingAllIgnoringCaseAndStatus(pageable, title, "ACTIVE");
+		List<Blog> blog = repo.findByTitleContainingAllIgnoringCaseAndStatus(pageable, title, true);
 		List<BlogDto> blogDtoList = new ArrayList<>();
 		for (Blog blog2 : blog) {
 
@@ -238,7 +239,7 @@ public class BlogServiceImpl implements BlogService {
 
 		PageRequest pageable = PageRequest.of(pageNum, pageSize);
 
-		Page<Blog> blog = repo.findAll(pageable);
+		List<Blog> blog = repo.findAll(pageable,true);
 
 		log.info("----------------------------------" + blog);
 

@@ -45,8 +45,8 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private BlogFeign feign;
 
-	@Autowired
-	private MongoTemplate mongoTemplate;
+//	@Autowired
+//	private MongoTemplate mongoTemplate;
 
 	private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
 
