@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User updateUser(Long userId, UserCreationRequestDTO userRequest) throws IOException {
+    public User updateUser(Long userId, UserUpdateDTO userRequest)  {
         logger.info("Starting update process for user ID: {}", userId);
         try {
             User existingUser = userRepository.findById(userId)
@@ -146,21 +146,21 @@ public class UserServiceImpl implements UserService {
 
 
     // it will set the fields to update the user - logic
-    private void setUserFields(User user, UserCreationRequestDTO userRequest) {
+    private void setUserFields(User user, UserUpdateDTO userRequest) {
 
         user.setBackupEmail(userRequest.getBackupEmail());
         user.setPrimaryMobileNumber(userRequest.getPrimaryMobileNumber());
         user.setSecondaryMobileNumber(userRequest.getSecondaryMobileNumber());
-        if (userRequest.getEmployeeCode() == null || userRequest.getEmployeeCode().isEmpty()) {
+        if (userRequest.getUsername() == null || userRequest.getUsername().isEmpty()) {
             throw new RuntimeException("Username cannot be null or empty");
         }
-        user.setUsername(userRequest.getEmployeeCode());
+        user.setUsername(userRequest.getUsername());
     }
 
     // Update User Social Urls
     @Override
     @Transactional
-    public User updateSocialUrls(Long userId, UserCreationRequestDTO userRequest) throws IOException {
+    public User updateSocialUrls(Long userId, UserSocialDTO userRequest)  {
         logger.info("Starting social URL update for user ID: {}", userId);
         try {
             User existingUser = userRepository.findById(userId)
@@ -184,7 +184,7 @@ public class UserServiceImpl implements UserService {
 
 
     // it will take fields that we need to update - logic
-    private void setSocialUrls(User user, UserCreationRequestDTO userRequest) {
+    private void setSocialUrls(User user, UserSocialDTO userRequest) {
         UserSocials userSocials = user.getUserSocials();
 
         if (userSocials == null) {
@@ -201,7 +201,7 @@ public class UserServiceImpl implements UserService {
     // Update User Address
     @Override
     @Transactional
-    public User updateAddresses(Long userId, List<UserAddressDTO> addresses) throws IOException {
+    public User updateAddresses(Long userId, List<UserAddressDTO> addresses)  {
         logger.info("Starting address update for user ID: {}", userId);
         try {
             User existingUser = userRepository.findById(userId)

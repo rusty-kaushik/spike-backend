@@ -17,13 +17,13 @@ public interface UserService {
     String updateSelfPassword(String username, UserChangePasswordDTO userChangePasswordDTO);
 
     // Update user details
-    User updateUser(Long userId, UserCreationRequestDTO userRequest1) throws IOException;
+    User updateUser(Long userId, UserUpdateDTO userRequest1);
 
     // Update user social URLs
-    User updateSocialUrls(Long userId, UserCreationRequestDTO userRequest) throws IOException;
+    User updateSocialUrls(Long userId, UserSocialDTO userRequest) ;
 
     // Update user addresses
-    User updateAddresses(Long userId, List<UserAddressDTO> addresses) throws IOException;
+    User updateAddresses(Long userId, List<UserAddressDTO> addresses);
 
     // Update user profile picture
     void updateUserProfilePicture(Long userId, MultipartFile profilePicture) throws IOException;
