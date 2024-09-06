@@ -36,7 +36,7 @@ public class BlogDto {
 	
 
 	@NotNull
-	private String userId;    // Taking autherId as  userName
+	private String userName;    // Taking autherId as  userName
 	
 	@Size(max = 50,min = 2,message = "title must not be longer than 50 characters and not be less than 3 characters")
 	@NotBlank(message = "title cannot be blank") 
@@ -46,14 +46,15 @@ public class BlogDto {
 	private String content;
 	
 
-	
-	 @JsonProperty(access = Access.READ_ONLY)
+
+	 @Hidden
 	private long commentCount;
 	
-	 @JsonProperty(access = Access.READ_ONLY)
+
+	 @Hidden
 	private long likeCount;
 
-	 @JsonProperty(access = Access.READ_ONLY)
+	 @Hidden
 	 private boolean status;
 	 
 	 @JsonProperty(access = Access.READ_ONLY)
@@ -65,16 +66,12 @@ public class BlogDto {
 	 @JsonProperty(access = Access.READ_ONLY)
 	 private String updatedBy;
 	 
-//	 @JsonProperty(access = Access.WRITE_ONLY)
-//	 private List<MultipartFile> media;
-	 
+
 
 	 @JsonProperty(access = Access.READ_ONLY)
 	 private List<String> mediaFile;
 
 
-//	 @Hidden
-//	 private List<String> mediaPath;
 	
 	 
 

@@ -87,15 +87,15 @@ public class BlogServiceImpl implements BlogService {
 
 		blog = repo.getByBlogId(blogId);
 
-		log.info("===================" + updateDto.getUserId());
+		log.info("===================" + updateDto.getUserName());
 
-		if ((blog != null && updateDto.getUserId() != null) && blog.getId().equals(blogId)) {
+		if ((blog != null && updateDto.getUserName() != null) && blog.getId().equals(blogId)) {
 			if (!updateDto.getContent().isEmpty())
 				blog.setContent(updateDto.getContent());
 			if (!updateDto.getTitle().isEmpty())
 				blog.setTitle(updateDto.getTitle());
 			blog.setUpdatedDateTime(LocalDateTime.now());
-			blog.setUpdatedBy(updateDto.getUserId());
+			blog.setUpdatedBy(updateDto.getUserName());
 
 			return objectMapper.blogToDtoConverter(repo.save(blog));
 		} else {
@@ -261,9 +261,9 @@ public class BlogServiceImpl implements BlogService {
 
 	// Get blog by userId or we can say unique userName
 	@Override
-	public List<BlogDto> getByAutherID(String autherId) {
+	public List<BlogDto> getByAutherID(String userName) {
 
-		List<Blog> byAuthorId = repo.findByAuthorId(autherId);
+		List<Blog> byAuthorId = repo.findByAuthorId(userName);
 
 		List<BlogDto> blogDtoList = new ArrayList<>();
 
