@@ -55,7 +55,7 @@ public class Converter {
 		blog.setCretedDateTime(LocalDateTime.now());
 		blog.setMediaFile(fileName);
 		blog.setMediaPath(uploadedPath);
-	    blog.setStatus("ACTIVE");
+	    blog.setStatus(true);
 		
 		
 		return blog;
@@ -69,8 +69,10 @@ public class Converter {
 		BlogDto dto = mapper.map(blog, BlogDto.class);
 		
 
-	    
-	    dto.setMediaFile(getEncodeFile(blog.getMediaFile())); 
+	    if(blog.getMediaFile()!=null) {
+	    	
+	    	dto.setMediaFile(getEncodeFile(blog.getMediaFile())); 
+	    }
 	  
 	  
 		return dto;
@@ -89,30 +91,8 @@ public class Converter {
 		
 		List<String> originalFilenames = new ArrayList<>();
 		List<String> paths=new ArrayList<>();
-//		String uniqueID = UUID.randomUUID().toString();
 	
 		try {
-			
-			
-			
-			// read data from multipartFile type 1
-			/*
-			fullPath=fileUploadDir+File.separator+multipartFile2.getOriginalFilename();
-			InputStream stream=file.getInputStream();
-			byte[] data=new byte[stream.available()];
-			stream.read(data);
-			
-			// file write data 
-			
-			System.out.println("full path +++++"+ fullPath);
-			FileOutputStream outputStream=new FileOutputStream(fullPath);
-			outputStream.write(data);
-			
-			outputStream.flush();
-			outputStream.close();
-			
-			*/
-			
 			// replaced code in one line  type 2
 			
               for (MultipartFile multipartFile2 : multipartFile) {
@@ -147,13 +127,15 @@ public class Converter {
 	public List<String> genrateUriLink(List<MultipartFile> multipartFile){
 		
 		List<String> fileLink = new ArrayList<>();
-		
-		for (MultipartFile multipart : multipartFile) {
-
-			String uriString = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/")
-					.path(randomId+multipart.getOriginalFilename()).toUriString();
-			       fileLink.add(uriString);
-			       
+		if(multipartFile!=null) {
+			
+			for (MultipartFile multipart : multipartFile) {
+				
+				String uriString = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/")
+						.path(randomId+multipart.getOriginalFilename()).toUriString();
+				fileLink.add(uriString);
+				
+			}
 		}
 		return fileLink;
 		
@@ -161,14 +143,7 @@ public class Converter {
 	
 
 	// Generating Random Id its generate hash code  its use for rename file 
-	  public static long generateUniqueId() {      
-//	        UUID idOne = UUID.randomUUID();
-//	        String str=""+idOne;        
-//	        int uid=str.hashCode();
-//	        String filterStr=""+uid;
-//	        str=filterStr.replaceAll("-", "");
-//	        return Integer.parseInt(str);
-		  
+	  public static long generateUniqueId() {       
 		  return System.currentTimeMillis();
 	    }
 	

@@ -54,18 +54,19 @@ public class BlogDto {
 	private long likeCount;
 
 	 @JsonProperty(access = Access.READ_ONLY)
-	 private String status;
+	 private boolean status;
 	 
 	 @JsonProperty(access = Access.READ_ONLY)
 	 private LocalDateTime cretedDateTime;
+	 
 	 @JsonProperty(access = Access.READ_ONLY)
 	 private LocalDateTime updatedDateTime;
 
 	 @JsonProperty(access = Access.READ_ONLY)
 	 private String updatedBy;
 	 
-	 @JsonProperty(access = Access.WRITE_ONLY)
-	 private List<MultipartFile> media;
+//	 @JsonProperty(access = Access.WRITE_ONLY)
+//	 private List<MultipartFile> media;
 	 
 
 	 @JsonProperty(access = Access.READ_ONLY)
