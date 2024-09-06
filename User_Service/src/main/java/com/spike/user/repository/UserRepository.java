@@ -16,4 +16,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> , JpaSpecificationExecutor<User> {
     User findByUsername(String username);
+
+    User findByName(String name);
+
+    List<User> findAllByName(String name, Pageable page);
 }

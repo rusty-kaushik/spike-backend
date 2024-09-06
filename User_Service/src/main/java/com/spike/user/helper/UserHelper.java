@@ -3,7 +3,9 @@ package com.spike.user.helper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spike.user.customMapper.UserMapper;
 import com.spike.user.dto.UserAddressDTO;
+import com.spike.user.dto.UserContactsDTO;
 import com.spike.user.dto.UserCreationRequestDTO;
+import com.spike.user.dto.UserDashboardDTO;
 import com.spike.user.entity.*;
 import com.spike.user.exceptions.DepartmentNotFoundException;
 import com.spike.user.exceptions.DtoToEntityConversionException;
@@ -13,6 +15,8 @@ import com.spike.user.repository.RoleRepository;
 import com.spike.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -25,6 +29,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -130,4 +135,56 @@ public class UserHelper {
             throw new DtoToEntityConversionException("Could not convert user profile picture DTO to user profile picture entity");
         }
     }
+
+    //this specification will filter record based on user name
+    public Specification<User> filterByName(String name) {
+        return (root, query, cb) -> name != null ? cb.equal(root.get("name"), name) : null;
+    }
+
+    //this specification will filter record based on user email
+    public Specification<User> filterByEmail(String email) {
+        return (root, query, cb) ->  email!= null ? cb.equal(root.get("email"), email) : null;
+    }
+
+    //this specification will filter record based on user joiningDate
+    public Specification<User> filterByJoiningDate(Date joiningDate) {
+        return (root, query, cb) -> joiningDate != null ? cb.equal(root.get("joiningDate"), joiningDate) : null;
+    }
+
+    //this specification will filter record based on user salary
+    public Specification<User> filterBySalary(Double salary) {
+        return (root, query, cb) -> salary != null ? cb.equal(root.get("salary"), salary) : null;
+    }
+
+    public Specification<User> hasName(String name){
+        return (root, query, cb) -> name != null ? cb.equal(root.get("name"), name) : null;
+    }
+
+    public UserContactsDTO entityToUserContactsDto(User user){
+        try{
+            return userMapper.entityToDtoContact(user);
+        } catch (Exception e) {
+            logger.error("Could not convert User entity to UserContactsDTO", e);
+            throw new DtoToEntityConversionException("Could not convert user entity to user contacts DTO");
+        }
+    }
+
+    public UserAddressDTO entityToUserAddressDto(UserAddress address){
+        try{
+            return userMapper.entityToDtoAddress(address);
+        } catch (Exception e) {
+            logger.error("Could not convert UserAddress entity to UserAddressDTO", e);
+            throw new DtoToEntityConversionException("Could not convert user address entity to user address DTO");
+        }
+    }
+
+    public UserDashboardDTO entityToUserDashboardDto(User user){
+        try{
+            return userMapper.entityToDtoDashboard(user);
+        } catch (Exception e) {
+            logger.error("Could not convert User entity to UserDashboardDTO", e);
+            throw new DtoToEntityConversionException("Could not convert user entity to user dashboard DTO");
+        }
+    }
+
 }

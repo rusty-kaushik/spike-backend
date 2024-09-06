@@ -3,9 +3,7 @@ package com.spike.user.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spike.user.auditing.AuditorAwareImpl;
-import com.spike.user.dto.UserAddressDTO;
-import com.spike.user.dto.UserChangePasswordDTO;
-import com.spike.user.dto.UserCreationRequestDTO;
+import com.spike.user.dto.*;
 import com.spike.user.entity.User;
 import com.spike.user.exceptions.*;
 import com.spike.user.response.ResponseHandler;
@@ -26,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -306,4 +305,64 @@ public class UserController {
             return ResponseHandler.responseBuilder("User deletion unsuccessful", HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
+
+    //get api to get a particular user contact details if provided , otherwise all the user contacts details with the user name
+    @Operation(
+            summary = "Fetch user contact details",
+            description = "fetch user contact details by user name",
+            tags = {"Admin", "Manager", "Employee", "get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "302", description = "user contacts found successfully",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode = "404", description = "Not-Found",
+                    content = {@Content(schema = @Schema())})})
+
+    @GetMapping("usercontacts")
+    public ResponseEntity<Object> getUserContact(@RequestParam(name="name", required=false) String name, @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize, @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno, @RequestParam(name = "sort", defaultValue = "name,asc") String sort) {
+        try {
+            logger.info("getting user contact information " + name);
+            List<UserContactsDTO> user = userService.getUserContacts(name, pageno, pagesize, sort);
+            return ResponseHandler.responseBuilder("user contacts found successfully", HttpStatus.FOUND, user);
+        } catch (EmployeeNotFoundException ex) {
+            throw ex;
+        } catch (Exception e) {
+            logger.error("Error occur while fetching user data: {}", e.getMessage());
+            throw new RuntimeException("Error fetching user", e.getCause());
+        }
+
+    }
+
+
+    //get api to display list of all users on dashboard with filtration , pagination and sorting
+    @Operation(
+            summary = "Fetch user details for dashboard",
+            description = "fetch user details by user name , email , joiningDate, salary",
+            tags = {"Admin", "Manager", "Employee", "get"}
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "302", description = "user details found successfully",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode = "404", description = "Not-Found",
+                    content = {@Content(schema = @Schema())})})
+    @GetMapping("/userinfo-dashboard")
+    public ResponseEntity<Object> getSpecificUserInfoByUsername(@RequestParam(name = "name", required = false) String name,
+                                                                @RequestParam(name = "email", required = false) String email,
+                                                                @RequestParam(name = "joiningDate", required = false) Date joiningDate,
+                                                                @RequestParam(name = "salary", required = false) Double salary,
+                                                                @RequestParam(name = "page", defaultValue = "0") int page,
+                                                                @RequestParam(name = "size", defaultValue = "6") int size,
+                                                                @RequestParam(name = "sort", defaultValue = "joiningDate,desc") String sort) {
+        try {
+            List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, joiningDate, salary, page, size, sort);
+            return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.FOUND, userDashBoard);
+        } catch (EmployeeNotFoundException ex) {
+            throw ex;
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching user", e.getCause());
+        }
+    }
+
 }
