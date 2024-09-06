@@ -1,4 +1,4 @@
-package com.in2it.commentandlikeservice.payload;
+package com.in2it.commentandlikeservice.exception;
 
 import java.time.LocalDateTime;
 
@@ -42,5 +42,15 @@ public class GlobalExceptionHandler {
 
 		return new ResponseEntity(status, HttpStatus.NOT_FOUND);
 
+	}
+	
+	@ExceptionHandler(CommentNotFoundException.class)
+	public ResponseEntity<?> validationException(CommentNotFoundException exception, WebRequest request){
+	
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+		
+		
+		
 	}
 }

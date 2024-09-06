@@ -40,7 +40,7 @@ public class Comment {
 	private String content;
 	private List<String> mediaPath;
 	@NotNull
-	private long blogId;
+	private UUID blogId;
 	@NotNull
 	private String userName;
 	@JsonProperty(access = Access.WRITE_ONLY)

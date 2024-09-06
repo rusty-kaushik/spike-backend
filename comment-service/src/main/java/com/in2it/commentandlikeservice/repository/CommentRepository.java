@@ -2,6 +2,7 @@ package com.in2it.commentandlikeservice.repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,8 +15,8 @@ import com.in2it.commentandlikeservice.model.Comment;
 @Repository
 public interface CommentRepository extends MongoRepository<Comment, String> {
 
-	@Query("{ 'blogId': ?0, 'status': ?1 }")
-	List<Comment> findByBlogIdAndStatus(long blogId, String status);
+//	@Query("{ 'blogId': ?0, 'status': ?1 }")
+	List<Comment> findByBlogIdAndStatus(UUID blogId, String status);
 
 	List<Comment> findByUserName(String userName);
 
