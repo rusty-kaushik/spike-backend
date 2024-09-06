@@ -83,6 +83,8 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public BlogDto updateBlog(BlogUpdateDto updateDto, UUID blogId) {
 
+		
+		
 		Blog blog = null;
 
 		blog = repo.getByBlogId(blogId);
@@ -99,9 +101,10 @@ public class BlogServiceImpl implements BlogService {
 
 			return objectMapper.blogToDtoConverter(repo.save(blog));
 		} else {
-		
-			throw new UserNotFoundException(
-					" Insufficient information, Please ! try again with sufficient information.");
+			
+			UserNotFoundException userNotFoundException = new UserNotFoundException(" Insufficient information, May be your userName null. Please ! Enter correct Input");
+		log.error("userNotFoundException--------------------------------------------------"+userNotFoundException);
+			throw userNotFoundException;
 		}
 
 	}
@@ -118,7 +121,10 @@ public class BlogServiceImpl implements BlogService {
 			blog.setLikeCount(totallikeCount);
 			return objectMapper.blogToDtoConverter(blog);
 		} else {
-			throw new IdInvalidException("id not found , Please ! Enter correct id .");
+			IdInvalidException idInvalidException = new IdInvalidException("id not found , Please ! Enter correct id .");
+			log.error("idInvalidException------------------"+idInvalidException);
+			
+			throw idInvalidException;
 		}
 
 	}
@@ -132,7 +138,9 @@ public class BlogServiceImpl implements BlogService {
 			blog.setCommentCount(totalCommentCount);
 			return objectMapper.blogToDtoConverter(blog);
 		} else {
-			throw new IdInvalidException("id not found , Please ! Enter correct id .");
+			IdInvalidException idInvalidException = new IdInvalidException("id not found , Please ! Enter correct id .");
+			log.error("idInvalidException---------------------------"+idInvalidException);
+			throw idInvalidException;
 		}
 
 	}
@@ -151,7 +159,9 @@ public class BlogServiceImpl implements BlogService {
 			return true;
 		} else {
 
-			throw new IdInvalidException(HttpStatus.NO_CONTENT + "id not found, Please ! enter correct id.");
+			IdInvalidException idInvalidException = new IdInvalidException("id not found , Please ! Enter correct id .");
+			log.error("idInvalidException---------------------------"+idInvalidException);
+			throw idInvalidException;
 		}
 
 	}
@@ -171,7 +181,6 @@ public class BlogServiceImpl implements BlogService {
 			for (BlogDto blogDto : blog) {
 
 				if (title != null && blogDto.getId().equals(blogId)) {
-					System.out.println("hello ");
 
 					repo.deleteByTitleContainingAllIgnoringCaseAndStatus(blogDto.getId(), LocalDateTime.now(),
 							updatedBy);
@@ -185,7 +194,9 @@ public class BlogServiceImpl implements BlogService {
 				}
 			}
 		} else {
-			throw new InfoMissingException(HttpStatus.NO_CONTENT + " Data not found, Please ! try again .");
+			InfoMissingException infoMissingException = new InfoMissingException(HttpStatus.NO_CONTENT + " Data not found, Please ! try again .");
+			log.error("infoMissingException--------------------------------------------------"+infoMissingException);
+			throw infoMissingException;
 		}
 
 		return flag;
@@ -204,7 +215,9 @@ public class BlogServiceImpl implements BlogService {
 
 				blogDtoList.add(blogToDtoConverter);
 			} else {
-				throw new UserNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
+				UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+				log.error("userNotFoundException----------------------------"+userNotFoundException);
+				throw userNotFoundException;
 			}
 		}
 
@@ -226,7 +239,9 @@ public class BlogServiceImpl implements BlogService {
 
 				blogDtoList.add(blogToDtoConverter);
 			} else {
-				throw new UserNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
+				UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+				log.error("userNotFoundException----------------------------"+userNotFoundException);
+				throw userNotFoundException;
 			}
 		}
 
@@ -252,7 +267,9 @@ public class BlogServiceImpl implements BlogService {
 
 				blogDtoList.add(blogToDtoConverter);
 			} else {
-				throw new UserNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
+				UserNotFoundException e = new UserNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
+				log.error("Error ocurred -------------------------"+e);
+				throw e;
 			}
 		}
 
@@ -279,7 +296,10 @@ public class BlogServiceImpl implements BlogService {
 
 			return blogDtoList;
 		} else {
-			throw new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+			
+			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+			log.error("userNotFoundException----------------------------"+userNotFoundException);
+			throw userNotFoundException;
 		}
 
 	}
@@ -293,11 +313,14 @@ public class BlogServiceImpl implements BlogService {
 			BlogDto blogDto = objectMapper.blogToDtoConverter(blog);
 			return blogDto;
 		} else {
-			throw new UserNotFoundException(HttpStatus.NO_CONTENT + "   Data not available, please ! Try again.");
+			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+			log.error("userNotFoundException----------------------------"+userNotFoundException);
+			throw userNotFoundException;
 		}
 	}
 
 	@Override
+	@Deprecated
 	public List<BlogDto> getByVisibility(long departmentId) {
 
 		List<Blog> bydepartmentId = repo.getByDepartmentId(departmentId);
@@ -314,7 +337,9 @@ public class BlogServiceImpl implements BlogService {
 
 			return dtos;
 		} else {
-			throw new UserNotFoundException(HttpStatus.NO_CONTENT + "   Data not available, please ! Try again.");
+			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+			log.error("userNotFoundException----------------------------"+userNotFoundException);
+			throw userNotFoundException;
 
 		}
 

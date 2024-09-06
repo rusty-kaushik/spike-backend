@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BlogUpdateDto {
 	
-	@NotNull
+	@NotNull(message = "userName not null ")
 	private String userName; 
 	
 	private String title;
