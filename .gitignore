@@ -12,4 +12,4 @@ blog-service/target/
 .git
 .idea
 blog-service/app.log
-**.log
+blog-service/**.log**

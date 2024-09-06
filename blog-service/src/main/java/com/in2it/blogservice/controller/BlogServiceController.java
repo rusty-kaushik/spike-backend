@@ -11,10 +11,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -28,7 +28,6 @@ import com.in2it.blogservice.reponse.ResponseHandler;
 import com.in2it.blogservice.service.impl.BlogServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -60,21 +59,25 @@ public class BlogServiceController {
 	}
 
 
-	@PutMapping(path = "/update/{blogId}")
+	@PutMapping("/update/{blogId}")
 	@Operation(summary = "Update an blog", description = "Update an existing blog. Using blog blog id can update blog title and content only.")
-	public ResponseEntity<ResponseHandler<BlogDto>> updateBlog(@PathVariable UUID blogId, BlogUpdateDto updateDto) {
+	public ResponseEntity<ResponseHandler<BlogDto>> updateBlog(@PathVariable String blogId, @RequestBody BlogUpdateDto updateDto) {
 
-		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.updateBlog(updateDto, blogId),
+		UUID fromString = UUID.fromString(blogId);
+		
+		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.updateBlog(updateDto, fromString),
 				"Blog modify successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
 		return ResponseEntity.ok(response);
 	}
 
 	@PutMapping("/updateLike")
 	@Operation(summary = "update like count")
-	public ResponseEntity<ResponseHandler<BlogDto>> updateLike(@RequestParam UUID blogId,
+	public ResponseEntity<ResponseHandler<BlogDto>> updateLike(@RequestParam String blogId,
 			@RequestParam Long totalLikeCount) {
-
-		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.updateLike(totalLikeCount, blogId),
+	
+		UUID fromString = UUID.fromString(blogId);
+	
+		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.updateLike(totalLikeCount, fromString),
 				"liked", HttpStatus.ACCEPTED, HttpStatus.ACCEPTED.value(), LocalDateTime.now());
 
 		return ResponseEntity.ok(response);
@@ -82,10 +85,12 @@ public class BlogServiceController {
 
 	@PutMapping("/updateComment")
 	@Operation(summary = "update comment count")
-	public ResponseEntity<ResponseHandler<BlogDto>> updateComment(@RequestParam UUID blogId,
+	public ResponseEntity<ResponseHandler<BlogDto>> updateComment(@RequestParam String blogId,
 			@RequestParam Long totalCommentCount) {
+		UUID fromString = UUID.fromString(blogId);
+		
 		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(
-				serviceImpl.updateComment(totalCommentCount, blogId), "commented", HttpStatus.ACCEPTED,
+				serviceImpl.updateComment(totalCommentCount, fromString), "commented", HttpStatus.ACCEPTED,
 				HttpStatus.ACCEPTED.value(), LocalDateTime.now());
 
 		return ResponseEntity.ok(response);
@@ -93,9 +98,10 @@ public class BlogServiceController {
 
 	@DeleteMapping("/deleteByBlogId/{blogId}")
 	@Operation(summary = "delete blog by blogId ,in updatedBy we can pass whose login then store his userName i.e. Admin123")
-	public ResponseEntity<ResponseHandler<Boolean>> deleteBlog(@PathVariable UUID blogId,
+	public ResponseEntity<ResponseHandler<Boolean>> deleteBlog(@PathVariable String blogId,
 			@RequestParam String updatedBy) {
-		ResponseHandler<Boolean> response = new ResponseHandler<>(serviceImpl.deleteBlog(blogId, updatedBy),
+		UUID fromString = UUID.fromString(blogId);
+		ResponseHandler<Boolean> response = new ResponseHandler<>(serviceImpl.deleteBlog(fromString, updatedBy),
 				"Your blog has been deleted successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
 
 		return ResponseEntity.ok(response);
@@ -105,9 +111,10 @@ public class BlogServiceController {
 	@DeleteMapping("/deleteByTitle/{title}")
 	@Operation(summary = "delete blog by title, in updatedBy we can pass whose login then store his userid i.e. Admin123")
 	public ResponseEntity<ResponseHandler<Boolean>> deleteBlogBytitle(@PathVariable String title,
-			@RequestParam UUID blogId, @RequestParam String updatedBy) {
+			@RequestParam String blogId, @RequestParam String updatedBy) {
+		UUID fromString = UUID.fromString(blogId);
 		ResponseHandler<Boolean> response = new ResponseHandler<>(
-				serviceImpl.deleteBlogByTitle(title, blogId, updatedBy), "Your blog has been deleted successfully.",
+				serviceImpl.deleteBlogByTitle(title, fromString, updatedBy), "Your blog has been deleted successfully.",
 				HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
 		return ResponseEntity.ok(response);
 	}
@@ -135,8 +142,9 @@ public class BlogServiceController {
 
 	@GetMapping("/getByBlogId/{blogId}")
 	@Operation(summary = "Get a blog by blogId", description = "Returns a blog as per the blogId.")
-	public ResponseEntity<ResponseHandler<BlogDto>> getBlogById(@PathVariable(value = "blogId") @Valid UUID blogId) {
-		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.getBlogById(blogId),
+	public ResponseEntity<ResponseHandler<BlogDto>> getBlogById(@PathVariable(value = "blogId") @Valid String blogId) {
+		UUID fromString = UUID.fromString(blogId);
+		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.getBlogById(fromString),
 				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
 		return ResponseEntity.ok(response);
 	}
