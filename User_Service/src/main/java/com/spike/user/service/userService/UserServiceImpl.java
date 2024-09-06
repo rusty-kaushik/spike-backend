@@ -1,8 +1,6 @@
 package com.spike.user.service.userService;
 
-import com.spike.user.dto.UserAddressDTO;
-import com.spike.user.dto.UserChangePasswordDTO;
-import com.spike.user.dto.UserCreationRequestDTO;
+import com.spike.user.dto.*;
 import com.spike.user.entity.User;
 import com.spike.user.entity.UserAddress;
 import com.spike.user.entity.UserProfilePicture;
@@ -15,6 +13,10 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,11 +24,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -66,9 +73,9 @@ public class UserServiceImpl implements UserService {
             User savedUser = userRepository.save(user);
             logger.info("User saved successfully: {}", savedUser);
             return savedUser;
-        } catch (DepartmentNotFoundException | RoleNotFoundException | DtoToEntityConversionException e ) {
+        } catch (DepartmentNotFoundException | RoleNotFoundException | DtoToEntityConversionException e) {
             throw e;
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             logger.error("Error creating user", e);
             throw new UnexpectedException("Error creating user", e.getCause());
         }
@@ -77,9 +84,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-        try{
+        try {
             return userRepository.findAll();
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             throw new RuntimeException("Error fetching user", e.getCause());
         }
     }
@@ -87,7 +94,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateSelfPassword(String username, UserChangePasswordDTO userChangePasswordDTO) {
         logger.info("Attempting to update password for user: {}", username);
-        try{
+        try {
             User existingUser = userRepository.findByUsername(username);
             if (existingUser == null) {
                 logger.warn("User not found: {}", username);
@@ -104,7 +111,7 @@ public class UserServiceImpl implements UserService {
         } catch (EmployeeNotFoundException | PasswordNotMatchException e) {
             logger.error("Error updating password for user: {}", username, e);
             throw e;
-        } catch ( Exception e ) {
+        } catch (Exception e) {
             logger.error("An unexpected error occurred while updating password for user: {}", username, e);
             throw new UnexpectedException("An unexpected error occurred while updating the password", e);
         }
@@ -324,5 +331,118 @@ public class UserServiceImpl implements UserService {
             logger.error("Error deleting user with ID: {}", userId, e);
             throw new RuntimeException("Error deleting user", e);
         }
+    }
+
+    public List<UserContactsDTO> getUserContacts(String name, int pageno, int pagesize, String sort) {
+        logger.info("starts fetching user contacts");
+        try {
+            Specification<User> specs = Specification.where(userHelper.hasName(name));
+            String[] sortParams = sort.split(",");
+            Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);
+            PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
+            Page<User> user = userRepository.findAll(specs, pageRequest);
+            if (user.isEmpty()) {
+                throw new EmployeeNotFoundException("list is empty,no user found with the given name: " + name);
+            } else {
+                return user.stream().map(this::userToUserContacsDto).collect(Collectors.toList());
+            }
+        } catch (EmployeeNotFoundException e) {
+            logger.error("user doesn't exist");
+            throw e;
+        } catch (Exception ex) {
+            logger.error("Unexpected error Occur while fetching user contacts", ex);
+            throw new RuntimeException("Unexpected error while fetching user contacts");
+        }
+
+    }
+
+
+
+    private UserContactsDTO userToUserContacsDto(User user) {
+
+        UserContactsDTO userContactsDto= userHelper.entityToUserContactsDto(user);
+        // Filter and set primary address
+
+        List<UserAddressDTO> primaryAddress = user.getAddresses().stream()
+                .filter(address -> "PRIMARY".equals(address.getType()))
+                .map(address -> userHelper.entityToUserAddressDto(address))
+                .collect(Collectors.toList());
+
+        userContactsDto.setPrimaryAddress(primaryAddress);
+        userContactsDto.setInstagramUrl(user.getUserSocials() != null ? user.getUserSocials().getInstagramUrl() : null);
+        userContactsDto.setFacebookUrl(user.getUserSocials() != null ? user.getUserSocials().getFacebookUrl() : null);
+        userContactsDto.setLinkedinUrl(user.getUserSocials() != null ? user.getUserSocials().getLinkedinUrl() : null);
+
+        //convert profile picture into base64
+        UserProfilePicture profilePicture = user.getProfilePicture();
+        if (profilePicture != null) {
+            try {
+                File file = new File(profilePicture.getFilePath());
+                FileInputStream fileInputStream = new FileInputStream(file);
+                byte[] bytes = fileInputStream.readAllBytes();
+                String picture = Base64.getEncoder().encodeToString(bytes);
+                userContactsDto.setProfilePicture(picture);
+
+            } catch (IOException e) {
+                userContactsDto.setProfilePicture(null);
+            }
+        } else {
+            userContactsDto.setProfilePicture(null);
+        }
+        return userContactsDto;
+    }
+
+
+    //this service will return list of all users with filtration
+    @Override
+    public List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Date joiningDate, Double salary, int page, int size, String sort) {
+        logger.info("starts fetching user details");
+        try {
+            Specification<User> specs = Specification.where(userHelper.filterByName(name))
+                    .or(userHelper.filterByEmail(email))
+                    .or(userHelper.filterByJoiningDate(joiningDate))
+                    .or(userHelper.filterBySalary(salary));
+
+            //created PageRequest for pagination and sorting
+            PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Order.by(sort.split(",")[0]).with(Sort.Direction.fromString(sort.split(",")[1]))));
+
+            //fetched filtered , paginated , sorted users
+            Page<User> user = userRepository.findAll(specs, pageRequest);
+
+            //convert to user dashboard dto
+            return user.stream().map(this::userToUserDashboardDto).collect(Collectors.toList());
+        } catch (EmployeeNotFoundException e) {
+            logger.error("user doesn't exist");
+            throw e;
+        } catch (Exception ex) {
+            logger.error("Unexpected error Occur while fetching user details", ex);
+            throw new RuntimeException("Error occur while fetching user details");
+        }
+    }
+
+
+    //this method will set data of user in userDashboardDto
+    private UserDashboardDTO userToUserDashboardDto(User user) {
+        UserDashboardDTO userDashboardDTO = userHelper.entityToUserDashboardDto(user);
+        userDashboardDTO.setJoiningDate(user.getJoiningDate() != null ? user.getJoiningDate() : null);
+
+        //convert image into base64
+        if (user.getProfilePicture() != null) {
+            String filePath = user.getProfilePicture().getFilePath();
+            File file = new File(filePath);
+            try {
+                FileInputStream fileInputStream = new FileInputStream(file);
+                byte[] fileData = fileInputStream.readAllBytes();
+                String picture = Base64.getEncoder().encodeToString(fileData);
+                userDashboardDTO.setProfilePicture(picture);
+
+            } catch (IOException e) {
+                userDashboardDTO.setProfilePicture(null);
+            }
+        } else {
+            userDashboardDTO.setProfilePicture(null);
+        }
+
+        return userDashboardDTO;
     }
 }
