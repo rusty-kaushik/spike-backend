@@ -24,8 +24,8 @@ public interface BlogRepository extends JpaRepository<Blog,UUID>{
 	 
 	 List<Blog> findByTitleContainingAllIgnoringCaseAndStatus(PageRequest pageable,String title, Boolean status);
 	
-	@Query(value= "select  * from blog where status=true and user_id =%:autherId% ", nativeQuery = true)
-	 List<Blog> findByAuthorId(String autherId);
+	@Query(value= "select  * from blog where status=true and user_name =%:userName% ", nativeQuery = true)
+	 List<Blog> findByAuthorId(String userName);
 	
 
 	 @Query(value= "select  * from blog where status=true", nativeQuery = true)
@@ -40,7 +40,7 @@ public interface BlogRepository extends JpaRepository<Blog,UUID>{
 	 void deleteBlogById(UUID id , String updatedBy ,LocalDateTime time);
 	
 	@Modifying
-	@Query(value= "update  blog set  status=true, updated_date_time=%:time% , updated_by=%:updatedBy% where  id=%:blogId%", nativeQuery = true)
+	@Query(value= "update  blog set  status=false, updated_date_time=%:time% , updated_by=%:updatedBy% where  id=%:blogId%", nativeQuery = true)
 	void deleteByTitleContainingAllIgnoringCaseAndStatus(UUID blogId,LocalDateTime time,  String updatedBy);
 	
 	@Query(value= "select  * from blog where status=true and department_id=%:departmentId%", nativeQuery = true)

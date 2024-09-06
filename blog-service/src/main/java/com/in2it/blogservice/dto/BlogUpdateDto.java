@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class BlogUpdateDto {
 	
 	@NotNull
-	private String userId; 
+	private String userName; 
 	
 	private String title;
 	private String content;

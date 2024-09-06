@@ -37,7 +37,7 @@ public class Blog {
 	
 	
 	@NotNull
-	private String userId;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
+	private String userName;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
 	
 	@NotNull
 	private String title;

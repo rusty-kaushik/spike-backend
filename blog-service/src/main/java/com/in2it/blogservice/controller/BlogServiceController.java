@@ -59,10 +59,10 @@ public class BlogServiceController {
 
 	}
 
-	@PutMapping(path = "/update/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+
+	@PutMapping(path = "/update/{blogId}")
 	@Operation(summary = "Update an blog", description = "Update an existing blog. Using blog blog id can update blog title and content only.")
-	public ResponseEntity<ResponseHandler<BlogDto>> updateBlog(@PathVariable UUID blogId,
-			@RequestBody BlogUpdateDto updateDto) {
+	public ResponseEntity<ResponseHandler<BlogDto>> updateBlog(@PathVariable UUID blogId, BlogUpdateDto updateDto) {
 
 		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.updateBlog(updateDto, blogId),
 				"Blog modify successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
@@ -92,7 +92,7 @@ public class BlogServiceController {
 	}
 
 	@DeleteMapping("/deleteByBlogId/{blogId}")
-	@Operation(summary = "delete blog by blogId ,in updatedBy we can pass whose login then store his userid i.e. Admin123")
+	@Operation(summary = "delete blog by blogId ,in updatedBy we can pass whose login then store his userName i.e. Admin123")
 	public ResponseEntity<ResponseHandler<Boolean>> deleteBlog(@PathVariable UUID blogId,
 			@RequestParam String updatedBy) {
 		ResponseHandler<Boolean> response = new ResponseHandler<>(serviceImpl.deleteBlog(blogId, updatedBy),
@@ -124,10 +124,10 @@ public class BlogServiceController {
 
 	// pagination
 
-	@GetMapping("/getByUserId/{userId}")
-	@Operation(summary = "Get a blog by autherId", description = "Returns a Blog as per the autherId.")
-	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogsByAutherId(@PathVariable @Valid String userId) {
-		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getByAutherID(userId),
+	@GetMapping("/getByUserId/{userName}")
+	@Operation(summary = "Get a blog by userName", description = "Returns a Blog as per the userName.")
+	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogsByAutherId(@PathVariable @Valid String userName) {
+		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getByAutherID(userName),
 				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
 
 		return ResponseEntity.ok(response);
