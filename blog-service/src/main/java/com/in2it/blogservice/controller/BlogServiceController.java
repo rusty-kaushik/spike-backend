@@ -109,12 +109,12 @@ public class BlogServiceController {
 	}
 
 	@DeleteMapping("/deleteByTitle/{title}")
-	@Operation(summary = "delete blog by title, in updatedBy we can pass whose login then store his userid i.e. Admin123")
+	@Operation(summary = "delete blog by title, in updatedBy we can pass whose login then store his userName i.e. Admin123")
 	public ResponseEntity<ResponseHandler<Boolean>> deleteBlogBytitle(@PathVariable String title,
-			@RequestParam String blogId, @RequestParam String updatedBy) {
+			@RequestParam String blogId, @RequestParam String userName) {
 		UUID fromString = UUID.fromString(blogId);
 		ResponseHandler<Boolean> response = new ResponseHandler<>(
-				serviceImpl.deleteBlogByTitle(title, fromString, updatedBy), "Your blog has been deleted successfully.",
+				serviceImpl.deleteBlogByTitle(title, fromString, userName), "Your blog has been deleted successfully.",
 				HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
 		return ResponseEntity.ok(response);
 	}

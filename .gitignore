@@ -1,15 +1,4 @@
 .metadata/*
-blog-service/.classpath
-blog-service/.factorypath
-blog-service/.project
-blog-service/.settings/
-blog-service/target/
 
-/.metadata/
 
-.metadata
-/.idea
-.git
-.idea
-blog-service/app.log
-blog-service/**.log**
+
