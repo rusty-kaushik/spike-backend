@@ -92,9 +92,9 @@ public class BlogServiceImpl implements BlogService {
 		log.info("===================" + updateDto.getUserName());
 
 		if ((blog != null && updateDto.getUserName() != null) && blog.getId().equals(blogId)) {
-			if (!updateDto.getContent().isEmpty())
+			if (updateDto.getContent()!=null)
 				blog.setContent(updateDto.getContent());
-			if (!updateDto.getTitle().isEmpty())
+			if (updateDto.getTitle()!=null)
 				blog.setTitle(updateDto.getTitle());
 			blog.setUpdatedDateTime(LocalDateTime.now());
 			blog.setUpdatedBy(updateDto.getUserName());
@@ -102,7 +102,7 @@ public class BlogServiceImpl implements BlogService {
 			return objectMapper.blogToDtoConverter(repo.save(blog));
 		} else {
 			
-			UserNotFoundException userNotFoundException = new UserNotFoundException(" Insufficient information, May be your userName null. Please ! Enter correct Input");
+			UserNotFoundException userNotFoundException = new UserNotFoundException(" Insufficient information, May be your userName or blogId is null. Please ! Enter correct Input");
 		log.error("userNotFoundException--------------------------------------------------"+userNotFoundException);
 			throw userNotFoundException;
 		}
@@ -121,7 +121,7 @@ public class BlogServiceImpl implements BlogService {
 			blog.setLikeCount(totallikeCount);
 			return objectMapper.blogToDtoConverter(blog);
 		} else {
-			IdInvalidException idInvalidException = new IdInvalidException("id not found , Please ! Enter correct id .");
+			IdInvalidException idInvalidException = new IdInvalidException("id not found , Please ! Enter correct id.");
 			log.error("idInvalidException------------------"+idInvalidException);
 			
 			throw idInvalidException;
@@ -189,7 +189,10 @@ public class BlogServiceImpl implements BlogService {
 
 					break;
 				} else {
-					continue;
+//					continue;
+					InfoMissingException infoMissingException = new InfoMissingException(HttpStatus.NO_CONTENT + " Data not found, Please ! try again .");
+					log.error("infoMissingException--------------------------------------------------"+infoMissingException);
+					throw infoMissingException;
 
 				}
 			}
@@ -255,6 +258,13 @@ public class BlogServiceImpl implements BlogService {
 		PageRequest pageable = PageRequest.of(pageNum, pageSize);
 
 		List<Blog> blog = repo.findAll(pageable,true);
+		if(blog.isEmpty() || blog==null) {
+			
+				UserNotFoundException e = new UserNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
+				log.error("Error ocurred -------------------------"+e);
+				throw e;
+			
+		}
 
 		log.info("----------------------------------" + blog);
 
@@ -266,10 +276,6 @@ public class BlogServiceImpl implements BlogService {
 				BlogDto blogToDtoConverter = objectMapper.blogToDtoConverter(blog2);
 
 				blogDtoList.add(blogToDtoConverter);
-			} else {
-				UserNotFoundException e = new UserNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
-				log.error("Error ocurred -------------------------"+e);
-				throw e;
 			}
 		}
 

@@ -36,10 +36,10 @@ public class Converter {
 	ModelMapper mapper;
 	
 	/*static way to create file path*/
-//	public final String fileUploadDir="C:\\Users\\Vaseem.akhtar\\Desktop\\Blog_file";
+	public final String fileUploadDir="C:\\Users\\Vaseem.akhtar\\Desktop\\Blog_file";
 	
 	/* dynamic way to create file path*/
-    public final String fileUploadDir=new ClassPathResource("static/image/").getFile().getAbsolutePath();
+//    public final String fileUploadDir=new ClassPathResource("static/image/").getFile().getAbsolutePath();
 	
 	private static long randomId=0;
 	
