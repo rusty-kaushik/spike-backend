@@ -13,7 +13,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -108,7 +106,7 @@ public class UserController {
             String createdUser = userService.updateSelfPassword(username, userChangePasswordDTO);
             logger.info("User password Successfully changed for username: {}", username);
             return ResponseHandler.responseBuilder("user password update successful", HttpStatus.OK, createdUser);
-        } catch (EmployeeNotFoundException | PasswordNotMatchException | UnexpectedException e) {
+        } catch (UserNotFoundException | PasswordNotMatchException | UnexpectedException e) {
             logger.error("Error updating password for user: {}", username, e);
             throw e;
         } catch (Exception e) {
@@ -152,8 +150,8 @@ public class UserController {
     ) {
         logger.info("Received request to update user with ID: {}", userId);
         try {
-            AuditorAwareImpl.setCurrentAuditor("ADMIN");
-            logger.info("Setting current auditor to 'ADMIN'");
+            AuditorAwareImpl.setCurrentAuditor(userRequest.getUsername());
+            logger.info("Setting current auditor to 'username'");
 
             // Perform the update operation
             logger.info("Updating user with ID: {}", userId);
@@ -161,7 +159,7 @@ public class UserController {
             logger.info("User updated successfully with ID: {}", userId);
 
             return ResponseHandler.responseBuilder("User successfully updated", HttpStatus.OK, updatedUser);
-        } catch (EntityNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId, e.getMessage());
             return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
         } catch (Exception e) {
@@ -190,22 +188,30 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema()))
     })
-    @PutMapping("/self/socials/{userId}")
+    @PutMapping("/self/socials/{userId}/{username}")
     public ResponseEntity<Object> updateSocialUrls(
             @PathVariable Long userId,
+            @PathVariable String username,
             @RequestBody UserSocialDTO userRequest) {
         logger.info("Received request to update socials for user ID: {}", userId);
         try {
+            AuditorAwareImpl.setCurrentAuditor(username);
+            logger.info("Setting current auditor to '{}'", username);
+
             User updatedUser = userService.updateSocialUrls(userId, userRequest);
             logger.info("User socials updated successfully for user ID: {}", userId);
             return ResponseHandler.responseBuilder("User socials updated", HttpStatus.OK, updatedUser);
-        } catch (EntityNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId);
             return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
         } catch (Exception e) {
             logger.error("Error updating socials for user ID {}: {}", userId, e.getMessage());
             return ResponseHandler.responseBuilder("User social update unsuccessful", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
+        } finally {
+            logger.info("Clearing current auditor");
+            AuditorAwareImpl.clear();
         }
+
     }
 
     // API TO UPDATE USER ADDRESSES
@@ -224,21 +230,28 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema()))
     })
-    @PutMapping(value = "/self/addresses/{userId}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/self/addresses/{userId}/{username}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> updateAddresses(
             @PathVariable Long userId,
+            @PathVariable String username,
             @RequestBody List<UserAddressDTO> addresses) {
         logger.info("Received request to update addresses for user ID: {}", userId);
         try {
+            AuditorAwareImpl.setCurrentAuditor(username);
+            logger.info("Setting current auditor to '{}'", username);
+
             User updatedUser = userService.updateAddresses(userId, addresses);
             logger.info("User addresses updated successfully for user ID: {}", userId);
             return ResponseHandler.responseBuilder("User addresses updated", HttpStatus.OK, updatedUser);
-        } catch (EntityNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId);
             return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
         } catch (Exception e) {
             logger.error("Error updating addresses for user ID {}: {}", userId, e.getMessage());
             return ResponseHandler.responseBuilder("User addresses update unsuccessful", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
+        } finally {
+            logger.info("Clearing current auditor");
+            AuditorAwareImpl.clear();
         }
     }
 
@@ -261,13 +274,13 @@ public class UserController {
     @PutMapping(value = "/self/profile-picture/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Object> updateProfilePicture(
             @PathVariable Long userId,
-            @RequestPart("profilePicture") MultipartFile profilePicture) {
+            @RequestBody MultipartFile profilePicture) {
         logger.info("Received request to update profile picture for user ID: {}", userId);
         try {
             userService.updateUserProfilePicture(userId, profilePicture);
             logger.info("User profile picture updated successfully for user ID: {}", userId);
             return ResponseHandler.responseBuilder("User profile updated", HttpStatus.OK, "Successful");
-        } catch (EntityNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId);
             return ResponseHandler.responseBuilder("User profile not found", HttpStatus.NOT_FOUND, e.getMessage());
         } catch (Exception e) {
@@ -296,8 +309,8 @@ public class UserController {
         try {
             userService.deleteUser(userId);
             logger.info("User deleted successfully with ID: {}", userId);
-            return ResponseHandler.responseBuilder("User successfully deleted", HttpStatus.OK, null);
-        } catch (EntityNotFoundException e) {
+            return ResponseHandler.responseBuilder("User successfully deleted", HttpStatus.OK, "User deleted");
+        } catch (UserNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId);
             return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
         } catch (Exception e) {
@@ -325,7 +338,7 @@ public class UserController {
             logger.info("getting user contact information " + name);
             List<UserContactsDTO> user = userService.getUserContacts(name, pageno, pagesize, sort);
             return ResponseHandler.responseBuilder("user contacts found successfully", HttpStatus.FOUND, user);
-        } catch (EmployeeNotFoundException ex) {
+        } catch (UserNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
             logger.error("Error occur while fetching user data: {}", e.getMessage());
@@ -358,7 +371,7 @@ public class UserController {
         try {
             List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, joiningDate, salary, page, size, sort);
             return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.FOUND, userDashBoard);
-        } catch (EmployeeNotFoundException ex) {
+        } catch (UserNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
             throw new RuntimeException("Error fetching user", e.getCause());

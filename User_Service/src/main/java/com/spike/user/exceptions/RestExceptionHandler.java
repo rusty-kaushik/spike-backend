@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class RestExceptionHandler {
 
-    @ExceptionHandler(value = {EmployeeNotFoundException.class})
-    public ResponseEntity<Object> handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
+    @ExceptionHandler(value = {UserNotFoundException.class})
+    public ResponseEntity<Object> handleEmployeeNotFoundException(UserNotFoundException ex) {
         return buildResponseEntityForExceptions(ex, HttpStatus.NOT_FOUND);
     }
 
