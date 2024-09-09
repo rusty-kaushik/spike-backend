@@ -22,12 +22,12 @@ public class GlobalExceptionHandler {
 
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ExceptionHandler(InfoMissingException.class)
 	public ResponseEntity<?> InfoMissingExceptionhandler(InfoMissingException ex, WebRequest request) {
 
-		ExceptionStatus status = new ExceptionStatus(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(),
-				HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage(), request.getDescription(false));
+		ExceptionStatus status = new ExceptionStatus(LocalDateTime.now(), HttpStatus.NON_AUTHORITATIVE_INFORMATION.value(),
+				HttpStatus.NON_AUTHORITATIVE_INFORMATION.getReasonPhrase(), ex.getMessage(), request.getDescription(false));
 
 		return new ResponseEntity(status, HttpStatus.NOT_FOUND);
 
@@ -45,10 +45,29 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(CommentNotFoundException.class)
-	public ResponseEntity<?> validationException(CommentNotFoundException exception, WebRequest request){
+	public ResponseEntity<?> commentNotFoundException(CommentNotFoundException exception, WebRequest request){
 	
 		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+		
+		
+		
+	}
+	@ExceptionHandler(BlogNotFoundException.class)
+	public ResponseEntity<?> blogNotFoundException (BlogNotFoundException exception, WebRequest request){
+	
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+		
+		
+		
+	}
+	
+	@ExceptionHandler(ServiceDownException.class)
+	public ResponseEntity<?> serviceDownException (ServiceDownException exception, WebRequest request){
+		
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.BAD_GATEWAY.value(), HttpStatus.BAD_GATEWAY.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(response);
 		
 		
 		

@@ -72,12 +72,12 @@
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.2.0</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>com.in2it</groupId>
 	<artifactId>blog-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 	<dependencyManagement>

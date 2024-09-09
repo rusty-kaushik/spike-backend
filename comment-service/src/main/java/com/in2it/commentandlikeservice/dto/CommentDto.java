@@ -30,7 +30,7 @@ public class CommentDto {
 	private String id;
 	private String content;
 	@JsonIgnore
-	private UUID blogId;
+	private String blogId;
 
 	private String userName;
 

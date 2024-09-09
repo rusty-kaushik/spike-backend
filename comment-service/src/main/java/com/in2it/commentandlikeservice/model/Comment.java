@@ -1,23 +1,15 @@
 package com.in2it.commentandlikeservice.model;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,7 +32,7 @@ public class Comment {
 	private String content;
 	private List<String> mediaPath;
 	@NotNull
-	private UUID blogId;
+	private String blogId;
 	@NotNull
 	private String userName;
 	@JsonProperty(access = Access.WRITE_ONLY)

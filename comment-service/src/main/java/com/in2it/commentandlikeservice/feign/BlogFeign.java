@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.in2it.blogservice.dto.BlogDto;
+import com.in2it.commentandlikeservice.dto.BlogDto;
 
 import jakarta.validation.Valid;
 
@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 public interface BlogFeign {
 
 	@GetMapping("/getByBlogId/{blogId}")
-    public ResponseEntity<BlogDto> getBlogById(@PathVariable(value = "blogId") @Valid UUID blogId) ;
+    public ResponseEntity<BlogDto>  getBlogById(@PathVariable(value = "blogId") @Valid String blogId) ;
 	@PutMapping("/updateComment")
-	public ResponseEntity<BlogDto> updateComment(@RequestParam UUID blogId, @RequestParam Long totalCommentCount);
+	public ResponseEntity<BlogDto> updateComment(@RequestParam String blogId, @RequestParam Long totalCommentCount);
 }
