@@ -1,6 +1,5 @@
 package com.in2it.commentandlikeservice.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.in2it.blogservice.dto.BlogDto;
-import com.in2it.blogservice.dto.BlogUpdateDto;
 import com.in2it.commentandlikeservice.dto.CommentDto;
 import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
 import com.in2it.commentandlikeservice.exception.UserNotFoundException;
@@ -38,67 +35,38 @@ public class CommentController {
 	private CommentService commentService;
 
 	@PostMapping(path = "/create/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-	public ResponseEntity<CommentDto> createComment(@ModelAttribute CommentDto commentDto, @PathVariable UUID blogId) {
-		try {
-			CommentDto createComment = commentService.saveComment(commentDto, blogId, commentDto.getMedia());
-			return ResponseEntity.status(HttpStatus.CREATED).body(createComment);
-		} catch (Exception e) {
+	public ResponseEntity<CommentDto> createComment(@ModelAttribute CommentDto commentDto,
+			@PathVariable String blogId) {
 
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
+		return ResponseEntity.status(HttpStatus.CREATED).body(commentService.saveComment(commentDto, blogId));
+
 	}
 
-	
-	
 	@PutMapping(path = "/update/{commentId}")
 	public ResponseEntity<CommentDto> updateComment(@RequestBody CommentUpdateDto updateDto,
 			@Valid @PathVariable("commentId") String commentId) {
 
-		Comment comment = commentService.getByCommentId(commentId);
+		return ResponseEntity.status(HttpStatus.OK).body(commentService.updateComment(updateDto, commentId));
 
-		if (comment.getId().equals(commentId)) {
-			return ResponseEntity.status(HttpStatus.OK).body(commentService.updateComment(updateDto, commentId));
-		} else {
-			throw new UserNotFoundException(
-					" Insufficient information, Please ! try again with sufficient information.");
-		}
 	}
 
-	
-	
 	@GetMapping("/get-all/{blogId}, method = RequestMethod.GET")
-	public ResponseEntity<List<CommentDto>> getCommentByBlogId(@PathVariable UUID blogId) {
-		try {
-			return ResponseEntity.status(HttpStatus.OK).body(commentService.getByBlogId(blogId));
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
+	public ResponseEntity<List<CommentDto>> getCommentByBlogId(@PathVariable String blogId) {
+
+		return ResponseEntity.status(HttpStatus.OK).body(commentService.getByBlogId(blogId));
+
 	}
 
-	@GetMapping("/get/{commentId}")
-	public ResponseEntity<Comment> getCommentById(@PathVariable String commentId) {
-		try {
-			return ResponseEntity.status(HttpStatus.OK).body(commentService.getByCommentId(commentId));
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-	
-	
 	@GetMapping("/comment/{commentId}")
 	public ResponseEntity<CommentDto> getCommentByCommentId(@PathVariable String commentId) {
 		return ResponseEntity.ok(commentService.getCommentById(commentId));
 	}
 
 	@DeleteMapping("/delete/{blogId}/{commentId}")
-	public ResponseEntity<List<Comment>> deleteCommentByBlogId(@PathVariable UUID blogId,
+	public ResponseEntity<CommentDto> deleteCommentByBlogId(@PathVariable String blogId,
 			@PathVariable String commentId) {
 
-		try {
-			return ResponseEntity.status(HttpStatus.OK).body(commentService.deleteByBlogId(blogId, commentId));
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
+		return ResponseEntity.status(HttpStatus.OK).body(commentService.deleteByBlogId(blogId, commentId));
 
 	}
 

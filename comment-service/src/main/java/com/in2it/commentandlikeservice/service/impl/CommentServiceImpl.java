@@ -3,34 +3,29 @@ package com.in2it.commentandlikeservice.service.impl;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.in2it.blogservice.dto.BlogDto;
+import com.in2it.commentandlikeservice.dto.BlogDto;
 import com.in2it.commentandlikeservice.dto.CommentDto;
 import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
 import com.in2it.commentandlikeservice.exception.BlogNotFoundException;
 import com.in2it.commentandlikeservice.exception.CommentNotFoundException;
-import com.in2it.commentandlikeservice.exception.IdInvalidException;
-import com.in2it.commentandlikeservice.exception.UserNotFoundException;
+import com.in2it.commentandlikeservice.exception.ServiceDownException;
 import com.in2it.commentandlikeservice.feign.BlogFeign;
 import com.in2it.commentandlikeservice.mapper.CommentConvertor;
 import com.in2it.commentandlikeservice.model.Comment;
 import com.in2it.commentandlikeservice.repository.CommentRepository;
 import com.in2it.commentandlikeservice.service.CommentService;
 
+import feign.FeignException.InternalServerError;
+import feign.RetryableException;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -45,30 +40,45 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private BlogFeign feign;
 
-//	@Autowired
-//	private MongoTemplate mongoTemplate;
-
 	private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
 
-	public CommentDto saveComment(CommentDto commentDto, UUID blogId, List<MultipartFile> file) {
-		ResponseEntity<BlogDto> response = feign.getBlogById(blogId);
+	public CommentDto saveComment(CommentDto commentDto, String blogId) {
+		ResponseEntity<BlogDto> response = null;
+		log.info("------------------------" + commentDto);
+		try {
+			response = feign.getBlogById(blogId);
+		} catch (RetryableException e) {
 
-		BlogDto blog = response.getBody();
+			throw new ServiceDownException("--------------blog service is down please try after sometime");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		BlogDto blog = null;
 		// it checks if blog exist or not
-		if (blog == null) {
-			throw new BlogNotFoundException("Blog does not exist");
+		if (response != null) {
+			blog = response.getBody();
+
+		} else {
+			throw new BlogNotFoundException("Blog Id is not valid..");
 		}
 
 		Comment comment = objectMapper.dtoToCommentConvertor(commentDto);
+		comment.setCreatedDate(LocalDateTime.now());
 
+		long commentCount = commentRepository.findByBlogIdAndStatus(blogId, "Active").size() + 1;
+		try {
+			feign.updateComment(blogId, commentCount);
+		} catch (RetryableException e) {
+
+			throw new ServiceDownException("--------------blog service is down please try after sometime");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Comment com = commentRepository.save(comment);
-
-		com.setCreatedDate(LocalDateTime.now());
-
-		long incrementcount = blog.getCommentCount() + 1;
-
-		feign.updateComment(blogId, incrementcount);
-		CommentDto dto = objectMapper.commentToDtoConvertor(comment);
+		CommentDto dto = objectMapper.commentToDtoConvertor(com);
 
 		return dto;
 
@@ -80,90 +90,88 @@ public class CommentServiceImpl implements CommentService {
 
 		Comment comment = null;
 
-		comment = commentRepository.findById(commentId.toString()).get();
+		comment = commentRepository.findById(commentId)
+				.orElseThrow(() -> new CommentNotFoundException("Comment dosen't exist with given id"));
 
-		if (comment != null && comment.getId().equals(commentId)) {
-			if (updateDto.getContent() != null)
-				comment.setContent(updateDto.getContent());
+		log.info("===================" + updateDto);
+		if (updateDto.getContent() != null)
+			comment.setContent(updateDto.getContent());
 
-			comment.setUpdatedDateTime(LocalDateTime.now());
-			comment.setUpdatedBy(comment.getUserName());
+		comment.setUpdatedDateTime(LocalDateTime.now());
+		comment.setUpdatedBy(comment.getUserName());
 
-			return objectMapper.commentToDtoConvertor(commentRepository.save(comment));
-		} else {
-			throw new UserNotFoundException(
-					" Insufficient information, Please ! try again with sufficient information.");
-		}
+		return objectMapper.commentToDtoConvertor(commentRepository.save(comment));
 
 	}
 
-	public Comment getByCommentId(String commentId) {
-		Comment com = commentRepository.findByIdAndStatus(commentId, "Active");
-		return com;
-
-	}
-
-	public List<CommentDto> getByBlogId(UUID blogId) {
+	public List<CommentDto> getByBlogId(String blogId) {
 		List<CommentDto> commentListDto = new ArrayList<>();
-		try {
 
-			List<Comment> commentList = commentRepository.findByBlogIdAndStatus(blogId, "Active");
-			System.out.println(commentList + "++++++++++");
-			if (commentList.isEmpty()) {
-				System.out.println("list is empty");
-			} else {
+		List<Comment> commentList = commentRepository.findByBlogIdAndStatus(blogId, "Active");
+		log.info("commentList---------------------------------" + commentList);
+		if (commentList.isEmpty()) {
+			throw new CommentNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
+		} else {
 
-				for (Comment com : commentList) {
+			for (Comment com : commentList) {
 
-					CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
-					commentListDto.add(commentDtoConvertor);
-					System.out.println(commentDtoConvertor + "***********");
-				}
+				CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
+				commentListDto.add(commentDtoConvertor);
+				System.out.println(commentDtoConvertor + "***********");
 			}
-		} catch (Exception e) {
-			logger.error("Error fetching comments by blogId: {}", blogId, e);
 		}
 
 		return commentListDto;
 	}
 
-	public List<Comment> deleteByBlogId(UUID blogId, String commentId) {
+	public CommentDto deleteByBlogId(String blogId, String commentId) {
 
-		ResponseEntity<BlogDto> response = feign.getBlogById(blogId);
-		BlogDto blog = response.getBody();
+		ResponseEntity<BlogDto> response = null;
+
+		try {
+			response = feign.getBlogById(blogId);
+		} catch (RetryableException e) {
+
+			throw new ServiceDownException("--------------blog service is down please try after sometime");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		BlogDto blog = null;
 		// it checks if blog exist or not
-		if (blog == null) {
-			throw new BlogNotFoundException("Blog does not exist");
+		if (response != null) {
+			blog = response.getBody();
+
+		} else {
+			throw new BlogNotFoundException("Blog Id is not valid..");
 		}
 
-		List<Comment> comments = commentRepository.findByBlogIdAndStatus(blogId, "Active");
-		System.out.println(comments);
-		List<Comment> deleteComments = new ArrayList<>();
-		Comment commentByCommentId = commentRepository.findById(commentId).get();
+		Comment comment2 = commentRepository.findByIdAndStatus(commentId, "Active")
+				.orElseThrow(() -> new CommentNotFoundException("Comment dosen't exist with given Id."));
 
-		for (Comment com : comments) {
-			System.out.println(commentByCommentId.getId() + "commentByCommentId.getId()");
-			System.out.println(com.getId() + "com");
-			if (com.getId().equals(commentByCommentId.getId())) {
+		comment2.setStatus("InActive");
+		long commentCount = commentRepository.findByBlogIdAndStatus(blogId, "Active").size() - 1;
+		try {
 
-				com.setStatus("InActive");
+			feign.updateComment(blogId, commentCount);
+		} catch (RetryableException e) {
 
-				Comment comment = commentRepository.save(com);
-				comment.setUpdatedDateTime(LocalDateTime.now());
-				comment.setDeletedBy(comment.getUserName());
-				long decrementcount = blog.getCommentCount() - 1;
+			throw new ServiceDownException("--------------blog service is down please try after sometime");
 
-				feign.updateComment(blogId, decrementcount);
-
-				deleteComments.add(comment);
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return deleteComments;
+
+		Comment deletedComment = commentRepository.save(comment2);
+
+		return objectMapper.commentToDtoConvertor(deletedComment);
 	}
 
 	@Override
 	public CommentDto getCommentById(String commentId) {
-		Comment comment = commentRepository.findById(commentId).orElseThrow(()-> new CommentNotFoundException("Comment dosen't exist with given Id"));
+		Comment comment = commentRepository.findById(commentId)
+				.orElseThrow(() -> new CommentNotFoundException("Comment dosen't exist with given Id"));
 		return objectMapper.commentToDtoConvertor(comment);
 	}
 
