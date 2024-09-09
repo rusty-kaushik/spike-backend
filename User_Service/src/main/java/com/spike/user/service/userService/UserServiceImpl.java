@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findByUsername(username);
             if (existingUser == null) {
                 logger.warn("User not found: {}", username);
-                throw new EmployeeNotFoundException("User not found");
+                throw new UserNotFoundException("User not found");
             }
             if (!passwordEncoder.matches(userChangePasswordDTO.getOldPassword(), existingUser.getPassword())) {
                 logger.warn("Old password does not match for user: {}", username);
@@ -108,7 +108,7 @@ public class UserServiceImpl implements UserService {
             userRepository.save(existingUser);
             logger.info("Successfully updated password for user: {}", username);
             return "Successfully updated password for " + username;
-        } catch (EmployeeNotFoundException | PasswordNotMatchException e) {
+        } catch (UserNotFoundException | PasswordNotMatchException e) {
             logger.error("Error updating password for user: {}", username, e);
             throw e;
         } catch (Exception e) {
@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findById(userId)
                     .orElseThrow(() -> {
                         logger.error("User not found with id: {}", userId);
-                        return new EntityNotFoundException("User not found with id: " + userId);
+                        return new UserNotFoundException("User not found with id: " + userId);
                     });
 
             // update user fields
@@ -135,7 +135,7 @@ public class UserServiceImpl implements UserService {
             logger.info("User fields updated for user ID: {}", userId);
 
             return userRepository.save(existingUser);
-        } catch (EntityNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("Error updating user - user not found with id: {}", userId, e);
             throw e;
         } catch (Exception e) {
@@ -152,7 +152,7 @@ public class UserServiceImpl implements UserService {
         user.setPrimaryMobileNumber(userRequest.getPrimaryMobileNumber());
         user.setSecondaryMobileNumber(userRequest.getSecondaryMobileNumber());
         if (userRequest.getUsername() == null || userRequest.getUsername().isEmpty()) {
-            throw new RuntimeException("Username cannot be null or empty");
+            throw new UserNotFoundException("Username cannot be null or empty");
         }
         user.setUsername(userRequest.getUsername());
     }
@@ -166,14 +166,14 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findById(userId)
                     .orElseThrow(() -> {
                         logger.error("User not found with id: {}", userId);
-                        return new EntityNotFoundException("User not found with id: " + userId);
+                        return new UserNotFoundException("User not found with id: " + userId);
                     });
 
             setSocialUrls(existingUser, userRequest);
             logger.info("Social URLs updated for user ID: {}", userId);
 
             return userRepository.save(existingUser);
-        } catch (EntityNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("Error updating social URLs - user not found with id: {}", userId, e);
             throw e;
         } catch (Exception e) {
@@ -207,14 +207,14 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findById(userId)
                     .orElseThrow(() -> {
                         logger.error("User not found with id: {}", userId);
-                        return new EntityNotFoundException("User not found with id: " + userId);
+                        return new UserNotFoundException("User not found with id: " + userId);
                     });
 
             setUserAddresses(existingUser, addresses);
             logger.info("Addresses updated for user ID: {}", userId);
 
             return userRepository.save(existingUser);
-        } catch (EntityNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("Error updating addresses - user not found with id: {}", userId, e);
             throw e;
         } catch (Exception e) {
@@ -256,7 +256,7 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findById(userId)
                     .orElseThrow(() -> {
                         logger.error("User not found with id: {}", userId);
-                        return new EntityNotFoundException("User not found with id: " + userId);
+                        return new UserNotFoundException("User not found with id: " + userId);
                     });
 
             UserProfilePicture userProfilePicture = existingUser.getProfilePicture();
@@ -301,7 +301,7 @@ public class UserServiceImpl implements UserService {
             existingUser.setProfilePicture(userProfilePicture);
 
             userRepository.save(existingUser);
-        } catch (EntityNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("User not found with id: {}", userId, e);
             throw e;
         } catch (IOException e) {
@@ -322,7 +322,7 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findById(userId)
                     .orElseThrow(() -> {
                         logger.error("User not found with id: {}", userId);
-                        return new RuntimeException("User not found with id: " + userId);
+                        return new UserNotFoundException("User not found with id: " + userId);
                     });
 
             userRepository.delete(existingUser);
@@ -342,11 +342,11 @@ public class UserServiceImpl implements UserService {
             PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
             Page<User> user = userRepository.findAll(specs, pageRequest);
             if (user.isEmpty()) {
-                throw new EmployeeNotFoundException("list is empty,no user found with the given name: " + name);
+                throw new UserNotFoundException("list is empty,no user found with the given name: " + name);
             } else {
                 return user.stream().map(this::userToUserContacsDto).collect(Collectors.toList());
             }
-        } catch (EmployeeNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("user doesn't exist");
             throw e;
         } catch (Exception ex) {
@@ -411,7 +411,7 @@ public class UserServiceImpl implements UserService {
 
             //convert to user dashboard dto
             return user.stream().map(this::userToUserDashboardDto).collect(Collectors.toList());
-        } catch (EmployeeNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("user doesn't exist");
             throw e;
         } catch (Exception ex) {
