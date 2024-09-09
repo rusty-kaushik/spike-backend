@@ -67,12 +67,10 @@ public class CommentServiceImpl implements CommentService {
 		Comment comment = objectMapper.dtoToCommentConvertor(commentDto);
 		comment.setCreatedDate(LocalDateTime.now());
 
-//		Comment com = commentRepository.save(comment);
-
 		long commentCount = commentRepository.findByBlogIdAndStatus(blogId, "Active").size() + 1;
 		try {
-		feign.updateComment(blogId, commentCount);
-		}catch (RetryableException e) {
+			feign.updateComment(blogId, commentCount);
+		} catch (RetryableException e) {
 
 			throw new ServiceDownException("--------------blog service is down please try after sometime");
 
@@ -155,7 +153,7 @@ public class CommentServiceImpl implements CommentService {
 		comment2.setStatus("InActive");
 		long commentCount = commentRepository.findByBlogIdAndStatus(blogId, "Active").size() - 1;
 		try {
-			
+
 			feign.updateComment(blogId, commentCount);
 		} catch (RetryableException e) {
 

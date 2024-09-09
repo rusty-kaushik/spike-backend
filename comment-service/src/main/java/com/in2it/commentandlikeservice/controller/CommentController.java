@@ -46,14 +46,8 @@ public class CommentController {
 	public ResponseEntity<CommentDto> updateComment(@RequestBody CommentUpdateDto updateDto,
 			@Valid @PathVariable("commentId") String commentId) {
 
-//		Comment comment = commentService.getByCommentId(commentId);
-
-//		if (comment.getId().equals(commentId)) {
 		return ResponseEntity.status(HttpStatus.OK).body(commentService.updateComment(updateDto, commentId));
-//		} else {
-//			throw new UserNotFoundException(
-//					" Insufficient information, Please ! try again with sufficient information.");
-//		}
+
 	}
 
 	@GetMapping("/get-all/{blogId}, method = RequestMethod.GET")
@@ -62,15 +56,6 @@ public class CommentController {
 		return ResponseEntity.status(HttpStatus.OK).body(commentService.getByBlogId(blogId));
 
 	}
-
-//	@GetMapping("/get/{commentId}")
-//	public ResponseEntity<Comment> getCommentById(@PathVariable String commentId) {
-//		try {
-//			return ResponseEntity.status(HttpStatus.OK).body(commentService.getByCommentId(commentId));
-//		} catch (Exception e) {
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//		}
-//	}
 
 	@GetMapping("/comment/{commentId}")
 	public ResponseEntity<CommentDto> getCommentByCommentId(@PathVariable String commentId) {
