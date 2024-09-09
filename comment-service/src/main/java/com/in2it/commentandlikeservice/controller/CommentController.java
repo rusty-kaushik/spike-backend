@@ -50,7 +50,7 @@ public class CommentController {
 
 	}
 
-	@GetMapping("/get-all/{blogId}, method = RequestMethod.GET")
+	@GetMapping("/get-all/{blogId}")
 	public ResponseEntity<List<CommentDto>> getCommentByBlogId(@PathVariable String blogId) {
 
 		return ResponseEntity.status(HttpStatus.OK).body(commentService.getByBlogId(blogId));
