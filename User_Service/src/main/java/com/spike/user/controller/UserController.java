@@ -230,7 +230,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema()))
     })
-    @PutMapping(value = "/self/addresses/{userId}/{username}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping( "/self/addresses/{userId}/{username}")
     public ResponseEntity<Object> updateAddresses(
             @PathVariable Long userId,
             @PathVariable String username,
