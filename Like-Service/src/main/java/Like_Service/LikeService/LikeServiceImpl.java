@@ -1,12 +1,14 @@
 package Like_Service.LikeService;
 
+import Like_Service.BlogDto.BlogDto;
 import Like_Service.ExceptionHandling.BlogNotFoundException;
 import Like_Service.ExceptionHandling.UserNotFoundException;
 import Like_Service.FeignInterface.BlogClient;
 import Like_Service.LikeEntity.LikeEntity;
 import Like_Service.LikeEntity.status;
 import Like_Service.LikeRepository.LikeRepository;
-import com.in2it.blogservice.dto.BlogDto;
+
+
 import com.in2it.blogservice.reponse.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,8 @@ public class LikeServiceImpl implements LikeService {
 
     @Autowired
     private BlogClient blogClient;
+
+
 
     @Override
 
