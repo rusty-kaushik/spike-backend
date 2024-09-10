@@ -34,6 +34,7 @@ public class LikeServiceImpl implements LikeService {
 
     public String likeandUnlikepost(UUID blogId, String userName) {
         // Fetch blog details from the blog service
+
       Long LikeCount = likeRepository.countLikesByBlogId(blogId);
 
 
@@ -64,7 +65,7 @@ public class LikeServiceImpl implements LikeService {
             LikeCount += 1;
         }
 
-        System.out.println("Updating like count to " + LikeCount + " for blogId " + blogId);
+
 
         updateBlogLikeCount(blogId, LikeCount);
 
@@ -74,10 +75,10 @@ public class LikeServiceImpl implements LikeService {
 
 
 
-    public void updateBlogLikeCount(UUID blogId, long likeCount) {
+    public void updateBlogLikeCount(UUID blogId, long LikeCount) {
         try {
             String blogid= blogId.toString();
-            blogClient.updateLike(blogid, likeCount);
+            blogClient.updateLike(blogid, LikeCount);
         } catch (Exception e) {
             throw new RuntimeException("Failed to update like count for blogId " + blogId, e);
         }
