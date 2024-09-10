@@ -124,7 +124,7 @@ public class CommentServiceImpl implements CommentService {
 		return commentListDto;
 	}
 
-	public CommentDto deleteByBlogId(String blogId, String commentId) {
+	public CommentDto deleteByCommentId(String blogId, String commentId) {
 
 		ResponseEntity<BlogDto> response = null;
 
