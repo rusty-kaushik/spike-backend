@@ -35,10 +35,8 @@ public class LikeServiceImpl implements LikeService {
     public String likeandUnlikepost(UUID blogId, String userName) {
         // Fetch blog details from the blog service
 
-      Long LikeCount = likeRepository.countLikesByBlogId(blogId);
+        Long LikeCount = likeRepository.countLikesByBlogId(blogId);
 
-
-        System.out.println("Initial Like Count: " + LikeCount);
 
         // Check if the user has already liked/disliked this blog
         LikeEntity existingLike = likeRepository.findByBlogidAndUserName(blogId, userName);
@@ -49,12 +47,18 @@ public class LikeServiceImpl implements LikeService {
                 // If already liked, switch to disliked and decrement like count
                 existingLike.setStatus(status.Unliked);
                 LikeCount = Math.max(0, LikeCount - 1);
+                likeRepository.save(existingLike);
+                updateBlogLikeCount(blogId, LikeCount);
+                return "User unliked this blog";
             } else {
                 // If disliked, switch to liked and increment like count
                 existingLike.setStatus(status.Liked);
                 LikeCount += 1;
+
+                likeRepository.save(existingLike);
+                updateBlogLikeCount(blogId, LikeCount);
+                return "User liked this blog";
             }
-            likeRepository.save(existingLike);
         } else {
             LikeEntity newLike = new LikeEntity();
             newLike.setBlogid(blogId);
@@ -63,17 +67,15 @@ public class LikeServiceImpl implements LikeService {
             newLike.setStatus(status.Liked);
             likeRepository.save(newLike);
             LikeCount += 1;
+            updateBlogLikeCount(blogId, LikeCount);
+            return "User liked this blog";
         }
 
 
 
-        updateBlogLikeCount(blogId, LikeCount);
 
-        return (existingLike != null && existingLike.getStatus() == status.Liked) ?
-                "User unliked this blog" : "User liked this blog";
+
     }
-
-
 
     public void updateBlogLikeCount(UUID blogId, long LikeCount) {
         try {
