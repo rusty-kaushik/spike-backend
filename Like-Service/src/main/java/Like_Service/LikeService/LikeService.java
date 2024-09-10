@@ -1,11 +1,12 @@
 package Like_Service.LikeService;
 
-import Like_Service.LikeEntity.Like;
+import Like_Service.LikeEntity.LikeEntity;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface LikeService {
-    String likepost(long blogid, long userid);
+    String likeandUnlikepost(UUID blogid, String username);
 
-    List<Long> getUserIds(long blogid);
+    List<String> getUserNames(UUID blogid);
 }

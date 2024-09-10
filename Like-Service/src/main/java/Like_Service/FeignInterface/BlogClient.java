@@ -1,22 +1,26 @@
 package Like_Service.FeignInterface;
 
 import com.in2it.blogservice.dto.BlogDto;
+import com.in2it.blogservice.reponse.ResponseHandler;
 import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name="blog-service" , url="http://localhost:8080/in2it-blog")
+import java.util.UUID;
+
+//localhost:8282/spike/blog
+@FeignClient(name = "blog-service", url = "${feign.client.url}")
 public interface BlogClient {
 
-    //get api to get  blog by using feign client
+    // Fetch the blog details by blog ID
     @GetMapping("/getByBlogId/{blogId}")
-    public ResponseEntity<BlogDto> getBlogById(@PathVariable(value = "blogId") @Valid Long blogId) ;
+    public ResponseEntity<ResponseHandler<BlogDto>> getBlogById(@PathVariable(value = "blogId") @Valid String blogId);
 
-   //put api to update like count in blog
+
     @PutMapping("/updateLike")
-    public ResponseEntity<BlogDto> updateLike(@RequestParam Long blogId, @RequestParam Long totalLikeCount);
-
-
+    public ResponseEntity<ResponseHandler<BlogDto>> updateLike(@RequestParam String blogId, @RequestParam Long totalLikeCount);
 }
