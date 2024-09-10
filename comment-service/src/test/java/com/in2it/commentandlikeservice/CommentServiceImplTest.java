@@ -193,7 +193,7 @@ public class CommentServiceImplTest {
 	}
 
 	@Test
-	void deleteByBlogIdSuccessTest() {
+	void deleteByCommentIdSuccessTest() {
 
 		comment.setStatus("Active");
 
@@ -202,18 +202,18 @@ public class CommentServiceImplTest {
 		when(commentRepository.save(comment)).thenReturn(comment);
 		when(objectMapper.commentToDtoConvertor(comment)).thenReturn(commentDto);
 
-		CommentDto result = commentService.deleteByBlogId("1", "1");
+		CommentDto result = commentService.deleteByCommentId("1", "1");
 
 		assertNotNull(result);
 		assertEquals("InActive", comment.getStatus());
 	}
 
 	@Test
-	void deleteByBlogIdBlogNotFoundTest() {
+	void deleteByCommentIdBlogNotFoundTest() {
 		when(feign.getBlogById("1")).thenThrow(new BlogNotFoundException("Blog Id is not valid.."));
 
 		assertThrows(BlogNotFoundException.class, () -> {
-			commentService.deleteByBlogId("1", "1");
+			commentService.deleteByCommentId("1", "1");
 		});
 	}
 

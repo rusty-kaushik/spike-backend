@@ -86,12 +86,12 @@ public class CommentControllerTest {
 	}
 
 	@Test
-	void deleteCommentByBlogIdTest() throws Exception {
+	void deleteCommentByCommentIdTest() throws Exception {
 		CommentDto commentDto = new CommentDto();
 		commentDto.setContent("Deleted comment");
 
-		when(commentService.deleteByBlogId(anyString(), anyString())).thenReturn(commentDto);
-		ResponseEntity<CommentDto> deletedComment = commentController.deleteCommentByBlogId("dsadadad", "sadadadsad");
+		when(commentService.deleteByCommentId(anyString(), anyString())).thenReturn(commentDto);
+		ResponseEntity<CommentDto> deletedComment = commentController.deleteCommentByCommentId("dsadadad", "sadadadsad");
 
 		assertEquals(commentDto, deletedComment.getBody());
 
