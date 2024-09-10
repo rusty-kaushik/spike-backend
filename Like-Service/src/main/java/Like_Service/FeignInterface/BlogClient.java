@@ -18,9 +18,9 @@ public interface BlogClient {
 
     // Fetch the blog details by blog ID
     @GetMapping("/getByBlogId/{blogId}")
-    public ResponseEntity<ResponseHandler<BlogDto>> getBlogById(@PathVariable(value = "blogId") @Valid UUID blogId);
+    public ResponseEntity<ResponseHandler<BlogDto>> getBlogById(@PathVariable(value = "blogId") @Valid String blogId);
 
 
     @PutMapping("/updateLike")
-    public ResponseEntity<ResponseHandler<BlogDto>> updateLike(@RequestParam UUID blogId, @RequestParam Long totalLikeCount);
+    public ResponseEntity<ResponseHandler<BlogDto>> updateLike(@RequestParam String blogId, @RequestParam Long totalLikeCount);
 }
