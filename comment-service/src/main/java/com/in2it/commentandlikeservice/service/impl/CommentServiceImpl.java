@@ -170,7 +170,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public CommentDto getCommentById(String commentId) {
-		Comment comment = commentRepository.findById(commentId)
+		Comment comment = commentRepository.findByIdAndStatus(commentId,"Active")
 				.orElseThrow(() -> new CommentNotFoundException("Comment dosen't exist with given Id"));
 		return objectMapper.commentToDtoConvertor(comment);
 	}
