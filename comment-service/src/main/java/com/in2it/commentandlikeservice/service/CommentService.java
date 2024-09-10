@@ -19,6 +19,6 @@ public interface CommentService {
 
 	public CommentDto updateComment(CommentUpdateDto updateDto, String commentId);
 
-	public CommentDto deleteByBlogId(String blogId, String commentId);
+	public CommentDto deleteByCommentId(String blogId, String commentId);
 
 }

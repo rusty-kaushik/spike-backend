@@ -63,10 +63,10 @@ public class CommentController {
 	}
 
 	@DeleteMapping("/delete/{blogId}/{commentId}")
-	public ResponseEntity<CommentDto> deleteCommentByBlogId(@PathVariable String blogId,
+	public ResponseEntity<CommentDto> deleteCommentByCommentId(@PathVariable String blogId,
 			@PathVariable String commentId) {
 
-		return ResponseEntity.status(HttpStatus.OK).body(commentService.deleteByBlogId(blogId, commentId));
+		return ResponseEntity.status(HttpStatus.OK).body(commentService.deleteByCommentId(blogId, commentId));
 
 	}
 
