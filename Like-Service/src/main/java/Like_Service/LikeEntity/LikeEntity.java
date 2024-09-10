@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name="like_table")
+@Table(name="like_master")
 public class LikeEntity {
 
     @Id
