@@ -2,3 +2,11 @@
 
 
 
+/.metadata/
+
+comment-service/.classpath
+comment-service/.factorypath
+comment-service/.project
+comment-service/.settings/
+comment-service/src/test/java/com/in2it/commentandlikeservice/CommentAndLikeServiceApplicationTest.java
+comment-service/target/
