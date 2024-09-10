@@ -1,6 +1,9 @@
 package Like_Service.FeignInterface;
 
-import com.in2it.blogservice.dto.BlogDto;
+
+import Like_Service.BlogDto.BlogDto;
+
+
 import com.in2it.blogservice.reponse.ResponseHandler;
 import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -9,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.UUID;
 
 //localhost:8282/spike/blog
 @FeignClient(name = "blog-service", url = "${feign.client.url}")
