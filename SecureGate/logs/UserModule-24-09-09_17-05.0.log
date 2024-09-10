@@ -1,0 +1,16 @@
+24-09-09 17:05:34.466 [main] INFO  c.s.SecureGate.SecureGateApplication - Starting SecureGateApplication using Java 17.0.11 with PID 23136 (D:\SecureGate\target\classes started by aniket.kaushik in D:\SecureGate) 
+24-09-09 17:05:34.470 [main] INFO  c.s.SecureGate.SecureGateApplication - No active profile set, falling back to 1 default profile: "default" 
+24-09-09 17:05:35.336 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=331ce3d3-e727-394d-839d-f2391b33034b 
+24-09-09 17:05:35.595 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http) 
+24-09-09 17:05:35.602 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+24-09-09 17:05:35.607 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat] 
+24-09-09 17:05:35.607 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28] 
+24-09-09 17:05:35.662 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext 
+24-09-09 17:05:35.662 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1125 ms 
+24-09-09 17:05:36.040 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. 
+24-09-09 17:05:36.678 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+24-09-09 17:05:36.707 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/' 
+24-09-09 17:05:36.745 [main] INFO  c.s.SecureGate.SecureGateApplication - Started SecureGateApplication in 2.558 seconds (process running for 3.039) 
+24-09-09 17:05:42.482 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+24-09-09 17:05:42.482 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+24-09-09 17:05:42.483 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms 
