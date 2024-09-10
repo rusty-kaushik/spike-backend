@@ -9,7 +9,7 @@ import Like_Service.LikeEntity.status;
 import Like_Service.LikeRepository.LikeRepository;
 
 
-import com.in2it.blogservice.reponse.ResponseHandler;
+import Like_Service.ResponseHandler.ResponseHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,17 +34,11 @@ public class LikeServiceImpl implements LikeService {
 
     public String likeandUnlikepost(UUID blogId, String userName) {
         // Fetch blog details from the blog service
-        String blogid=blogId.toString();
-        ResponseEntity<ResponseHandler<BlogDto>> response = blogClient.getBlogById(blogid);
-        BlogDto blog = response.getBody().getData();
+
+      Long LikeCount = likeRepository.countLikesByBlogId(blogId);
 
 
-        if (blog == null) {
-            throw new BlogNotFoundException("Blog does not exist");
-        }
-
-        long likeCount = blog.getLikeCount();
-        System.out.println("Initial Like Count: " + likeCount);
+        System.out.println("Initial Like Count: " + LikeCount);
 
         // Check if the user has already liked/disliked this blog
         LikeEntity existingLike = likeRepository.findByBlogidAndUserName(blogId, userName);
@@ -54,11 +48,11 @@ public class LikeServiceImpl implements LikeService {
             if (existingLike.getStatus() == status.Liked) {
                 // If already liked, switch to disliked and decrement like count
                 existingLike.setStatus(status.Unliked);
-                likeCount = Math.max(0, likeCount - 1);
+                LikeCount = Math.max(0, LikeCount - 1);
             } else {
                 // If disliked, switch to liked and increment like count
                 existingLike.setStatus(status.Liked);
-                likeCount += 1;
+                LikeCount += 1;
             }
             likeRepository.save(existingLike);
         } else {
@@ -68,12 +62,12 @@ public class LikeServiceImpl implements LikeService {
             newLike.setCreatedAt(LocalDateTime.now());
             newLike.setStatus(status.Liked);
             likeRepository.save(newLike);
-            likeCount += 1;
+            LikeCount += 1;
         }
 
-        System.out.println("Updating like count to " + likeCount + " for blogId " + blogId);
 
-        updateBlogLikeCount(blogId, likeCount);
+
+        updateBlogLikeCount(blogId, LikeCount);
 
         return (existingLike != null && existingLike.getStatus() == status.Liked) ?
                 "User unliked this blog" : "User liked this blog";
@@ -81,10 +75,10 @@ public class LikeServiceImpl implements LikeService {
 
 
 
-    public void updateBlogLikeCount(UUID blogId, long likeCount) {
+    public void updateBlogLikeCount(UUID blogId, long LikeCount) {
         try {
             String blogid= blogId.toString();
-            blogClient.updateLike(blogid, likeCount);
+            blogClient.updateLike(blogid, LikeCount);
         } catch (Exception e) {
             throw new RuntimeException("Failed to update like count for blogId " + blogId, e);
         }

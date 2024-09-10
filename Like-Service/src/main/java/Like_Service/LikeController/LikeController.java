@@ -28,9 +28,10 @@ public class LikeController {
 
     //Put Api to Like and unlike a Post
     //require blogid and user id as parameters
-    @PutMapping("/post/{blogid}/{username}")
-    private ResponseEntity<Object> blogLikeAndUnlike(@PathVariable("blogid") UUID blogid, @PathVariable("username") String username) {
-        String response= likeService.likeandUnlikepost(blogid, username);
+    @PutMapping("/blog/{blogid}/{username}")
+    private ResponseEntity<Object> blogLikeAndUnlike(@PathVariable("blogid") String blogid, @PathVariable("username") String username) {
+       UUID blogId = UUID.fromString(blogid);
+        String response= likeService.likeandUnlikepost(blogId, username);
         return ResponseHandler.response(HttpStatus.OK , response,"Success");
 
     }
@@ -39,9 +40,10 @@ public class LikeController {
 
     //api to get usernames who liked the blog
     @GetMapping("getusername/wholikedblog/{blogid}")
-    public ResponseEntity<Object> getUserNamesWhoLikedBlog(@PathVariable("blogid") UUID blogid) {
+    public ResponseEntity<Object> getUserNamesWhoLikedBlog(@PathVariable("blogid") String blogid) {
+        UUID blogId = UUID.fromString(blogid);
         //it will provide the list of usernames who liked blog with the provided blogid
-        List<String> likes =likeService.getUserNames(blogid);
+        List<String> likes =likeService.getUserNames(blogId);
         return ResponseHandler.response(HttpStatus.OK, String.valueOf(likes), "usernames fetched successfully");
 
 
