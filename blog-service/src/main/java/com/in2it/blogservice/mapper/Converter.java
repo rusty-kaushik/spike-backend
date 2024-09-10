@@ -38,7 +38,7 @@ public class Converter {
 	/*static way to create file path*/
 	public final String fileUploadDir="C:\\Users\\Vaseem.akhtar\\Desktop\\Blog_file";
 	
-	/* dynamic way to create file path*/
+	/* dynamic way to create file path in target resorces */
 //    public final String fileUploadDir=new ClassPathResource("static/image/").getFile().getAbsolutePath();
 	
 	private static long randomId=0;
@@ -99,7 +99,6 @@ public class Converter {
 				
             	  randomId = generateUniqueId();
             	  String fileName= randomId+multipartFile2.getOriginalFilename();
-//				  fullPath=fileUploadDir+File.separator+randomId+multipartFile2.getOriginalFilename();
 				  fullPath=fileUploadDir+File.separator+fileName;
 				
 				  paths.add(fullPath);
