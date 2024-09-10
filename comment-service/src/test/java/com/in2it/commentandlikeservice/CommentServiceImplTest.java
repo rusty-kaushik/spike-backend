@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -58,10 +60,21 @@ public class CommentServiceImplTest {
 	MultipartFile multipartFile;
 	FileInputStream input;
 
-	File file = new File("D:\\path\\media\\CommentImage\\1725535141823Screenshot 2024-08-29 114124.png");
+//	File file = new File("D:\\path\\media\\CommentImage\\1725535141823Screenshot 2024-08-29 114124.png");
 
 	@BeforeEach
 	void setUp() {
+
+		// Create a temporary file
+		Path tempFile = null;
+		try {
+			tempFile = Files.createTempFile("fakefile", ".png");
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		File file = tempFile.toFile();
+
 		try {
 			input = new FileInputStream(file);
 			multipartFile = new MockMultipartFile("fileItem", file.getName(), "image/png", IOUtils.toByteArray(input));
@@ -144,7 +157,6 @@ public class CommentServiceImplTest {
 		CommentDto commentDto = new CommentDto();
 		commentDto.setContent("Updated content");
 
-	
 		when(commentRepository.findById(commentId)).thenReturn(Optional.of(existingComment));
 		when(commentRepository.save(existingComment)).thenReturn(updatedComment);
 		when(objectMapper.commentToDtoConvertor(updatedComment)).thenReturn(commentDto);
@@ -153,7 +165,7 @@ public class CommentServiceImplTest {
 
 		assertNotNull(result);
 		assertEquals("Updated content", result.getContent());
-		assertNotNull(existingComment.getUpdatedDateTime()); 
+		assertNotNull(existingComment.getUpdatedDateTime());
 		verify(commentRepository, times(1)).findById(commentId);
 		verify(commentRepository, times(1)).save(existingComment);
 		verify(objectMapper, times(1)).commentToDtoConvertor(updatedComment);
@@ -239,4 +251,3 @@ public class CommentServiceImplTest {
 	}
 
 }
-
