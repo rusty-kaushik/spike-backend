@@ -28,12 +28,12 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
 
-    public String likeandUnlikepost(UUID blogId, long userId) {
+    public String likeandUnlikepost(UUID blogId, String userName) {
         // Fetch blog details from the blog service
         String blogid=blogId.toString();
         ResponseEntity<ResponseHandler<BlogDto>> response = blogClient.getBlogById(blogid);
         BlogDto blog = response.getBody().getData();
-        System.out.println(blog);
+
 
         if (blog == null) {
             throw new BlogNotFoundException("Blog does not exist");
@@ -43,7 +43,7 @@ public class LikeServiceImpl implements LikeService {
         System.out.println("Initial Like Count: " + likeCount);
 
         // Check if the user has already liked/disliked this blog
-        LikeEntity existingLike = likeRepository.findByBlogidAndUserid(blogId, userId);
+        LikeEntity existingLike = likeRepository.findByBlogidAndUserName(blogId, userName);
 
         if (existingLike != null) {
 
@@ -60,7 +60,7 @@ public class LikeServiceImpl implements LikeService {
         } else {
             LikeEntity newLike = new LikeEntity();
             newLike.setBlogid(blogId);
-            newLike.setUserid(userId);
+            newLike.setUserName(userName);
             newLike.setCreatedAt(LocalDateTime.now());
             newLike.setStatus(status.Liked);
             likeRepository.save(newLike);
@@ -81,18 +81,17 @@ public class LikeServiceImpl implements LikeService {
         try {
             String blogid= blogId.toString();
             blogClient.updateLike(blogid, likeCount);
-            System.out.println("Successfully updated like count to " + likeCount + " for blogId " + blogId);
         } catch (Exception e) {
             throw new RuntimeException("Failed to update like count for blogId " + blogId, e);
         }
     }
 
     @Override
-    public List<Long> getUserIds(UUID blogid) {
-        List<Long> userids = likeRepository.findByBlogId(blogid);
-        if (userids.isEmpty()) {
+    public List<String> getUserNames(UUID blogid) {
+        List<String> userNames = likeRepository.findByBlogId(blogid);
+        if (userNames.isEmpty()) {
             throw new UserNotFoundException("No user has liked this blog");
         }
-        return userids;
+        return userNames;
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface LikeService {
-    String likeandUnlikepost(UUID blogid, long userid);
+    String likeandUnlikepost(UUID blogid, String username);
 
-    List<Long> getUserIds(UUID blogid);
+    List<String> getUserNames(UUID blogid);
 }

@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface LikeRepository extends JpaRepository<LikeEntity, UUID> {
-    LikeEntity findByBlogidAndUserid( UUID blogid, long userid);
+    LikeEntity findByBlogidAndUserName( UUID blogid, String username);
 
 
-    @Query("SELECT l.userid FROM LikeEntity l WHERE l.blogid =:blogid")
-    List<Long> findByBlogId(@Param("blogid")UUID blogid);
+    @Query("SELECT l.userName FROM LikeEntity l WHERE l.blogid =:blogid")
+    List<String> findByBlogId(@Param("blogid")UUID blogid);
 
 }

@@ -28,22 +28,21 @@ public class LikeController {
 
     //Put Api to Like and unlike a Post
     //require blogid and user id as parameters
-    @PutMapping("/post/{blogid}/{userid}")
-    private ResponseEntity<Object> blogLikeAndUnlike(@PathVariable("blogid") UUID blogid, @PathVariable("userid") long userid) {
-        String response= likeService.likeandUnlikepost(blogid, userid);
+    @PutMapping("/post/{blogid}/{username}")
+    private ResponseEntity<Object> blogLikeAndUnlike(@PathVariable("blogid") UUID blogid, @PathVariable("username") String username) {
+        String response= likeService.likeandUnlikepost(blogid, username);
         return ResponseHandler.response(HttpStatus.OK , response,"Success");
 
     }
 
 
 
-
-    //api to get userids who liked the blog
-    @GetMapping("getuserids/wholikedblog/{blogid}")
-    public ResponseEntity<Object> getUserIdsWhoLikedBlog(@PathVariable("blogid") UUID blogid) {
-        //it will provide the list of userids who liked blog with the provided blogid
-        List<Long> likes =likeService.getUserIds(blogid);
-        return ResponseHandler.response(HttpStatus.OK, String.valueOf(likes), "userid fetched successfully");
+    //api to get usernames who liked the blog
+    @GetMapping("getusername/wholikedblog/{blogid}")
+    public ResponseEntity<Object> getUserNamesWhoLikedBlog(@PathVariable("blogid") UUID blogid) {
+        //it will provide the list of usernames who liked blog with the provided blogid
+        List<String> likes =likeService.getUserNames(blogid);
+        return ResponseHandler.response(HttpStatus.OK, String.valueOf(likes), "usernames fetched successfully");
 
 
 

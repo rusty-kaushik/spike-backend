@@ -13,7 +13,7 @@ public class LikeEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private UUID blogid;
-    private long userid;
+    private String userName;
     @Enumerated(EnumType.STRING)
     private status status;
     private LocalDateTime createdAt;
@@ -34,12 +34,12 @@ public class LikeEntity {
         this.blogid = blogid;
     }
 
-    public long getUserid() {
-        return userid;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserid(long userid) {
-        this.userid = userid;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Like_Service.LikeEntity.status getStatus() {
