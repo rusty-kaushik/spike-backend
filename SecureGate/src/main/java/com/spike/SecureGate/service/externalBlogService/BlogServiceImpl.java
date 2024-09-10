@@ -79,10 +79,10 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public ResponseEntity<Object> fetchBlogById(String blogId) {
         try {
-            if (!blogValidators.validateBlogExistence(blogId)) {
-                logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
-            }
+//            if (!blogValidators.validateBlogExistence(blogId)) {
+//                logger.error("Validation failed");
+//                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
+//            }
             return blogFeignClient.fetchBlogById(blogId);
         } catch (ValidationFailedException e) {
             throw e;
@@ -109,10 +109,10 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public ResponseEntity<Object> deleteBlogById(String blogId, String userName) {
         try {
-            if (!blogValidators.validateBlogExistence(blogId)) {
-                logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
-            }
+//            if (!blogValidators.validateBlogExistence(blogId)) {
+//                logger.error("Validation failed");
+//                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
+//            }
             return blogFeignClient.deleteBlogById(blogId, userName);
         } catch (ValidationFailedException e) {
             throw e;
