@@ -16,6 +16,6 @@ public class Response<T> {
 	private T data;
 	private String message;
 	private HttpStatus httpStatus;
-	private int statusCode; 
-	private LocalDateTime timeStamp;
+	private int statusCode;
+
 }

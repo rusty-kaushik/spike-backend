@@ -44,7 +44,7 @@ public class CommentController {
 		CommentDto comment = commentService.saveComment(commentDto, blogId);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(new Response(comment, "Comment successfully created",
-				HttpStatus.CREATED, HttpStatus.CREATED.value(), LocalDateTime.now()));
+				HttpStatus.CREATED, HttpStatus.CREATED.value()));
 
 	}
 
@@ -55,7 +55,7 @@ public class CommentController {
 		CommentDto comment = commentService.updateComment(updateDto, commentId);
 
 		return ResponseEntity.status(HttpStatus.OK).body(new Response(comment, "Comment successfully updated",
-				HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now()));
+				HttpStatus.OK, HttpStatus.OK.value()));
 
 	}
 
@@ -66,7 +66,7 @@ public class CommentController {
 
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(new Response(comments, "Found all the comments of this blog " + blogId, HttpStatus.OK,
-						HttpStatus.OK.value(), LocalDateTime.now()));
+						HttpStatus.OK.value()));
 	}
 
 	@GetMapping("/comment/{commentId}")
@@ -74,7 +74,7 @@ public class CommentController {
 		CommentDto comment = commentService.getCommentById(commentId);
 
 		return ResponseEntity.status(HttpStatus.OK).body(
-				new Response(comment, "Comment found  ", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now()));
+				new Response(comment, "Comment found  ", HttpStatus.OK, HttpStatus.OK.value()));
 	}
 
 	@DeleteMapping("/delete/{blogId}/{commentId}")
@@ -89,7 +89,7 @@ public class CommentController {
 		}
 
 		Response<Boolean> response = new Response<Boolean>(flag, "Deleted Successfully", HttpStatus.OK,
-				HttpStatus.OK.value(), LocalDateTime.now());
+				HttpStatus.OK.value());
 
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 
