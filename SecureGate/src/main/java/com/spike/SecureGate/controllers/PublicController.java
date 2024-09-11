@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Authentication", description = "Public APIs")
 @RestController
 @RequestMapping("/in2it/spike/SecureGate/public")
 public class PublicController {
@@ -41,8 +40,7 @@ public class PublicController {
 
     @Operation(
             summary = "Login to the Project",
-            description = "Logs in a user. The API takes username and password in json and return a JWT token which is used to call each api.",
-            tags = { "Public", "post" })
+            description = "Logs in a user. The API takes username and password in json and return a JWT token which is used to call each api.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully logged in",
                     content = { @Content(mediaType = "application/json",
