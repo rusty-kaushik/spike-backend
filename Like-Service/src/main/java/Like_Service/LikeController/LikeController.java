@@ -28,7 +28,7 @@ public class LikeController {
 
     //Put Api to Like and unlike a Post
     //require blogid and user id as parameters
-    @PutMapping("/blog/{blogid}/{username}")
+    @PutMapping("/blogpost/{blogid}/{username}")
     private ResponseEntity<Object> blogLikeAndUnlike(@PathVariable("blogid") String blogid, @PathVariable("username") String username) {
        UUID blogId = UUID.fromString(blogid);
         String response= likeService.likeandUnlikepost(blogId, username);
