@@ -336,7 +336,7 @@ public class UserServiceImpl implements UserService {
     public List<UserContactsDTO> getUserContacts(String name, int pageno, int pagesize, String sort) {
         logger.info("starts fetching user contacts");
         try {
-            Specification<User> specs = Specification.where(userHelper.hasName(name));
+            Specification<User> specs = Specification.where(userHelper.filterByName(name));
             String[] sortParams = sort.split(",");
             Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);
             PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
@@ -395,12 +395,11 @@ public class UserServiceImpl implements UserService {
 
     //this service will return list of all users with filtration
     @Override
-    public List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Date joiningDate, Double salary, int page, int size, String sort) {
+    public List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Double salary, int page, int size, String sort) {
         logger.info("starts fetching user details");
         try {
             Specification<User> specs = Specification.where(userHelper.filterByName(name))
                     .or(userHelper.filterByEmail(email))
-                    .or(userHelper.filterByJoiningDate(joiningDate))
                     .or(userHelper.filterBySalary(salary));
 
             //created PageRequest for pagination and sorting
@@ -424,8 +423,6 @@ public class UserServiceImpl implements UserService {
     //this method will set data of user in userDashboardDto
     private UserDashboardDTO userToUserDashboardDto(User user) {
         UserDashboardDTO userDashboardDTO = userHelper.entityToUserDashboardDto(user);
-        userDashboardDTO.setJoiningDate(user.getJoiningDate() != null ? user.getJoiningDate() : null);
-
         //convert image into base64
         if (user.getProfilePicture() != null) {
             String filePath = user.getProfilePicture().getFilePath();

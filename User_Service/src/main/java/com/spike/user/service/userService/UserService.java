@@ -37,7 +37,7 @@ public interface UserService {
 
 
     //fetch user dashboard data with filtration if provided otherwise show all the user details
-    List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Date joiningDate, Double salary, int page, int size, String sort);
+    List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Double salary, int page, int size, String sort);
 
 
 }

@@ -17,7 +17,6 @@ public class UserDashboardDTO {
     private String email;
     private String designation;
     private String primaryMobile;
-    private Date joiningDate;
     private Double salary;
     private String profilePicture;
 

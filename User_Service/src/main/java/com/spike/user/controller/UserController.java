@@ -363,13 +363,12 @@ public class UserController {
     @GetMapping("/userinfo-dashboard")
     public ResponseEntity<Object> getSpecificUserInfoByUsername(@RequestParam(name = "name", required = false) String name,
                                                                 @RequestParam(name = "email", required = false) String email,
-                                                                @RequestParam(name = "joiningDate", required = false) Date joiningDate,
                                                                 @RequestParam(name = "salary", required = false) Double salary,
                                                                 @RequestParam(name = "page", defaultValue = "0") int page,
                                                                 @RequestParam(name = "size", defaultValue = "6") int size,
-                                                                @RequestParam(name = "sort", defaultValue = "joiningDate,desc") String sort) {
+                                                                @RequestParam(name = "sort", defaultValue = "name,desc") String sort) {
         try {
-            List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, joiningDate, salary, page, size, sort);
+            List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, salary, page, size, sort);
             return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.FOUND, userDashBoard);
         } catch (UserNotFoundException ex) {
             throw ex;
