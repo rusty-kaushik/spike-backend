@@ -36,7 +36,7 @@ public class Converter {
 	ModelMapper mapper;
 	
 	/*static way to create file path*/
-	public final String fileUploadDir="C:\\Users\\Vaseem.akhtar\\Desktop\\Blog_file";
+	public final String fileUploadDir=".\\blog-media";
 	
 	/* dynamic way to create file path in target resorces */
 //    public final String fileUploadDir=new ClassPathResource("static/image/").getFile().getAbsolutePath();
