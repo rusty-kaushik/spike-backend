@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
-@Tag(name = "Comments", description = "Comment APIs")
 @RestController
 @RequestMapping("/in2it/spike/SecureGate/comments")
 public class CommentController {
@@ -34,8 +33,7 @@ public class CommentController {
     // CREATE A COMMENT
     @Operation(
             summary = "Creates a new comment",
-            description = "Add a comment to the blog",
-            tags = { "Admin","Manager","Employee", "post" })
+            description = "Add a comment to the blog")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully added a comment",
                     content = { @Content(mediaType = "application/json",
@@ -67,8 +65,7 @@ public class CommentController {
     // EDIT A COMMENT
     @Operation(
             summary = "Edits a comment",
-            description = "Edit a comment to the blog you added.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Edit a comment to the blog you added.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully added a comment",
                     content = { @Content(mediaType = "application/json",
@@ -99,8 +96,7 @@ public class CommentController {
     // GET ALL COMMENTS OF A BLOG
     @Operation(
             summary = "Get all comments of the blog",
-            description = "Get all comments of the blog",
-            tags = { "Admin","Manager","Employee", "get" })
+            description = "Get all comments of the blog")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully added a comment",
                     content = { @Content(mediaType = "application/json",
@@ -130,8 +126,7 @@ public class CommentController {
     // GET A COMMENT BY ID
     @Operation(
             summary = "Get a comment",
-            description = "Returns a comment by id",
-            tags = { "Admin","Manager","Employee", "get" })
+            description = "Returns a comment by id")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully added a comment",
                     content = { @Content(mediaType = "application/json",
@@ -161,8 +156,7 @@ public class CommentController {
     // GET A COMMENT BY ID
     @Operation(
             summary = "deletes a comment",
-            description = "Deletes a comment",
-            tags = { "Admin","Manager","Employee", "delete" })
+            description = "Deletes a comment")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully deleted a comment",
                     content = { @Content(mediaType = "application/json",

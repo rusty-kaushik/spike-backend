@@ -27,7 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@Tag(name = "Users", description = "User APIs")
 @RestController
 @RequestMapping("/in2it/spike/SecureGate/user")
 public class UserController {
@@ -43,8 +42,7 @@ public class UserController {
     // CREATE A NEW USER
     @Operation(
             summary = "Admin creates a new user",
-            description = "Creates a new user with a profile picture. Pass the JSON body in the 'data' part and the file in the 'file' part.",
-            tags = { "Admin", "post" }
+            description = "Creates a new user with a profile picture. Pass the JSON body in the 'data' part and the file in the 'file' part."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully created a new user",
@@ -86,8 +84,7 @@ public class UserController {
     // CHANGE USER SELF PASSWORD
     @Operation(
             summary = "Update self password",
-            description = "Updates the password of user. The API takes old password and new  password in json.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the password of user. The API takes old password and new  password in json.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the password of user",
                     content = { @Content(mediaType = "application/json",
@@ -117,8 +114,7 @@ public class UserController {
     // UPDATE SELF DETAILS
     @Operation(
             summary = "Update self details",
-            description = "Updates the details of user.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the details of user.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the details of user",
                     content = { @Content(mediaType = "application/json",
@@ -150,8 +146,7 @@ public class UserController {
     // UPDATE SELF SOCIAL URLS
     @Operation(
             summary = "Update self social urls",
-            description = "Updates the social urls of user.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the social urls of user.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the social urls of user",
                     content = { @Content(mediaType = "application/json",
@@ -183,8 +178,7 @@ public class UserController {
     // UPDATE SELF ADDRESSES
     @Operation(
             summary = "Update self addresses",
-            description = "Updates the addresses of user.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the addresses of user.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
                     content = { @Content(mediaType = "application/json",
@@ -216,8 +210,7 @@ public class UserController {
     // UPDATE SELF PROFILE PICTURE
     @Operation(
             summary = "Update self profile picture",
-            description = "Updates the profile picture of user.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the profile picture of user.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
                     content = { @Content(mediaType = "application/json",
@@ -249,8 +242,7 @@ public class UserController {
     // DELETE USER
     @Operation(
             summary = "Delete a user",
-            description = "Delete a user",
-            tags = { "Admin","delete" })
+            description = "Delete a user")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully deleted user",
                     content = { @Content(mediaType = "application/json",
