@@ -46,7 +46,7 @@ public interface UserMapper {
 
      //MAP USER TO USERDASHBOARDDTO
      @Mapping(target = "profilePicture", ignore = true)
-     @Mapping(target= "joiningDate" , ignore=true)
+
     UserDashboardDTO entityToDtoDashboard(User user);
 
     UserAddressDTO entityToDtoAddress(UserAddress userAddress);
