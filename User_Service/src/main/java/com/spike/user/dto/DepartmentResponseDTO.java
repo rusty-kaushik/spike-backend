@@ -9,9 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserUpdateDTO {
-    private String username;
-    private String backupEmail;
-    private String primaryMobileNumber;
-    private String secondaryMobileNumber;
+public class DepartmentResponseDTO {
+    private Long id;
+    private String name;
 }

@@ -9,7 +9,6 @@ import com.spike.user.exceptions.*;
 import com.spike.user.helper.UserHelper;
 import com.spike.user.repository.UserProfilePictureRepository;
 import com.spike.user.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +30,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -121,7 +119,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User updateUser(Long userId, UserUpdateDTO userRequest) {
+    public User updateUserFull(Long userId, UserFullUpdateDTO userFullUpdateDTO) {
         logger.info("Starting update process for user ID: {}", userId);
         try {
             User existingUser = userRepository.findById(userId)
@@ -131,8 +129,16 @@ public class UserServiceImpl implements UserService {
                     });
 
             // update user fields
-            setUserFields(existingUser, userRequest);
+            setUserFields(existingUser, userFullUpdateDTO);
             logger.info("User fields updated for user ID: {}", userId);
+
+            // update user socials
+            setSocialUrls(existingUser, userFullUpdateDTO);
+            logger.info("User socials updated for user ID: {}", userId);
+
+            // update user addresses
+            setUserAddresses(existingUser,userFullUpdateDTO.getAddresses());
+            logger.info("User addresses updated for user ID: {}", userId);
 
             return userRepository.save(existingUser);
         } catch (UserNotFoundException e) {
@@ -146,45 +152,20 @@ public class UserServiceImpl implements UserService {
 
 
     // it will set the fields to update the user - logic
-    private void setUserFields(User user, UserUpdateDTO userRequest) {
+    private void setUserFields(User user, UserFullUpdateDTO userFullUpdateDTO) {
 
-        user.setBackupEmail(userRequest.getBackupEmail());
-        user.setPrimaryMobileNumber(userRequest.getPrimaryMobileNumber());
-        user.setSecondaryMobileNumber(userRequest.getSecondaryMobileNumber());
-        if (userRequest.getUsername() == null || userRequest.getUsername().isEmpty()) {
+        user.setBackupEmail(userFullUpdateDTO.getBackupEmail());
+        user.setPrimaryMobileNumber(userFullUpdateDTO.getPrimaryMobileNumber());
+        user.setSecondaryMobileNumber(userFullUpdateDTO.getSecondaryMobileNumber());
+        if (userFullUpdateDTO.getUsername() == null || userFullUpdateDTO.getUsername().isEmpty()) {
             throw new UserNotFoundException("Username cannot be null or empty");
         }
-        user.setUsername(userRequest.getUsername());
-    }
-
-    // Update User Social Urls
-    @Override
-    @Transactional
-    public User updateSocialUrls(Long userId, UserSocialDTO userRequest) {
-        logger.info("Starting social URL update for user ID: {}", userId);
-        try {
-            User existingUser = userRepository.findById(userId)
-                    .orElseThrow(() -> {
-                        logger.error("User not found with id: {}", userId);
-                        return new UserNotFoundException("User not found with id: " + userId);
-                    });
-
-            setSocialUrls(existingUser, userRequest);
-            logger.info("Social URLs updated for user ID: {}", userId);
-
-            return userRepository.save(existingUser);
-        } catch (UserNotFoundException e) {
-            logger.error("Error updating social URLs - user not found with id: {}", userId, e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error updating social URLs for user with id: {}", userId, e);
-            throw new RuntimeException("Unexpected error updating social URLs", e);
-        }
+        user.setUsername(userFullUpdateDTO.getUsername());
     }
 
 
     // it will take fields that we need to update - logic
-    private void setSocialUrls(User user, UserSocialDTO userRequest) {
+    private void setSocialUrls(User user, UserFullUpdateDTO userFullUpdateDTO) {
         UserSocials userSocials = user.getUserSocials();
 
         if (userSocials == null) {
@@ -193,34 +174,9 @@ public class UserServiceImpl implements UserService {
             user.setUserSocials(userSocials);
         }
 
-        userSocials.setLinkedinUrl(userRequest.getLinkedinUrl());
-        userSocials.setFacebookUrl(userRequest.getFacebookUrl());
-        userSocials.setInstagramUrl(userRequest.getInstagramUrl());
-    }
-
-    // Update User Address
-    @Override
-    @Transactional
-    public User updateAddresses(Long userId, List<UserAddressDTO> addresses) {
-        logger.info("Starting address update for user ID: {}", userId);
-        try {
-            User existingUser = userRepository.findById(userId)
-                    .orElseThrow(() -> {
-                        logger.error("User not found with id: {}", userId);
-                        return new UserNotFoundException("User not found with id: " + userId);
-                    });
-
-            setUserAddresses(existingUser, addresses);
-            logger.info("Addresses updated for user ID: {}", userId);
-
-            return userRepository.save(existingUser);
-        } catch (UserNotFoundException e) {
-            logger.error("Error updating addresses - user not found with id: {}", userId, e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error updating addresses for user with id: {}", userId, e);
-            throw new RuntimeException("Unexpected error updating addresses", e);
-        }
+        userSocials.setLinkedinUrl(userFullUpdateDTO.getLinkedinUrl());
+        userSocials.setFacebookUrl(userFullUpdateDTO.getFacebookUrl());
+        userSocials.setInstagramUrl(userFullUpdateDTO.getInstagramUrl());
     }
 
 

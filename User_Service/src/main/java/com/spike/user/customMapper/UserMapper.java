@@ -1,9 +1,7 @@
 package com.spike.user.customMapper;
 
-import com.spike.user.dto.UserAddressDTO;
-import com.spike.user.dto.UserContactsDTO;
-import com.spike.user.dto.UserCreationRequestDTO;
-import com.spike.user.dto.UserDashboardDTO;
+import com.spike.user.dto.*;
+import com.spike.user.entity.Department;
 import com.spike.user.entity.User;
 import com.spike.user.entity.UserAddress;
 import com.spike.user.entity.UserSocials;
@@ -50,4 +48,6 @@ public interface UserMapper {
     UserDashboardDTO entityToDtoDashboard(User user);
 
     UserAddressDTO entityToDtoAddress(UserAddress userAddress);
+
+    DepartmentResponseDTO entityToDepartmentDtoResponse(Department department);
 }
