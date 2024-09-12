@@ -70,11 +70,6 @@ public class LikeServiceImpl implements LikeService {
             updateBlogLikeCount(blogId, LikeCount);
             return "User liked this blog";
         }
-
-
-
-
-
     }
 
     public void updateBlogLikeCount(UUID blogId, long LikeCount) {
