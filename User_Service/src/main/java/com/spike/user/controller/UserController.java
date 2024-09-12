@@ -377,4 +377,17 @@ public class UserController {
         }
     }
 
+    @GetMapping("/username/{username}")
+    public UserInfoDTO getUserByUsername(@PathVariable String username) {
+        try {
+            UserInfoDTO user = userService.getUserByUsername(username);
+            return user;
+        } catch (UserNotFoundException ex) {
+            throw ex;
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching user", e.getCause());
+        }
+
+    }
+
 }

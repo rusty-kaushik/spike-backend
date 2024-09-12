@@ -9,7 +9,6 @@ import com.spike.user.exceptions.*;
 import com.spike.user.helper.UserHelper;
 import com.spike.user.repository.UserProfilePictureRepository;
 import com.spike.user.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,12 +25,12 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -417,6 +416,52 @@ public class UserServiceImpl implements UserService {
             logger.error("Unexpected error Occur while fetching user details", ex);
             throw new RuntimeException("Error occur while fetching user details");
         }
+    }
+
+    @Override
+    public UserInfoDTO getUserByUsername(String username) throws IOException {
+        User byUsername = userRepository.findByUsername(username);
+        if (byUsername == null) {
+            throw new UserNotFoundException("User not found with username: " + username);
+        }
+
+        if (byUsername.getProfilePicture() == null) {
+            UserInfoDTO userInfoDTO = userHelper.entityToUserInfoDto(byUsername);
+            userInfoDTO.setPicture(null);
+            return userInfoDTO;
+        }
+
+        // Initialize the Base64 image string as null
+        String base64Image = null;
+        String filePath = uploadDirectory + File.separator + byUsername.getProfilePicture().getFileName();
+
+        System.out.println(filePath);
+        File imageFile = new File(filePath);
+
+        // Read and encode image file if it exists
+        if (imageFile.exists()) {
+            try (FileInputStream fileInputStream = new FileInputStream(imageFile)) {
+                byte[] imageBytes = new byte[(int) imageFile.length()];
+                fileInputStream.read(imageBytes);
+
+                // Convert to Base64
+                base64Image = Base64.getEncoder().encodeToString(imageBytes);
+            } catch (IOException e) {
+                // Handle exception (log it or rethrow it)
+                throw new RuntimeException("Error reading or encoding image file", e);
+            }
+        } else {
+            // Handle the case where the image file does not exist
+            base64Image = null; // Or use a placeholder image
+        }
+
+        // Convert the User entity to DTO
+        UserInfoDTO userInfoDTO = userHelper.entityToUserInfoDto(byUsername);
+
+        // Set the Base64 image string in the DTO
+        userInfoDTO.setPicture(base64Image);
+
+        return userInfoDTO;
     }
 
 

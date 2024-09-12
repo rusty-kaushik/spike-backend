@@ -5,7 +5,6 @@ import com.spike.user.entity.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 public interface UserService {
@@ -40,4 +39,5 @@ public interface UserService {
     List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Double salary, int page, int size, String sort);
 
 
+    UserInfoDTO getUserByUsername(String username) throws IOException;
 }

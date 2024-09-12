@@ -2,10 +2,7 @@ package com.spike.user.helper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spike.user.customMapper.UserMapper;
-import com.spike.user.dto.UserAddressDTO;
-import com.spike.user.dto.UserContactsDTO;
-import com.spike.user.dto.UserCreationRequestDTO;
-import com.spike.user.dto.UserDashboardDTO;
+import com.spike.user.dto.*;
 import com.spike.user.entity.*;
 import com.spike.user.exceptions.DepartmentNotFoundException;
 import com.spike.user.exceptions.DtoToEntityConversionException;
@@ -192,4 +189,13 @@ public class UserHelper {
         }
     }
 
+    public UserInfoDTO entityToUserInfoDto(User byUsername) {
+        UserInfoDTO info = new UserInfoDTO();
+        info.setId(byUsername.getId());
+        info.setUsername(byUsername.getUsername());
+        info.setEmail(byUsername.getEmail());
+        info.setDesignation(byUsername.getDesignation());
+        info.setRole(byUsername.getRole().getName());
+        return info;
+    }
 }
