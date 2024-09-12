@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User updateUser(Long userId, UserUpdateDTO userRequest)  {
+    public User updateUser(Long userId, UserUpdateDTO userRequest) {
         logger.info("Starting update process for user ID: {}", userId);
         try {
             User existingUser = userRepository.findById(userId)
@@ -160,7 +160,7 @@ public class UserServiceImpl implements UserService {
     // Update User Social Urls
     @Override
     @Transactional
-    public User updateSocialUrls(Long userId, UserSocialDTO userRequest)  {
+    public User updateSocialUrls(Long userId, UserSocialDTO userRequest) {
         logger.info("Starting social URL update for user ID: {}", userId);
         try {
             User existingUser = userRepository.findById(userId)
@@ -201,7 +201,7 @@ public class UserServiceImpl implements UserService {
     // Update User Address
     @Override
     @Transactional
-    public User updateAddresses(Long userId, List<UserAddressDTO> addresses)  {
+    public User updateAddresses(Long userId, List<UserAddressDTO> addresses) {
         logger.info("Starting address update for user ID: {}", userId);
         try {
             User existingUser = userRepository.findById(userId)
@@ -357,10 +357,9 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     private UserContactsDTO userToUserContacsDto(User user) {
 
-        UserContactsDTO userContactsDto= userHelper.entityToUserContactsDto(user);
+        UserContactsDTO userContactsDto = userHelper.entityToUserContactsDto(user);
         // Filter and set primary address
 
         List<UserAddressDTO> primaryAddress = user.getAddresses().stream()
@@ -407,7 +406,9 @@ public class UserServiceImpl implements UserService {
 
             //fetched filtered , paginated , sorted users
             Page<User> user = userRepository.findAll(specs, pageRequest);
-
+            if (user.isEmpty()) {
+                throw new UserNotFoundException("No user found");
+            }
             //convert to user dashboard dto
             return user.stream().map(this::userToUserDashboardDto).collect(Collectors.toList());
         } catch (UserNotFoundException e) {
