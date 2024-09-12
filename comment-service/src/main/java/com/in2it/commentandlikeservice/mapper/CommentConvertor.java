@@ -34,7 +34,7 @@ public class CommentConvertor {
 		File file = new File(dirPath);
 		if (!file.isDirectory()) {
 			try {
-				Files.createDirectories(Path.of("D:\\path\\media\\CommentImage"));
+				Files.createDirectories(Path.of(dirPath));
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -52,7 +52,7 @@ public class CommentConvertor {
 					image.transferTo(new File(path1));
 //					String path2 = ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/")
 //							.path(image.getOriginalFilename()).toUriString();
-					String path2 = "D:\\path\\media\\CommentImage"+"\\"+uniqueFileName;
+					String path2 = dirPath+"\\"+uniqueFileName;
 					mediaPath.add(path2);
 
 					System.out.println("path" + path);

@@ -35,6 +35,7 @@ import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
 import com.in2it.commentandlikeservice.exception.BlogNotFoundException;
 import com.in2it.commentandlikeservice.exception.CommentNotFoundException;
 import com.in2it.commentandlikeservice.feign.BlogFeign;
+import com.in2it.commentandlikeservice.feign.BlogResponce;
 import com.in2it.commentandlikeservice.mapper.CommentConvertor;
 import com.in2it.commentandlikeservice.model.Comment;
 import com.in2it.commentandlikeservice.repository.CommentRepository;
@@ -59,6 +60,7 @@ public class CommentServiceImplTest {
 	BlogDto blogDto;
 	MultipartFile multipartFile;
 	FileInputStream input;
+	BlogResponce<BlogDto> blogResponce;
 
 //	File file = new File("D:\\path\\media\\CommentImage\\1725535141823Screenshot 2024-08-29 114124.png");
 
@@ -81,6 +83,7 @@ public class CommentServiceImplTest {
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();
+			
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -102,13 +105,16 @@ public class CommentServiceImplTest {
 		comment.setContent("This is a comment");
 		comment.setMedia(List.of("1725535141823Screenshot 2024-08-29 114124.png"));
 		comment.setMediaPath(List.of("D:\\path\\media\\CommentImage\\1725535141823Screenshot 2024-08-29 114124.png"));
+		
+		blogResponce = new BlogResponce<BlogDto>();
+		blogResponce.setData(blogDto);
 
 	}
 
 	@Test
 	void saveCommentSuccessTest() {
 
-		when(feign.getBlogById("1")).thenReturn(ResponseEntity.ok(blogDto));
+		when(feign.getBlogById("1")).thenReturn(ResponseEntity.ok(blogResponce));
 		when(objectMapper.dtoToCommentConvertor(commentDto)).thenReturn(comment);
 		when(commentRepository.findByBlogIdAndStatus("1", "Active")).thenReturn(Collections.emptyList());
 		when(commentRepository.save(comment)).thenReturn(comment);
@@ -209,7 +215,7 @@ public class CommentServiceImplTest {
 
 		comment.setStatus("Active");
 
-		when(feign.getBlogById("1")).thenReturn(ResponseEntity.ok(blogDto));
+		when(feign.getBlogById("1")).thenReturn(ResponseEntity.ok(blogResponce));
 		when(commentRepository.findByIdAndStatus("1", "Active")).thenReturn(Optional.of(comment));
 		when(commentRepository.save(comment)).thenReturn(comment);
 		when(objectMapper.commentToDtoConvertor(comment)).thenReturn(commentDto);
@@ -231,8 +237,8 @@ public class CommentServiceImplTest {
 
 	@Test
 	void getCommentByIdSuccessTest() {
-
-		when(commentRepository.findById("1")).thenReturn(Optional.of(comment));
+		comment.setStatus("Active");
+		when(commentRepository.findByIdAndStatus("1","Active")).thenReturn(Optional.of(comment));
 		when(objectMapper.commentToDtoConvertor(comment)).thenReturn(commentDto);
 
 		CommentDto result = commentService.getCommentById("1");

@@ -19,6 +19,7 @@ import com.in2it.commentandlikeservice.exception.BlogNotFoundException;
 import com.in2it.commentandlikeservice.exception.CommentNotFoundException;
 import com.in2it.commentandlikeservice.exception.ServiceDownException;
 import com.in2it.commentandlikeservice.feign.BlogFeign;
+import com.in2it.commentandlikeservice.feign.BlogResponce;
 import com.in2it.commentandlikeservice.mapper.CommentConvertor;
 import com.in2it.commentandlikeservice.model.Comment;
 import com.in2it.commentandlikeservice.repository.CommentRepository;
@@ -43,7 +44,7 @@ public class CommentServiceImpl implements CommentService {
 	private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
 
 	public CommentDto saveComment(CommentDto commentDto, String blogId) {
-		ResponseEntity<BlogDto> response = null;
+		ResponseEntity<BlogResponce<BlogDto>> response = null;
 		log.info("------------------------" + commentDto);
 		try {
 			response = feign.getBlogById(blogId);
@@ -51,6 +52,8 @@ public class CommentServiceImpl implements CommentService {
 
 			throw new ServiceDownException("--------------blog service is down please try after sometime");
 
+		} catch (BlogNotFoundException e) {
+			throw new BlogNotFoundException(e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -58,7 +61,7 @@ public class CommentServiceImpl implements CommentService {
 		BlogDto blog = null;
 		// it checks if blog exist or not
 		if (response != null) {
-			blog = response.getBody();
+			blog = response.getBody().getData();
 
 		} else {
 			throw new BlogNotFoundException("Blog Id is not valid..");
@@ -126,7 +129,7 @@ public class CommentServiceImpl implements CommentService {
 
 	public CommentDto deleteByCommentId(String blogId, String commentId) {
 
-		ResponseEntity<BlogDto> response = null;
+		ResponseEntity<BlogResponce<BlogDto>> response = null;
 
 		try {
 			response = feign.getBlogById(blogId);
@@ -134,6 +137,8 @@ public class CommentServiceImpl implements CommentService {
 
 			throw new ServiceDownException("--------------blog service is down please try after sometime");
 
+		} catch (BlogNotFoundException e) {
+			throw new BlogNotFoundException(e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -141,7 +146,7 @@ public class CommentServiceImpl implements CommentService {
 		BlogDto blog = null;
 		// it checks if blog exist or not
 		if (response != null) {
-			blog = response.getBody();
+			blog = response.getBody().getData();
 
 		} else {
 			throw new BlogNotFoundException("Blog Id is not valid..");
@@ -159,6 +164,8 @@ public class CommentServiceImpl implements CommentService {
 
 			throw new ServiceDownException("--------------blog service is down please try after sometime");
 
+		} catch (BlogNotFoundException e) {
+			throw new BlogNotFoundException(e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -170,7 +177,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public CommentDto getCommentById(String commentId) {
-		Comment comment = commentRepository.findByIdAndStatus(commentId,"Active")
+		Comment comment = commentRepository.findByIdAndStatus(commentId, "Active")
 				.orElseThrow(() -> new CommentNotFoundException("Comment dosen't exist with given Id"));
 		return objectMapper.commentToDtoConvertor(comment);
 	}
