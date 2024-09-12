@@ -69,4 +69,23 @@ public interface UserFeignClient {
     UserInfoDTO getUserByUsername(
             @PathVariable String username
     );
+
+    // GET USERS FOR EMPLOYEE PAGE
+    @GetMapping("/spike/user/userinfo-dashboard")
+    ResponseEntity<Object> getSpecificUserInfoByUsername(
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam Double salary,
+            @RequestParam int page,
+            @RequestParam int size,
+            @RequestParam String sort
+    );
+    @GetMapping("/spike/user/usercontacts")
+    public ResponseEntity<Object> getUserContact(
+            @RequestParam String name,
+            @RequestParam int pagesize,
+            @RequestParam int pageno,
+            @RequestParam String sort
+    );
+
 }

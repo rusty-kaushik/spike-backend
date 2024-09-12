@@ -140,5 +140,14 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public ResponseEntity<Object> fetchUsersForEmployeePage(String name, String email, Double salary, int page, int size, String sort) {
+        return userFeignClient.getSpecificUserInfoByUsername(name, email, salary, page, size, sort);
+    }
+
+    @Override
+    public ResponseEntity<Object> fetchUsersForContactPage(String name, int pageSize, int pageNo, String sort) {
+        return userFeignClient.getUserContact(name, pageSize, pageNo, sort);
+    }
 
 }

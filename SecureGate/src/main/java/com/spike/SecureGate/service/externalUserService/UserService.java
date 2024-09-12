@@ -27,4 +27,8 @@ public interface UserService {
     ResponseEntity<Object> updateSelfProfilePictureDetails(Long userId, MultipartFile profilePicture);
 
     ResponseEntity<Object> deleteUser(Long userId);
+
+    ResponseEntity<Object> fetchUsersForEmployeePage(String name, String email, Double salary, int page, int size, String sort);
+
+    ResponseEntity<Object> fetchUsersForContactPage(String name, int pageSize, int pageNo, String sort);
 }

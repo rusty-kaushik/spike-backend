@@ -337,7 +337,7 @@ public class UserController {
         try {
             logger.info("getting user contact information " + name);
             List<UserContactsDTO> user = userService.getUserContacts(name, pageno, pagesize, sort);
-            return ResponseHandler.responseBuilder("user contacts found successfully", HttpStatus.FOUND, user);
+            return ResponseHandler.responseBuilder("user contacts found successfully", HttpStatus.OK, user);
         } catch (UserNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
@@ -369,7 +369,7 @@ public class UserController {
                                                                 @RequestParam(name = "sort", defaultValue = "name,desc") String sort) {
         try {
             List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, salary, page, size, sort);
-            return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.FOUND, userDashBoard);
+            return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.OK, userDashBoard);
         } catch (UserNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
