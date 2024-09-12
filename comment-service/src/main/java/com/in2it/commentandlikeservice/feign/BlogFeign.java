@@ -13,11 +13,11 @@ import com.in2it.commentandlikeservice.dto.BlogDto;
 
 import jakarta.validation.Valid;
 
-@FeignClient(name="blog-service" , url="http://localhost:8282/spike/blog")
+@FeignClient(name="blog-service" , url="http://99.99.99.185:8282/spike/blog")
 public interface BlogFeign {
 
 	@GetMapping("/getByBlogId/{blogId}")
-    public ResponseEntity<BlogDto>  getBlogById(@PathVariable(value = "blogId") @Valid String blogId) ;
+    public ResponseEntity<BlogResponce<BlogDto>>  getBlogById(@PathVariable(value = "blogId") @Valid String blogId) ;
 	@PutMapping("/updateComment")
-	public ResponseEntity<BlogDto> updateComment(@RequestParam String blogId, @RequestParam Long totalCommentCount);
+	public ResponseEntity<BlogResponce<BlogDto>> updateComment(@RequestParam String blogId, @RequestParam Long totalCommentCount);
 }

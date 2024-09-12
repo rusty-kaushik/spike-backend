@@ -10,3 +10,6 @@ comment-service/.project
 comment-service/.settings/
 comment-service/src/test/java/com/in2it/commentandlikeservice/CommentAndLikeServiceApplicationTest.java
 comment-service/target/
+
+blog-comment-image/
+comment-service/app.log
