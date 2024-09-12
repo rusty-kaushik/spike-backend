@@ -1,8 +1,11 @@
 package com.spike.SecureGate.controllers;
 
 import com.spike.SecureGate.DTO.publicDto.LoginRequestDTO;
+import com.spike.SecureGate.DTO.publicDto.LoginResponseDTO;
+import com.spike.SecureGate.DTO.publicDto.UserInfoDTO;
 import com.spike.SecureGate.response.ResponseHandler;
 import com.spike.SecureGate.service.UserDetailsServiceImpl;
+import com.spike.SecureGate.service.externalPublicService.PublicService;
 import com.spike.SecureGate.utils.JwtUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -36,6 +39,9 @@ public class PublicController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
+    private PublicService publicService;
+
     private static final Logger logger = LoggerFactory.getLogger(PublicController.class);
 
     @Operation(
@@ -58,12 +64,13 @@ public class PublicController {
             logger.info("Processing login request for user: {}", loginRequestDTO.getUsername());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDTO.getUsername(), loginRequestDTO.getPassword()));
             UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequestDTO.getUsername());
+            UserInfoDTO userByUsername = publicService.getUserByUsername(loginRequestDTO.getUsername());
             logger.info("User successfully logged in");
-            return ResponseHandler.responseBuilder("USER LOGIN SUCCESSFUL", HttpStatus.OK, jwtUtil.generateToken(userDetails.getUsername()));
-        } catch (Exception e) {
+            LoginResponseDTO loginResponseDTO = publicService.setLoginResponseDTO(userByUsername, jwtUtil.generateToken(userByUsername.getUsername(),userByUsername.getId(),userByUsername.getRole()));
+            return ResponseHandler.responseBuilder("USER LOGIN SUCCESSFUL", HttpStatus.OK, loginResponseDTO);
+        } catch (Exception e)  {
             logger.error("Error while processing login request for user: {}", loginRequestDTO.getUsername());
             return ResponseHandler.responseBuilder("USER LOGIN UNSUCCESSFUL", HttpStatus.UNAUTHORIZED, "Wrong username or password, Please try again.");
         }
     }
-
 }

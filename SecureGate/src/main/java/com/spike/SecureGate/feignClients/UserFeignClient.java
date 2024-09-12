@@ -1,5 +1,6 @@
 package com.spike.SecureGate.feignClients;
 
+import com.spike.SecureGate.DTO.publicDto.UserInfoDTO;
 import com.spike.SecureGate.DTO.userDto.UserAddressDTO;
 import com.spike.SecureGate.DTO.userDto.UserChangePasswordDTO;
 import com.spike.SecureGate.DTO.userDto.UserSocialUpdateDTO;
@@ -63,4 +64,9 @@ public interface UserFeignClient {
             @PathVariable Long userId
     );
 
+    // FIND USER BY USERNAME
+    @GetMapping("/spike/user/username/{username}")
+    UserInfoDTO getUserByUsername(
+            @PathVariable String username
+    );
 }

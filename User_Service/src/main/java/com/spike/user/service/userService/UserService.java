@@ -34,10 +34,10 @@ public interface UserService {
     //fetch particular user contacts if name is provided otherwise all the user contacts
     List<UserContactsDTO> getUserContacts(String name, int pageno, int pagesize, String sort);
 
-
-
     //fetch user dashboard data with filtration if provided otherwise show all the user details
     List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Double salary, int page, int size, String sort);
 
+    // Fetch user by username for login api
+    UserInfoDTO getUserByUsername(String username) throws IOException;
 
 }

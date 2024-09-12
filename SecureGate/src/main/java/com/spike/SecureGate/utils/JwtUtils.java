@@ -22,10 +22,13 @@ public class JwtUtils {
     }
 
     //* Generates a JWT for the given username.
-    public String generateToken(String username) {
+    public String generateToken(String username, Long id, String role) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("id",id);
+        claims.put("role",role);
         return createToken(claims, username);
     }
+
     //* Creates a JWT with specified claims and subject (username). It includes an issued date, expiration time, and is signed with the secret key.
     private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()

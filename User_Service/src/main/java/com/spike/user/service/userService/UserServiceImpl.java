@@ -443,4 +443,51 @@ public class UserServiceImpl implements UserService {
 
         return userDashboardDTO;
     }
+
+    // FETCH USER DETAILS FOR LOGIN API
+    @Override
+    public UserInfoDTO getUserByUsername(String username) throws IOException {
+        User byUsername = userRepository.findByUsername(username);
+        if (byUsername == null) {
+            throw new UserNotFoundException("User not found with username: " + username);
+        }
+
+        if (byUsername.getProfilePicture() == null) {
+            UserInfoDTO userInfoDTO = userHelper.entityToUserInfoDto(byUsername);
+            userInfoDTO.setPicture(null);
+            return userInfoDTO;
+        }
+
+        // Initialize the Base64 image string as null
+        String base64Image = null;
+        String filePath = uploadDirectory + File.separator + byUsername.getProfilePicture().getFileName();
+
+        System.out.println(filePath);
+        File imageFile = new File(filePath);
+
+        // Read and encode image file if it exists
+        if (imageFile.exists()) {
+            try (FileInputStream fileInputStream = new FileInputStream(imageFile)) {
+                byte[] imageBytes = new byte[(int) imageFile.length()];
+                fileInputStream.read(imageBytes);
+
+                // Convert to Base64
+                base64Image = Base64.getEncoder().encodeToString(imageBytes);
+            } catch (IOException e) {
+                // Handle exception (log it or rethrow it)
+                throw new RuntimeException("Error reading or encoding image file", e);
+            }
+        } else {
+            // Handle the case where the image file does not exist
+            base64Image = null; // Or use a placeholder image
+        }
+
+        // Convert the User entity to DTO
+        UserInfoDTO userInfoDTO = userHelper.entityToUserInfoDto(byUsername);
+
+        // Set the Base64 image string in the DTO
+        userInfoDTO.setPicture(base64Image);
+
+        return userInfoDTO;
+    }
 }
