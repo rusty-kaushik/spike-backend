@@ -9,8 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserSocialDTO {
-    private String linkedinUrl;
-    private String facebookUrl;
-    private String instagramUrl;
+public class DepartmentCreationDTO {
+    private String name;
 }
