@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Like", description = "Like/Unlike APIs")
 @RestController
-@RequestMapping("/in2it/spike/SecureGate/like")
+@RequestMapping("/spike/SecureGate/like")
 public class LikeController {
 
     private static final Logger logger = LoggerFactory.getLogger(LikeController.class);
