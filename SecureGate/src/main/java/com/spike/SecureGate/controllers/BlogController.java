@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RestController
 @RequestMapping("/blog")
 public class BlogController {
@@ -134,13 +134,15 @@ public class BlogController {
     })
     @GetMapping("/get-all")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
-    public ResponseEntity<Object> fetchAllBlogs()
+    public ResponseEntity<Object> fetchAllBlogs(
+            @RequestParam(defaultValue = "0") int pageNum,
+            @RequestParam(defaultValue = "5") int pageSize)
     {
         logger.info("Started authenticating");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         logger.info("Authentication Successful");
         logger.info("Started creating new Blog");
-        ResponseEntity<Object> user = blogService.fetchAllBlogs();
+        ResponseEntity<Object> user = blogService.fetchAllBlogs(pageNum,pageSize);
         logger.info("Finished creating new Blog");
         return user;
     }

@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RestController
 @RequestMapping("/comments")
 public class CommentController {
