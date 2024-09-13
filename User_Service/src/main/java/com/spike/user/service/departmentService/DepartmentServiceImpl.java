@@ -129,8 +129,8 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 
     @Override
-    public boolean checkDepartmentExistence(String name) {
-        Optional<Department> byName = departmentRepository.findByName(name);
+    public boolean checkDepartmentExistence(Long id) {
+        Optional<Department> byName = departmentRepository.findById(id);
         return byName.isPresent();
     }
 }
