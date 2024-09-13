@@ -1,9 +1,12 @@
 package com.in2it.commentandlikeservice;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -15,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -72,7 +76,7 @@ public class CommentServiceImplTest {
 		try {
 			tempFile = Files.createTempFile("fakefile", ".png");
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 		File file = tempFile.toFile();
@@ -83,7 +87,7 @@ public class CommentServiceImplTest {
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();
-			
+
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -105,7 +109,7 @@ public class CommentServiceImplTest {
 		comment.setContent("This is a comment");
 		comment.setMedia(List.of("1725535141823Screenshot 2024-08-29 114124.png"));
 		comment.setMediaPath(List.of("D:\\path\\media\\CommentImage\\1725535141823Screenshot 2024-08-29 114124.png"));
-		
+
 		blogResponce = new BlogResponce<BlogDto>();
 		blogResponce.setData(blogDto);
 
@@ -238,7 +242,7 @@ public class CommentServiceImplTest {
 	@Test
 	void getCommentByIdSuccessTest() {
 		comment.setStatus("Active");
-		when(commentRepository.findByIdAndStatus("1","Active")).thenReturn(Optional.of(comment));
+		when(commentRepository.findByIdAndStatus("1", "Active")).thenReturn(Optional.of(comment));
 		when(objectMapper.commentToDtoConvertor(comment)).thenReturn(commentDto);
 
 		CommentDto result = commentService.getCommentById("1");
@@ -254,6 +258,43 @@ public class CommentServiceImplTest {
 		assertThrows(CommentNotFoundException.class, () -> {
 			commentService.getCommentById("1");
 		});
+	}
+
+	@Test
+	void deleteCommentsByBlogIdSuccessTest() {
+
+		String blogId = "123";
+		Comment comment1 = new Comment();
+		comment1.setStatus("Active");
+		Comment comment2 = new Comment();
+		comment2.setStatus("Active");
+
+		List<Comment> comments = new ArrayList<>();
+		comments.add(comment1);
+		comments.add(comment2);
+
+		when(commentRepository.findByBlogIdAndStatus(blogId, "Active")).thenReturn(comments);
+
+		boolean result = commentService.deleteCommentsByblogId(blogId);
+
+		assertTrue(result);
+		assertEquals("InActive", comment1.getStatus());
+		assertEquals("InActive", comment2.getStatus());
+		verify(commentRepository).saveAll(comments);
+	}
+
+	@Test
+	public void deleteCommentsByBlogIdNoCommentsFoundTest() {
+		// Arrange
+		String blogId = "123";
+		when(commentRepository.findByBlogIdAndStatus(blogId, "Active")).thenReturn(new ArrayList<>());
+
+		BlogNotFoundException thrown = assertThrows(BlogNotFoundException.class, () -> {
+			commentService.deleteCommentsByblogId(blogId);
+		});
+
+		assertEquals("No comments are available for given blog Id", thrown.getMessage());
+
 	}
 
 }
