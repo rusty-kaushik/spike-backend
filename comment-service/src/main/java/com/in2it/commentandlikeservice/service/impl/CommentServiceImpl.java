@@ -182,4 +182,22 @@ public class CommentServiceImpl implements CommentService {
 		return objectMapper.commentToDtoConvertor(comment);
 	}
 
+	@Override
+	public boolean deleteCommentsByblogId(String blogId) {
+		
+		List<Comment> comments = commentRepository.findByBlogIdAndStatus(blogId, "Active");
+		if(comments.isEmpty() || comments == null) {
+			throw new BlogNotFoundException("No comments are available for given blog Id");
+		}else {
+			for (Comment comment : comments) {
+				
+				comment.setStatus("InActive");
+				commentRepository.save(comment);
+			}
+			return true;
+		}
+		
+		
+	}
+
 }

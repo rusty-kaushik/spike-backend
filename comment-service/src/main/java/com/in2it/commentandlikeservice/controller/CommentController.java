@@ -94,5 +94,15 @@ public class CommentController {
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 
 	}
+	
+	
+	@DeleteMapping("delete-by-blogId/{blogId}")
+	public ResponseEntity<Response<Boolean>> deleteCommentsByblogId(@PathVariable String blogId) {
+		boolean deleted = commentService.deleteCommentsByblogId(blogId);		
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response<Boolean>(deleted, "All comments are deleted", HttpStatus.NO_CONTENT, HttpStatus.NO_CONTENT.value()));
+		
+	}
+
+		
 
 }
