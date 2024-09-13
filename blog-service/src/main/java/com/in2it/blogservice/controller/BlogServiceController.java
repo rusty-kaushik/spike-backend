@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.in2it.blogservice.customException.CommentServiceDownException;
 import com.in2it.blogservice.customException.InfoMissingException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
@@ -34,6 +36,7 @@ import jakarta.validation.Valid;
 @RestController
 
 @RequestMapping("/spike/blog")
+@Validated
 public class BlogServiceController {
 	@Autowired
 	private BlogServiceImpl serviceImpl;
@@ -42,7 +45,7 @@ public class BlogServiceController {
 	 * This method is used to insert blog in database.
 	 */
 
-	@Tag(name = "post-blog method", description = "This method used to create a blog post. After calling this method its return a map. ")
+	@Tag(name = "post-blog controller", description = "This method used to create a blog post. ")
 	@PostMapping(path = "/posts", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<ResponseHandler<BlogDto>> saveBlogWithFile(@RequestPart(value = "media" ,required=false) List<MultipartFile> mediaFile,BlogDto blogDto)
 			throws IOException {
@@ -99,7 +102,7 @@ public class BlogServiceController {
 	@DeleteMapping("/deleteByBlogId/{blogId}")
 	@Operation(summary = "delete blog by blogId ,in updatedBy we can pass whose login then store his userName i.e. Admin123")
 	public ResponseEntity<ResponseHandler<Boolean>> deleteBlog(@PathVariable String blogId,
-			@RequestParam String updatedBy) {
+			@RequestParam String updatedBy) throws CommentServiceDownException {
 		UUID fromString = UUID.fromString(blogId);
 		ResponseHandler<Boolean> response = new ResponseHandler<>(serviceImpl.deleteBlog(fromString, updatedBy),
 				"Your blog has been deleted successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
@@ -108,7 +111,8 @@ public class BlogServiceController {
 
 	}
 
-	@DeleteMapping("/deleteByTitle/{title}")
+//	@DeleteMapping("/deleteByTitle/{title}")
+	@Deprecated
 	@Operation(summary = "delete blog by title, in updatedBy we can pass whose login then store his userName i.e. Admin123")
 	public ResponseEntity<ResponseHandler<Boolean>> deleteBlogBytitle(@PathVariable String title,
 			@RequestParam String blogId, @RequestParam String userName) {

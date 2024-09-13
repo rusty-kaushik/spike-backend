@@ -19,7 +19,7 @@ import com.in2it.blogservice.model.Blog;
 public interface BlogRepository extends JpaRepository<Blog,UUID>{
     
 
-//	@Query(value= "select  * from blog where status='ACTIVE' and title like %:title% ", nativeQuery = true)
+
 	 List<Blog> findByTitleContainingAllIgnoringCaseAndStatus(String title, Boolean status);
 	 
 	 List<Blog> findByTitleContainingAllIgnoringCaseAndStatus(PageRequest pageable,String title, Boolean status);

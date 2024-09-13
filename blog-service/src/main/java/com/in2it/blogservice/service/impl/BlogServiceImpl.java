@@ -10,15 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.in2it.blogservice.customException.CommentServiceDownException;
 import com.in2it.blogservice.customException.IdInvalidException;
 import com.in2it.blogservice.customException.InfoMissingException;
 import com.in2it.blogservice.customException.UserNotFoundException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
+import com.in2it.blogservice.dto.Response;
+import com.in2it.blogservice.feignClients.FeignClientAPIs;
 import com.in2it.blogservice.mapper.Converter;
 import com.in2it.blogservice.model.Blog;
 import com.in2it.blogservice.repository.BlogRepository;
@@ -41,6 +45,9 @@ public class BlogServiceImpl implements BlogService {
 	// Injecting our Repository class
 	@Autowired
 	private BlogRepository repo;
+	
+	@Autowired
+	FeignClientAPIs deleteCommentsById;
 
 	// This method is used to save data in database and save Media in file system .
 	@Override
@@ -147,13 +154,25 @@ public class BlogServiceImpl implements BlogService {
 
 	// soft delete with blog_id and save user_id whose delete this post
 	@Override
-	public Boolean deleteBlog(UUID id, String updatedBy) {
+	public Boolean deleteBlog(UUID id, String updatedBy) throws CommentServiceDownException {
 
 		BlogDto blog = getBlogById(id);
 
 		if (blog.getId().equals(id) && updatedBy != null) {
 			log.info("============================" + blog);
-
+ 
+			UUID blogId = blog.getId();
+			    String bId = blogId.toString();
+			
+			try {
+				
+				deleteCommentsById.deleteCommentsByblogId(bId);
+			}
+			catch (Exception e) {
+			      
+				throw new CommentServiceDownException("Please ! Check your comment-service connection . May be down.");
+			} 
+			
 			repo.deleteBlogById(id, updatedBy, LocalDateTime.now());
 
 			return true;
@@ -168,6 +187,7 @@ public class BlogServiceImpl implements BlogService {
 
 	// soft delete with title and save user_id whose delete this post
 	@Override
+	@Deprecated
 	public Boolean deleteBlogByTitle(String title, UUID blogId, String updatedBy) {
 
 		boolean flag = false;
