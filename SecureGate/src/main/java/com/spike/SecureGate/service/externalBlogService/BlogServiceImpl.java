@@ -95,9 +95,9 @@ public class BlogServiceImpl implements BlogService{
 
     // FETCH ALL BLOGS
     @Override
-    public ResponseEntity<Object> fetchAllBlogs() {
+    public ResponseEntity<Object> fetchAllBlogs(int pageNum, int pageSize) {
         try {
-            return blogFeignClient.fetchAllBlogs();
+            return blogFeignClient.fetchAllBlogs(pageNum, pageSize);
         } catch (Exception e) {
             logger.error("An unexpected error occurred while fetching all blogs" + e.getMessage());
             throw new UnexpectedException("An unexpected error occurred while fetching all blogs: " + e.getMessage());

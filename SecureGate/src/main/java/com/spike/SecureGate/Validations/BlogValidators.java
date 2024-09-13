@@ -5,7 +5,10 @@ import com.spike.SecureGate.DTO.blogDto.BlogUpdateRequestDTO;
 import com.spike.SecureGate.JdbcHelper.BlogDbService;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
 import com.spike.SecureGate.exceptions.ValidationFailedException;
+import com.spike.SecureGate.feignClients.BlogFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +22,9 @@ public class BlogValidators {
 
     @Autowired
     private BlogDbService blogDbService;
+
+    @Autowired
+    private BlogFeignClient blogFeignClient;
 
     public boolean validateBlogCreationDto(BlogCreationRequestDTO blogCreationRequestDTO){
 
@@ -35,7 +41,7 @@ public class BlogValidators {
         // Validate content
         if (blogCreationRequestDTO.getContent() == null ||
                 blogCreationRequestDTO.getContent().isEmpty() ||
-                blogCreationRequestDTO.getContent().length() > 1000
+                blogCreationRequestDTO.getContent().length() > 10000
         ) {
             throw new ValidationFailedException("Content cannot be null or empty or more than 1000 characters");
         }
@@ -47,9 +53,9 @@ public class BlogValidators {
                     throw new ValidationFailedException("Media files cannot be empty");
                 }
                 // Validate file size (must be <= 1 MB)
-                if (file.getSize() > 1_048_576) { // 1 MB in bytes
-                    throw new ValidationFailedException("File size cannot exceed 1 MB");
-                }
+//                if (file.getSize() > 1_048_576) { // 1 MB in bytes
+//                    throw new ValidationFailedException("File size cannot exceed 1 MB");
+//                }
             }
         }
 
