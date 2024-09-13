@@ -2,10 +2,7 @@ package com.spike.user.helper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spike.user.customMapper.UserMapper;
-import com.spike.user.dto.UserAddressDTO;
-import com.spike.user.dto.UserContactsDTO;
-import com.spike.user.dto.UserCreationRequestDTO;
-import com.spike.user.dto.UserDashboardDTO;
+import com.spike.user.dto.*;
 import com.spike.user.entity.*;
 import com.spike.user.exceptions.DepartmentNotFoundException;
 import com.spike.user.exceptions.DtoToEntityConversionException;
@@ -138,27 +135,32 @@ public class UserHelper {
 
     //this specification will filter record based on user name
     public Specification<User> filterByName(String name) {
-        return (root, query, cb) -> name != null ? cb.equal(root.get("name"), name) : null;
+        return (root, query, cb) -> {
+            if (name != null) {
+                return cb.like(cb.lower(root.get("name")), "%" + name.toLowerCase() + "%");
+            }
+            return null;
+        };
     }
 
     //this specification will filter record based on user email
     public Specification<User> filterByEmail(String email) {
-        return (root, query, cb) ->  email!= null ? cb.equal(root.get("email"), email) : null;
+        return (root, query, cb) -> {
+            if (email != null) {
+                return cb.like(cb.lower(root.get("email")), "%" + email.toLowerCase() + "%");
+            }
+            return null;
+        };
     }
 
-    //this specification will filter record based on user joiningDate
-    public Specification<User> filterByJoiningDate(Date joiningDate) {
-        return (root, query, cb) -> joiningDate != null ? cb.equal(root.get("joiningDate"), joiningDate) : null;
-    }
+
 
     //this specification will filter record based on user salary
     public Specification<User> filterBySalary(Double salary) {
         return (root, query, cb) -> salary != null ? cb.equal(root.get("salary"), salary) : null;
     }
 
-    public Specification<User> hasName(String name){
-        return (root, query, cb) -> name != null ? cb.equal(root.get("name"), name) : null;
-    }
+
 
     public UserContactsDTO entityToUserContactsDto(User user){
         try{
@@ -185,6 +187,16 @@ public class UserHelper {
             logger.error("Could not convert User entity to UserDashboardDTO", e);
             throw new DtoToEntityConversionException("Could not convert user entity to user dashboard DTO");
         }
+    }
+
+    public UserInfoDTO entityToUserInfoDto(User byUsername) {
+        UserInfoDTO info = new UserInfoDTO();
+        info.setId(byUsername.getId());
+        info.setUsername(byUsername.getUsername());
+        info.setEmail(byUsername.getEmail());
+        info.setDesignation(byUsername.getDesignation());
+        info.setRole(byUsername.getRole().getName());
+        return info;
     }
 
 }

@@ -16,12 +16,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.in2it.commentandlikeservice.controller.CommentController;
 import com.in2it.commentandlikeservice.dto.CommentDto;
 import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
+import com.in2it.commentandlikeservice.response.Response;
 import com.in2it.commentandlikeservice.service.CommentService;
+
+import io.swagger.v3.oas.annotations.Operation;
 
 @ExtendWith(MockitoExtension.class)
 public class CommentControllerTest {
@@ -39,8 +44,9 @@ public class CommentControllerTest {
 		CommentDto commentDto = new CommentDto();
 		commentDto.setContent("This is a comment");
 		when(commentService.saveComment(any(CommentDto.class), anyString())).thenReturn(commentDto);
-		ResponseEntity<CommentDto> response = commentController.createComment(commentDto, UUID.randomUUID().toString());
-		assertEquals(commentDto, response.getBody());
+		ResponseEntity<Response<CommentDto>> response = commentController.createComment(commentDto,
+				UUID.randomUUID().toString());
+		assertEquals(commentDto, response.getBody().getData());
 	}
 
 	@Test
@@ -54,8 +60,9 @@ public class CommentControllerTest {
 
 		when(commentService.updateComment(any(CommentUpdateDto.class), anyString())).thenReturn(commentDto);
 
-		ResponseEntity<CommentDto> response = commentController.updateComment(updateDto, UUID.randomUUID().toString());
-		assertEquals(commentDto, response.getBody());
+		ResponseEntity<Response<CommentDto>> response = commentController.updateComment(updateDto,
+				UUID.randomUUID().toString());
+		assertEquals(commentDto, response.getBody().getData());
 	}
 
 	@Test
@@ -67,8 +74,8 @@ public class CommentControllerTest {
 
 		when(commentService.getByBlogId(anyString())).thenReturn(comments);
 
-		ResponseEntity<List<CommentDto>> blogComments = commentController.getCommentByBlogId("sdsdfsf");
-		assertEquals(comments, blogComments.getBody());
+		ResponseEntity<Response<List<CommentDto>>> blogComments = commentController.getCommentByBlogId("sdsdfsf");
+		assertEquals(comments, blogComments.getBody().getData());
 
 	}
 
@@ -79,9 +86,9 @@ public class CommentControllerTest {
 
 		when(commentService.getCommentById(anyString())).thenReturn(commentDto);
 
-		ResponseEntity<CommentDto> comment = commentController.getCommentByCommentId("dfkdjsfkjf");
+		ResponseEntity<Response<CommentDto>> comment = commentController.getCommentByCommentId("dfkdjsfkjf");
 
-		assertEquals(commentDto, comment.getBody());
+		assertEquals(commentDto, comment.getBody().getData());
 
 	}
 
@@ -91,9 +98,24 @@ public class CommentControllerTest {
 		commentDto.setContent("Deleted comment");
 
 		when(commentService.deleteByCommentId(anyString(), anyString())).thenReturn(commentDto);
-		ResponseEntity<CommentDto> deletedComment = commentController.deleteCommentByCommentId("dsadadad", "sadadadsad");
+		ResponseEntity<Response<Boolean>> deletedComment = commentController.deleteCommentByCommentId("dsadadad",
+				"sadadadsad");
 
-		assertEquals(commentDto, deletedComment.getBody());
+		assertEquals(true, deletedComment.getBody().getData());
+
+	}
+
+	
+	@Operation(summary = "API to delete all the comment of a blog")
+	@Test
+	void deleteCommentsByblogIdTest() {
+
+		String blogId = "121";
+		when(commentService.deleteCommentsByblogId(anyString())).thenReturn(true);
+
+		ResponseEntity<Response<Boolean>> responce = commentController.deleteCommentsByblogId(blogId);
+
+		assertEquals(true, responce.getBody().getData());
 
 	}
 }

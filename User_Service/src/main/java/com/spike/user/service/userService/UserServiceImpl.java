@@ -9,7 +9,6 @@ import com.spike.user.exceptions.*;
 import com.spike.user.helper.UserHelper;
 import com.spike.user.repository.UserProfilePictureRepository;
 import com.spike.user.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +30,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -121,7 +119,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User updateUser(Long userId, UserUpdateDTO userRequest)  {
+    public User updateUserFull(Long userId, UserFullUpdateDTO userFullUpdateDTO) {
         logger.info("Starting update process for user ID: {}", userId);
         try {
             User existingUser = userRepository.findById(userId)
@@ -131,8 +129,16 @@ public class UserServiceImpl implements UserService {
                     });
 
             // update user fields
-            setUserFields(existingUser, userRequest);
+            setUserFields(existingUser, userFullUpdateDTO);
             logger.info("User fields updated for user ID: {}", userId);
+
+            // update user socials
+            setSocialUrls(existingUser, userFullUpdateDTO);
+            logger.info("User socials updated for user ID: {}", userId);
+
+            // update user addresses
+            setUserAddresses(existingUser,userFullUpdateDTO.getAddresses());
+            logger.info("User addresses updated for user ID: {}", userId);
 
             return userRepository.save(existingUser);
         } catch (UserNotFoundException e) {
@@ -146,45 +152,20 @@ public class UserServiceImpl implements UserService {
 
 
     // it will set the fields to update the user - logic
-    private void setUserFields(User user, UserUpdateDTO userRequest) {
+    private void setUserFields(User user, UserFullUpdateDTO userFullUpdateDTO) {
 
-        user.setBackupEmail(userRequest.getBackupEmail());
-        user.setPrimaryMobileNumber(userRequest.getPrimaryMobileNumber());
-        user.setSecondaryMobileNumber(userRequest.getSecondaryMobileNumber());
-        if (userRequest.getUsername() == null || userRequest.getUsername().isEmpty()) {
+        user.setBackupEmail(userFullUpdateDTO.getBackupEmail());
+        user.setPrimaryMobileNumber(userFullUpdateDTO.getPrimaryMobileNumber());
+        user.setSecondaryMobileNumber(userFullUpdateDTO.getSecondaryMobileNumber());
+        if (userFullUpdateDTO.getUsername() == null || userFullUpdateDTO.getUsername().isEmpty()) {
             throw new UserNotFoundException("Username cannot be null or empty");
         }
-        user.setUsername(userRequest.getUsername());
-    }
-
-    // Update User Social Urls
-    @Override
-    @Transactional
-    public User updateSocialUrls(Long userId, UserSocialDTO userRequest)  {
-        logger.info("Starting social URL update for user ID: {}", userId);
-        try {
-            User existingUser = userRepository.findById(userId)
-                    .orElseThrow(() -> {
-                        logger.error("User not found with id: {}", userId);
-                        return new UserNotFoundException("User not found with id: " + userId);
-                    });
-
-            setSocialUrls(existingUser, userRequest);
-            logger.info("Social URLs updated for user ID: {}", userId);
-
-            return userRepository.save(existingUser);
-        } catch (UserNotFoundException e) {
-            logger.error("Error updating social URLs - user not found with id: {}", userId, e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error updating social URLs for user with id: {}", userId, e);
-            throw new RuntimeException("Unexpected error updating social URLs", e);
-        }
+        user.setUsername(userFullUpdateDTO.getUsername());
     }
 
 
     // it will take fields that we need to update - logic
-    private void setSocialUrls(User user, UserSocialDTO userRequest) {
+    private void setSocialUrls(User user, UserFullUpdateDTO userFullUpdateDTO) {
         UserSocials userSocials = user.getUserSocials();
 
         if (userSocials == null) {
@@ -193,34 +174,9 @@ public class UserServiceImpl implements UserService {
             user.setUserSocials(userSocials);
         }
 
-        userSocials.setLinkedinUrl(userRequest.getLinkedinUrl());
-        userSocials.setFacebookUrl(userRequest.getFacebookUrl());
-        userSocials.setInstagramUrl(userRequest.getInstagramUrl());
-    }
-
-    // Update User Address
-    @Override
-    @Transactional
-    public User updateAddresses(Long userId, List<UserAddressDTO> addresses)  {
-        logger.info("Starting address update for user ID: {}", userId);
-        try {
-            User existingUser = userRepository.findById(userId)
-                    .orElseThrow(() -> {
-                        logger.error("User not found with id: {}", userId);
-                        return new UserNotFoundException("User not found with id: " + userId);
-                    });
-
-            setUserAddresses(existingUser, addresses);
-            logger.info("Addresses updated for user ID: {}", userId);
-
-            return userRepository.save(existingUser);
-        } catch (UserNotFoundException e) {
-            logger.error("Error updating addresses - user not found with id: {}", userId, e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error updating addresses for user with id: {}", userId, e);
-            throw new RuntimeException("Unexpected error updating addresses", e);
-        }
+        userSocials.setLinkedinUrl(userFullUpdateDTO.getLinkedinUrl());
+        userSocials.setFacebookUrl(userFullUpdateDTO.getFacebookUrl());
+        userSocials.setInstagramUrl(userFullUpdateDTO.getInstagramUrl());
     }
 
 
@@ -336,7 +292,7 @@ public class UserServiceImpl implements UserService {
     public List<UserContactsDTO> getUserContacts(String name, int pageno, int pagesize, String sort) {
         logger.info("starts fetching user contacts");
         try {
-            Specification<User> specs = Specification.where(userHelper.hasName(name));
+            Specification<User> specs = Specification.where(userHelper.filterByName(name));
             String[] sortParams = sort.split(",");
             Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);
             PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
@@ -357,17 +313,16 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     private UserContactsDTO userToUserContacsDto(User user) {
 
-        UserContactsDTO userContactsDto= userHelper.entityToUserContactsDto(user);
+        UserContactsDTO userContactsDto = userHelper.entityToUserContactsDto(user);
         // Filter and set primary address
 
         List<UserAddressDTO> primaryAddress = user.getAddresses().stream()
                 .filter(address -> "PRIMARY".equals(address.getType()))
                 .map(address -> userHelper.entityToUserAddressDto(address))
                 .collect(Collectors.toList());
-
+        userContactsDto.setPrimaryMobile(user.getPrimaryMobileNumber());
         userContactsDto.setPrimaryAddress(primaryAddress);
         userContactsDto.setInstagramUrl(user.getUserSocials() != null ? user.getUserSocials().getInstagramUrl() : null);
         userContactsDto.setFacebookUrl(user.getUserSocials() != null ? user.getUserSocials().getFacebookUrl() : null);
@@ -395,12 +350,11 @@ public class UserServiceImpl implements UserService {
 
     //this service will return list of all users with filtration
     @Override
-    public List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Date joiningDate, Double salary, int page, int size, String sort) {
+    public List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Double salary, int page, int size, String sort) {
         logger.info("starts fetching user details");
         try {
             Specification<User> specs = Specification.where(userHelper.filterByName(name))
                     .or(userHelper.filterByEmail(email))
-                    .or(userHelper.filterByJoiningDate(joiningDate))
                     .or(userHelper.filterBySalary(salary));
 
             //created PageRequest for pagination and sorting
@@ -408,7 +362,9 @@ public class UserServiceImpl implements UserService {
 
             //fetched filtered , paginated , sorted users
             Page<User> user = userRepository.findAll(specs, pageRequest);
-
+            if (user.isEmpty()) {
+                throw new UserNotFoundException("No user found");
+            }
             //convert to user dashboard dto
             return user.stream().map(this::userToUserDashboardDto).collect(Collectors.toList());
         } catch (UserNotFoundException e) {
@@ -424,9 +380,9 @@ public class UserServiceImpl implements UserService {
     //this method will set data of user in userDashboardDto
     private UserDashboardDTO userToUserDashboardDto(User user) {
         UserDashboardDTO userDashboardDTO = userHelper.entityToUserDashboardDto(user);
-        userDashboardDTO.setJoiningDate(user.getJoiningDate() != null ? user.getJoiningDate() : null);
-
         //convert image into base64
+        userDashboardDTO.setPrimaryMobile(user.getPrimaryMobileNumber());
+
         if (user.getProfilePicture() != null) {
             String filePath = user.getProfilePicture().getFilePath();
             File file = new File(filePath);
@@ -444,5 +400,52 @@ public class UserServiceImpl implements UserService {
         }
 
         return userDashboardDTO;
+    }
+
+    // FETCH USER DETAILS FOR LOGIN API
+    @Override
+    public UserInfoDTO getUserByUsername(String username) throws IOException {
+        User byUsername = userRepository.findByUsername(username);
+        if (byUsername == null) {
+            throw new UserNotFoundException("User not found with username: " + username);
+        }
+
+        if (byUsername.getProfilePicture() == null) {
+            UserInfoDTO userInfoDTO = userHelper.entityToUserInfoDto(byUsername);
+            userInfoDTO.setPicture(null);
+            return userInfoDTO;
+        }
+
+        // Initialize the Base64 image string as null
+        String base64Image = null;
+        String filePath = uploadDirectory + File.separator + byUsername.getProfilePicture().getFileName();
+
+        System.out.println(filePath);
+        File imageFile = new File(filePath);
+
+        // Read and encode image file if it exists
+        if (imageFile.exists()) {
+            try (FileInputStream fileInputStream = new FileInputStream(imageFile)) {
+                byte[] imageBytes = new byte[(int) imageFile.length()];
+                fileInputStream.read(imageBytes);
+
+                // Convert to Base64
+                base64Image = Base64.getEncoder().encodeToString(imageBytes);
+            } catch (IOException e) {
+                // Handle exception (log it or rethrow it)
+                throw new RuntimeException("Error reading or encoding image file", e);
+            }
+        } else {
+            // Handle the case where the image file does not exist
+            base64Image = null; // Or use a placeholder image
+        }
+
+        // Convert the User entity to DTO
+        UserInfoDTO userInfoDTO = userHelper.entityToUserInfoDto(byUsername);
+
+        // Set the Base64 image string in the DTO
+        userInfoDTO.setPicture(base64Image);
+
+        return userInfoDTO;
     }
 }

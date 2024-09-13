@@ -27,9 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@Tag(name = "Users", description = "User APIs")
+//@CrossOrigin("*")
 @RestController
-@RequestMapping("/in2it/spike/SecureGate/user")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -43,8 +43,7 @@ public class UserController {
     // CREATE A NEW USER
     @Operation(
             summary = "Admin creates a new user",
-            description = "Creates a new user with a profile picture. Pass the JSON body in the 'data' part and the file in the 'file' part.",
-            tags = { "Admin", "post" }
+            description = "Creates a new user with a profile picture. Pass the JSON body in the 'data' part and the file in the 'file' part."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully created a new user",
@@ -86,8 +85,7 @@ public class UserController {
     // CHANGE USER SELF PASSWORD
     @Operation(
             summary = "Update self password",
-            description = "Updates the password of user. The API takes old password and new  password in json.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the password of user. The API takes old password and new  password in json.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the password of user",
                     content = { @Content(mediaType = "application/json",
@@ -117,8 +115,7 @@ public class UserController {
     // UPDATE SELF DETAILS
     @Operation(
             summary = "Update self details",
-            description = "Updates the details of user.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the details of user.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the details of user",
                     content = { @Content(mediaType = "application/json",
@@ -150,8 +147,7 @@ public class UserController {
     // UPDATE SELF SOCIAL URLS
     @Operation(
             summary = "Update self social urls",
-            description = "Updates the social urls of user.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the social urls of user.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the social urls of user",
                     content = { @Content(mediaType = "application/json",
@@ -183,8 +179,7 @@ public class UserController {
     // UPDATE SELF ADDRESSES
     @Operation(
             summary = "Update self addresses",
-            description = "Updates the addresses of user.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the addresses of user.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
                     content = { @Content(mediaType = "application/json",
@@ -216,8 +211,7 @@ public class UserController {
     // UPDATE SELF PROFILE PICTURE
     @Operation(
             summary = "Update self profile picture",
-            description = "Updates the profile picture of user.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the profile picture of user.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
                     content = { @Content(mediaType = "application/json",
@@ -249,8 +243,7 @@ public class UserController {
     // DELETE USER
     @Operation(
             summary = "Delete a user",
-            description = "Delete a user",
-            tags = { "Admin","delete" })
+            description = "Delete a user")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully deleted user",
                     content = { @Content(mediaType = "application/json",
@@ -278,39 +271,74 @@ public class UserController {
     }
 
     // FETCH USERS FOR EMPLOYEE PAGE
-//    @Operation(
-//            summary = "Fetch users for employee page",
-//            description = "Fetch users for employee page.",
-//            tags = { "Admin","Manager","Employee", "get" })
-//    @ApiResponses({
-//            @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
-//                    content = { @Content(mediaType = "application/json",
-//                            schema = @Schema(implementation = String.class)) }),
-//            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-//                    content = { @Content(schema = @Schema()) }),
-//            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-//                    content = { @Content(schema = @Schema()) }),
-//            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-//                    content = { @Content(schema = @Schema()) })
-//    })
-
+    @Operation(
+            summary = "Fetch users for employee page",
+            description = "Fetch users for employee page."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class)) }),
+            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
+                    content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
+                    content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error",
+                    content = { @Content(schema = @Schema()) })
+    })
+    @GetMapping("/employees")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> fetchUsersForEmployeePage(
+            @RequestParam(name = "name", required = false) String name,
+            @RequestParam(name = "email", required = false) String email,
+            @RequestParam(name = "salary", required = false) Double salary,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "6") int size,
+            @RequestParam(name = "sort", defaultValue = "name,desc") String sort
+    )
+    {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        logger.info("Started fetching users for employee page");
+        ResponseEntity<Object> user = userService.fetchUsersForEmployeePage(name,email,salary,page,size,sort);
+        logger.info("Finished fetching users for employee page");
+        return user;
+    }
 
 
     // FETCH USERS FOR CONTACT PAGE
-//    @Operation(
-//            summary = "Fetch users for contacts page",
-//            description = "Fetch users for contacts page.",
-//            tags = { "Admin","Manager","Employee", "get" })
-//    @ApiResponses({
-//            @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
-//                    content = { @Content(mediaType = "application/json",
-//                            schema = @Schema(implementation = String.class)) }),
-//            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-//                    content = { @Content(schema = @Schema()) }),
-//            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-//                    content = { @Content(schema = @Schema()) }),
-//            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-//                    content = { @Content(schema = @Schema()) })
-//    })
+    @Operation(
+            summary = "Fetch users for contacts page",
+            description = "Fetch users for contacts page."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class)) }),
+            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
+                    content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
+                    content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error",
+                    content = { @Content(schema = @Schema()) })
+    })
+    @GetMapping("/contacts")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> fetchUsersForContactPage(
+            @RequestParam(required=false) String name,
+            @RequestParam(required = false, defaultValue = "5") int pageSize,
+            @RequestParam(required = false, defaultValue = "0") int pageNo,
+            @RequestParam(name = "sort", defaultValue = "name,asc") String sort
+    )
+    {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        logger.info("Started fetching users for contact page");
+        ResponseEntity<Object> user = userService.fetchUsersForContactPage(name,pageSize,pageNo,sort);
+        logger.info("Finished fetching users for contact page");
+        return user;
+    }
 
 }

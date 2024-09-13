@@ -5,7 +5,6 @@ import com.spike.user.entity.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 public interface UserService {
@@ -16,14 +15,8 @@ public interface UserService {
 
     String updateSelfPassword(String username, UserChangePasswordDTO userChangePasswordDTO);
 
-    // Update user details
-    User updateUser(Long userId, UserUpdateDTO userRequest1);
-
-    // Update user social URLs
-    User updateSocialUrls(Long userId, UserSocialDTO userRequest) ;
-
-    // Update user addresses
-    User updateAddresses(Long userId, List<UserAddressDTO> addresses);
+    // User self update
+    User updateUserFull(Long userId, UserFullUpdateDTO userRequest);
 
     // Update user profile picture
     void updateUserProfilePicture(Long userId, MultipartFile profilePicture) throws IOException;
@@ -34,10 +27,10 @@ public interface UserService {
     //fetch particular user contacts if name is provided otherwise all the user contacts
     List<UserContactsDTO> getUserContacts(String name, int pageno, int pagesize, String sort);
 
-
-
     //fetch user dashboard data with filtration if provided otherwise show all the user details
-    List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Date joiningDate, Double salary, int page, int size, String sort);
+    List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Double salary, int page, int size, String sort);
 
+    // Fetch user by username for login api
+    UserInfoDTO getUserByUsername(String username) throws IOException;
 
 }

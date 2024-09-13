@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@Tag(name = "Blogs", description = "Blogs APIs")
+//@CrossOrigin("*")
 @RestController
-@RequestMapping("/in2it/spike/SecureGate/blog")
+@RequestMapping("/blog")
 public class BlogController {
 
     @Autowired
@@ -34,8 +34,7 @@ public class BlogController {
     // CREATE A BLOG
     @Operation(
             summary = "Create a blog",
-            description = "Any user can create a blog",
-            tags = { "Admin","Manager","Employee", "post" })
+            description = "Any user can create a blog")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully created a blog",
                     content = { @Content(mediaType = "application/json",
@@ -64,8 +63,7 @@ public class BlogController {
     // UPDATE A BLOG
     @Operation(
             summary = "Update a blog",
-            description = "Any user can update his/her blog",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Any user can update his/her blog")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the blog",
                     content = { @Content(mediaType = "application/json",
@@ -94,8 +92,7 @@ public class BlogController {
     // FETCH A BLOG BY ID
     @Operation(
             summary = "Fetch a blog by ID",
-            description = "Any user can fetch a blog by ID",
-            tags = { "Admin","Manager","Employee", "get" })
+            description = "Any user can fetch a blog by ID")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully fetched the blog",
                     content = { @Content(mediaType = "application/json",
@@ -123,8 +120,7 @@ public class BlogController {
     // FETCH ALL BLOGS
     @Operation(
             summary = "Fetch all blogs",
-            description = "Any user can fetch all blogs",
-            tags = { "Admin","Manager","Employee", "get" })
+            description = "Any user can fetch all blogs")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully fetched all blog",
                     content = { @Content(mediaType = "application/json",
@@ -138,13 +134,15 @@ public class BlogController {
     })
     @GetMapping("/get-all")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
-    public ResponseEntity<Object> fetchAllBlogs()
+    public ResponseEntity<Object> fetchAllBlogs(
+            @RequestParam(defaultValue = "0") int pageNum,
+            @RequestParam(defaultValue = "5") int pageSize)
     {
         logger.info("Started authenticating");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         logger.info("Authentication Successful");
         logger.info("Started creating new Blog");
-        ResponseEntity<Object> user = blogService.fetchAllBlogs();
+        ResponseEntity<Object> user = blogService.fetchAllBlogs(pageNum,pageSize);
         logger.info("Finished creating new Blog");
         return user;
     }
@@ -152,8 +150,7 @@ public class BlogController {
     // DELETE A BLOG BY ID
     @Operation(
             summary = "Delete a blog by ID",
-            description = "Any user can delete his/her blog",
-            tags = { "Admin","Manager","Employee", "delete" })
+            description = "Any user can delete his/her blog")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully deleted the blog",
                     content = { @Content(mediaType = "application/json",

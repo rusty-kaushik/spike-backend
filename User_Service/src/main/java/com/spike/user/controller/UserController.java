@@ -22,7 +22,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -40,8 +39,7 @@ public class UserController {
     // API TO CREATE A NEW USER
     @Operation(
             summary = "Admin creates a new user",
-            description = "Creates a new user with a profile picture. Pass the JSON body in the 'data' part and the file in the 'file' part.",
-            tags = { "Admin", "post" }
+            description = "Creates a new user with a profile picture. Pass the JSON body in the 'data' part and the file in the 'file' part."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully created a new user",
@@ -85,8 +83,8 @@ public class UserController {
     // API TO UPDATE USER SELF PASSWORD
     @Operation(
             summary = "Update self password",
-            description = "Updates the password of user. The API takes old password and new  password in json.",
-            tags = { "Admin","Manager","Employee", "put" })
+            description = "Updates the password of user. The API takes old password and new  password in json."
+    )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the password of user",
                     content = { @Content(mediaType = "application/json",
@@ -127,11 +125,10 @@ public class UserController {
         }
     }
 
-    // API TO UPDATE USER DETAILS
+    // API TO UPDATE USER FULL DETAILS
     @Operation(
-            summary = "Self updates a user",
-            description = "Updates an existing user. Pass the JSON body in the 'data' part.",
-            tags = { "Admin", "put" }
+            summary = "Self updates a user full details",
+            description = "Updates an existing user. Pass the JSON body in the 'data' part."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the user",
@@ -146,16 +143,16 @@ public class UserController {
     @PutMapping(value = "/self/{userId}")
     public ResponseEntity<Object> updateUser(
             @PathVariable("userId") Long userId,
-            @RequestBody UserUpdateDTO userRequest
+            @RequestBody UserFullUpdateDTO userFullUpdateDTO
     ) {
         logger.info("Received request to update user with ID: {}", userId);
         try {
-            AuditorAwareImpl.setCurrentAuditor(userRequest.getUsername());
+            AuditorAwareImpl.setCurrentAuditor(userFullUpdateDTO.getUsername());
             logger.info("Setting current auditor to 'username'");
 
             // Perform the update operation
             logger.info("Updating user with ID: {}", userId);
-            User updatedUser = userService.updateUser(userId, userRequest);
+            User updatedUser = userService.updateUserFull(userId, userFullUpdateDTO);
             logger.info("User updated successfully with ID: {}", userId);
 
             return ResponseHandler.responseBuilder("User successfully updated", HttpStatus.OK, updatedUser);
@@ -172,94 +169,10 @@ public class UserController {
     }
 
 
-    // API TO UPDATE USER SOCIAL URLS
-    @Operation(
-            summary = "Self updates user's social URLs",
-            description = "Updates the social media URLs of a user.",
-            tags = { "EMPLOYEE", "put" }
-    )
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated user socials",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
-            @ApiResponse(responseCode = "404", description = "User not found",
-                    content = @Content(schema = @Schema())),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = @Content(schema = @Schema())),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = @Content(schema = @Schema()))
-    })
-    @PutMapping("/self/socials/{userId}/{username}")
-    public ResponseEntity<Object> updateSocialUrls(
-            @PathVariable Long userId,
-            @PathVariable String username,
-            @RequestBody UserSocialDTO userRequest) {
-        logger.info("Received request to update socials for user ID: {}", userId);
-        try {
-            AuditorAwareImpl.setCurrentAuditor(username);
-            logger.info("Setting current auditor to '{}'", username);
-
-            User updatedUser = userService.updateSocialUrls(userId, userRequest);
-            logger.info("User socials updated successfully for user ID: {}", userId);
-            return ResponseHandler.responseBuilder("User socials updated", HttpStatus.OK, updatedUser);
-        } catch (UserNotFoundException e) {
-            logger.error("User with ID {} not found: {}", userId);
-            return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
-        } catch (Exception e) {
-            logger.error("Error updating socials for user ID {}: {}", userId, e.getMessage());
-            return ResponseHandler.responseBuilder("User social update unsuccessful", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
-        } finally {
-            logger.info("Clearing current auditor");
-            AuditorAwareImpl.clear();
-        }
-
-    }
-
-    // API TO UPDATE USER ADDRESSES
-    @Operation(
-            summary = "Self updates user's addresses",
-            description = "Updates the addresses of a user.",
-            tags = { "Admin", "put" }
-    )
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated user addresses",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
-            @ApiResponse(responseCode = "404", description = "User not found",
-                    content = @Content(schema = @Schema())),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = @Content(schema = @Schema())),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = @Content(schema = @Schema()))
-    })
-    @PutMapping( "/self/addresses/{userId}/{username}")
-    public ResponseEntity<Object> updateAddresses(
-            @PathVariable Long userId,
-            @PathVariable String username,
-            @RequestBody List<UserAddressDTO> addresses) {
-        logger.info("Received request to update addresses for user ID: {}", userId);
-        try {
-            AuditorAwareImpl.setCurrentAuditor(username);
-            logger.info("Setting current auditor to '{}'", username);
-
-            User updatedUser = userService.updateAddresses(userId, addresses);
-            logger.info("User addresses updated successfully for user ID: {}", userId);
-            return ResponseHandler.responseBuilder("User addresses updated", HttpStatus.OK, updatedUser);
-        } catch (UserNotFoundException e) {
-            logger.error("User with ID {} not found: {}", userId);
-            return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
-        } catch (Exception e) {
-            logger.error("Error updating addresses for user ID {}: {}", userId, e.getMessage());
-            return ResponseHandler.responseBuilder("User addresses update unsuccessful", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
-        } finally {
-            logger.info("Clearing current auditor");
-            AuditorAwareImpl.clear();
-        }
-    }
-
     // API TO UPDATE USER PROFILE PICTURE
     @Operation(
             summary = "Self updates user's profile picture",
-            description = "Updates the profile picture of a user.",
-            tags = { "Admin", "put" }
+            description = "Updates the profile picture of a user."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated user profile picture",
@@ -292,8 +205,7 @@ public class UserController {
     // API TO DELETE USER
     @Operation(
             summary = "Admin deletes a user",
-            description = "Deletes a user based on user ID.",
-            tags = { "Admin", "delete" }
+            description = "Deletes a user based on user ID."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully deleted the user",
@@ -322,8 +234,7 @@ public class UserController {
     //get api to get a particular user contact details if provided , otherwise all the user contacts details with the user name
     @Operation(
             summary = "Fetch user contact details",
-            description = "fetch user contact details by user name",
-            tags = {"Admin", "Manager", "Employee", "get"}
+            description = "fetch user contact details by user name"
     )
     @ApiResponses({
             @ApiResponse(responseCode = "302", description = "user contacts found successfully",
@@ -333,11 +244,14 @@ public class UserController {
                     content = {@Content(schema = @Schema())})})
 
     @GetMapping("usercontacts")
-    public ResponseEntity<Object> getUserContact(@RequestParam(name="name", required=false) String name, @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize, @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno, @RequestParam(name = "sort", defaultValue = "name,asc") String sort) {
+    public ResponseEntity<Object> getUserContact(@RequestParam(name="name", required=false) String name, 
+                                                 @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize, 
+                                                 @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno, 
+                                                 @RequestParam(name = "sort", defaultValue = "name,asc") String sort) {
         try {
             logger.info("getting user contact information " + name);
             List<UserContactsDTO> user = userService.getUserContacts(name, pageno, pagesize, sort);
-            return ResponseHandler.responseBuilder("user contacts found successfully", HttpStatus.FOUND, user);
+            return ResponseHandler.responseBuilder("user contacts found successfully", HttpStatus.OK, user);
         } catch (UserNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
@@ -351,8 +265,7 @@ public class UserController {
     //get api to display list of all users on dashboard with filtration , pagination and sorting
     @Operation(
             summary = "Fetch user details for dashboard",
-            description = "fetch user details by user name , email , joiningDate, salary",
-            tags = {"Admin", "Manager", "Employee", "get"}
+            description = "fetch user details by user name , email , joiningDate, salary"
     )
     @ApiResponses({
             @ApiResponse(responseCode = "302", description = "user details found successfully",
@@ -363,19 +276,31 @@ public class UserController {
     @GetMapping("/userinfo-dashboard")
     public ResponseEntity<Object> getSpecificUserInfoByUsername(@RequestParam(name = "name", required = false) String name,
                                                                 @RequestParam(name = "email", required = false) String email,
-                                                                @RequestParam(name = "joiningDate", required = false) Date joiningDate,
                                                                 @RequestParam(name = "salary", required = false) Double salary,
                                                                 @RequestParam(name = "page", defaultValue = "0") int page,
                                                                 @RequestParam(name = "size", defaultValue = "6") int size,
-                                                                @RequestParam(name = "sort", defaultValue = "joiningDate,desc") String sort) {
+                                                                @RequestParam(name = "sort", defaultValue = "name,desc") String sort) {
         try {
-            List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, joiningDate, salary, page, size, sort);
-            return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.FOUND, userDashBoard);
+            List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, salary, page, size, sort);
+            return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.OK, userDashBoard);
         } catch (UserNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
             throw new RuntimeException("Error fetching user", e.getCause());
         }
+    }
+
+    @GetMapping("/username/{username}")
+    public UserInfoDTO getUserByUsername(@PathVariable String username) {
+        try {
+            UserInfoDTO user = userService.getUserByUsername(username);
+            return user;
+        } catch (UserNotFoundException ex) {
+            throw ex;
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching user", e.getCause());
+        }
+
     }
 
 }

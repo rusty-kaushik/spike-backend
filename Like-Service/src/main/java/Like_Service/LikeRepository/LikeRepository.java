@@ -17,7 +17,7 @@ public interface LikeRepository extends JpaRepository<LikeEntity, UUID> {
     LikeEntity findByBlogidAndUserName( UUID blogid, String username);
 
 
-    @Query("SELECT l.userName FROM LikeEntity l WHERE l.blogid =:blogid")
+    @Query("SELECT l.userName FROM LikeEntity l WHERE l.blogid =:blogid AND l.status = 'Liked'")
     List<String> findByBlogId(@Param("blogid")UUID blogid);
 
 }

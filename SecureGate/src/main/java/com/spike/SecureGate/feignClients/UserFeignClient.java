@@ -1,5 +1,6 @@
 package com.spike.SecureGate.feignClients;
 
+import com.spike.SecureGate.DTO.publicDto.UserInfoDTO;
 import com.spike.SecureGate.DTO.userDto.UserAddressDTO;
 import com.spike.SecureGate.DTO.userDto.UserChangePasswordDTO;
 import com.spike.SecureGate.DTO.userDto.UserSocialUpdateDTO;
@@ -61,6 +62,30 @@ public interface UserFeignClient {
     @DeleteMapping("/spike/user/delete-user/{userId}")
     ResponseEntity<Object> deleteUser(
             @PathVariable Long userId
+    );
+
+    // FIND USER BY USERNAME
+    @GetMapping("/spike/user/username/{username}")
+    UserInfoDTO getUserByUsername(
+            @PathVariable String username
+    );
+
+    // GET USERS FOR EMPLOYEE PAGE
+    @GetMapping("/spike/user/userinfo-dashboard")
+    ResponseEntity<Object> getSpecificUserInfoByUsername(
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam Double salary,
+            @RequestParam int page,
+            @RequestParam int size,
+            @RequestParam String sort
+    );
+    @GetMapping("/spike/user/usercontacts")
+    public ResponseEntity<Object> getUserContact(
+            @RequestParam String name,
+            @RequestParam int pagesize,
+            @RequestParam int pageno,
+            @RequestParam String sort
     );
 
 }
