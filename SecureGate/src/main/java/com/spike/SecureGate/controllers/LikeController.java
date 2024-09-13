@@ -17,9 +17,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "Like", description = "Like/Unlike APIs")
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/spike/SecureGate/like")
+@RequestMapping("/like")
 public class LikeController {
 
     private static final Logger logger = LoggerFactory.getLogger(LikeController.class);

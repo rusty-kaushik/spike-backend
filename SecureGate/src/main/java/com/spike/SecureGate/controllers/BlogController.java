@@ -21,8 +21,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/spike/SecureGate/blog")
+@RequestMapping("/blog")
 public class BlogController {
 
     @Autowired
