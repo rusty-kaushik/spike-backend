@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.in2it.blogservice.customException.CommentServiceDownException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
 @Component
@@ -19,7 +20,7 @@ public interface BlogService {
 	BlogDto updateLike(Long totallikeCount ,UUID id);
 	BlogDto updateComment(Long totalCommentCount,UUID id);
 	
-	Boolean deleteBlog(UUID id, String userId);
+	Boolean deleteBlog(UUID id, String userId) throws CommentServiceDownException;
 	Boolean deleteBlogByTitle(String title, UUID blogId, String deletedBy);
 	
 	BlogDto getBlogById(UUID id);

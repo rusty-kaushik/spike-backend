@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -31,7 +29,7 @@ public class BlogDto {
 	@Hidden
 	private UUID id;
 	
-	@NotNull
+	@NotBlank(message = "departmentId cannot be blank") 
 	private long departmentId;
 	
 

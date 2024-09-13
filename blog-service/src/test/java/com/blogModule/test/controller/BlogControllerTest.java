@@ -19,6 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.in2it.blogservice.controller.BlogServiceController;
+import com.in2it.blogservice.customException.CommentServiceDownException;
+
 import com.in2it.blogservice.customException.InfoMissingException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
@@ -133,8 +135,8 @@ public class BlogControllerTest {
 	    
 	    }
 	    @Test
-	    public void deleteBlog()
-	    {
+	    public void deleteBlog() throws CommentServiceDownException
+    {
 	    	
 	    	UUID id=UUID.randomUUID();
 	    	String userId="user-1";
@@ -155,6 +157,7 @@ public class BlogControllerTest {
 	    }
 	    
 	    @Test
+		@Deprecate
 	    public void deleteBlogByTitle()
 	    {
 

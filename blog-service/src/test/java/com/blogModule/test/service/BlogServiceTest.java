@@ -30,6 +30,8 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.in2it.blogservice.customException.CommentServiceDownException;
+
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
 import com.in2it.blogservice.mapper.Converter;
@@ -211,7 +213,7 @@ public class BlogServiceTest {
 	}
 	
 	@Test
-	public void deleteBlog() throws IOException
+	public void deleteBlog() throws IOException, CommentServiceDownException
 	{
 		
 		UUID blogId = UUID.randomUUID();
@@ -244,6 +246,8 @@ public class BlogServiceTest {
 	}
 	
 	@Test
+	@Deprecated
+
 	public void deleteBlogByTitle() throws IOException
 	{
 		

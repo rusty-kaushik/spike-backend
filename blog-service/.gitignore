@@ -36,3 +36,5 @@ build/
 
 /app.log
 /**.log**
+
+.blog-media

@@ -3,6 +3,7 @@ package com.in2it.blogservice.mapper;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
@@ -37,10 +38,7 @@ public class Converter {
 	
 	/*static way to create file path*/
 	public final String fileUploadDir=".\\blog-media";
-	
-	/* dynamic way to create file path in target resorces */
-//    public final String fileUploadDir=new ClassPathResource("static/image/").getFile().getAbsolutePath();
-	
+
 	private static long randomId=0;
 	
 	public Converter() throws IOException {
@@ -92,6 +90,21 @@ public class Converter {
 		List<String> originalFilenames = new ArrayList<>();
 		List<String> paths=new ArrayList<>();
 	
+		
+         File file=new File(fileUploadDir);
+		
+		
+		if(!file.isDirectory())
+		{
+			try {
+				Files.createDirectories(Path.of(fileUploadDir));
+			} catch (IOException e) {
+			
+				e.printStackTrace();
+			}
+		}
+		
+		
 		try {
 			// replaced code in one line  type 2
 			
@@ -107,6 +120,8 @@ public class Converter {
 				originalFilenames.add(fileName);
 				map.put("file_name",originalFilenames);
 
+				log.info("full path ===================="+fullPath);
+				
 				// This code is inserted file in file system 
 				Files.copy(multipartFile2.getInputStream(),Paths.get(fullPath), StandardCopyOption.REPLACE_EXISTING);
 			}
@@ -130,7 +145,7 @@ public class Converter {
 			
 			for (MultipartFile multipart : multipartFile) {
 				
-				String uriString = ServletUriComponentsBuilder.fromCurrentContextPath().path("/image/")
+				String uriString = ServletUriComponentsBuilder.fromCurrentContextPath().path("/")
 						.path(randomId+multipart.getOriginalFilename()).toUriString();
 				fileLink.add(uriString);
 				
