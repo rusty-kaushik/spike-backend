@@ -184,25 +184,19 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public boolean deleteCommentsByblogId(String blogId) {
-		
+
 		List<Comment> comments = commentRepository.findByBlogIdAndStatus(blogId, "Active");
-		
-		List<Comment> deletedComment = new ArrayList<>();
-		if(comments.isEmpty() || comments == null) {
+
+		if (comments.isEmpty() || comments == null) {
 			throw new BlogNotFoundException("No comments are available for given blog Id");
-		}else {
+		} else {
 			for (Comment comment : comments) {
-				
 				comment.setStatus("InActive");
-				deletedComment.add(comment);
-				
 			}
-			
-			commentRepository.saveAll(deletedComment);
+			commentRepository.saveAll(comments);
 			return true;
 		}
-		
-		
+
 	}
 
 }
