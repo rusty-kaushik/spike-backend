@@ -38,8 +38,7 @@ public interface UserMapper {
     UserSocials dtoToEntitySocials(UserCreationRequestDTO userRequest);
 
      //MAP USER TO USERCONTACTSDTO
-     @Mapping(target = "profilePicture", ignore = true)
-     @Mapping(target = "primaryAddress", ignore = true)
+     @Mapping(target = "profilePicture", ignore=true)
      UserContactsDTO entityToDtoContact(User user);
 
      //MAP USER TO USERDASHBOARDDTO

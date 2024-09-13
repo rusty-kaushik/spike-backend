@@ -322,7 +322,7 @@ public class UserServiceImpl implements UserService {
                 .filter(address -> "PRIMARY".equals(address.getType()))
                 .map(address -> userHelper.entityToUserAddressDto(address))
                 .collect(Collectors.toList());
-
+        userContactsDto.setPrimaryMobile(user.getPrimaryMobileNumber());
         userContactsDto.setPrimaryAddress(primaryAddress);
         userContactsDto.setInstagramUrl(user.getUserSocials() != null ? user.getUserSocials().getInstagramUrl() : null);
         userContactsDto.setFacebookUrl(user.getUserSocials() != null ? user.getUserSocials().getFacebookUrl() : null);
@@ -381,6 +381,8 @@ public class UserServiceImpl implements UserService {
     private UserDashboardDTO userToUserDashboardDto(User user) {
         UserDashboardDTO userDashboardDTO = userHelper.entityToUserDashboardDto(user);
         //convert image into base64
+        userDashboardDTO.setPrimaryMobile(user.getPrimaryMobileNumber());
+
         if (user.getProfilePicture() != null) {
             String filePath = user.getProfilePicture().getFilePath();
             File file = new File(filePath);
