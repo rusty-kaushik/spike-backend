@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/in2it/spike/SecureGate/blog")
+@RequestMapping("/spike/SecureGate/blog")
 public class BlogController {
 
     @Autowired

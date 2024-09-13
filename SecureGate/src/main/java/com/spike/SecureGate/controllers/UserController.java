@@ -28,7 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/in2it/spike/SecureGate/user")
+@RequestMapping("/spike/SecureGate/user")
 public class UserController {
 
     @Autowired

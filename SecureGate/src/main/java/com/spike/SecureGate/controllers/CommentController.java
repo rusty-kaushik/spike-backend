@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/in2it/spike/SecureGate/comments")
+@RequestMapping("/spike/SecureGate/comments")
 public class CommentController {
 
     private static final Logger logger = LoggerFactory.getLogger(CommentController.class);

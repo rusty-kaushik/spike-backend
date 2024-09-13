@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/in2it/spike/SecureGate/public")
+@RequestMapping("/spike/SecureGate/public")
 public class PublicController {
 
     @Autowired
