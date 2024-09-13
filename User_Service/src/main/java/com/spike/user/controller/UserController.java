@@ -244,7 +244,10 @@ public class UserController {
                     content = {@Content(schema = @Schema())})})
 
     @GetMapping("usercontacts")
-    public ResponseEntity<Object> getUserContact(@RequestParam(name="name", required=false) String name, @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize, @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno, @RequestParam(name = "sort", defaultValue = "name,asc") String sort) {
+    public ResponseEntity<Object> getUserContact(@RequestParam(name="name", required=false) String name, 
+                                                 @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize, 
+                                                 @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno, 
+                                                 @RequestParam(name = "sort", defaultValue = "name,asc") String sort) {
         try {
             logger.info("getting user contact information " + name);
             List<UserContactsDTO> user = userService.getUserContacts(name, pageno, pagesize, sort);
