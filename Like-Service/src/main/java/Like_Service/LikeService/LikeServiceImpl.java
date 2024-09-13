@@ -34,41 +34,44 @@ public class LikeServiceImpl implements LikeService {
 
     public String likeandUnlikepost(UUID blogId, String userName) {
         // Fetch blog details from the blog service
+        try {
+            Long LikeCount = likeRepository.countLikesByBlogId(blogId);
 
-        Long LikeCount = likeRepository.countLikesByBlogId(blogId);
 
+            // Check if the user has already liked/disliked this blog
+            LikeEntity existingLike = likeRepository.findByBlogidAndUserName(blogId, userName);
 
-        // Check if the user has already liked/disliked this blog
-        LikeEntity existingLike = likeRepository.findByBlogidAndUserName(blogId, userName);
+            if (existingLike != null) {
 
-        if (existingLike != null) {
+                if (existingLike.getStatus() == status.Liked) {
+                    // If already liked, switch to disliked and decrement like count
+                    existingLike.setStatus(status.Unliked);
+                    LikeCount = Math.max(0, LikeCount - 1);
+                    likeRepository.save(existingLike);
+                    updateBlogLikeCount(blogId, LikeCount);
+                    return "User unliked this blog";
+                } else {
+                    // If disliked, switch to liked and increment like count
+                    existingLike.setStatus(status.Liked);
+                    LikeCount += 1;
 
-            if (existingLike.getStatus() == status.Liked) {
-                // If already liked, switch to disliked and decrement like count
-                existingLike.setStatus(status.Unliked);
-                LikeCount = Math.max(0, LikeCount - 1);
-                likeRepository.save(existingLike);
-                updateBlogLikeCount(blogId, LikeCount);
-                return "User unliked this blog";
+                    likeRepository.save(existingLike);
+                    updateBlogLikeCount(blogId, LikeCount);
+                    return "User liked this blog";
+                }
             } else {
-                // If disliked, switch to liked and increment like count
-                existingLike.setStatus(status.Liked);
+                LikeEntity newLike = new LikeEntity();
+                newLike.setBlogid(blogId);
+                newLike.setUserName(userName);
+                newLike.setCreatedAt(LocalDateTime.now());
+                newLike.setStatus(status.Liked);
+                likeRepository.save(newLike);
                 LikeCount += 1;
-
-                likeRepository.save(existingLike);
                 updateBlogLikeCount(blogId, LikeCount);
                 return "User liked this blog";
             }
-        } else {
-            LikeEntity newLike = new LikeEntity();
-            newLike.setBlogid(blogId);
-            newLike.setUserName(userName);
-            newLike.setCreatedAt(LocalDateTime.now());
-            newLike.setStatus(status.Liked);
-            likeRepository.save(newLike);
-            LikeCount += 1;
-            updateBlogLikeCount(blogId, LikeCount);
-            return "User liked this blog";
+        }catch(Exception ex){
+            throw new RuntimeException("Failed to like/unlike post", ex);
         }
     }
 
@@ -89,4 +92,7 @@ public class LikeServiceImpl implements LikeService {
         }
         return userNames;
     }
+
+
+
 }

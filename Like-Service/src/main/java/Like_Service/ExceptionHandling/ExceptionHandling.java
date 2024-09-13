@@ -34,4 +34,16 @@ return ResponseEntity.badRequest().body(response);
 
         return ResponseEntity.badRequest().body(response);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> RuntimeException(RuntimeException ex) {
+        Map<String, Object> response = new HashMap<>();
+        //response.put("timestamp", System.currentTimeMillis());
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("error", "Error Occured");
+        response.put("message", ex.getMessage());
+
+        return ResponseEntity.badRequest().body(response);
+    }
+
 }
