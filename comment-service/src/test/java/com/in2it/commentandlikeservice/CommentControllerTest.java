@@ -26,6 +26,8 @@ import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
 import com.in2it.commentandlikeservice.response.Response;
 import com.in2it.commentandlikeservice.service.CommentService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @ExtendWith(MockitoExtension.class)
 public class CommentControllerTest {
 
@@ -34,8 +36,6 @@ public class CommentControllerTest {
 
 	@InjectMocks
 	private CommentController commentController;
-	
-
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -44,7 +44,8 @@ public class CommentControllerTest {
 		CommentDto commentDto = new CommentDto();
 		commentDto.setContent("This is a comment");
 		when(commentService.saveComment(any(CommentDto.class), anyString())).thenReturn(commentDto);
-		ResponseEntity<Response<CommentDto>> response = commentController.createComment(commentDto, UUID.randomUUID().toString());
+		ResponseEntity<Response<CommentDto>> response = commentController.createComment(commentDto,
+				UUID.randomUUID().toString());
 		assertEquals(commentDto, response.getBody().getData());
 	}
 
@@ -59,7 +60,8 @@ public class CommentControllerTest {
 
 		when(commentService.updateComment(any(CommentUpdateDto.class), anyString())).thenReturn(commentDto);
 
-		ResponseEntity<Response<CommentDto>> response = commentController.updateComment(updateDto, UUID.randomUUID().toString());
+		ResponseEntity<Response<CommentDto>> response = commentController.updateComment(updateDto,
+				UUID.randomUUID().toString());
 		assertEquals(commentDto, response.getBody().getData());
 	}
 
@@ -96,23 +98,24 @@ public class CommentControllerTest {
 		commentDto.setContent("Deleted comment");
 
 		when(commentService.deleteByCommentId(anyString(), anyString())).thenReturn(commentDto);
-		ResponseEntity<Response<Boolean>> deletedComment = commentController.deleteCommentByCommentId("dsadadad", "sadadadsad");
+		ResponseEntity<Response<Boolean>> deletedComment = commentController.deleteCommentByCommentId("dsadadad",
+				"sadadadsad");
 
 		assertEquals(true, deletedComment.getBody().getData());
 
 	}
+
 	
+	@Operation(summary = "API to delete all the comment of a blog")
 	@Test
 	void deleteCommentsByblogIdTest() {
-		
+
 		String blogId = "121";
 		when(commentService.deleteCommentsByblogId(anyString())).thenReturn(true);
-		
+
 		ResponseEntity<Response<Boolean>> responce = commentController.deleteCommentsByblogId(blogId);
-		
+
 		assertEquals(true, responce.getBody().getData());
-		
-		
-		
+
 	}
 }
