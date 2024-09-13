@@ -43,8 +43,8 @@ public class CommentController {
 
 		CommentDto comment = commentService.saveComment(commentDto, blogId);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(new Response(comment, "Comment successfully created",
-				HttpStatus.CREATED, HttpStatus.CREATED.value()));
+		return ResponseEntity.status(HttpStatus.CREATED).body(
+				new Response(comment, "Comment successfully created", HttpStatus.CREATED, HttpStatus.CREATED.value()));
 
 	}
 
@@ -54,8 +54,8 @@ public class CommentController {
 
 		CommentDto comment = commentService.updateComment(updateDto, commentId);
 
-		return ResponseEntity.status(HttpStatus.OK).body(new Response(comment, "Comment successfully updated",
-				HttpStatus.OK, HttpStatus.OK.value()));
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(new Response(comment, "Comment successfully updated", HttpStatus.OK, HttpStatus.OK.value()));
 
 	}
 
@@ -64,17 +64,16 @@ public class CommentController {
 
 		List<CommentDto> comments = commentService.getByBlogId(blogId);
 
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(new Response(comments, "Found all the comments of this blog " + blogId, HttpStatus.OK,
-						HttpStatus.OK.value()));
+		return ResponseEntity.status(HttpStatus.OK).body(new Response(comments,
+				"Found all the comments of this blog " + blogId, HttpStatus.OK, HttpStatus.OK.value()));
 	}
 
 	@GetMapping("/comment/{commentId}")
 	public ResponseEntity<Response<CommentDto>> getCommentByCommentId(@PathVariable String commentId) {
 		CommentDto comment = commentService.getCommentById(commentId);
 
-		return ResponseEntity.status(HttpStatus.OK).body(
-				new Response(comment, "Comment found  ", HttpStatus.OK, HttpStatus.OK.value()));
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(new Response(comment, "Comment found  ", HttpStatus.OK, HttpStatus.OK.value()));
 	}
 
 	@DeleteMapping("/delete/{blogId}/{commentId}")
@@ -94,15 +93,13 @@ public class CommentController {
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 
 	}
-	
-	
-	@DeleteMapping("delete-by-blogId/{blogId}")
-	public ResponseEntity<Response<Boolean>> deleteCommentsByblogId(@PathVariable String blogId) {
-		boolean deleted = commentService.deleteCommentsByblogId(blogId);		
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response<Boolean>(deleted, "All comments are deleted", HttpStatus.NO_CONTENT, HttpStatus.NO_CONTENT.value()));
-		
-	}
 
-		
+	@DeleteMapping("deleteByBlogId/{blogId}")
+	public ResponseEntity<Response<Boolean>> deleteCommentsByblogId(@PathVariable String blogId) {
+		boolean deleted = commentService.deleteCommentsByblogId(blogId);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new Response<Boolean>(deleted,
+				"All comments are deleted", HttpStatus.NO_CONTENT, HttpStatus.NO_CONTENT.value()));
+
+	}
 
 }

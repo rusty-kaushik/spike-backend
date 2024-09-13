@@ -16,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.in2it.commentandlikeservice.controller.CommentController;
@@ -98,5 +100,19 @@ public class CommentControllerTest {
 
 		assertEquals(true, deletedComment.getBody().getData());
 
+	}
+	
+	@Test
+	void deleteCommentsByblogIdTest() {
+		
+		String blogId = "121";
+		when(commentService.deleteCommentsByblogId(anyString())).thenReturn(true);
+		
+		ResponseEntity<Response<Boolean>> responce = commentController.deleteCommentsByblogId(blogId);
+		
+		assertEquals(true, responce.getBody().getData());
+		
+		
+		
 	}
 }
