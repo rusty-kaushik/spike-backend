@@ -54,5 +54,5 @@ public interface DepartmentService {
      */
     void deleteDepartment(Long id);
 
-    boolean checkDepartmentExistence(String name);
+    boolean checkDepartmentExistence(Long id);
 }

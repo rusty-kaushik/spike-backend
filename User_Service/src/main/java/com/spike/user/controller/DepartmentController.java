@@ -100,9 +100,9 @@ public class DepartmentController {
             summary = "Get department by Name",
             description = "Fetches a department by its name."
     )
-    @GetMapping("/exist/{name}")
-    public boolean checkDepartmentExistence(@PathVariable String name) {
-       return departmentService.checkDepartmentExistence(name);
+    @GetMapping("/exist/{id}")
+    public boolean checkDepartmentExistence(@PathVariable Long id) {
+       return departmentService.checkDepartmentExistence(id);
     }
 
 
