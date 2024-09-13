@@ -13,6 +13,16 @@ public class RestExceptionHandler {
         return buildResponseEntityForExceptions(ex, HttpStatus.FORBIDDEN);
     }
 
+    @ExceptionHandler(value = {ValidationFailedException.class})
+    public ResponseEntity<Object> handleValidationFailedException(ValidationFailedException ex) {
+        return buildResponseEntityForExceptions(ex, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(value = {BlogNotFoundException.class})
+    public ResponseEntity<Object> handleBlogNotFoundException(BlogNotFoundException ex) {
+        return buildResponseEntityForExceptions(ex, HttpStatus.FORBIDDEN);
+    }
+
     private ResponseEntity<Object> buildResponseEntityForExceptions(RuntimeException ex, HttpStatus status) {
         RestException restException = new RestException(
                 ex.getMessage(),
