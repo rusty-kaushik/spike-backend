@@ -15,6 +15,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.List;
 
 // *The SecurityConfig class configures security settings for the application.
 // *It sets up rules for HTTP request access, integrates a custom JWT filter for authentication, and defines how user details and passwords are managed.
@@ -32,20 +38,31 @@ public class SecurityConfig {
         this.jwtFilter = jwtFilter;
     }
 
-    //* Configures security rules for HTTP requests.
-    //* Allows public access to specific URLs, requires authentication for others, and adds a custom JWT filter for token validation.
-    //* Disables CSRF protection but can be re-enabled if necessary.
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(request -> request
-                        .requestMatchers("/in2it/spike/SecureGate/public/**").permitAll()
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .anyRequest().authenticated())
-                        //.anyRequest().permitAll())
+        http
                 .csrf(AbstractHttpConfigurer::disable)
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/public/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                //.cors(cors -> cors.configurationSource(corsConfigurationSource())) // Set the custom CORS configuration
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
     }
+
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOriginPatterns(List.of("*")); // Allows all origins with patterns
+//        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+//        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
+//        configuration.setAllowCredentials(true); // Set to true to allow credentials like cookies and headers
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
 
     //* Sets up global authentication settings by specifying a custom user details service and password encoder.
     //* This ensures user details are retrieved correctly and passwords are securely hashed for authentication.

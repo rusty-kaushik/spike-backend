@@ -27,8 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/in2it/spike/SecureGate/user")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -272,8 +273,8 @@ public class UserController {
     // FETCH USERS FOR EMPLOYEE PAGE
     @Operation(
             summary = "Fetch users for employee page",
-            description = "Fetch users for employee page.",
-            tags = { "Admin","Manager","Employee", "get" })
+            description = "Fetch users for employee page."
+    )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
                     content = { @Content(mediaType = "application/json",
@@ -309,8 +310,8 @@ public class UserController {
     // FETCH USERS FOR CONTACT PAGE
     @Operation(
             summary = "Fetch users for contacts page",
-            description = "Fetch users for contacts page.",
-            tags = { "Admin","Manager","Employee", "get" })
+            description = "Fetch users for contacts page."
+    )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
                     content = { @Content(mediaType = "application/json",
