@@ -5,6 +5,7 @@ import com.spike.SecureGate.DTO.blogDto.BlogCreationRequestDTO;
 import com.spike.SecureGate.DTO.blogDto.BlogUpdateFeignDTO;
 import com.spike.SecureGate.DTO.blogDto.BlogUpdateRequestDTO;
 import com.spike.SecureGate.Validations.BlogValidators;
+import com.spike.SecureGate.exceptions.BlogNotFoundException;
 import com.spike.SecureGate.exceptions.UnexpectedException;
 import com.spike.SecureGate.exceptions.ValidationFailedException;
 import com.spike.SecureGate.feignClients.BlogFeignClient;
@@ -60,6 +61,10 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public ResponseEntity<Object> updateBlog(String userName, BlogUpdateRequestDTO blogUpdateRequestDTO) {
         try {
+            if (!blogValidators.isValidUUID(blogUpdateRequestDTO.getBlogId())) {
+                logger.error("Invalid blogId format");
+                throw new BlogNotFoundException("Invalid blogId format");
+            }
             if (!blogValidators.validateBlogUpdateDto(blogUpdateRequestDTO)) {
                 logger.error("Validation failed");
                 throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
@@ -79,10 +84,10 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public ResponseEntity<Object> fetchBlogById(String blogId) {
         try {
-//            if (!blogValidators.validateBlogExistence(blogId)) {
-//                logger.error("Validation failed");
-//                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
-//            }
+            if (!blogValidators.isValidUUID(blogId)) {
+                logger.error("Invalid blogId format");
+                throw new BlogNotFoundException("Invalid blogId format");
+            }
             return blogFeignClient.fetchBlogById(blogId);
         } catch (ValidationFailedException e) {
             throw e;
@@ -109,12 +114,16 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public ResponseEntity<Object> deleteBlogById(String blogId, String userName) {
         try {
-//            if (!blogValidators.validateBlogExistence(blogId)) {
-//                logger.error("Validation failed");
-//                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
-//            }
+            if (!blogValidators.isValidUUID(blogId)) {
+                logger.error("Invalid blogId format");
+                throw new ValidationFailedException("Invalid blogId format");
+            }
+            if (!blogValidators.validateBlogExistence(blogId)) {
+                logger.error("Validation failed");
+                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
+            }
             return blogFeignClient.deleteBlogById(blogId, userName);
-        } catch (ValidationFailedException e) {
+        } catch (ValidationFailedException | BlogNotFoundException e) {
             throw e;
         } catch (Exception e) {
             logger.error("An unexpected error occurred while deleting a blog" + e.getMessage());

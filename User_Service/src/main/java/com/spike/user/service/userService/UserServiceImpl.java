@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
-    public User createNewUser(MultipartFile profilePicture, UserCreationRequestDTO userRequest) {
+    public User createNewUser(UserCreationRequestDTO userRequest) {
         logger.info("Starting user creation process");
         try {
             // SETS USER
@@ -68,8 +68,7 @@ public class UserServiceImpl implements UserService {
             }
             //SETS SOCIAL URL
             user.addSocial(userHelper.dtoToEntityForUserSocials(userRequest));
-            //SETS PROFILE PICTURE
-            user.addPicture(userHelper.dtoToEntityForUserPicture(profilePicture, userRequest));
+
             User savedUser = userRepository.save(user);
             logger.info("User saved successfully: {}", savedUser);
             return savedUser;
@@ -478,6 +477,30 @@ public class UserServiceImpl implements UserService {
             logger.error("Unexpected error fetching departments for user with id: {}", userId, e);
             throw new RuntimeException("Unexpected error fetching departments", e);
         }
+    }
+
+    @Override
+    public UserInfoDTO addProfilePictureOfAUser(long userId, MultipartFile profilePicture) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+        user.addPicture(userHelper.dtoToEntityForUserPicture(profilePicture, user));
+        User saved = userRepository.save(user);
+        String base64Image = null;
+        String filePath = uploadDirectory + File.separator + saved.getProfilePicture().getFileName();
+        File imageFile = new File(filePath);
+        if (imageFile.exists()) {
+            try (FileInputStream fileInputStream = new FileInputStream(imageFile)) {
+                byte[] imageBytes = new byte[(int) imageFile.length()];
+                fileInputStream.read(imageBytes);
+                base64Image = Base64.getEncoder().encodeToString(imageBytes);
+            } catch (IOException e) {
+                throw new RuntimeException("Error reading or encoding image file", e);
+            }
+        } else {
+            base64Image = null;
+        }
+        UserInfoDTO userInfoDTO = userHelper.entityToUserInfoDto(saved);
+        userInfoDTO.setPicture(base64Image);
+        return userInfoDTO;
     }
 
 }

@@ -100,28 +100,39 @@ public class UserHelper {
         }
     }
 
-    public UserProfilePicture dtoToEntityForUserPicture(MultipartFile profilePicture, UserCreationRequestDTO userRequest1) {
+    public UserProfilePicture dtoToEntityForUserPicture(MultipartFile profilePicture, User user) {
         try {
             logger.info("Processing profile picture: {}", profilePicture.getOriginalFilename());
+
+            // Check if the profile picture is not null and not empty
             if (profilePicture != null && !profilePicture.isEmpty()) {
 
+                // Get original file details
                 String originalFileName = profilePicture.getOriginalFilename();
                 String fileType = profilePicture.getContentType();
                 Long fileSize = profilePicture.getSize();
+
+                // Get file extension and create a new file name using the employee code
                 String fileExtension = originalFileName != null ? originalFileName.substring(originalFileName.lastIndexOf('.')) : "";
-                String newFileName = userRequest1.getEmployeeCode() + "_profile_picture" + fileExtension;
+                String newFileName = user.getEmployeeCode() + "_profile_picture" + fileExtension;
+
+                // Create the file path in the upload directory
                 String filePath = uploadDir + File.separator + newFileName;
                 Path path = Paths.get(filePath);
 
+                // Save the file to the destination folder
                 Files.copy(profilePicture.getInputStream(), path);
                 logger.debug("Profile picture saved to path: {}", filePath);
 
+                // Create and populate the UserProfilePicture entity
                 UserProfilePicture userProfilePicture = new UserProfilePicture();
                 userProfilePicture.setOriginalFileName(originalFileName);
                 userProfilePicture.setFileName(newFileName);
                 userProfilePicture.setFilePath(filePath);
                 userProfilePicture.setFileType(fileType);
                 userProfilePicture.setFileSize(fileSize);
+
+                // Return the populated UserProfilePicture entity
                 return userProfilePicture;
             } else {
                 logger.warn("No profile picture provided");
@@ -129,7 +140,7 @@ public class UserHelper {
             }
         } catch (Exception e) {
             logger.error("Could not convert user profile picture DTO to UserProfilePicture entity", e);
-            throw new DtoToEntityConversionException("Could not convert user profile picture DTO to user profile picture entity");
+            throw new DtoToEntityConversionException("Could not convert user profile picture DTO to user profile picture entity", e);
         }
     }
 

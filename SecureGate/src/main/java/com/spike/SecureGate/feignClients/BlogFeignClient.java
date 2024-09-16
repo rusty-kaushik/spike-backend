@@ -29,7 +29,7 @@ public interface BlogFeignClient {
             @RequestBody BlogUpdateFeignDTO blogUpdateFeignDTO);
 
     // Get a blog by Blog Id
-    @GetMapping("spike/blog/getByBlogId/{blogId}")
+    @GetMapping("/spike/blog/getByBlogId/{blogId}")
     ResponseEntity<Object> fetchBlogById(
             @PathVariable String blogId
     );

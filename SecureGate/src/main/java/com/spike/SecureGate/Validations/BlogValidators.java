@@ -4,15 +4,16 @@ import com.spike.SecureGate.DTO.blogDto.BlogCreationRequestDTO;
 import com.spike.SecureGate.DTO.blogDto.BlogUpdateRequestDTO;
 import com.spike.SecureGate.JdbcHelper.BlogDbService;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
+import com.spike.SecureGate.exceptions.BlogNotFoundException;
 import com.spike.SecureGate.exceptions.ValidationFailedException;
 import com.spike.SecureGate.feignClients.BlogFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class BlogValidators {
@@ -75,13 +76,37 @@ public class BlogValidators {
         if (blogUpdateRequestDTO.getContent() == null || blogUpdateRequestDTO.getContent().isEmpty()) {
             throw new ValidationFailedException("Content cannot be null or empty");
         }
+
+        // validate blog ID
+        if (!BlogIdExistenceValidation(blogUpdateRequestDTO.getBlogId())) {
+            throw new BlogNotFoundException("Invalid blogId");
+        }
+
         return true;
     }
 
     public boolean validateBlogExistence (String blogId) {
-        if(!blogDbService.doesBlogExist(blogId)){
-            throw new ValidationFailedException("Blog does not exist");
+
+        if (!isValidUUID(blogId)) {
+            throw new BlogNotFoundException("blogId is not in valid UUID format");
+        }
+        // validate blog ID
+        if (!BlogIdExistenceValidation(blogId)) {
+            throw new BlogNotFoundException("Invalid blogId");
         }
         return true;
     }
+
+    public boolean isValidUUID(String blogId) {
+        try {
+            UUID.fromString(blogId);
+            return true;
+        } catch (IllegalArgumentException e) {return false;}
+    }
+
+    public boolean BlogIdExistenceValidation(String blogId) {
+        ResponseEntity<Object> responseEntity = blogFeignClient.fetchBlogById(blogId);
+        return responseEntity.getStatusCode().value() == 200;
+    }
+
 }

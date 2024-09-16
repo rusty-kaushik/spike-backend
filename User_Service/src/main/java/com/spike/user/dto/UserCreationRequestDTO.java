@@ -19,7 +19,6 @@ public class UserCreationRequestDTO {
     private String backupEmail;
     private String designation;
     private String employeeCode;
-    private String password;
     private Long managerId;
     private String role;
     private String primaryMobileNumber;

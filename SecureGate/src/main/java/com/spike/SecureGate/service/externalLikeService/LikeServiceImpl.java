@@ -1,11 +1,9 @@
 package com.spike.SecureGate.service.externalLikeService;
 
-import com.spike.SecureGate.Validations.LikeValidator;
-import com.spike.SecureGate.controllers.LikeController;
+import com.spike.SecureGate.Validations.BlogValidators;
 import com.spike.SecureGate.exceptions.BlogNotFoundException;
 import com.spike.SecureGate.exceptions.UnexpectedException;
 import com.spike.SecureGate.feignClients.LikeFeignClient;
-import lombok.extern.flogger.Flogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +19,16 @@ public class LikeServiceImpl implements LikeService {
     private LikeFeignClient likeFeignClient;
 
     @Autowired
-    private LikeValidator likeValidator;
+    private BlogValidators blogValidators;
 
     @Override
     public ResponseEntity<Object> likeOrUnlikeABlog(String userName, String blogId) {
         try {
-            if (!likeValidator.likeOrUnlikeABlogValidation(blogId)) {
+            if (!blogValidators.isValidUUID(blogId)) {
+                logger.error("Invalid blogId format");
+                throw new BlogNotFoundException("Invalid blogId format");
+            }
+            if (!blogValidators.BlogIdExistenceValidation(blogId)) {
                 logger.error("Invalid blogId");
                 throw new BlogNotFoundException("Invalid blogId");
             }
@@ -42,7 +44,11 @@ public class LikeServiceImpl implements LikeService {
     @Override
     public ResponseEntity<Object> listOfUsersWhoLikedBlog(String blogId) {
         try {
-            if (!likeValidator.likeOrUnlikeABlogValidation(blogId)) {
+            if (!blogValidators.isValidUUID(blogId)) {
+                logger.error("Invalid blogId format");
+                throw new BlogNotFoundException("Invalid blogId format");
+            }
+            if (!blogValidators.BlogIdExistenceValidation(blogId)) {
                 logger.error("Invalid blogId");
                 throw new BlogNotFoundException("Invalid blogId");
             }
