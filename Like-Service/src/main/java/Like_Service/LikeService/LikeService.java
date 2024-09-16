@@ -9,4 +9,6 @@ public interface LikeService {
     String likeandUnlikepost(UUID blogid, String username);
 
     List<String> getUserNames(UUID blogid);
+
+    boolean unlikeDeletedBlog(String blogId);
 }

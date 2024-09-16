@@ -49,8 +49,19 @@ public class LikeController {
             List<String> likes = likeService.getUserNames(blogId);
             return ResponseHandler.response(HttpStatus.OK, String.valueOf(likes), "usernames fetched successfully");
         } catch (Exception ex) {
-            throw new RuntimeException("An Unknown error occurred", ex);
+            throw new RuntimeException("An Unexpected error occurred", ex);
 
+        }
+    }
+
+    //delete api to unlike all the likes on deleted blog
+    @DeleteMapping("/unlike/deleted-blog/{blogId}")
+    public ResponseEntity<Object> unlikeDeletedBlog(@RequestParam("blogId") String blogId) {
+        try {
+          boolean deleted= likeService.unlikeDeletedBlog(blogId);
+            return ResponseHandler.response(HttpStatus.OK, "Unlike a deleted blog successfully", deleted);
+        } catch (Exception ex) {
+            throw new RuntimeException("An Unexpected error occurred", ex);
         }
     }
 
