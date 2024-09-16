@@ -28,7 +28,7 @@ public class LikeController {
 
 
     //Put Api to Like and unlike a Post
-    //require blogid and user id as parameters
+    //require blogid and username as parameters
     @PutMapping("/blogpost/{blogId}/{userName}")
     public ResponseEntity<Object> blogLikeAndUnlike(@PathVariable("blogId") String blogid, @PathVariable("userName") String username) {
 
