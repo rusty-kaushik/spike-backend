@@ -9,6 +9,7 @@ import com.spike.user.exceptions.*;
 import com.spike.user.response.ResponseHandler;
 import com.spike.user.service.userService.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -19,9 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -302,5 +305,50 @@ public class UserController {
         }
 
     }
+
+    @Operation(
+            summary = "Retrieve departments by user ID",
+            description = "Fetch a list of departments associated with the specified user ID. Returns an empty list if the user has no associated departments."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",
+                    description = "Successfully retrieved departments"
+                   ),
+            @ApiResponse(responseCode = "404",
+                    description = "User not found"
+            ),
+            @ApiResponse(responseCode = "500",
+                    description = "Unexpected error occurred"
+            )
+    })
+
+    @GetMapping("/departments/{userId}")
+    public ResponseEntity<Object> getDepartmentsByUserRole(@PathVariable Long userId) {
+        try {
+            List<DepartmentDropdownDTO> departments = userService.getDepartmentsByUserId(userId);
+
+            if (departments.isEmpty()) {
+                // Return 204 No Content if there are no departments
+                return ResponseHandler.responseBuilder("No departments found for the user.", HttpStatus.NO_CONTENT, "No Departments found for the user");
+            }
+
+            // Return the list of departments with 200 OK
+            return ResponseHandler.responseBuilder("Departments successfully retrieved.", HttpStatus.OK, departments);
+
+        } catch (UserNotFoundException e) {
+            // Log the exception for debugging
+            logger.error("User not found: {}", userId, e);
+            // Return 404 Not Found with an error message
+            return ResponseHandler.responseBuilder("User not found.", HttpStatus.NOT_FOUND, "User not found for this id");
+
+        } catch (Exception e) {
+            // Log the exception for debugging
+            logger.error("Error retrieving departments for user: {}", userId, e);
+            // Return 500 Internal Server Error with an error message
+            return ResponseHandler.responseBuilder("An unexpected error occurred while retrieving departments.", HttpStatus.INTERNAL_SERVER_ERROR, "Try again");
+        }
+    }
+
+
 
 }

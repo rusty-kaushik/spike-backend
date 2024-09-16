@@ -10,6 +10,9 @@ public class DepartmentDropdownDTO {
     private Long id;
     private String name;
 
+    public DepartmentDropdownDTO() {
+    }
+
     public DepartmentDropdownDTO(Long id, String name) {
         this.id = id;
         this.name = name;

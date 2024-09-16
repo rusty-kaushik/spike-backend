@@ -1,12 +1,10 @@
 package com.spike.user.service.userService;
 
 import com.spike.user.dto.*;
-import com.spike.user.entity.User;
-import com.spike.user.entity.UserAddress;
-import com.spike.user.entity.UserProfilePicture;
-import com.spike.user.entity.UserSocials;
+import com.spike.user.entity.*;
 import com.spike.user.exceptions.*;
 import com.spike.user.helper.UserHelper;
+import com.spike.user.repository.DepartmentRepository;
 import com.spike.user.repository.UserProfilePictureRepository;
 import com.spike.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -31,6 +29,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,6 +44,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserProfilePictureRepository userProfilePictureRepository;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     @Value("${file.upload-dir}")
     private String uploadDirectory;
@@ -448,4 +450,34 @@ public class UserServiceImpl implements UserService {
 
         return userInfoDTO;
     }
+
+    @Override
+    public List<DepartmentDropdownDTO> getDepartmentsByUserId(Long userId) {
+        logger.info("Fetching departments for user with id: {}", userId);
+        try {
+            // Fetch the user by ID
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+
+            // Get the departments associated with the user
+            Set<Department> departments = user.getDepartments();
+
+            // Convert to DTO
+            return departments.stream()
+                    .map(department -> {
+                        DepartmentDropdownDTO dto = new DepartmentDropdownDTO();
+                        dto.setId(department.getId());
+                        dto.setName(department.getName());
+                        return dto;
+                    })
+                    .collect(Collectors.toList());
+        } catch (UserNotFoundException e) {
+            logger.error("User not found with id: {}", userId, e);
+            throw e;
+        } catch (Exception e) {
+            logger.error("Unexpected error fetching departments for user with id: {}", userId, e);
+            throw new RuntimeException("Unexpected error fetching departments", e);
+        }
+    }
+
 }
