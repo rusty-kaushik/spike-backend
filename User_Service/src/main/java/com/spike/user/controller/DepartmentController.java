@@ -4,12 +4,10 @@ import com.spike.user.auditing.AuditorAwareImpl;
 import com.spike.user.dto.DepartmentCreationDTO;
 import com.spike.user.dto.DepartmentDropdownDTO;
 import com.spike.user.dto.DepartmentResponseDTO;
-import com.spike.user.entity.Department;
 import com.spike.user.exceptions.DepartmentNotFoundException;
 import com.spike.user.response.ResponseHandler;
 import com.spike.user.service.departmentService.DepartmentService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,8 +95,8 @@ public class DepartmentController {
 
     // get the single department
     @Operation(
-            summary = "Get department by Name",
-            description = "Fetches a department by its name."
+            summary = "Get department by Id",
+            description = "Fetches a department by its id."
     )
     @GetMapping("/exist/{id}")
     public boolean checkDepartmentExistence(@PathVariable Long id) {
