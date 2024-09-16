@@ -93,6 +93,18 @@ public class LikeServiceImpl implements LikeService {
         return userNames;
     }
 
-
-
+    @Override
+    public boolean unlikeDeletedBlog(String id) {
+        UUID blogId = UUID.fromString(id);
+        List<LikeEntity> like = likeRepository.findALLByBlogId(blogId);
+        if (like.isEmpty()) {
+            throw new BlogNotFoundException("No blog found with id " + id);
+        } else {
+            for (LikeEntity likes : like) {
+                likes.setStatus(status.Unliked);
+            }
+            likeRepository.saveAll(like);
+        }
+        return true;
+    }
 }
