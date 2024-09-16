@@ -31,17 +31,14 @@ public class BlogValidators {
         // Validate title
         if (blogCreationRequestDTO.getTitle() == null ||
                 blogCreationRequestDTO.getTitle().isEmpty() ||
-                !blogCreationRequestDTO.getTitle().matches("^[a-zA-Z0-9 ]*$") ||
-                blogCreationRequestDTO.getTitle().length() < 3 ||
-                blogCreationRequestDTO.getTitle().length() > 50
+                !blogCreationRequestDTO.getTitle().matches("^[a-zA-Z0-9 ]*$")
         ) {
             throw new ValidationFailedException("Title cannot be null, empty, or contain special characters or more than 50 characters");
         }
 
         // Validate content
         if (blogCreationRequestDTO.getContent() == null ||
-                blogCreationRequestDTO.getContent().isEmpty() ||
-                blogCreationRequestDTO.getContent().length() > 10000
+                blogCreationRequestDTO.getContent().isEmpty()
         ) {
             throw new ValidationFailedException("Content cannot be null or empty or more than 1000 characters");
         }
@@ -52,10 +49,6 @@ public class BlogValidators {
                 if (file.isEmpty()) {
                     throw new ValidationFailedException("Media files cannot be empty");
                 }
-                // Validate file size (must be <= 1 MB)
-//                if (file.getSize() > 1_048_576) { // 1 MB in bytes
-//                    throw new ValidationFailedException("File size cannot exceed 1 MB");
-//                }
             }
         }
 
