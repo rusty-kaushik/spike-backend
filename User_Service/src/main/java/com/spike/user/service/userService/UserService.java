@@ -33,4 +33,7 @@ public interface UserService {
     // Fetch user by username for login api
     UserInfoDTO getUserByUsername(String username) throws IOException;
 
+    // Fetch User in how many department is currently
+    List<DepartmentDropdownDTO> getDepartmentsByUserId(Long userId);
+
 }
