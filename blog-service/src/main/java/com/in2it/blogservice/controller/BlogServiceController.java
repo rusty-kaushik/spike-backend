@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.in2it.blogservice.customException.CommentServiceDownException;
 import com.in2it.blogservice.customException.InfoMissingException;
+import com.in2it.blogservice.customException.LikeServiceDownException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
 import com.in2it.blogservice.reponse.ResponseHandler;
@@ -102,13 +103,12 @@ public class BlogServiceController {
 	@DeleteMapping("/deleteByBlogId/{blogId}")
 	@Operation(summary = "delete blog by blogId ,in updatedBy we can pass whose login then store his userName i.e. Admin123")
 	public ResponseEntity<ResponseHandler<Boolean>> deleteBlog(@PathVariable String blogId,
-			@RequestParam String updatedBy) throws CommentServiceDownException {
+			@RequestParam String updatedBy) throws CommentServiceDownException , LikeServiceDownException {
 		UUID fromString = UUID.fromString(blogId);
 		ResponseHandler<Boolean> response = new ResponseHandler<>(serviceImpl.deleteBlog(fromString, updatedBy),
 				"Your blog has been deleted successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
 
 		return ResponseEntity.ok(response);
-
 	}
 
 //	@DeleteMapping("/deleteByTitle/{title}")

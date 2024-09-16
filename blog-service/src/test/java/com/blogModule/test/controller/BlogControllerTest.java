@@ -22,6 +22,7 @@ import com.in2it.blogservice.controller.BlogServiceController;
 import com.in2it.blogservice.customException.CommentServiceDownException;
 
 import com.in2it.blogservice.customException.InfoMissingException;
+import com.in2it.blogservice.customException.LikeServiceDownException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
 import com.in2it.blogservice.reponse.ResponseHandler;
@@ -31,7 +32,7 @@ import com.in2it.blogservice.service.impl.BlogServiceImpl;
 @ContextConfiguration(classes = BlogControllerTest.class)
 public class BlogControllerTest {
 
-	 @Mock
+	 	@Mock
 	    private BlogServiceImpl serviceImpl;
 
 	    @InjectMocks
@@ -135,7 +136,7 @@ public class BlogControllerTest {
 	    
 	    }
 	    @Test
-	    public void deleteBlog() throws CommentServiceDownException
+	    public void deleteBlog() throws CommentServiceDownException, LikeServiceDownException
     {
 	    	
 	    	UUID id=UUID.randomUUID();
@@ -157,7 +158,7 @@ public class BlogControllerTest {
 	    }
 	    
 	    @Test
-		@Deprecate
+		@Deprecated
 	    public void deleteBlogByTitle()
 	    {
 
