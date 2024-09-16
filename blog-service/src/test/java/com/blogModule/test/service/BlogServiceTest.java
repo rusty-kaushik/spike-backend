@@ -34,7 +34,7 @@ import com.in2it.blogservice.customException.CommentServiceDownException;
 import com.in2it.blogservice.customException.LikeServiceDownException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
-import com.in2it.blogservice.feignClients.FeignClientAPIs;
+import com.in2it.blogservice.feignClients.FeignClientForComment;
 import com.in2it.blogservice.feignClients.FeignClientForLike;
 import com.in2it.blogservice.mapper.Converter;
 import com.in2it.blogservice.model.Blog;
@@ -47,7 +47,7 @@ import com.in2it.blogservice.service.impl.BlogServiceImpl;
 public class BlogServiceTest {
 
 	@Mock
-	private FeignClientAPIs feign;
+	private FeignClientForComment commentFeign;
 	@Mock
 	private FeignClientForLike likeFeign;
 	@Mock
