@@ -1,5 +1,7 @@
 package Like_Service.LikeController;
 
+import Like_Service.ExceptionHandling.BlogNotFoundException;
+import Like_Service.ExceptionHandling.UserNotFoundException;
 import Like_Service.LikeRepository.LikeRepository;
 import Like_Service.LikeService.LikeService;
 
@@ -34,7 +36,10 @@ public class LikeController {
             UUID blogId = UUID.fromString(blogid);
             String response = likeService.likeandUnlikepost(blogId, username);
             return ResponseHandler.response(HttpStatus.OK, response, "Success");
-        } catch (Exception ex) {
+        } catch(RuntimeException ex){
+            throw(ex);
+        }
+        catch (Exception ex) {
             throw new RuntimeException("An Unknown error occurred", ex);
         }
     }
@@ -48,6 +53,8 @@ public class LikeController {
             //it will provide the list of usernames who liked blog with the provided blogid
             List<String> likes = likeService.getUserNames(blogId);
             return ResponseHandler.response(HttpStatus.OK, String.valueOf(likes), "usernames fetched successfully");
+        } catch (UserNotFoundException ex) {
+            throw (ex);
         } catch (Exception ex) {
             throw new RuntimeException("An Unexpected error occurred", ex);
 
@@ -58,9 +65,12 @@ public class LikeController {
     @DeleteMapping("/unlike/deleted-blog/{blogId}")
     public ResponseEntity<Object> unlikeDeletedBlog(@RequestParam("blogId") String blogId) {
         try {
-          boolean deleted= likeService.unlikeDeletedBlog(blogId);
+            boolean deleted = likeService.unlikeDeletedBlog(blogId);
             return ResponseHandler.response(HttpStatus.OK, "Unlike a deleted blog successfully", deleted);
-        } catch (Exception ex) {
+        }
+        catch(BlogNotFoundException ex ){
+            throw(ex);
+        } catch(Exception ex) {
             throw new RuntimeException("An Unexpected error occurred", ex);
         }
     }
