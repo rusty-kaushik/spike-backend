@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserService {
 
-    User createNewUser(MultipartFile profilePicture, UserCreationRequestDTO userRequest1);
+    User createNewUser(UserCreationRequestDTO userRequest1);
 
     List<User> getAllUsers();
 
@@ -36,4 +36,5 @@ public interface UserService {
     // Fetch User in how many department is currently
     List<DepartmentDropdownDTO> getDepartmentsByUserId(Long userId);
 
+    UserInfoDTO addProfilePictureOfAUser(long userId, MultipartFile profilePicture);
 }

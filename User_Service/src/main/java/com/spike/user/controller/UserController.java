@@ -1,6 +1,5 @@
 package com.spike.user.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spike.user.auditing.AuditorAwareImpl;
 import com.spike.user.dto.*;
@@ -9,7 +8,6 @@ import com.spike.user.exceptions.*;
 import com.spike.user.response.ResponseHandler;
 import com.spike.user.service.userService.UserService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -20,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -55,28 +52,48 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = { @Content(schema = @Schema()) })
     })
-    @PostMapping(value = "/new-user/{username}" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping("/new-user/{username}")
     public  ResponseEntity<Object>  createNewUser(
-            @RequestPart("file") MultipartFile profilePicture,
-            @RequestPart("data") String data,
-            @PathVariable(value = "username") String username
-    ) throws JsonProcessingException {
+            @RequestBody UserCreationRequestDTO data,
+            @PathVariable String username
+    ) {
         logger.info("Received request to create a new user");
         try {
             logger.info("Setting current auditor to username: {}", username);
             AuditorAwareImpl.setCurrentAuditor(username);
-            UserCreationRequestDTO userRequest = objectMapper.readValue(data, UserCreationRequestDTO.class);
-            logger.info("Creating new user with username: {}", userRequest.getEmployeeCode());
-            User createdUser = userService.createNewUser(profilePicture, userRequest);
+            logger.info("Creating new user with username: {}", data.getEmployeeCode());
+            User createdUser = userService.createNewUser(data);
             logger.info("User created successfully with username: {}", username);
             return ResponseHandler.responseBuilder("user successfully created", HttpStatus.OK, createdUser);
         } catch (DepartmentNotFoundException | RoleNotFoundException | DtoToEntityConversionException | UnexpectedException     e ) {
             throw e;
-        }  catch (JsonProcessingException e) {
-            logger.error("Error parsing user creation request data: {}", e.getMessage());
-            return ResponseHandler.responseBuilder("Invalid user creation request data", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
+        } finally {
+            logger.info("Clearing current auditor");
+            AuditorAwareImpl.clear();
         }
-        finally {
+    }
+
+    // API TO ADD PROFILE PICTURE OF A USER
+    @Operation(
+            summary = "USER ADD PROFILE PICTURE",
+            description = "User to add profile picture."
+    )
+    @PostMapping(value = "/add/picture/{userId}/{username}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public  ResponseEntity<Object>  addProfilePictureOfAUser(
+            @PathVariable long userId,
+            @PathVariable String username,
+            @RequestBody MultipartFile profilePicture
+    ) {
+        logger.info("Received request to add a new profile picture");
+        try {
+            logger.info("Setting current auditor to username: {}", username);
+            AuditorAwareImpl.setCurrentAuditor(username);
+            UserInfoDTO user = userService.addProfilePictureOfAUser(userId,profilePicture);
+            logger.info("User added profile picture successfully with username: {}", username);
+            return ResponseHandler.responseBuilder("user successfully added profile picture", HttpStatus.OK, user);
+        } catch (DepartmentNotFoundException | RoleNotFoundException | DtoToEntityConversionException | UnexpectedException     e ) {
+            throw e;
+        } finally {
             logger.info("Clearing current auditor");
             AuditorAwareImpl.clear();
         }
