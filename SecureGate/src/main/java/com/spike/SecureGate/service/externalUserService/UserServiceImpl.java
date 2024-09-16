@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ResponseEntity<Object> updateSelfDetails(Long userId, UserUpdateRequestDTO userUpdateRequestDTO) {
+    public ResponseEntity<Object> updateSelfDetails(Long userId, UserFullUpdateDTO userUpdateRequestDTO) {
         try{
             if (!userValidators.validateUserSelfDetailsUpdate(userUpdateRequestDTO)) {
                 logger.error("Validation failed");
@@ -83,38 +83,6 @@ public class UserServiceImpl implements UserService{
         } catch (Exception e) {
             logger.error("Error occurred while updating details of the user " + e.getMessage());
             throw new UnexpectedException("An unexpected error occurred while updating details of the user: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public ResponseEntity<Object> updateSelfSocialDetails(Long userId, String userName, UserSocialUpdateDTO userSocialUpdateDTO) {
-        try{
-            if (!userValidators.validateUserSelfSocialUrlsUpdate(userSocialUpdateDTO)) {
-                logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid data");
-            }
-            return userFeignClient.updateSocialUrls(userId, userName, userSocialUpdateDTO);
-        } catch (ValidationFailedException e) {
-            throw e;
-        } catch (Exception e) {
-            logger.error("Error occurred while updating social details of the user " + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while updating social details of the user: " + e.getMessage());
-        }
-    }
-
-    @Override
-    public ResponseEntity<Object> updateSelfAddressDetails(Long userId, String userName, List<UserAddressDTO> addresses) {
-        try{
-//            if (!userValidators.validateUserSelfAddressesUpdate(addresses)) {
-//                logger.error("Validation failed");
-//                throw new ValidationFailedException("Invalid data");
-//            }
-            return userFeignClient.updateAddresses(userId, userName, addresses);
-        } catch (ValidationFailedException e) {
-            throw e;
-        } catch (Exception e) {
-            logger.error("Error occurred while updating address details of the user " + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while updating address details of the user: " + e.getMessage());
         }
     }
 

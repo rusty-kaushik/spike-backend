@@ -1,10 +1,7 @@
 package com.spike.SecureGate.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.spike.SecureGate.DTO.userDto.UserAddressDTO;
-import com.spike.SecureGate.DTO.userDto.UserChangePasswordDTO;
-import com.spike.SecureGate.DTO.userDto.UserSocialUpdateDTO;
-import com.spike.SecureGate.DTO.userDto.UserUpdateRequestDTO;
+import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
 import com.spike.SecureGate.service.externalUserService.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -127,84 +124,20 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = { @Content(schema = @Schema()) })
     })
-    @PutMapping("/update/details")
+    @PutMapping("/update/details/{userId}")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> updateSelfDetails(
-            @RequestBody UserUpdateRequestDTO userUpdateRequestDTO
+            @PathVariable long userId,
+            @RequestBody UserFullUpdateDTO userFullUpdateDTO
     )
     {
         logger.info("Started authenticating");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         logger.info("Authentication Successful");
         String userName = authentication.getName();
-        long userId = userDbService.getIdByUsername(userName);
         logger.info("Stared updating self details");
-        ResponseEntity<Object> user = userService.updateSelfDetails(userId, userUpdateRequestDTO);
+        ResponseEntity<Object> user = userService.updateSelfDetails(userId, userFullUpdateDTO);
         logger.info("Finished updating self details");
-        return user;
-    }
-
-    // UPDATE SELF SOCIAL URLS
-    @Operation(
-            summary = "Update self social urls",
-            description = "Updates the social urls of user.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated the social urls of user",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
-    @PutMapping("/update/social")
-    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
-    public ResponseEntity<Object> updateSelfSocialDetails(
-            @RequestBody UserSocialUpdateDTO userSocialUpdateDTO
-    )
-    {
-        logger.info("Started authenticating");
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        logger.info("Authentication Successful");
-        String userName = authentication.getName();
-        long userId = userDbService.getIdByUsername(userName);
-        logger.info("Started updating user social urls");
-        ResponseEntity<Object> user = userService.updateSelfSocialDetails(userId,userName, userSocialUpdateDTO);
-        logger.info("Finished updating user social urls");
-        return user;
-    }
-
-    // UPDATE SELF ADDRESSES
-    @Operation(
-            summary = "Update self addresses",
-            description = "Updates the addresses of user.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
-    @PutMapping("/update/address")
-    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
-    public ResponseEntity<Object> updateSelfAddressDetails(
-            @RequestBody List<UserAddressDTO> addresses
-    )
-    {
-        logger.info("Started authenticating");
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        logger.info("Authentication Successful");
-        String userName = authentication.getName();
-        long userId = userDbService.getIdByUsername(userName);
-        logger.info("Started updating user address");
-        ResponseEntity<Object> user = userService.updateSelfAddressDetails(userId,userName, addresses);
-        logger.info("Finished updating user address");
         return user;
     }
 
@@ -213,7 +146,7 @@ public class UserController {
             summary = "Update self profile picture",
             description = "Updates the profile picture of user.")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
+            @ApiResponse(responseCode = "200", description = "Successfully updated the profile of user",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = String.class)) }),
             @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",

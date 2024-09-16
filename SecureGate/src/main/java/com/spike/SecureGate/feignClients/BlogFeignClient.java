@@ -43,6 +43,9 @@ public interface BlogFeignClient {
 
     // Get all blogs
     @GetMapping("/spike/blog/getAll")
-    ResponseEntity<Object> fetchAllBlogs();
+    ResponseEntity<Object> fetchAllBlogs(
+            @RequestParam int pageNum,
+            @RequestParam int pageSize
+    );
 
 }

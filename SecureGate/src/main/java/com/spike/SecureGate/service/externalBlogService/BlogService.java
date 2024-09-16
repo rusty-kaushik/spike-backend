@@ -13,7 +13,7 @@ public interface BlogService {
 
     ResponseEntity<Object> fetchBlogById(String blogId);
 
-    ResponseEntity<Object> fetchAllBlogs();
+    ResponseEntity<Object> fetchAllBlogs(int pageNum, int pageSize);
 
     ResponseEntity<Object> deleteBlogById(String blogId, String userName);
 }

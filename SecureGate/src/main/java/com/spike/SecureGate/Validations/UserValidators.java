@@ -157,9 +157,23 @@ public class UserValidators {
         return true;
     }
 
-    public boolean validateUserSelfDetailsUpdate(UserUpdateRequestDTO userUpdateRequestDTO) {
+    public boolean validateUserSelfDetailsUpdate(UserFullUpdateDTO userUpdateRequestDTO) {
 
         // todo verify the uniqueness of the username
+
+        if (userUpdateRequestDTO.getLinkedinUrl() != null && !userUpdateRequestDTO.getLinkedinUrl().matches("^https:\\/\\/linkedin\\.com\\/in\\/[a-zA-Z0-9\\-]+$")) {
+            throw new IllegalArgumentException("Invalid LinkedIn URL");
+        }
+
+        // Validate Facebook URL
+        if (userUpdateRequestDTO.getFacebookUrl() != null && !userUpdateRequestDTO.getFacebookUrl().matches("^https:\\/\\/facebook\\.com\\/[a-zA-Z0-9\\.]+$")) {
+            throw new IllegalArgumentException("Invalid Facebook URL");
+        }
+
+        // Validate Instagram URL
+        if (userUpdateRequestDTO.getInstagramUrl() != null && !userUpdateRequestDTO.getInstagramUrl().matches("^https:\\/\\/instagram\\.com\\/[a-zA-Z0-9_\\.]+$")) {
+            throw new IllegalArgumentException("Invalid Instagram URL");
+        }
 
         // validate backup email of user
         if (userUpdateRequestDTO.getBackupEmail() != null && !isValidEmail(userUpdateRequestDTO.getBackupEmail())) {
@@ -173,23 +187,11 @@ public class UserValidators {
         if (userUpdateRequestDTO.getSecondaryMobileNumber() != null && !isValidPhoneNumber(userUpdateRequestDTO.getSecondaryMobileNumber())) {
             throw new IllegalArgumentException("Invalid secondary mobile number format");
         }
-        return true;
-    }
 
-    public boolean validateUserSelfSocialUrlsUpdate(UserSocialUpdateDTO userSocialUpdateDTO) {
-        // Validate LinkedIn URL
-        if (userSocialUpdateDTO.getLinkedinUrl() != null && !userSocialUpdateDTO.getLinkedinUrl().matches("^https:\\/\\/linkedin\\.com\\/in\\/[a-zA-Z0-9\\-]+$")) {
-            throw new IllegalArgumentException("Invalid LinkedIn URL");
-        }
-
-        // Validate Facebook URL
-        if (userSocialUpdateDTO.getFacebookUrl() != null && !userSocialUpdateDTO.getFacebookUrl().matches("^https:\\/\\/facebook\\.com\\/[a-zA-Z0-9\\.]+$")) {
-            throw new IllegalArgumentException("Invalid Facebook URL");
-        }
-
-        // Validate Instagram URL
-        if (userSocialUpdateDTO.getInstagramUrl() != null && !userSocialUpdateDTO.getInstagramUrl().matches("^https:\\/\\/instagram\\.com\\/[a-zA-Z0-9_\\.]+$")) {
-            throw new IllegalArgumentException("Invalid Instagram URL");
+        if (userUpdateRequestDTO.getAddresses() != null && !userUpdateRequestDTO.getAddresses().isEmpty()) {
+            for (UserAddressDTO address : userUpdateRequestDTO.getAddresses()) {
+                validateAddress(address);
+            }
         }
         return true;
     }

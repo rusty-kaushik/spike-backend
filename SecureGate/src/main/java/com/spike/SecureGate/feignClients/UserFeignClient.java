@@ -1,10 +1,8 @@
 package com.spike.SecureGate.feignClients;
 
+import com.spike.SecureGate.DTO.departmentDto.DepartmentCreationDTO;
 import com.spike.SecureGate.DTO.publicDto.UserInfoDTO;
-import com.spike.SecureGate.DTO.userDto.UserAddressDTO;
-import com.spike.SecureGate.DTO.userDto.UserChangePasswordDTO;
-import com.spike.SecureGate.DTO.userDto.UserSocialUpdateDTO;
-import com.spike.SecureGate.DTO.userDto.UserUpdateRequestDTO;
+import com.spike.SecureGate.DTO.userDto.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,25 +28,9 @@ public interface UserFeignClient {
 
     // UPDATE SELF DETAILS
     @PutMapping(value = "/spike/user/self/{userId}")
-    ResponseEntity<Object> updateUser(
+    public ResponseEntity<Object> updateUser(
             @PathVariable("userId") Long userId,
-            @RequestBody UserUpdateRequestDTO userRequest
-    );
-
-    // UPDATE SELF SOCIAL URLS
-    @PutMapping("/spike/user/self/socials/{userId}/{username}")
-    ResponseEntity<Object> updateSocialUrls(
-            @PathVariable Long userId,
-            @PathVariable String username,
-            @RequestBody UserSocialUpdateDTO userSocialUpdateDTO
-    );
-
-    // UPDATE SELF ADDRESSES
-    @PutMapping("/spike/user/self/addresses/{userId}/{username}")
-    ResponseEntity<Object> updateAddresses(
-            @PathVariable Long userId,
-            @PathVariable String username,
-            @RequestBody List<UserAddressDTO> addresses
+            @RequestBody UserFullUpdateDTO userFullUpdateDTO
     );
 
     // UPDATE SELF PROFILE PICTURE
@@ -86,6 +68,35 @@ public interface UserFeignClient {
             @RequestParam int pagesize,
             @RequestParam int pageno,
             @RequestParam String sort
+    );
+
+    @PostMapping("/spike/department/create-new")
+    ResponseEntity<Object> createDepartment(
+            @RequestBody DepartmentCreationDTO department
+    );
+
+    @GetMapping("/spike/department/dropdown")
+    ResponseEntity<Object> departmentDropdown();
+
+    @GetMapping("/spike/department/{`id`}")
+    ResponseEntity<Object> getDepartmentById(
+            @PathVariable Long id
+    );
+
+    @GetMapping("/spike/department/exist/{id}")
+    boolean checkDepartmentExistence(
+            @PathVariable Long id
+    );
+
+    @PutMapping("/spike/department/{id}")
+    ResponseEntity<Object> updateDepartment(
+            @PathVariable Long id,
+            @RequestBody DepartmentCreationDTO department
+    );
+
+    @DeleteMapping("/spike/department/{id}")
+    ResponseEntity<Object> deleteDepartment(
+            @PathVariable Long id
     );
 
 }
