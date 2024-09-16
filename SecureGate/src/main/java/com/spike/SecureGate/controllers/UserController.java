@@ -156,7 +156,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = { @Content(schema = @Schema()) })
     })
-    @PutMapping("/update/profile-picture")
+    @PutMapping(value = "/update/profile-picture", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> updateSelfPictureDetails(
             @RequestBody MultipartFile profilePicture
