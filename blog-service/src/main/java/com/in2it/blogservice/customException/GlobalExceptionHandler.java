@@ -79,4 +79,13 @@ public class GlobalExceptionHandler {
 	        }
 	        return false;
 	    }
+	    @SuppressWarnings("unchecked")
+		@ExceptionHandler(LikeServiceDownException.class)
+	    public  ResponseEntity<?> likeServiceDownException(LikeServiceDownException ex, WebRequest request){
+			
+			ExceptionStatus status=new ExceptionStatus(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage(), request.getDescription(false));		
+			
+			return new ResponseEntity(status,HttpStatus.NOT_FOUND);
+			
+		}
 }

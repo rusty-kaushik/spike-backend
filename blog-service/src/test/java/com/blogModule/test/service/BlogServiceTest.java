@@ -31,9 +31,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.in2it.blogservice.customException.CommentServiceDownException;
-
+import com.in2it.blogservice.customException.LikeServiceDownException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
+import com.in2it.blogservice.feignClients.FeignClientAPIs;
+import com.in2it.blogservice.feignClients.FeignClientForLike;
 import com.in2it.blogservice.mapper.Converter;
 import com.in2it.blogservice.model.Blog;
 import com.in2it.blogservice.repository.BlogRepository;
@@ -44,6 +46,10 @@ import com.in2it.blogservice.service.impl.BlogServiceImpl;
 @ContextConfiguration(classes = BlogServiceTest.class)
 public class BlogServiceTest {
 
+	@Mock
+	private FeignClientAPIs feign;
+	@Mock
+	private FeignClientForLike likeFeign;
 	@Mock
 	private BlogRepository repo;
 	@Mock
@@ -213,7 +219,7 @@ public class BlogServiceTest {
 	}
 	
 	@Test
-	public void deleteBlog() throws IOException, CommentServiceDownException
+	public void deleteBlog() throws IOException, CommentServiceDownException, LikeServiceDownException
 	{
 		
 		UUID blogId = UUID.randomUUID();
