@@ -1,7 +1,5 @@
 package com.in2it.commentandlikeservice.response;
 
-import java.time.LocalDateTime;
-
 import org.springframework.http.HttpStatus;
 
 import lombok.AllArgsConstructor;

@@ -40,8 +40,8 @@ public class CommentController {
 
 		CommentDto comment = commentService.saveComment(commentDto, blogId);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(
-				new Response<CommentDto>(comment, "Comment successfully created", HttpStatus.CREATED, HttpStatus.CREATED.value()));
+		return ResponseEntity.status(HttpStatus.CREATED).body(new Response<CommentDto>(comment,
+				"Comment successfully created", HttpStatus.CREATED, HttpStatus.CREATED.value()));
 
 	}
 
@@ -52,8 +52,8 @@ public class CommentController {
 
 		CommentDto comment = commentService.updateComment(updateDto, commentId);
 
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(new Response<CommentDto>(comment, "Comment successfully updated", HttpStatus.OK, HttpStatus.OK.value()));
+		return ResponseEntity.status(HttpStatus.OK).body(new Response<CommentDto>(comment,
+				"Comment successfully updated", HttpStatus.OK, HttpStatus.OK.value()));
 
 	}
 
@@ -75,7 +75,7 @@ public class CommentController {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(new Response<CommentDto>(comment, "Comment found  ", HttpStatus.OK, HttpStatus.OK.value()));
 	}
-	
+
 	@Operation(summary = "API to delete the comment of a blog with commentId")
 	@DeleteMapping("/delete/comment/{blogId}/{commentId}")
 	public ResponseEntity<Response<Boolean>> deleteCommentByCommentId(@PathVariable String blogId,
@@ -95,7 +95,6 @@ public class CommentController {
 
 	}
 
-	
 	@Operation(summary = "API to delete all the comment of a blog")
 	@DeleteMapping("deleteByBlogId/{blogId}")
 	public ResponseEntity<Response<Boolean>> deleteCommentsByblogId(@PathVariable String blogId) {

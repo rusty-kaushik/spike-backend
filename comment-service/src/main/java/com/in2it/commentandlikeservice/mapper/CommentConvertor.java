@@ -20,17 +20,15 @@ import com.in2it.commentandlikeservice.model.Comment;
 
 @Component
 public class CommentConvertor {
-//	String dirPath="D:\\path\\media\\CommentImage";
+
 	@Value("${media.path}")
 	String dirPath;
+
 	public Comment dtoToCommentConvertor(CommentDto commentDto) {
 
 		List<String> mediaName = new ArrayList();
 		List<String> mediaPath = new ArrayList<>();
 
-//		File file = new File("D:\\path\\media\\CommentImage");
-		
-		
 		File file = new File(dirPath);
 		if (!file.isDirectory()) {
 			try {
@@ -45,14 +43,13 @@ public class CommentConvertor {
 			try {
 				String path = file.getAbsolutePath();
 				for (MultipartFile image : commentDto.getMedia()) {
-					String uniqueFileName =  System.currentTimeMillis() + image.getOriginalFilename();
+					String uniqueFileName = System.currentTimeMillis() + image.getOriginalFilename();
 					String path1 = path + "\\" + uniqueFileName;
 					System.out.println(path1);
 					mediaName.add(uniqueFileName);
 					image.transferTo(new File(path1));
-//					String path2 = ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/")
-//							.path(image.getOriginalFilename()).toUriString();
-					String path2 = dirPath+"\\"+uniqueFileName;
+
+					String path2 = dirPath + "\\" + uniqueFileName;
 					mediaPath.add(path2);
 
 					System.out.println("path" + path);
@@ -90,11 +87,10 @@ public class CommentConvertor {
 		List<String> filesPath = new ArrayList<>();
 
 		for (String fileName : comment.getMedia()) {
-//			filesPath.add(ServletUriComponentsBuilder.fromCurrentContextPath().path("/CommentImage/").path(fileName)
-//					.toUriString());
-			filesPath.add(dirPath+"\\"+fileName);
+
+			filesPath.add(dirPath + "\\" + fileName);
 		}
-		
+
 		List<String> mediaData = new ArrayList<>();
 		for (String filePath : comment.getMediaPath()) {
 
@@ -113,13 +109,10 @@ public class CommentConvertor {
 			}
 
 		}
-		
+
 		commentDto.setMediaPath(filesPath);
 		commentDto.setMediaData(mediaData);
 		return commentDto;
 	}
-
-	
-	
 
 }

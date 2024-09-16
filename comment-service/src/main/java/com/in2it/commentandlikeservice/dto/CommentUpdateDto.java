@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CommentUpdateDto {
 
-
-
 	@NotBlank(message = "content cannot be blank")
 	private String content;
 

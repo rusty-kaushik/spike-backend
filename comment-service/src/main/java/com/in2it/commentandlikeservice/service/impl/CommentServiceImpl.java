@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.in2it.commentandlikeservice.dto.BlogDto;
 import com.in2it.commentandlikeservice.dto.CommentDto;
@@ -25,7 +24,6 @@ import com.in2it.commentandlikeservice.model.Comment;
 import com.in2it.commentandlikeservice.repository.CommentRepository;
 import com.in2it.commentandlikeservice.service.CommentService;
 
-import feign.FeignException.InternalServerError;
 import feign.RetryableException;
 import lombok.extern.slf4j.Slf4j;
 
