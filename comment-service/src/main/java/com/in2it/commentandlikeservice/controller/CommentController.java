@@ -1,8 +1,6 @@
 package com.in2it.commentandlikeservice.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,18 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.in2it.commentandlikeservice.dto.CommentDto;
 import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
-import com.in2it.commentandlikeservice.exception.UserNotFoundException;
-import com.in2it.commentandlikeservice.model.Comment;
 import com.in2it.commentandlikeservice.response.Response;
 import com.in2it.commentandlikeservice.service.CommentService;
 
-import feign.ResponseHandler;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/spike/blog/comment")
+@RequestMapping("/spike/blog")
 @Slf4j
 public class CommentController {
 
@@ -39,36 +34,36 @@ public class CommentController {
 	private CommentService commentService;
 
 	@Operation(summary = "API to add a comment on blog")
-	@PostMapping(path = "/create/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	@PostMapping(path = "/create/comment/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<Response<CommentDto>> createComment(@ModelAttribute CommentDto commentDto,
 			@PathVariable String blogId) {
 
 		CommentDto comment = commentService.saveComment(commentDto, blogId);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(
-				new Response(comment, "Comment successfully created", HttpStatus.CREATED, HttpStatus.CREATED.value()));
+		return ResponseEntity.status(HttpStatus.CREATED).body(new Response<CommentDto>(comment,
+				"Comment successfully created", HttpStatus.CREATED, HttpStatus.CREATED.value()));
 
 	}
 
 	@Operation(summary = "API to update the comment of a blog")
-	@PutMapping(path = "/update/{commentId}")
+	@PutMapping(path = "/update/comment/{commentId}")
 	public ResponseEntity<Response<CommentDto>> updateComment(@RequestBody CommentUpdateDto updateDto,
 			@Valid @PathVariable("commentId") String commentId) {
 
 		CommentDto comment = commentService.updateComment(updateDto, commentId);
 
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(new Response(comment, "Comment successfully updated", HttpStatus.OK, HttpStatus.OK.value()));
+		return ResponseEntity.status(HttpStatus.OK).body(new Response<CommentDto>(comment,
+				"Comment successfully updated", HttpStatus.OK, HttpStatus.OK.value()));
 
 	}
 
 	@Operation(summary = "API to get all the comment of a blog with blogId")
-	@GetMapping("/get-all/{blogId}")
+	@GetMapping("/get-all/comment/{blogId}")
 	public ResponseEntity<Response<List<CommentDto>>> getCommentByBlogId(@PathVariable String blogId) {
 
 		List<CommentDto> comments = commentService.getByBlogId(blogId);
 
-		return ResponseEntity.status(HttpStatus.OK).body(new Response(comments,
+		return ResponseEntity.status(HttpStatus.OK).body(new Response<List<CommentDto>>(comments,
 				"Found all the comments of this blog " + blogId, HttpStatus.OK, HttpStatus.OK.value()));
 	}
 
@@ -78,11 +73,11 @@ public class CommentController {
 		CommentDto comment = commentService.getCommentById(commentId);
 
 		return ResponseEntity.status(HttpStatus.OK)
-				.body(new Response(comment, "Comment found  ", HttpStatus.OK, HttpStatus.OK.value()));
+				.body(new Response<CommentDto>(comment, "Comment found  ", HttpStatus.OK, HttpStatus.OK.value()));
 	}
-	
+
 	@Operation(summary = "API to delete the comment of a blog with commentId")
-	@DeleteMapping("/delete/{blogId}/{commentId}")
+	@DeleteMapping("/delete/comment/{blogId}/{commentId}")
 	public ResponseEntity<Response<Boolean>> deleteCommentByCommentId(@PathVariable String blogId,
 			@PathVariable String commentId) {
 		Boolean flag = false;
@@ -100,7 +95,6 @@ public class CommentController {
 
 	}
 
-	
 	@Operation(summary = "API to delete all the comment of a blog")
 	@DeleteMapping("deleteByBlogId/{blogId}")
 	public ResponseEntity<Response<Boolean>> deleteCommentsByblogId(@PathVariable String blogId) {

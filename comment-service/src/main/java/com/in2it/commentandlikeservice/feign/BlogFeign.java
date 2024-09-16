@@ -1,7 +1,5 @@
 package com.in2it.commentandlikeservice.feign;
 
-import java.util.UUID;
-
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
