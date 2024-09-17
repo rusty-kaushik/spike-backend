@@ -62,9 +62,11 @@ public class UserServiceImpl implements UserService {
             // SETS USER
             User user = userHelper.dtoToEntityForUserMaster(userRequest);
             // SETS ADDRESSES
-            for (UserAddressDTO addressDTO : userRequest.getAddresses()) {
-                UserAddress userAddress = userHelper.dtoToEntityForUserAddress(addressDTO);
-                user.addAddress(userAddress);
+            if(userRequest.getAddresses() != null){
+                for (UserAddressDTO addressDTO : userRequest.getAddresses()) {
+                    UserAddress userAddress = userHelper.dtoToEntityForUserAddress(addressDTO);
+                    user.addAddress(userAddress);
+                }
             }
             //SETS SOCIAL URL
             user.addSocial(userHelper.dtoToEntityForUserSocials(userRequest));
