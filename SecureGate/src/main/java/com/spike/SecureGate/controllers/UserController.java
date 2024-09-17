@@ -52,7 +52,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = { @Content(schema = @Schema()) })
     })
-    @PostMapping(value = "/create" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> createUser(
             @RequestBody UserCreationRequestDTO data
