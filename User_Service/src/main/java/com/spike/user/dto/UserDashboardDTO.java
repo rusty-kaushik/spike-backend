@@ -13,6 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class UserDashboardDTO {
 
+    private Long id;
     private String name;
     private String email;
     private String designation;
