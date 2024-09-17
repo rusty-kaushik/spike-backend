@@ -365,6 +365,18 @@ public class UserController {
         }
     }
 
+    @GetMapping("/self/{userId}")
+    public ResponseEntity<Object> getUserById(@PathVariable long userId) {
+        try {
+            UserProfileDTO user = userService.getUserById(userId);
+            return ResponseHandler.responseBuilder("User information fetched.", HttpStatus.OK, user);
+        } catch (UserNotFoundException ex) {
+            throw ex;
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching user", e.getCause());
+        }
+
+    }
 
 
 }

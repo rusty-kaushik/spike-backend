@@ -22,10 +22,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -52,6 +54,9 @@ public class UserHelper {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Value("${file.upload-dir}")
+    private String uploadDirectory;
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -210,4 +215,49 @@ public class UserHelper {
         return info;
     }
 
+    public String fetchUserProfilePicture(User user) throws IOException {
+        if (user.getProfilePicture() == null) {
+            return null;  // No profile picture set for the user
+        }
+
+        String filePath = uploadDirectory + File.separator + user.getProfilePicture().getFileName();
+        File imageFile = new File(filePath);
+
+        // Initialize the Base64 image string as null
+        String base64Image = null;
+
+        // Read and encode image file if it exists
+        if (imageFile.exists()) {
+            try (FileInputStream fileInputStream = new FileInputStream(imageFile)) {
+                byte[] imageBytes = new byte[(int) imageFile.length()];
+                fileInputStream.read(imageBytes);
+
+                // Convert to Base64
+                base64Image = Base64.getEncoder().encodeToString(imageBytes);
+            } catch (IOException e) {
+                // Handle exception (log it or rethrow it)
+                throw new RuntimeException("Error reading or encoding image file", e);
+            }
+        } else {
+            // Handle the case where the image file does not exist
+            base64Image = null;  // Or use a placeholder image
+        }
+
+        return base64Image;
+    }
+
+    public UserProfileDTO entityToUserProfileDto(User user, String base64Image) {
+        UserProfileDTO dto = new UserProfileDTO();
+        dto.setName(user.getName());
+        dto.setEmail(user.getEmail());
+        dto.setDesignation(user.getDesignation());
+        dto.setEmployeeCode(user.getEmployeeCode());
+        dto.setRole(user.getRole().getName());
+        dto.setPrimaryMobileNumber(user.getPrimaryMobileNumber());
+        dto.setJoiningDate(String.valueOf(user.getJoiningDate()));
+        dto.setDepartment(user.getDepartments());
+        dto.setAddresses(user.getAddresses());
+        dto.setProfilePicture(base64Image);
+        return dto;
+    }
 }
