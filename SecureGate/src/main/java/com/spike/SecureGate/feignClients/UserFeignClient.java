@@ -15,11 +15,10 @@ import java.util.List;
 public interface UserFeignClient {
 
     // create new user
-    @PostMapping(value = "/spike/user/new-user/{username}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping("/spike/user/new-user/{username}")
     ResponseEntity<Object> createNewUser(
             @PathVariable("username") String username,
-            @RequestPart("file") MultipartFile profilePicture,
-            @RequestPart("data") String data
+            @RequestBody UserCreationRequestDTO data
     );
 
     // update user password
@@ -62,6 +61,8 @@ public interface UserFeignClient {
             @RequestParam int size,
             @RequestParam String sort
     );
+
+    // GET USERS FOR CONTACT PAGE
     @GetMapping("/spike/user/usercontacts")
     public ResponseEntity<Object> getUserContact(
             @RequestParam String name,
@@ -97,6 +98,18 @@ public interface UserFeignClient {
     @DeleteMapping("/spike/department/{id}")
     ResponseEntity<Object> deleteDepartment(
             @PathVariable Long id
+    );
+
+    @PostMapping(value = "/spike/user/add/picture/{userId}/{username}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    ResponseEntity<Object>  addProfilePictureOfAUser(
+            @PathVariable long userId,
+            @PathVariable String username,
+            @RequestBody MultipartFile profilePicture
+    );
+
+    @GetMapping("/spike/user/self/{userId}")
+    ResponseEntity<Object> getUserById(
+            @PathVariable long userId
     );
 
 }

@@ -3,7 +3,9 @@ package com.spike.SecureGate.Validations;
 import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
 import com.spike.SecureGate.enums.IndianState;
+import com.spike.SecureGate.feignClients.UserFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -15,6 +17,9 @@ public class UserValidators {
 
     @Autowired
     private UserDbService userDbService;
+
+    @Autowired
+    private UserFeignClient userFeignClient;
 
     public boolean validateUserCreationDetails(UserCreationRequestDTO userRequest) {
         if (userRequest == null) {
@@ -47,8 +52,10 @@ public class UserValidators {
         }
 
         // Validate manager ID
-        if (userRequest.getManagerId() != null && userRequest.getManagerId() <= 0) {
-            throw new IllegalArgumentException("Manager ID must be positive");
+        if(userRequest.getManagerId() != null) {
+            if (userRequest.getManagerId() <= 0) {
+                throw new IllegalArgumentException("Manager ID must be positive");
+            }
         }
 
         // Validate role
@@ -61,10 +68,13 @@ public class UserValidators {
             throw new IllegalArgumentException("Invalid primary mobile number format");
         }
 
-        // Validate secondary mobile number
-        if (userRequest.getSecondaryMobileNumber() != null && !isValidPhoneNumber(userRequest.getSecondaryMobileNumber())) {
-            throw new IllegalArgumentException("Invalid secondary mobile number format");
+        if( userRequest.getSecondaryMobileNumber() != null ) {
+            // Validate secondary mobile number
+            if ( !isValidPhoneNumber(userRequest.getSecondaryMobileNumber())) {
+                throw new IllegalArgumentException("Invalid secondary mobile number format");
+            }
         }
+
 
         // Validate joining date
         if (userRequest.getJoiningDate() != null && userRequest.getJoiningDate().after(new Date())) {
@@ -84,21 +94,6 @@ public class UserValidators {
                     throw new IllegalArgumentException("Invalid department: " + department);
                 }
             }
-        }
-
-        // Validate LinkedIn URL
-        if (userRequest.getLinkedinUrl() != null && !userRequest.getLinkedinUrl().matches("^https:\\/\\/linkedin\\.com\\/in\\/[a-zA-Z0-9\\-]+$")) {
-            throw new IllegalArgumentException("Invalid LinkedIn URL");
-        }
-
-        // Validate Facebook URL
-        if (userRequest.getFacebookUrl() != null && !userRequest.getFacebookUrl().matches("^https:\\/\\/facebook\\.com\\/[a-zA-Z0-9\\.]+$")) {
-            throw new IllegalArgumentException("Invalid Facebook URL");
-        }
-
-        // Validate Instagram URL
-        if (userRequest.getInstagramUrl() != null && !userRequest.getInstagramUrl().matches("^https:\\/\\/instagram\\.com\\/[a-zA-Z0-9_\\.]+$")) {
-            throw new IllegalArgumentException("Invalid Instagram URL");
         }
 
         // Validate addresses
@@ -134,7 +129,7 @@ public class UserValidators {
         if (address.getCountry() == null || address.getCountry().isEmpty()) {
             throw new IllegalArgumentException("Country cannot be null or empty");
         }
-        if (address.getType() == null || (!address.getType().equals("PRIMARY") && !address.getType().equals("TEMPORARY") )){
+        if (address.getType() == null || (!address.getType().equals("PERMANENT") && !address.getType().equals("CURRENT") )){
             throw new IllegalArgumentException("Address can be either 'PRIMARY' or 'TEMPORARY'");
         }
 
@@ -194,5 +189,10 @@ public class UserValidators {
             }
         }
         return true;
+    }
+
+    public boolean validateUserExistence(long userId) {
+        ResponseEntity<Object> responseEntity = userFeignClient.getUserById(userId);
+        return responseEntity.getStatusCode().value() == 200;
     }
 }
