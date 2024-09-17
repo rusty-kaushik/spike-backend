@@ -1,6 +1,5 @@
 package com.spike.SecureGate.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
 import com.spike.SecureGate.service.externalUserService.UserService;
@@ -56,25 +55,35 @@ public class UserController {
     @PostMapping(value = "/create" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> createUser(
-            @Parameter(
-                    description = "Profile picture of the user",
-                    required = true,
-                    content = @Content(
-                            mediaType = "multipart/form-data",
-                            schema = @Schema(type = "string", format = "binary")
-                    )
-            )  @RequestPart("file") MultipartFile profilePicture,
-            @Parameter(
-                    description = "User details in JSON format",
-                    required = true
-            ) @RequestPart("data") String userRequest
-    ) throws JsonProcessingException {
+            @RequestBody UserCreationRequestDTO data
+    ) {
         logger.info("Started authenticating");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         logger.info("Authentication Successful");
         String userName = authentication.getName();
         logger.info("Started creating new User");
-        ResponseEntity<Object> user = userService.createUser(userName, profilePicture, userRequest);
+        ResponseEntity<Object> user = userService.createUser(userName, data);
+        logger.info("Finished creating new User");
+        return user;
+    }
+
+    // ADD PROFILE PICTURE
+    @Operation(
+            summary = "User adds a new profile picture",
+            description = "Adds a new profile picture"
+    )
+    @PostMapping(value = "/add/picture/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> addProfilePicture(
+            @PathVariable long userId,
+            @RequestBody MultipartFile profilePicture
+    ) {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        String userName = authentication.getName();
+        logger.info("Started creating new User");
+        ResponseEntity<Object> user = userService.addProfilePicture(profilePicture, userName, userId);
         logger.info("Finished creating new User");
         return user;
     }
@@ -239,7 +248,6 @@ public class UserController {
         return user;
     }
 
-
     // FETCH USERS FOR CONTACT PAGE
     @Operation(
             summary = "Fetch users for contacts page",
@@ -274,4 +282,23 @@ public class UserController {
         return user;
     }
 
+    // FETCH USER DETAILS FOR MY ACCOUNT PAGE
+    @Operation(
+            summary = "Fetch users for my account page",
+            description = "Fetch users for contacts page."
+    )
+    @GetMapping("/self/{userId}")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> fetchSelfDetails(
+         @PathVariable long userId
+    )
+    {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        logger.info("Started fetching users for contact page");
+        ResponseEntity<Object> user = userService.fetchSelfDetails(userId);
+        logger.info("Finished fetching users for contact page");
+        return user;
+    }
 }

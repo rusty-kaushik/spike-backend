@@ -1,6 +1,5 @@
 package com.spike.SecureGate.service.externalUserService;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.Validations.UserValidators;
@@ -14,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -31,20 +29,14 @@ public class UserServiceImpl implements UserService{
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
-    public ResponseEntity<Object> createUser(String username, MultipartFile profilePicture, String data) {
+    public ResponseEntity<Object> createUser(String username, UserCreationRequestDTO data) {
         try {
-            // CONVERTING TO JSON FOR VALIDATION.
-            UserCreationRequestDTO userRequest = objectMapper.readValue(data, UserCreationRequestDTO.class);
             // Validate the user request
-            if (!userValidators.validateUserCreationDetails(userRequest)) {
+            if (!userValidators.validateUserCreationDetails(data)) {
                 logger.error("Validation failed");
                 throw new ValidationFailedException("Invalid data");
             }
-            ResponseEntity<Object> newUser = userFeignClient.createNewUser(username, profilePicture, data);
-            return newUser;
-        } catch (JsonProcessingException e)  {
-            logger.error("String to Json conversion failed");
-            throw new ValidationFailedException("Invalid JSON data");
+            return userFeignClient.createNewUser(username, data);
         } catch (ValidationFailedException e) {
             throw e;
         } catch (Exception e) {
@@ -116,6 +108,24 @@ public class UserServiceImpl implements UserService{
     @Override
     public ResponseEntity<Object> fetchUsersForContactPage(String name, int pageSize, int pageNo, String sort) {
         return userFeignClient.getUserContact(name, pageSize, pageNo, sort);
+    }
+
+    @Override
+    public ResponseEntity<Object> addProfilePicture(MultipartFile profilePicture, String username, long userId) {
+        try {
+            if (!userValidators.validateUserExistence(userId)) {
+                logger.error("Validation failed");
+                throw new ValidationFailedException("Invalid user");
+            }
+            return userFeignClient.addProfilePictureOfAUser(userId, username, profilePicture);
+        } catch (ValidationFailedException e) {
+            throw e;
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> fetchSelfDetails(long userId) {
+        return userFeignClient.getUserById(userId);
     }
 
 }

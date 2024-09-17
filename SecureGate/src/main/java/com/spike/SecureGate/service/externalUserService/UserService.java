@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
 
     // CREATE USER
-    ResponseEntity<Object> createUser(String username, MultipartFile profilePicture, String data);
+    ResponseEntity<Object> createUser(String username, UserCreationRequestDTO data);
 
     // UPDATE SELF PASSWORD
     ResponseEntity<Object> updateSelfPassword(String userName, UserChangePasswordDTO userChangePasswordDTO);
@@ -24,4 +24,8 @@ public interface UserService {
     ResponseEntity<Object> fetchUsersForEmployeePage(String name, String email, Double salary, int page, int size, String sort);
 
     ResponseEntity<Object> fetchUsersForContactPage(String name, int pageSize, int pageNo, String sort);
+
+    ResponseEntity<Object> addProfilePicture(MultipartFile profilePicture, String username, long userId);
+
+    ResponseEntity<Object> fetchSelfDetails(long userId);
 }
