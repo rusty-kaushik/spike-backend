@@ -339,7 +339,7 @@ public class UserController {
     })
 
     @GetMapping("/departments/{userId}")
-    public ResponseEntity<Object> getDepartmentsByUserRole(@PathVariable Long userId) {
+    public ResponseEntity<Object> getDepartmentsByUserId(@PathVariable Long userId) {
         try {
             List<DepartmentDropdownDTO> departments = userService.getDepartmentsByUserId(userId);
 
