@@ -14,33 +14,33 @@ import java.util.List;
 public interface CommentFeignClient {
 
     // CREATE A COMMENT
-    @PostMapping(value = "/spike/blog/comment/create/{blogId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(path = "/spike/blog/create/comment/{blogId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     ResponseEntity<Object> createNewComment(
-            @PathVariable String blogId,
-            @ModelAttribute CommentCreationFeignDTO commentCreationFeignDTO
+            @ModelAttribute CommentCreationFeignDTO commentDto,
+            @PathVariable String blogId
     );
 
     // UPDATE A COMMENT BY COMMENT ID
-    @PutMapping("/spike/blog/comment/update/{commentId}")
+    @PutMapping("/spike/blog/update/comment/{commentId}")
     ResponseEntity<Object> UpdateComment(
-            @RequestBody CommentUpdateRequestDTO commentUpdateRequestDTO,
+            @RequestBody CommentUpdateRequestDTO updateDto,
             @PathVariable String commentId
     );
 
     // GET ALL COMMENTS BY BLOG ID
-    @GetMapping("/spike/blog/comment/get-all/{blogId}")
+    @GetMapping("/spike/blog/get-all/comment/{blogId}")
     public ResponseEntity<Object> getAllCommentsOfBlog(
             @PathVariable String blogId
     );
 
     // GET COMMENT BY COMMENT ID
-    @GetMapping("/spike/blog/comment/comment/{commentId}")
+    @GetMapping("/spike/blog/comment/{commentId}")
     public ResponseEntity<Object> getCommentByCommentId(
             @PathVariable String commentId
     );
 
     // DELETE A COMMENT BY COMMENT ID AND BLOG ID
-    @DeleteMapping("/spike/blog/comment/delete/{blogId}/{commentId}")
+    @DeleteMapping("/spike/blog/delete/comment/{blogId}/{commentId}")
     public ResponseEntity<Object> deleteCommentByBlogId(
             @PathVariable String blogId,
             @PathVariable String commentId

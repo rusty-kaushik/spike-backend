@@ -48,7 +48,7 @@ public class CommentServiceImpl implements CommentService{
                 throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
             }
             CommentCreationFeignDTO finalData = commentHelper.commentCreationDtoTOFeignDto(userName, commentCreationRequestDTO);
-            return commentFeignClient.createNewComment(blogId, finalData);
+            return commentFeignClient.createNewComment(finalData,blogId);
         } catch ( ValidationFailedException e ) {
             throw e;
         } catch (Exception e) {
