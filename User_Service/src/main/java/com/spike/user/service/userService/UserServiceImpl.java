@@ -320,7 +320,7 @@ public class UserServiceImpl implements UserService {
         // Filter and set primary address
 
         List<UserAddressDTO> primaryAddress = user.getAddresses().stream()
-                .filter(address -> "PRIMARY".equals(address.getType()))
+                .filter(address -> "CURRENT".equals(address.getType()))
                 .map(address -> userHelper.entityToUserAddressDto(address))
                 .collect(Collectors.toList());
         userContactsDto.setPrimaryMobile(user.getPrimaryMobileNumber());
