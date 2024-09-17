@@ -130,7 +130,7 @@ public class UserValidators {
             throw new IllegalArgumentException("Country cannot be null or empty");
         }
         if (address.getType() == null || (!address.getType().equals("PERMANENT") && !address.getType().equals("CURRENT") )){
-            throw new IllegalArgumentException("Address can be either 'PRIMARY' or 'TEMPORARY'");
+            throw new IllegalArgumentException("Address can be either 'PERMANENT' or 'CURRENT'");
         }
 
     }
