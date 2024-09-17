@@ -37,4 +37,6 @@ public interface UserService {
     List<DepartmentDropdownDTO> getDepartmentsByUserId(Long userId);
 
     UserInfoDTO addProfilePictureOfAUser(long userId, MultipartFile profilePicture);
+
+    UserProfileDTO getUserById(long userId) throws IOException;
 }
