@@ -12,6 +12,7 @@ import java.util.List;
 //@AllArgsConstructor
 public class UserContactsDTO {
 
+    private Long id;
     private String name;
     private String designation;
     private String primaryMobile;

@@ -319,6 +319,7 @@ public class UserServiceImpl implements UserService {
     private UserContactsDTO userToUserContacsDto(User user) {
 
         UserContactsDTO userContactsDto = userHelper.entityToUserContactsDto(user);
+        userContactsDto.setId(user.getId());
         // Filter and set primary address
 
         List<UserAddressDTO> primaryAddress = user.getAddresses().stream()
@@ -383,6 +384,7 @@ public class UserServiceImpl implements UserService {
     //this method will set data of user in userDashboardDto
     private UserDashboardDTO userToUserDashboardDto(User user) {
         UserDashboardDTO userDashboardDTO = userHelper.entityToUserDashboardDto(user);
+        userDashboardDTO.setId(user.getId());
         //convert image into base64
         userDashboardDTO.setPrimaryMobile(user.getPrimaryMobileNumber());
 
