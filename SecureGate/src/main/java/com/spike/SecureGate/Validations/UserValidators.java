@@ -26,69 +26,46 @@ public class UserValidators {
             throw new IllegalArgumentException("Data is required");
         }
 
-        // Validate name
+        // Validate name (name cannot be null or empty, and no special characters allowed)
         if (userRequest.getName() == null || userRequest.getName().isEmpty() || !userRequest.getName().matches("^[a-zA-Z0-9 ]*$")) {
             throw new IllegalArgumentException("Name cannot be null, empty, or contain special characters");
         }
 
-        // Validate email
+        // Validate email (email cannot be null and must be valid)
         if (userRequest.getEmail() == null || !isValidEmail(userRequest.getEmail())) {
-            throw new IllegalArgumentException("Invalid email format");
+            throw new IllegalArgumentException("Email cannot be null and must have a valid format");
         }
 
-        // Validate backup email if present
-        if (userRequest.getBackupEmail() != null && !isValidEmail(userRequest.getBackupEmail())) {
-            throw new IllegalArgumentException("Invalid backup email format");
-        }
-
-        // Validate designation
-        if (userRequest.getDesignation() == null || userRequest.getDesignation().isEmpty()) {
-            throw new IllegalArgumentException("Designation cannot be null or empty");
-        }
-
-        // Validate employee code
+        // Validate employee code (employee code cannot be null or empty)
         if (userRequest.getEmployeeCode() == null || userRequest.getEmployeeCode().isEmpty()) {
             throw new IllegalArgumentException("Employee code cannot be null or empty");
         }
 
-        // Validate manager ID
-        if(userRequest.getManagerId() != null) {
-            if (userRequest.getManagerId() <= 0) {
-                throw new IllegalArgumentException("Manager ID must be positive");
-            }
-        }
-
-        // Validate role
+        // Validate role (role must be either 'MANAGER' or 'EMPLOYEE', cannot be null)
         if (userRequest.getRole() == null || (!userRequest.getRole().equals("MANAGER") && !userRequest.getRole().equals("EMPLOYEE"))) {
             throw new IllegalArgumentException("Role must be either 'MANAGER' or 'EMPLOYEE'");
         }
 
-        // Validate primary mobile number
-        if (userRequest.getPrimaryMobileNumber() != null && !isValidPhoneNumber(userRequest.getPrimaryMobileNumber())) {
-            throw new IllegalArgumentException("Invalid primary mobile number format");
+        // Validate primary mobile number (must not be null and must be valid)
+        if (userRequest.getPrimaryMobileNumber() == null || !isValidPhoneNumber(userRequest.getPrimaryMobileNumber())) {
+            throw new IllegalArgumentException("Primary mobile number cannot be null and must have a valid format");
         }
 
-        if( userRequest.getSecondaryMobileNumber() != null ) {
-            // Validate secondary mobile number
-            if ( !isValidPhoneNumber(userRequest.getSecondaryMobileNumber())) {
-                throw new IllegalArgumentException("Invalid secondary mobile number format");
-            }
+        // Validate joining date (must not be null and must be in the past)
+        if (userRequest.getJoiningDate() == null || userRequest.getJoiningDate().after(new Date())) {
+            throw new IllegalArgumentException("Joining date cannot be null and must be in the past");
         }
 
-
-        // Validate joining date
-        if (userRequest.getJoiningDate() != null && userRequest.getJoiningDate().after(new Date())) {
-            throw new IllegalArgumentException("Joining date must be in the past");
+        // Validate salary (salary must not be null and must be non-negative)
+        if (userRequest.getSalary() == null || userRequest.getSalary() < 0) {
+            throw new IllegalArgumentException("Salary cannot be null or negative");
         }
 
-        // Validate salary
-        if (userRequest.getSalary() != null && userRequest.getSalary() < 0) {
-            throw new IllegalArgumentException("Salary cannot be negative");
-        }
-
+        // Validate department (mandatory and must contain valid departments)
         List<String> validDepartments = userDbService.getAllDepartmentNames();
-        // Validate department names
-        if (userRequest.getDepartment() != null && !userRequest.getDepartment().isEmpty()) {
+        if (userRequest.getDepartment() == null || userRequest.getDepartment().isEmpty()) {
+            throw new IllegalArgumentException("Department is required and cannot be empty");
+        } else {
             for (String department : userRequest.getDepartment()) {
                 if (!validDepartments.contains(department)) {
                     throw new IllegalArgumentException("Invalid department: " + department);
@@ -96,14 +73,39 @@ public class UserValidators {
             }
         }
 
-        // Validate addresses
+        // Validate optional fields
+
+        // Validate backup email if present
+        if (userRequest.getBackupEmail() != null && !isValidEmail(userRequest.getBackupEmail())) {
+            throw new IllegalArgumentException("Invalid backup email format");
+        }
+
+        // Validate designation if present
+        if (userRequest.getDesignation() != null && userRequest.getDesignation().isEmpty()) {
+            throw new IllegalArgumentException("Designation cannot be empty");
+        }
+
+        // Validate manager ID if present (skip if null, must be positive if provided)
+        if (userRequest.getManagerId() != null && userRequest.getManagerId() > 0) {
+            throw new IllegalArgumentException("Manager ID must be positive");
+        }
+
+        // Validate secondary mobile number if present
+        if (userRequest.getSecondaryMobileNumber() != null && !isValidPhoneNumber(userRequest.getSecondaryMobileNumber())) {
+            throw new IllegalArgumentException("Invalid secondary mobile number format");
+        }
+
+        // Validate addresses if present
         if (userRequest.getAddresses() != null && !userRequest.getAddresses().isEmpty()) {
             for (UserAddressDTO address : userRequest.getAddresses()) {
                 validateAddress(address);
             }
         }
+
         return true;
     }
+
+
 
     // Method to validate address fields
     private void validateAddress(UserAddressDTO address) {
