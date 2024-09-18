@@ -26,6 +26,7 @@ import org.mockito.Mock;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.multipart.MultipartFile;
@@ -406,7 +407,7 @@ public class BlogServiceTest {
 	    assertEquals(blogList, result);
 	    	
 	    verify(objectMapper, times(1)).blogToDtoConverter(existingBlog);
-	    verify(repo, times(1)).findAll(PageRequest.of(0, 5), true);
+	    verify(repo, times(1)).findAll(PageRequest.of(0, 5,Sort.by("creted_date_time").descending()), true);
 	}
 	
 	@Test

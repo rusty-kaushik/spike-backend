@@ -57,7 +57,8 @@ public class BlogServiceController {
 
 		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(saveBlogWithFile, "Blog post successfully.",
 				HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
-
+		
+		
 		return ResponseEntity.ok(response);
 
 	}
@@ -128,8 +129,13 @@ public class BlogServiceController {
 	@Operation(summary = "Get a all Blogs", description = "Returns  all blogs  ")
 	public ResponseEntity<ResponseHandler<List<BlogDto>>> getAllBlog(@RequestParam(defaultValue = "0") int pageNum,
 			@RequestParam(defaultValue = "5") int pageSize) {
+	
+		int totalResults = serviceImpl.getTotalResult();
+		
 		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getBlog(pageNum, pageSize),
-				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+				"Data retrieved successfully.", HttpStatus.OK,HttpStatus.OK.value(),totalResults,pageNum,pageSize , LocalDateTime.now());
+		
+		
 		return ResponseEntity.ok(response);
 	}
 

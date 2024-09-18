@@ -45,4 +45,6 @@ public interface BlogRepository extends JpaRepository<Blog,UUID>{
 	
 	@Query(value= "select  * from blog where status=true and department_id=%:departmentId%", nativeQuery = true)
 	List<Blog> getByDepartmentId(long departmentId);
+	
+	List<Blog> findByStatus(boolean status);
 }

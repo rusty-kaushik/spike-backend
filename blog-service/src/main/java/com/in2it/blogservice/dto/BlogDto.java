@@ -29,6 +29,7 @@ public class BlogDto {
 	@Hidden
 	private UUID id;
 	
+
 	@NotBlank(message = "departmentId cannot be blank") 
 	private long departmentId;
 	
