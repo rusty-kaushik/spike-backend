@@ -301,4 +301,29 @@ public class UserController {
         logger.info("Finished fetching users for contact page");
         return user;
     }
+
+    // FETCH USER Departments
+    @Operation(
+            summary = "Fetch users departments",
+            description = "Department dropdown list for my a specific user"
+    )
+    @GetMapping("/department/{userId}")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> fetchDepartmentsOfAUser(
+            @PathVariable long userId
+    )
+    {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        logger.info("Started fetching users department");
+        ResponseEntity<Object> user = userService.fetchDepartmentsOfAUser(userId);
+        logger.info("Finished fetching users departments");
+        return user;
+    }
+
+    @GetMapping("/countriesl/")
+    public List<String> getCountries() {
+        return userService.getCountriesWithStates();
+    }
 }

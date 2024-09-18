@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.spike.user.auditing.Auditable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,32 +24,26 @@ public class User extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 3, max = 50)
-    @Column(name = "username", nullable = false, unique = true, length = 50)
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Size(min = 3, max = 50)
-    @Column(name = "employee_code", nullable = false, unique = true, length = 50)
+    @Column(name = "employee_code", nullable = false, unique = true)
     private String employeeCode;
 
     @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Size(min = 8)
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Size(min = 1, max = 100)
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Size(min = 10, max = 10)
-    @Column(name = "primary_mobile_number", nullable = false, length = 10)
+    @Column(name = "primary_mobile_number", nullable = false, unique = true)
     private String primaryMobileNumber;
 
-    @Size(min = 10, max = 10)
-    @Column(name = "secondary_mobile_number", nullable = true, length = 10)
+    @Column(name = "secondary_mobile_number", nullable = true)
     private String secondaryMobileNumber;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -58,7 +51,7 @@ public class User extends Auditable {
     private Date joiningDate;
 
     @Email
-    @Column(name = "backup_email", nullable = true, unique = true)
+    @Column(name = "backup_email", nullable = true)
     private String backupEmail;
 
     @Column(name = "manager_id", nullable = true)
@@ -67,7 +60,7 @@ public class User extends Auditable {
     @Column(name = "salary", nullable = false)
     private Double salary;
 
-    @Column(name = "designation", nullable = false)
+    @Column(name = "designation", nullable = true)
     private String designation;
 
     @Column(name = "post_create", nullable = false)

@@ -2,7 +2,6 @@ package com.spike.SecureGate.Validations;
 
 import com.spike.SecureGate.DTO.blogDto.BlogCreationRequestDTO;
 import com.spike.SecureGate.DTO.blogDto.BlogUpdateRequestDTO;
-import com.spike.SecureGate.JdbcHelper.BlogDbService;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
 import com.spike.SecureGate.exceptions.BlogNotFoundException;
 import com.spike.SecureGate.exceptions.ValidationFailedException;
@@ -20,9 +19,6 @@ public class BlogValidators {
 
     @Autowired
     private UserDbService userDbService;
-
-    @Autowired
-    private BlogDbService blogDbService;
 
     @Autowired
     private BlogFeignClient blogFeignClient;

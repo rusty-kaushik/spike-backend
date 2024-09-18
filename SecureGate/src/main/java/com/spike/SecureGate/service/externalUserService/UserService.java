@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 
@@ -28,4 +29,8 @@ public interface UserService {
     ResponseEntity<Object> addProfilePicture(MultipartFile profilePicture, String username, long userId);
 
     ResponseEntity<Object> fetchSelfDetails(long userId);
+
+    ResponseEntity<Object> fetchDepartmentsOfAUser(long userId);
+
+    List<String> getCountriesWithStates();
 }

@@ -39,13 +39,11 @@ public class UserAddress extends Auditable {
     @Column(name = "state", nullable = false)
     private String state;
 
-    @NotNull(message = "District cannot be null")
-    @Column(name = "district", nullable = false)
+    @Column(name = "district", nullable = true)
     private String district;
 
     @NotBlank(message = "Zip code cannot be blank")
-    @Pattern(regexp = "^[0-9]{6}(?:-[0-9]{4})?$", message = "Invalid zip code format")
-    @Column(name = "zip", nullable = false, length = 10)
+    @Column(name = "zip", nullable = false)
     private String zip;
 
     @NotNull(message = "City cannot be null")
