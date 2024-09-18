@@ -38,3 +38,6 @@ build/
 /**.log**
 
 /blog-media
+
+/mvnw
+/mvnw.cmd
