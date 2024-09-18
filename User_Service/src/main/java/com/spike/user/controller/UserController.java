@@ -344,8 +344,8 @@ public class UserController {
             List<DepartmentDropdownDTO> departments = userService.getDepartmentsByUserId(userId);
 
             if (departments.isEmpty()) {
-                // Return 204 No Content if there are no departments
-                return ResponseHandler.responseBuilder("No departments found for the user.", HttpStatus.NO_CONTENT, "No Departments found for the user");
+                // Return 404 No Content if there are no departments
+                return ResponseHandler.responseBuilder("No departments found for the user.", HttpStatus.NOT_FOUND, "No Departments found for the user");
             }
 
             // Return the list of departments with 200 OK
