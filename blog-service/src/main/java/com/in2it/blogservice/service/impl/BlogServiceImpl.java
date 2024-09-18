@@ -285,7 +285,7 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public List<BlogDto> getBlog(int pageNum, int pageSize) {
 
-		PageRequest pageable = PageRequest.of(pageNum, pageSize, Sort.by("creted_date_time").descending());
+		PageRequest pageable = PageRequest.of(pageNum, pageSize, Sort.by("created_date_time").descending());
 		
 
 		List<Blog> blog = repo.findAll(pageable,true);

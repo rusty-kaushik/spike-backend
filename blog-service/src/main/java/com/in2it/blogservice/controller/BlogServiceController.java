@@ -128,7 +128,7 @@ public class BlogServiceController {
 	@GetMapping("/getAll")
 	@Operation(summary = "Get a all Blogs", description = "Returns  all blogs  ")
 	public ResponseEntity<ResponseHandler<List<BlogDto>>> getAllBlog(@RequestParam(defaultValue = "0") int pageNum,
-			@RequestParam(defaultValue = "5") int pageSize) {
+			@RequestParam(defaultValue = "10") int pageSize) {
 	
 		int totalResults = serviceImpl.getTotalResult();
 		
@@ -162,7 +162,7 @@ public class BlogServiceController {
 	@GetMapping("/getByTitle/{blogTitle}")
 	@Operation(summary = "Get a blogs by blogTitle", description = "Returns a blogs as list by  blogTitle.")
 	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogByTitle(@RequestParam(defaultValue = "0") int pageNum,
-			@RequestParam(defaultValue = "5") int pageSize, @PathVariable(value = "blogTitle") String title) {
+			@RequestParam(defaultValue = "10") int pageSize, @PathVariable(value = "blogTitle") String title) {
 
 		List<BlogDto> blogTitleWithPage = serviceImpl.getBlogTitleWithPage(pageNum, pageSize, title);
 

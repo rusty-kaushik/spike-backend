@@ -57,7 +57,7 @@ public class BlogDto {
 	 private boolean status;
 	 
 	 @JsonProperty(access = Access.READ_ONLY)
-	 private LocalDateTime cretedDateTime;
+	 private LocalDateTime createdDateTime;
 	 
 	 @JsonProperty(access = Access.READ_ONLY)
 	 private LocalDateTime updatedDateTime;

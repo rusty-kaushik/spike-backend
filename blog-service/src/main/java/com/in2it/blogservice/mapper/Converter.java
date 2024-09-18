@@ -50,7 +50,7 @@ public class Converter {
 	{
 		 Blog blog = mapper.map(dto, Blog.class);
 		
-		blog.setCretedDateTime(LocalDateTime.now());
+		blog.setCreatedDateTime(LocalDateTime.now());
 		blog.setMediaFile(fileName);
 		blog.setMediaPath(uploadedPath);
 	    blog.setStatus(true);

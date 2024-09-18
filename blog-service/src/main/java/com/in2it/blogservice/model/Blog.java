@@ -64,7 +64,7 @@ public class Blog {
 	 private boolean status;
 	 
 	 @Column(nullable = false, updatable = false)
-	 private LocalDateTime cretedDateTime;
+	 private LocalDateTime createdDateTime;
 	 
 	 private LocalDateTime updatedDateTime;
 	 
