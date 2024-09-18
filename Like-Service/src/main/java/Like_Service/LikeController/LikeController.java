@@ -40,7 +40,7 @@ public class LikeController {
             throw(ex);
         }
         catch (Exception ex) {
-            throw new RuntimeException("An Unknown error occurred", ex);
+            throw new RuntimeException("An Unexpected error occurred", ex);
         }
     }
 
