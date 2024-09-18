@@ -3,6 +3,7 @@ package com.spike.SecureGate.service.externalUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.Validations.UserValidators;
+import com.spike.SecureGate.enums.*;
 import com.spike.SecureGate.exceptions.UnexpectedException;
 import com.spike.SecureGate.exceptions.ValidationFailedException;
 import com.spike.SecureGate.feignClients.UserFeignClient;
@@ -12,6 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -126,6 +133,31 @@ public class UserServiceImpl implements UserService{
     @Override
     public ResponseEntity<Object> fetchSelfDetails(long userId) {
         return userFeignClient.getUserById(userId);
+    }
+
+    @Override
+    public ResponseEntity<Object> fetchDepartmentsOfAUser(long userId) {
+        return userFeignClient.getDepartmentsByUserId(userId);
+    }
+
+    @Override
+    public Map<Object, List<String>> getCountriesWithStates() {
+        Map<Object, List<String>> countriesWithStates = new HashMap<>();
+        countriesWithStates.put("COUNTRIES", getStates(Countries.class));
+        countriesWithStates.put(Countries.UNITED_STATES, getStates(UnitedStates.class));
+        countriesWithStates.put(Countries.CHINA, getStates(China.class));
+        countriesWithStates.put(Countries.JAPAN, getStates(Japan.class));
+        countriesWithStates.put(Countries.GERMANY, getStates(Germany.class));
+        countriesWithStates.put(Countries.INDIA, getStates(India.class));
+        countriesWithStates.put(Countries.SOUTH_AFRICA, getStates(SouthAfrica.class));
+
+        return countriesWithStates;
+    }
+
+    private <E extends Enum<E>> List<String> getStates(Class<E> enumClass) {
+        return Arrays.stream(enumClass.getEnumConstants())
+                .map(Enum::name)
+                .collect(Collectors.toList());
     }
 
 }

@@ -4,12 +4,10 @@ import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
 import com.spike.SecureGate.service.externalUserService.UserService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 
 //@CrossOrigin("*")
 @RestController
@@ -300,5 +297,30 @@ public class UserController {
         ResponseEntity<Object> user = userService.fetchSelfDetails(userId);
         logger.info("Finished fetching users for contact page");
         return user;
+    }
+
+    // FETCH USER Departments
+    @Operation(
+            summary = "Fetch users departments",
+            description = "Department dropdown list for my a specific user"
+    )
+    @GetMapping("/department/{userId}")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> fetchDepartmentsOfAUser(
+            @PathVariable long userId
+    )
+    {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        logger.info("Started fetching users department");
+        ResponseEntity<Object> user = userService.fetchDepartmentsOfAUser(userId);
+        logger.info("Finished fetching users departments");
+        return user;
+    }
+
+    @GetMapping("/countries/states")
+    public Object getCountries() {
+        return userService.getCountriesWithStates();
     }
 }

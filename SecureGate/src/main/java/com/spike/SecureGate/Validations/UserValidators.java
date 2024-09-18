@@ -2,7 +2,7 @@ package com.spike.SecureGate.Validations;
 
 import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
-import com.spike.SecureGate.enums.IndianState;
+import com.spike.SecureGate.enums.*;
 import com.spike.SecureGate.feignClients.UserFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -95,11 +95,17 @@ public class UserValidators {
             throw new IllegalArgumentException("Invalid secondary mobile number format");
         }
 
-        // Validate addresses if present
-        if (userRequest.getAddresses() != null && !userRequest.getAddresses().isEmpty()) {
-            for (UserAddressDTO address : userRequest.getAddresses()) {
-                validateAddress(address);
-            }
+        if (userRequest.getAddresses() == null || userRequest.getAddresses().isEmpty()) {
+            throw new IllegalArgumentException("At least one address is required.");
+        }
+
+        if (userRequest.getAddresses().size() > 2) {
+            throw new IllegalArgumentException("A maximum of 2 addresses is allowed.");
+        }
+
+        // Validate each address
+        for (UserAddressDTO address : userRequest.getAddresses()) {
+            validateAddress(address);
         }
 
         return true;
@@ -109,33 +115,119 @@ public class UserValidators {
 
     // Method to validate address fields
     private void validateAddress(UserAddressDTO address) {
+        if (address == null) {
+            throw new IllegalArgumentException("Address cannot be null");
+        }
+
+        // Validate Line1 (mandatory)
         if (address.getLine1() == null || address.getLine1().isEmpty()) {
             throw new IllegalArgumentException("Address Line1 cannot be null or empty");
         }
+
+        // Validate State (mandatory and must be valid)
         if (address.getState() == null || address.getState().isEmpty()) {
             throw new IllegalArgumentException("State cannot be null or empty");
         }
-        // Validate if the state is a valid state in India
-        if (!IndianState.isValidState(address.getState())) {
-            throw new IllegalArgumentException("Invalid state: " + address.getState() + ". Please provide a valid state in India.");
+
+        if (!Countries.isValidCountry(address.getCountry())) {
+            throw new IllegalArgumentException("Invalid country: " + address.getCountry() + ". Please provide a valid country.");
         }
-        if (address.getDistrict() == null || address.getDistrict().isEmpty()) {
-            throw new IllegalArgumentException("District cannot be null or empty");
+
+        if (address.getState() == null ||  address.getState().isEmpty()) {
+            throw new IllegalArgumentException("State cannot be null or empty");
         }
-        if (address.getZip() == null || !address.getZip().matches("\\d{6}")) {
-            throw new IllegalArgumentException("Invalid Zip Code format");
-        }
+        validateAddressState(address.getCountry(), address.getState());
+
+        // Validate City (mandatory)
         if (address.getCity() == null || address.getCity().isEmpty()) {
             throw new IllegalArgumentException("City cannot be null or empty");
         }
+
+        // Validate Zip Code (mandatory, must follow the format)
+        if (address.getZip() == null ||  address.getZip().isEmpty()) {
+            throw new IllegalArgumentException("ZIP cannot be null or empty");
+        }
+        validateZipCode(address.getCountry(), address.getZip() );
+
+        // Validate Country (mandatory)
         if (address.getCountry() == null || address.getCountry().isEmpty()) {
             throw new IllegalArgumentException("Country cannot be null or empty");
         }
-        if (address.getType() == null || (!address.getType().equals("PERMANENT") && !address.getType().equals("CURRENT") )){
-            throw new IllegalArgumentException("Address can be either 'PERMANENT' or 'CURRENT'");
+
+        // Validate Address Type (mandatory, must be either 'PERMANENT' or 'CURRENT')
+        if (address.getType() == null || (!address.getType().equals("PERMANENT") && !address.getType().equals("CURRENT"))) {
+            throw new IllegalArgumentException("Address type must be either 'PERMANENT' or 'CURRENT'");
         }
 
+        // Optional fields, validate only if provided
+
+        // District (optional)
+        if (address.getDistrict() != null && address.getDistrict().isEmpty()) {
+            throw new IllegalArgumentException("District cannot be empty if provided");
+        }
     }
+
+    private void validateAddressState(String country, String state) {
+        if(country == null || country.isEmpty()){
+            throw new IllegalArgumentException("Country cannot be empty");
+        }
+
+        if (country.equals("UNITED_STATES")) {
+            if (!UnitedStates.isValidState(state)) {
+                throw new IllegalArgumentException("Invalid state: " + state + ". Please provide a valid state.");
+            }
+        } else if (country.equals("CHINA")) {
+            if (!China.isValidRegion(state)) {
+                throw new IllegalArgumentException("Invalid state: " + state + ". Please provide a valid state.");
+            }
+        } else if (country.equals("JAPAN")) {
+            if (!Japan.isValidRegion(state)) {
+                throw new IllegalArgumentException("Invalid state: " + state + ". Please provide a valid state.");
+            }
+        } else if (country.equals("GERMANY")) {
+            if (!Germany.isValidRegion(state)) {
+                throw new IllegalArgumentException("Invalid state: " + state + ". Please provide a valid state.");
+            }
+        } else if (country.equals("INDIA")) {
+            if (!India.isValidRegion(state)) {
+                throw new IllegalArgumentException("Invalid state: " + state + ". Please provide a valid state.");
+            }
+        } else if (country.equals("SOUTH_AFRICA")) {
+            if (!SouthAfrica.isValidProvince(state)) {
+                throw new IllegalArgumentException("Invalid state: " + state + ". Please provide a valid state.");
+            }
+        }
+    }
+
+    private void validateZipCode(String country, String zipCode) {
+        if (country.equals("UNITED_STATES")){
+            if (!java.util.regex.Pattern.matches("^(\\d{5})(-\\d{4})?$", zipCode)) {
+                throw new IllegalArgumentException("Invalid ZIP code: " + zipCode + ". Please provide a valid ZIP code.");
+            }
+        } else if (country.equals("CHINA")) {
+            if (!zipCode.matches("^\\d{6}$")) {
+                throw new IllegalArgumentException("Invalid ZIP code: " + zipCode + ". Please provide a valid ZIP code for China.");
+            }
+        } else if (country.equals("JAPAN")) {
+            if (!zipCode.matches("^\\d{3}-\\d{4}$")) {
+                throw new IllegalArgumentException("Invalid ZIP code: " + zipCode + ". Please provide a valid ZIP code for Japan.");
+            }
+        } else if (country.equals("GERMANY")) {
+            if (!zipCode.matches("^\\d{5}$")) {
+                throw new IllegalArgumentException("Invalid ZIP code: " + zipCode + ". Please provide a valid ZIP code for Germany.");
+            }
+        } else if (country.equals("INDIA")) {
+            if (!zipCode.matches("^\\d{6}$")) {
+                throw new IllegalArgumentException("Invalid ZIP code: " + zipCode + ". Please provide a valid ZIP code for India.");
+            }
+        } else if (country.equals("SOUTH_AFRICA")) {
+            if (!zipCode.matches("^\\d{4}$")) {
+                throw new IllegalArgumentException("Invalid ZIP code: " + zipCode + ". Please provide a valid ZIP code for South Africa.");
+            }
+        }
+    }
+
+
 
     private boolean isValidEmail(String email) {
         return Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$").matcher(email).matches();
@@ -147,10 +239,9 @@ public class UserValidators {
 
 
     public boolean validateUserUpdatePassword(UserChangePasswordDTO userChangePasswordDTO) {
-        // TODO UNCOMMENT IT TO ENABLE PASSWORD VALIDATIONS
-//        if (userChangePasswordDTO.getNewPassword() != null && !userChangePasswordDTO.getNewPassword().matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,20}$")) {
-//            throw new IllegalArgumentException("Invalid password");
-//        }
+        if (userChangePasswordDTO.getNewPassword() != null && !userChangePasswordDTO.getNewPassword().matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,20}$")) {
+            throw new IllegalArgumentException("Invalid password");
+        }
         return true;
     }
 
