@@ -211,67 +211,63 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUserProfilePicture(Long userId, MultipartFile profilePicture) throws IOException {
         logger.info("Starting profile picture update for user ID: {}", userId);
-        try {
-            User existingUser = userRepository.findById(userId)
-                    .orElseThrow(() -> {
-                        logger.error("User not found with id: {}", userId);
-                        return new UserNotFoundException("User not found with id: " + userId);
-                    });
+        User existingUser = findUserById(userId);
 
-            UserProfilePicture userProfilePicture = existingUser.getProfilePicture();
-            String currentProfilePictureFilename = userProfilePicture != null ? userProfilePicture.getFileName() : null;
+        String currentProfilePictureFilename = getCurrentProfilePictureFilename(existingUser);
 
-            // Delete old profile picture
-            if (currentProfilePictureFilename != null) {
-                Path oldFilePath = Paths.get(uploadDirectory + currentProfilePictureFilename);
-                try {
-                    Files.deleteIfExists(oldFilePath);
-                    logger.info("Deleted old profile picture for user ID: {}", userId);
-                } catch (IOException e) {
-                    logger.error("Failed to delete old profile picture for user ID: {}", userId, e);
-                    throw new IOException("Failed to delete old profile picture", e);
-                }
-            }
-
-            // Save new profile picture
-            String newProfilePictureFilename = profilePicture.getOriginalFilename();
-            Path newFilePath = Paths.get(uploadDirectory + newProfilePictureFilename);
-            try {
-                Files.write(newFilePath, profilePicture.getBytes());
-                logger.info("Saved new profile picture for user ID: {}", userId);
-            } catch (IOException e) {
-                logger.error("Failed to save new profile picture for user ID: {}", userId, e);
-                throw new IOException("Failed to save new profile picture", e);
-            }
-
-            // Update UserProfilePicture entity
-            if (userProfilePicture == null) {
-                userProfilePicture = new UserProfilePicture();
-                userProfilePicture.setUser(existingUser);
-            }
-
-            userProfilePicture.setOriginalFileName(profilePicture.getOriginalFilename());
-            userProfilePicture.setFileName(newProfilePictureFilename);
-            userProfilePicture.setFilePath(newFilePath.toString());
-            userProfilePicture.setFileType(profilePicture.getContentType());
-            userProfilePicture.setFileSize(profilePicture.getSize());
-
-            userProfilePictureRepository.save(userProfilePicture);
-            existingUser.setProfilePicture(userProfilePicture);
-
-            userRepository.save(existingUser);
-        } catch (UserNotFoundException e) {
-            logger.error("User not found with id: {}", userId, e);
-            throw e;
-        } catch (IOException e) {
-            logger.error("File operation error for profile picture update of user ID: {}", userId, e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error updating profile picture for user with id: {}", userId, e);
-            throw new RuntimeException("Unexpected error updating profile picture", e);
+        // If there's an old profile picture, delete it
+        if (currentProfilePictureFilename != null) {
+            deleteOldProfilePicture(currentProfilePictureFilename, userId);
         }
+
+        // Save the new profile picture and update the user's profile picture entity
+        String newProfilePictureFilename = saveNewProfilePicture(profilePicture, userId);
+        updateUserProfilePictureEntity(existingUser, profilePicture, newProfilePictureFilename);
     }
 
+    private User findUserById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+    }
+
+    private String getCurrentProfilePictureFilename(User user) {
+        UserProfilePicture userProfilePicture = user.getProfilePicture();
+        return userProfilePicture != null ? userProfilePicture.getFileName() : null;
+    }
+
+    private void deleteOldProfilePicture(String filename, Long userId) throws IOException {
+        Path oldFilePath = Paths.get(uploadDirectory + filename);
+        Files.deleteIfExists(oldFilePath);
+        logger.info("Deleted old profile picture for user ID: {}", userId);
+    }
+
+    private String saveNewProfilePicture(MultipartFile profilePicture, Long userId) throws IOException {
+        String newProfilePictureFilename = profilePicture.getOriginalFilename();
+        Path newFilePath = Paths.get(uploadDirectory + newProfilePictureFilename);
+        Files.write(newFilePath, profilePicture.getBytes());
+        logger.info("Saved new profile picture for user ID: {}", userId);
+        return newProfilePictureFilename;
+    }
+
+    private void updateUserProfilePictureEntity(User user, MultipartFile profilePicture, String filename) {
+        UserProfilePicture userProfilePicture = user.getProfilePicture();
+
+        // If no existing profile picture, create a new one
+        if (userProfilePicture == null) {
+            userProfilePicture = new UserProfilePicture();
+            userProfilePicture.setUser(user);
+        }
+
+        userProfilePicture.setOriginalFileName(profilePicture.getOriginalFilename());
+        userProfilePicture.setFileName(filename);
+        userProfilePicture.setFilePath(Paths.get(uploadDirectory + filename).toString());
+        userProfilePicture.setFileType(profilePicture.getContentType());
+        userProfilePicture.setFileSize(profilePicture.getSize());
+
+        userProfilePictureRepository.save(userProfilePicture);
+        user.setProfilePicture(userProfilePicture);
+        userRepository.save(user);
+    }
 
     @Override
     public void deleteUser(Long userId) {
@@ -429,33 +425,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<DepartmentDropdownDTO> getDepartmentsByUserId(Long userId) {
+    public List<DepartmentDropdownDTO> getDepartmentsByUserId(long userId) {
         logger.info("Fetching departments for user with id: {}", userId);
-        try {
-            // Fetch the user by ID
-            User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
 
-            // Get the departments associated with the user
-            Set<Department> departments = user.getDepartments();
+        User user = findUserById(userId);
 
-            // Convert to DTO
-            return departments.stream()
-                    .map(department -> {
-                        DepartmentDropdownDTO dto = new DepartmentDropdownDTO();
-                        dto.setId(department.getId());
-                        dto.setName(department.getName());
-                        return dto;
-                    })
-                    .collect(Collectors.toList());
-        } catch (UserNotFoundException e) {
-            logger.error("User not found with id: {}", userId, e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error fetching departments for user with id: {}", userId, e);
-            throw new RuntimeException("Unexpected error fetching departments", e);
-        }
+        return convertDepartmentsToDTOs(user.getDepartments());
     }
+
+    private User findUserById(long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> {
+                    logger.error("User not found with id: {}", userId);
+                    return new UserNotFoundException("User not found with id: " + userId);
+                });
+    }
+
+    private List<DepartmentDropdownDTO> convertDepartmentsToDTOs(Set<Department> departments) {
+        return departments.stream()
+                .map(department -> new DepartmentDropdownDTO(department.getId(), department.getName()))
+                .collect(Collectors.toList());
+    }
+
 
     @Override
     public UserInfoDTO addProfilePictureOfAUser(long userId, MultipartFile profilePicture) {

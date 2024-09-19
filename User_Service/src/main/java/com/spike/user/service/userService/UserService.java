@@ -34,7 +34,7 @@ public interface UserService {
     UserInfoDTO getUserByUsername(String username) throws IOException;
 
     // Fetch User in how many department is currently
-    List<DepartmentDropdownDTO> getDepartmentsByUserId(Long userId);
+    List<DepartmentDropdownDTO> getDepartmentsByUserId(long userId);
 
     UserInfoDTO addProfilePictureOfAUser(long userId, MultipartFile profilePicture);
 
