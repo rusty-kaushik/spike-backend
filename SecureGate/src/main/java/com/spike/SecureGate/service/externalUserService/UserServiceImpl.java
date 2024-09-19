@@ -9,9 +9,24 @@ import com.spike.SecureGate.feignClients.UserFeignClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import java.util.List;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 @Service
@@ -27,6 +42,12 @@ public class UserServiceImpl implements UserService{
     private UserValidators userValidators;
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final String COUNTRIES_API_URL = "http://api.geonames.org/countryInfo?username={username}";
+
+    @Value("${geonames.username}")
+    private String GeoName;
 
     @Override
     public ResponseEntity<Object> createUser(String username, UserCreationRequestDTO data) {
@@ -127,5 +148,37 @@ public class UserServiceImpl implements UserService{
     public ResponseEntity<Object> fetchSelfDetails(long userId) {
         return userFeignClient.getUserById(userId);
     }
+
+
+    @Override
+    public ResponseEntity<Object> fetchDepartmentsOfAUser(long userId) {
+        return userFeignClient.getDepartmentsByUserId(userId);
+    }
+
+    @Override
+    public List<String> getCountriesWithStates() {
+        // Make the API call
+        String xmlResponse = restTemplate.getForObject(COUNTRIES_API_URL, String.class, GeoName);
+
+        // Parse the XML response
+        List<String> countryNames = new ArrayList<>();
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            InputStream is = new ByteArrayInputStream(xmlResponse.getBytes());
+            Document document = builder.parse(is);
+
+            NodeList countryNodes = document.getElementsByTagName("country");
+            for (int i = 0; i < countryNodes.getLength(); i++) {
+                String countryName = document.getElementsByTagName("countryName").item(i).getTextContent();
+                countryNames.add(countryName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exception properly in production code
+        }
+
+        return countryNames;
+    }
+
 
 }

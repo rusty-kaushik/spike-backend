@@ -96,10 +96,17 @@ public class UserValidators {
         }
 
         // Validate addresses if present
-        if (userRequest.getAddresses() != null && !userRequest.getAddresses().isEmpty()) {
-            for (UserAddressDTO address : userRequest.getAddresses()) {
-                validateAddress(address);
-            }
+        if (userRequest.getAddresses() == null || userRequest.getAddresses().isEmpty()) {
+            throw new IllegalArgumentException("At least one address is required.");
+        }
+
+        if (userRequest.getAddresses().size() > 2) {
+            throw new IllegalArgumentException("A maximum of 2 addresses is allowed.");
+        }
+
+        // Validate each address
+        for (UserAddressDTO address : userRequest.getAddresses()) {
+            validateAddress(address);
         }
 
         return true;
@@ -109,32 +116,46 @@ public class UserValidators {
 
     // Method to validate address fields
     private void validateAddress(UserAddressDTO address) {
+        if (address == null) {
+            throw new IllegalArgumentException("Address cannot be null");
+        }
+
+        // Validate Line1 (mandatory)
         if (address.getLine1() == null || address.getLine1().isEmpty()) {
             throw new IllegalArgumentException("Address Line1 cannot be null or empty");
         }
+
+        // Validate State (mandatory and must be valid)
         if (address.getState() == null || address.getState().isEmpty()) {
             throw new IllegalArgumentException("State cannot be null or empty");
         }
-        // Validate if the state is a valid state in India
-        if (!IndianState.isValidState(address.getState())) {
-            throw new IllegalArgumentException("Invalid state: " + address.getState() + ". Please provide a valid state in India.");
-        }
-        if (address.getDistrict() == null || address.getDistrict().isEmpty()) {
-            throw new IllegalArgumentException("District cannot be null or empty");
-        }
-        if (address.getZip() == null || !address.getZip().matches("\\d{6}")) {
-            throw new IllegalArgumentException("Invalid Zip Code format");
-        }
+
+        // Validate City (mandatory)
         if (address.getCity() == null || address.getCity().isEmpty()) {
             throw new IllegalArgumentException("City cannot be null or empty");
         }
+
+        // Validate Zip Code (mandatory, must follow the format)
+        if (address.getZip() == null ||  address.getZip().isEmpty()) {
+            throw new IllegalArgumentException("ZIP cannot be null or empty");
+        }
+
+        // Validate Country (mandatory)
         if (address.getCountry() == null || address.getCountry().isEmpty()) {
             throw new IllegalArgumentException("Country cannot be null or empty");
         }
-        if (address.getType() == null || (!address.getType().equals("PERMANENT") && !address.getType().equals("CURRENT") )){
-            throw new IllegalArgumentException("Address can be either 'PERMANENT' or 'CURRENT'");
+
+        // Validate Address Type (mandatory, must be either 'PERMANENT' or 'CURRENT')
+        if (address.getType() == null || (!address.getType().equals("PERMANENT") && !address.getType().equals("CURRENT"))) {
+            throw new IllegalArgumentException("Address type must be either 'PERMANENT' or 'CURRENT'");
         }
 
+        // Optional fields, validate only if provided
+
+        // District (optional)
+        if (address.getDistrict() != null && address.getDistrict().isEmpty()) {
+            throw new IllegalArgumentException("District cannot be empty if provided");
+        }
     }
 
     private boolean isValidEmail(String email) {
@@ -147,10 +168,9 @@ public class UserValidators {
 
 
     public boolean validateUserUpdatePassword(UserChangePasswordDTO userChangePasswordDTO) {
-        // TODO UNCOMMENT IT TO ENABLE PASSWORD VALIDATIONS
-//        if (userChangePasswordDTO.getNewPassword() != null && !userChangePasswordDTO.getNewPassword().matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,20}$")) {
-//            throw new IllegalArgumentException("Invalid password");
-//        }
+        if (userChangePasswordDTO.getNewPassword() != null && !userChangePasswordDTO.getNewPassword().matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,20}$")) {
+            throw new IllegalArgumentException("Invalid password");
+        }
         return true;
     }
 

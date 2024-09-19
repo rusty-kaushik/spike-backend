@@ -112,4 +112,8 @@ public interface UserFeignClient {
             @PathVariable long userId
     );
 
+    @GetMapping("/spike/user/departments/{userId}")
+    ResponseEntity<Object> getDepartmentsByUserId(
+            @PathVariable Long userId
+    );
 }
