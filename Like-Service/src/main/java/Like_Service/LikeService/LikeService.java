@@ -1,6 +1,6 @@
 package Like_Service.LikeService;
 
-import Like_Service.LikeEntity.LikeEntity;
+import Like_Service.LikeEntity.LikeDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface LikeService {
     String likeandUnlikepost(UUID blogid, String username);
 
-    List<String> getUserNames(UUID blogid);
+    List<LikeDto> getUserNames(UUID blogid);
 
     boolean unlikeDeletedBlog(String blogId);
 }

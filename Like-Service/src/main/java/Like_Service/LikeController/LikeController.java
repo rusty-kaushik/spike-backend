@@ -2,6 +2,7 @@ package Like_Service.LikeController;
 
 import Like_Service.ExceptionHandling.BlogNotFoundException;
 import Like_Service.ExceptionHandling.UserNotFoundException;
+import Like_Service.LikeEntity.LikeDto;
 import Like_Service.LikeRepository.LikeRepository;
 import Like_Service.LikeService.LikeService;
 
@@ -51,8 +52,8 @@ public class LikeController {
         try {
             UUID blogId = UUID.fromString(blogid);
             //it will provide the list of usernames who liked blog with the provided blogid
-            List<String> likes = likeService.getUserNames(blogId);
-            return ResponseHandler.response(HttpStatus.OK, String.valueOf(likes), "usernames fetched successfully");
+            List<LikeDto> likes = likeService.getUserNames(blogId);
+            return ResponseHandler.response(HttpStatus.OK,"usernames fetched successfully",likes);
         } catch (UserNotFoundException ex) {
             throw (ex);
         } catch (Exception ex) {
