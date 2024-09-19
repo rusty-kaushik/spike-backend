@@ -28,6 +28,7 @@ import com.in2it.blogservice.customException.LikeServiceDownException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
 import com.in2it.blogservice.reponse.ResponseHandler;
+import com.in2it.blogservice.reponse.ResponseHandlerWithPageable;
 import com.in2it.blogservice.service.impl.BlogServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -56,7 +57,7 @@ public class BlogServiceController {
 		BlogDto saveBlogWithFile = serviceImpl.saveBlogWithFile(blogDto, media);
 
 		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(saveBlogWithFile, "Blog post successfully.",
-				HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+				HttpStatus.OK, HttpStatus.OK.value());
 		
 		
 		return ResponseEntity.ok(response);
@@ -71,7 +72,7 @@ public class BlogServiceController {
 		UUID fromString = UUID.fromString(blogId);
 		
 		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.updateBlog(updateDto, fromString),
-				"Blog modify successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+				"Blog modify successfully.", HttpStatus.OK, HttpStatus.OK.value());
 		return ResponseEntity.ok(response);
 	}
 
@@ -83,7 +84,7 @@ public class BlogServiceController {
 		UUID fromString = UUID.fromString(blogId);
 	
 		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.updateLike(totalLikeCount, fromString),
-				"liked", HttpStatus.ACCEPTED, HttpStatus.ACCEPTED.value(), LocalDateTime.now());
+				"liked", HttpStatus.ACCEPTED, HttpStatus.ACCEPTED.value());
 
 		return ResponseEntity.ok(response);
 	}
@@ -96,7 +97,7 @@ public class BlogServiceController {
 		
 		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(
 				serviceImpl.updateComment(totalCommentCount, fromString), "commented", HttpStatus.ACCEPTED,
-				HttpStatus.ACCEPTED.value(), LocalDateTime.now());
+				HttpStatus.ACCEPTED.value());
 
 		return ResponseEntity.ok(response);
 	}
@@ -107,7 +108,7 @@ public class BlogServiceController {
 			@RequestParam String updatedBy) throws CommentServiceDownException , LikeServiceDownException {
 		UUID fromString = UUID.fromString(blogId);
 		ResponseHandler<Boolean> response = new ResponseHandler<>(serviceImpl.deleteBlog(fromString, updatedBy),
-				"Your blog has been deleted successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+				"Your blog has been deleted successfully.", HttpStatus.OK, HttpStatus.OK.value());
 
 		return ResponseEntity.ok(response);
 	}
@@ -120,20 +121,20 @@ public class BlogServiceController {
 		UUID fromString = UUID.fromString(blogId);
 		ResponseHandler<Boolean> response = new ResponseHandler<>(
 				serviceImpl.deleteBlogByTitle(title, fromString, userName), "Your blog has been deleted successfully.",
-				HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+				HttpStatus.OK, HttpStatus.OK.value());
 		return ResponseEntity.ok(response);
 	}
 
 	// using search technique
 	@GetMapping("/getAll")
 	@Operation(summary = "Get a all Blogs", description = "Returns  all blogs  ")
-	public ResponseEntity<ResponseHandler<List<BlogDto>>> getAllBlog(@RequestParam(defaultValue = "0") int pageNum,
+	public ResponseEntity<ResponseHandlerWithPageable<List<BlogDto>>> getAllBlog(@RequestParam(defaultValue = "0") int pageNum,
 			@RequestParam(defaultValue = "10") int pageSize) {
 	
 		int totalResults = serviceImpl.getTotalResult();
 		
-		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getBlog(pageNum, pageSize),
-				"Data retrieved successfully.", HttpStatus.OK,HttpStatus.OK.value(),totalResults,pageNum,pageSize , LocalDateTime.now());
+		ResponseHandlerWithPageable<List<BlogDto>> response = new ResponseHandlerWithPageable<>(serviceImpl.getBlog(pageNum, pageSize),
+				"Data retrieved successfully.", HttpStatus.OK,HttpStatus.OK.value(),totalResults,pageNum,pageSize);
 		
 		
 		return ResponseEntity.ok(response);
@@ -145,7 +146,7 @@ public class BlogServiceController {
 	@Operation(summary = "Get a blog by userName", description = "Returns a Blog as per the userName.")
 	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogsByAutherId(@PathVariable @Valid String userName) {
 		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getByAutherID(userName),
-				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value());
 
 		return ResponseEntity.ok(response);
 	}
@@ -155,10 +156,11 @@ public class BlogServiceController {
 	public ResponseEntity<ResponseHandler<BlogDto>> getBlogById(@PathVariable(value = "blogId") @Valid String blogId) {
 		UUID fromString = UUID.fromString(blogId);
 		ResponseHandler<BlogDto> response = new ResponseHandler<BlogDto>(serviceImpl.getBlogById(fromString),
-				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value());
 		return ResponseEntity.ok(response);
 	}
 
+	
 	@GetMapping("/getByTitle/{blogTitle}")
 	@Operation(summary = "Get a blogs by blogTitle", description = "Returns a blogs as list by  blogTitle.")
 	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogByTitle(@RequestParam(defaultValue = "0") int pageNum,
@@ -168,7 +170,7 @@ public class BlogServiceController {
 
 		if (!blogTitleWithPage.isEmpty()) {
 			ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(blogTitleWithPage,
-					"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+					"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value());
 			return ResponseEntity.ok(response);
 		} else {
 

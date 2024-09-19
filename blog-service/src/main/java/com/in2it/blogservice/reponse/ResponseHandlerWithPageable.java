@@ -2,28 +2,24 @@ package com.in2it.blogservice.reponse;
 
 import org.springframework.http.HttpStatus;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 @Getter
 @Setter
-public class ResponseHandler<T>  {
+@NoArgsConstructor
+@AllArgsConstructor
+public class ResponseHandlerWithPageable<T> {
+
 	private T data;
 	private String message;
 	private HttpStatus httpStatus;
 	private int statusCode; 
-	
+	private int totalResults;
+	private int pageNo;
+	private int pageSize;
 
-  public	ResponseHandler(T data, String message, HttpStatus httpStatus , int statusCode){
-		
-		this.data=data;
-		this.message=message;
-		this.httpStatus=httpStatus;
-		this.statusCode=statusCode;
 	
-	}
-
 }
-
-

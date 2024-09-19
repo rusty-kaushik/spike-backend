@@ -407,7 +407,7 @@ public class BlogServiceTest {
 	    assertEquals(blogList, result);
 	    	
 	    verify(objectMapper, times(1)).blogToDtoConverter(existingBlog);
-	    verify(repo, times(1)).findAll(PageRequest.of(0, 5,Sort.by("creted_date_time").descending()), true);
+	    verify(repo, times(1)).findAll(PageRequest.of(0, 5,Sort.by("created_date_time").descending()), true);
 	}
 	
 	@Test
