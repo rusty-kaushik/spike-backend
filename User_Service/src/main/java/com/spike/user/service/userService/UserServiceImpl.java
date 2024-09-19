@@ -29,6 +29,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -211,56 +212,65 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUserProfilePicture(Long userId, MultipartFile profilePicture) throws IOException {
         logger.info("Starting profile picture update for user ID: {}", userId);
-        User existingUser = findUserById(userId);
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
 
         String currentProfilePictureFilename = getCurrentProfilePictureFilename(existingUser);
 
         // If there's an old profile picture, delete it
         if (currentProfilePictureFilename != null) {
-            deleteOldProfilePicture(currentProfilePictureFilename, userId);
+            deleteOldProfilePicture(currentProfilePictureFilename);
         }
 
         // Save the new profile picture and update the user's profile picture entity
-        String newProfilePictureFilename = saveNewProfilePicture(profilePicture, userId);
+        String newProfilePictureFilename = saveNewProfilePicture(profilePicture, existingUser.getEmployeeCode());
         updateUserProfilePictureEntity(existingUser, profilePicture, newProfilePictureFilename);
     }
 
-    private User findUserById(Long userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
-    }
-
     private String getCurrentProfilePictureFilename(User user) {
-        UserProfilePicture userProfilePicture = user.getProfilePicture();
-        return userProfilePicture != null ? userProfilePicture.getFileName() : null;
+        return Optional.ofNullable(user.getProfilePicture())
+                .map(UserProfilePicture::getFileName)
+                .orElse(null);
     }
 
-    private void deleteOldProfilePicture(String filename, Long userId) throws IOException {
-        Path oldFilePath = Paths.get(uploadDirectory + filename);
-        Files.deleteIfExists(oldFilePath);
-        logger.info("Deleted old profile picture for user ID: {}", userId);
+    private void deleteOldProfilePicture(String filename) throws IOException {
+        Path oldFilePath = Paths.get(uploadDirectory, filename);
+        try {
+            Files.deleteIfExists(oldFilePath);
+            logger.info("Deleted old profile picture: {}", filename);
+        } catch (IOException e) {
+            logger.error("Error deleting old profile picture: {}", filename, e);
+            throw e;  // Propagate the exception if deletion fails
+        }
     }
 
-    private String saveNewProfilePicture(MultipartFile profilePicture, Long userId) throws IOException {
-        String newProfilePictureFilename = profilePicture.getOriginalFilename();
-        Path newFilePath = Paths.get(uploadDirectory + newProfilePictureFilename);
-        Files.write(newFilePath, profilePicture.getBytes());
-        logger.info("Saved new profile picture for user ID: {}", userId);
+    private String saveNewProfilePicture(MultipartFile profilePicture, String employeeCode) throws IOException {
+        if (profilePicture == null || profilePicture.isEmpty()) {
+            throw new IllegalArgumentException("Profile picture cannot be null or empty");
+        }
+
+        String originalFileName = profilePicture.getOriginalFilename();
+        String fileExtension = originalFileName != null ? originalFileName.substring(originalFileName.lastIndexOf('.')) : "";
+        String newProfilePictureFilename = employeeCode + "_profile_picture" + fileExtension;
+
+        Path newFilePath = Paths.get(uploadDirectory, newProfilePictureFilename);
+        Files.copy(profilePicture.getInputStream(), newFilePath);
+        logger.info("Saved new profile picture for user ID: {}", employeeCode);
+
         return newProfilePictureFilename;
     }
 
     private void updateUserProfilePictureEntity(User user, MultipartFile profilePicture, String filename) {
-        UserProfilePicture userProfilePicture = user.getProfilePicture();
-
-        // If no existing profile picture, create a new one
-        if (userProfilePicture == null) {
-            userProfilePicture = new UserProfilePicture();
-            userProfilePicture.setUser(user);
-        }
+        UserProfilePicture userProfilePicture = Optional.ofNullable(user.getProfilePicture())
+                .orElseGet(() -> {
+                    UserProfilePicture newProfilePicture = new UserProfilePicture();
+                    newProfilePicture.setUser(user);
+                    return newProfilePicture;
+                });
 
         userProfilePicture.setOriginalFileName(profilePicture.getOriginalFilename());
         userProfilePicture.setFileName(filename);
-        userProfilePicture.setFilePath(Paths.get(uploadDirectory + filename).toString());
+        userProfilePicture.setFilePath(Paths.get(uploadDirectory, filename).toString());
         userProfilePicture.setFileType(profilePicture.getContentType());
         userProfilePicture.setFileSize(profilePicture.getSize());
 
@@ -268,6 +278,7 @@ public class UserServiceImpl implements UserService {
         user.setProfilePicture(userProfilePicture);
         userRepository.save(user);
     }
+
 
     @Override
     public void deleteUser(Long userId) {
