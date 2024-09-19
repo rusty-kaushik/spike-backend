@@ -327,14 +327,14 @@ public class UserServiceImpl implements UserService {
 
         UserContactsDTO userContactsDto = userHelper.entityToUserContactsDto(user);
         userContactsDto.setId(user.getId());
-        // Filter and set primary address
+        // Filter and set addresses
 
-        List<UserAddressDTO> primaryAddress = user.getAddresses().stream()
-                .filter(address -> "CURRENT".equals(address.getType()))
+        List<UserAddressDTO> addresses = user.getAddresses().stream()
+                //.filter(address -> "CURRENT".equals(address.getType()))
                 .map(address -> userHelper.entityToUserAddressDto(address))
                 .collect(Collectors.toList());
         userContactsDto.setPrimaryMobile(user.getPrimaryMobileNumber());
-        userContactsDto.setPrimaryAddress(primaryAddress);
+        userContactsDto.setAddresses(addresses);
         userContactsDto.setInstagramUrl(user.getUserSocials() != null ? user.getUserSocials().getInstagramUrl() : null);
         userContactsDto.setFacebookUrl(user.getUserSocials() != null ? user.getUserSocials().getFacebookUrl() : null);
         userContactsDto.setLinkedinUrl(user.getUserSocials() != null ? user.getUserSocials().getLinkedinUrl() : null);
