@@ -2,6 +2,7 @@ package com.spike.SecureGate.controllers;
 
 import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
+import com.spike.SecureGate.helper.DropdownHelper;
 import com.spike.SecureGate.service.externalUserService.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -21,6 +22,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 //@CrossOrigin("*")
@@ -33,6 +35,9 @@ public class UserController {
 
     @Autowired
     private UserDbService userDbService;
+
+    @Autowired
+    private DropdownHelper dropdownHelper;
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -322,8 +327,23 @@ public class UserController {
         return user;
     }
 
-    @GetMapping("/countriesl/")
-    public List<String> getCountries() {
-        return userService.getCountriesWithStates();
+    @GetMapping("/countries")
+    public List<Country> getCountries() {
+        try {
+            return dropdownHelper.readCsvFileForCountry();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @GetMapping("/states")
+    public List<State> getStatesByCountry(@RequestParam String countryName) throws IOException {
+        return dropdownHelper.getStatesByCountryName(countryName);
+    }
+
+    @GetMapping("/cities")
+    public List<City> getCitiesByState(@RequestParam String stateName) throws IOException {
+        return dropdownHelper.getCitiesByStateName(stateName);
     }
 }
