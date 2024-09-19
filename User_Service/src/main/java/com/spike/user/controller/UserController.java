@@ -275,7 +275,7 @@ public class UserController {
     public ResponseEntity<Object> getUserContact(@RequestParam(name="name", required=false) String name, 
                                                  @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize, 
                                                  @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno, 
-                                                 @RequestParam(name = "sort", defaultValue = "name,asc") String sort) {
+                                                 @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort) {
         try {
             logger.info("getting user contact information " + name);
             List<UserContactsDTO> user = userService.getUserContacts(name, pageno, pagesize, sort);
@@ -307,7 +307,7 @@ public class UserController {
                                                                 @RequestParam(name = "salary", required = false) Double salary,
                                                                 @RequestParam(name = "page", defaultValue = "0") int page,
                                                                 @RequestParam(name = "size", defaultValue = "6") int size,
-                                                                @RequestParam(name = "sort", defaultValue = "name,asc") String sort) {
+                                                                @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort) {
         try {
             List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, salary, page, size, sort);
             return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.OK, userDashBoard);
