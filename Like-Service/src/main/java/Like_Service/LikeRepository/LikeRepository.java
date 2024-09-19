@@ -1,6 +1,7 @@
 package Like_Service.LikeRepository;
 
 
+import Like_Service.LikeEntity.LikeDto;
 import Like_Service.LikeEntity.LikeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,8 +18,8 @@ public interface LikeRepository extends JpaRepository<LikeEntity, UUID> {
     LikeEntity findByBlogidAndUserName(UUID blogid, String username);
 
 
-    @Query("SELECT l.userName FROM LikeEntity l WHERE l.blogid =:blogid AND l.status = 'Liked'")
-    List<String> findByBlogId(@Param("blogid") UUID blogid);
+   @Query("SELECT new Like_Service.LikeEntity.LikeDto(l.id, l.userName) FROM LikeEntity l WHERE l.blogid =:blogid AND l.status = 'Liked'")
+    List<LikeDto> findByBlogId(@Param("blogid") UUID blogid);
 
     @Query(" FROM LikeEntity WHERE blogid=:blogid AND status='Liked'")
     List<LikeEntity> findALLByBlogId(UUID blogid);
