@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -162,26 +163,26 @@ public class BlogServiceImpl implements BlogService {
 		if (blog.getId().equals(id) && updatedBy != null) {
 			log.info("============================" + blog);
  
-			UUID blogId = blog.getId();
+			    UUID blogId = blog.getId();
 			    String bId = blogId.toString();
 			
 			try {
+				if(blog.getCommentCount()>0) {
+					
+					commentFeign.deleteCommentsByblogId(bId);
+					
+				}
+				if(blog.getLikeCount()>0) {
+					likeFeign.unlikeDeletedBlog(bId);
+				}
 				
-				commentFeign.deleteCommentsByblogId(bId);
 
 			}
 			catch (Exception e) {
 
-			    	  throw new CommentServiceDownException("Please ! Check your comment-service connection . May be down.");
+				log.error("Please ! Check your services connection . May be down.");
+			    	  throw new CommentServiceDownException("Please ! Check your services connection . May be down.");
 			}
-			try {
-				likeFeign.unlikeDeletedBlog(bId);
-			}
-			catch (Exception e) {
-
-			    	  throw new LikeServiceDownException("Please ! Check your Like-service connection . May be down.");
-			}
-			
 			repo.deleteBlogById(id, updatedBy, LocalDateTime.now());
 
 			return true;
@@ -284,9 +285,13 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public List<BlogDto> getBlog(int pageNum, int pageSize) {
 
-		PageRequest pageable = PageRequest.of(pageNum, pageSize);
+		PageRequest pageable = PageRequest.of(pageNum, pageSize, Sort.by("created_date_time").descending());
+		
 
 		List<Blog> blog = repo.findAll(pageable,true);
+		
+		
+		
 		if(blog.isEmpty() || blog==null) {
 			
 				UserNotFoundException e = new UserNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
@@ -310,6 +315,16 @@ public class BlogServiceImpl implements BlogService {
 
 		return blogDtoList;
 	}
+	
+	
+	// helper class 
+	
+	public int getTotalResult() {
+
+        int size = repo.findByStatus(true).size();
+		return size;
+	}
+	
 
 	// Get blog by userId or we can say unique userName
 	@Override

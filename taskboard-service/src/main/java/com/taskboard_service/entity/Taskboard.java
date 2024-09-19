@@ -1,10 +1,10 @@
-package com.in2it.blogservice.model;
+package com.taskboard_service.entity;
 
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.validator.constraints.Range;
+
+import com.taskboard_service.dto.Status;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,56 +20,33 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Getter
 @Setter
-public class Blog {
-	
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Taskboard extends Auditable{
 
-	
-	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
+	@Id
 	private UUID id;
 	
+	@NotBlank(message = "userName cannot be blank") 
+	private String userName;
 	
 	@Digits(integer = 5 , fraction = 0, message = "min length of digits is 5")
 	@Range(min = 1 , message = "min number of digits is should be 1")
 	private long departmentId;
 	
-	
-	@NotBlank(message = "userName cannot be blank") 
-	private String userName;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
-	
 	@NotBlank(message = "title cannot be blank") 
+	@Column(length =50)
 	private String title;
 	
-	@NotBlank(message = "content cannot be blank")
-	@Column(length = 10000)
-	private String content;
+	@Column(name = "taskDescription" ,length = 200)
+	@NotBlank(message = "task Description cannot be blank") 
 	
-
+	private String taskDes;
 	
-	private long commentCount;
+	private Status status;
 	
-	private long likeCount;
-
-	
-
-	private String updatedBy; // Basically its RoleId whose update the BLOG
-	
-	
-
-	 private boolean status;
-	 
-	 @Column(nullable = false, updatable = false)
-	 private LocalDateTime createdDateTime;
-	 
-	 private LocalDateTime updatedDateTime;
-	 
-	 
-	 private List<String> mediaFile;
-	 
-	 private List<String> mediaPath;
 }

@@ -26,6 +26,7 @@ import com.in2it.blogservice.customException.LikeServiceDownException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
 import com.in2it.blogservice.reponse.ResponseHandler;
+import com.in2it.blogservice.reponse.ResponseHandlerWithPageable;
 import com.in2it.blogservice.service.impl.BlogServiceImpl;
 
 @SpringBootTest
@@ -187,7 +188,7 @@ public class BlogControllerTest {
 	    	List<BlogDto> allBlogDto = new ArrayList<>();
 	        when(serviceImpl.getBlog(any(Integer.class), any(Integer.class))).thenReturn(allBlogDto);
 
-	        ResponseEntity<ResponseHandler<List<BlogDto>>>  response = blogController.getAllBlog(0,5);
+	        ResponseEntity<ResponseHandlerWithPageable<List<BlogDto>>>  response = blogController.getAllBlog(0,5);
 	        
 	        assertEquals(HttpStatus.OK, response.getStatusCode());
 	        assertEquals("Data retrieved successfully.", response.getBody().getMessage());
