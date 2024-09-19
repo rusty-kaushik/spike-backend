@@ -136,7 +136,7 @@ public class BlogController {
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> fetchAllBlogs(
             @RequestParam(defaultValue = "0") int pageNum,
-            @RequestParam(defaultValue = "5") int pageSize)
+            @RequestParam(defaultValue = "10") int pageSize)
     {
         logger.info("Started authenticating");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

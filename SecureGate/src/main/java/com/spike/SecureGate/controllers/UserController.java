@@ -235,7 +235,7 @@ public class UserController {
             @RequestParam(name = "email", required = false) String email,
             @RequestParam(name = "salary", required = false) Double salary,
             @RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "6") int size,
+            @RequestParam(name = "size", defaultValue = "10") int size,
             @RequestParam(name = "sort", defaultValue = "name,asc") String sort
     )
     {
@@ -268,7 +268,7 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> fetchUsersForContactPage(
             @RequestParam(required=false) String name,
-            @RequestParam(required = false, defaultValue = "5") int pageSize,
+            @RequestParam(required = false, defaultValue = "10") int pageSize,
             @RequestParam(required = false, defaultValue = "0") int pageNo,
             @RequestParam(name = "sort", defaultValue = "name,asc") String sort
     )
