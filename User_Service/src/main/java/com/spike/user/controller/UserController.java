@@ -167,20 +167,23 @@ public class UserController {
         logger.info("Received request to update user with ID: {}", userId);
         try {
             AuditorAwareImpl.setCurrentAuditor(userFullUpdateDTO.getUsername());
-            logger.info("Setting current auditor to 'username'");
+            logger.info("Setting current auditor to '{}'", userFullUpdateDTO.getUsername());
 
             // Perform the update operation
             logger.info("Updating user with ID: {}", userId);
             User updatedUser = userService.updateUserFull(userId, userFullUpdateDTO);
             logger.info("User updated successfully with ID: {}", userId);
 
-            return ResponseHandler.responseBuilder("User successfully updated", HttpStatus.OK, updatedUser);
+            // Return 200 OK with the updated user information
+            return ResponseHandler.responseBuilder("User successfully updated.", HttpStatus.OK, updatedUser);
         } catch (UserNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId, e.getMessage());
-            return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
+            // Return 404 Not Found with a user-friendly error message
+            return ResponseHandler.responseBuilder("User not found.", HttpStatus.NOT_FOUND, "No user found with the provided ID.");
         } catch (Exception e) {
             logger.error("Error updating user: {}", e.getMessage());
-            return ResponseHandler.responseBuilder("Error updating user", HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            // Return 500 Internal Server Error with a clear error message
+            return ResponseHandler.responseBuilder("User update unsuccessful.", HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred while updating the user. Please try again later.");
         } finally {
             logger.info("Clearing current auditor");
             AuditorAwareImpl.clear();
@@ -211,13 +214,16 @@ public class UserController {
         try {
             userService.updateUserProfilePicture(userId, profilePicture);
             logger.info("User profile picture updated successfully for user ID: {}", userId);
-            return ResponseHandler.responseBuilder("User profile updated", HttpStatus.OK, "Successful");
+            // Return 200 OK with a success message
+            return ResponseHandler.responseBuilder("Profile picture updated successfully.", HttpStatus.OK, "The user’s profile picture has been updated.");
         } catch (UserNotFoundException e) {
-            logger.error("User with ID {} not found: {}", userId);
-            return ResponseHandler.responseBuilder("User profile not found", HttpStatus.NOT_FOUND, e.getMessage());
+            logger.error("User with ID {} not found: {}", userId, e.getMessage());
+            // Return 404 Not Found with a user-friendly error message
+            return ResponseHandler.responseBuilder("User not found.", HttpStatus.NOT_FOUND, "No user found with the provided ID.");
         } catch (Exception e) {
             logger.error("Error updating profile picture for user ID {}: {}", userId, e.getMessage());
-            return ResponseHandler.responseBuilder("User profile update unsuccessful", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
+            // Return 422 Unprocessable Entity with a detailed error message
+            return ResponseHandler.responseBuilder("Profile picture update unsuccessful.", HttpStatus.UNPROCESSABLE_ENTITY, "An error occurred while updating the profile picture. Please try again later.");
         }
     }
 
@@ -240,13 +246,16 @@ public class UserController {
         try {
             userService.deleteUser(userId);
             logger.info("User deleted successfully with ID: {}", userId);
-            return ResponseHandler.responseBuilder("User successfully deleted", HttpStatus.OK, "User deleted");
+            // Return 200 OK with a success message
+            return ResponseHandler.responseBuilder("User successfully deleted.", HttpStatus.OK, "The user has been deleted successfully.");
         } catch (UserNotFoundException e) {
-            logger.error("User with ID {} not found: {}", userId);
-            return ResponseHandler.responseBuilder("User not found", HttpStatus.NOT_FOUND, e.getMessage());
+            logger.error("User with ID {} not found: {}", userId, e.getMessage());
+            // Return 404 Not Found with a user-friendly error message
+            return ResponseHandler.responseBuilder("User not found.", HttpStatus.NOT_FOUND, "No user found with the provided ID.");
         } catch (Exception e) {
             logger.error("Error deleting user with ID {}: {}", userId, e.getMessage());
-            return ResponseHandler.responseBuilder("User deletion unsuccessful", HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            // Return 500 Internal Server Error with a detailed error message
+            return ResponseHandler.responseBuilder("User deletion unsuccessful.", HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred while attempting to delete the user. Please try again later.");
         }
     }
 
@@ -344,8 +353,12 @@ public class UserController {
             List<DepartmentDropdownDTO> departments = userService.getDepartmentsByUserId(userId);
 
             if (departments.isEmpty()) {
-                // Return 200 OK if there are no departments
-                return ResponseHandler.responseBuilder("No departments found for the user.", HttpStatus.OK, "No Departments found for the user");
+                // Return 200 OK as there are no departments assigned to the user
+                return ResponseHandler.responseBuilder(
+                        "No departments assigned to the user with ID " + userId + ".",
+                        HttpStatus.OK,
+                        "The user does not have any departments assigned."
+                );
             }
 
             // Return the list of departments with 200 OK
@@ -354,14 +367,13 @@ public class UserController {
         } catch (UserNotFoundException e) {
             // Log the exception for debugging
             logger.error("User not found: {}", userId, e);
-            // Return 404 Not Found with an error message
-            return ResponseHandler.responseBuilder("User not found.", HttpStatus.NOT_FOUND, "User not found for this id");
-
+            // Return 404 Not Found with a user-friendly error message
+            return ResponseHandler.responseBuilder("No user found with the provided ID.", HttpStatus.NOT_FOUND, "User not found for this id.");
         } catch (Exception e) {
             // Log the exception for debugging
             logger.error("Error retrieving departments for user: {}", userId, e);
-            // Return 500 Internal Server Error with an error message
-            return ResponseHandler.responseBuilder("An unexpected error occurred while retrieving departments.", HttpStatus.INTERNAL_SERVER_ERROR, "Try again");
+            // Return 500 Internal Server Error with a detailed error message
+            return ResponseHandler.responseBuilder("An unexpected error occurred while retrieving departments.", HttpStatus.INTERNAL_SERVER_ERROR, "Please try again later or contact support if the problem persists.");
         }
     }
 
