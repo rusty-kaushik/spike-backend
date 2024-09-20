@@ -11,7 +11,7 @@ public interface UserService {
 
     User createNewUser(UserCreationRequestDTO userRequest1);
 
-    List<Object[]> getAllUsers();
+    List<ManagerDropdownDTO> getAllUsers();
 
     String updateSelfPassword(String username, UserChangePasswordDTO userChangePasswordDTO);
 

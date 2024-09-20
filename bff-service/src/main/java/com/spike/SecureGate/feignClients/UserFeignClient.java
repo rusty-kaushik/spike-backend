@@ -118,5 +118,5 @@ public interface UserFeignClient {
     );
 
     @GetMapping("/spike/user")
-    List<Object[]> getAllManagers();
+    List<Object> getAllManagers();
 }

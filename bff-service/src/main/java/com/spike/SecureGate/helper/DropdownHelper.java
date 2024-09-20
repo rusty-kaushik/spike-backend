@@ -114,7 +114,7 @@ public class DropdownHelper {
         return cities;
     }
 
-    public List<Object[]> getAllManagers() {
+    public List<Object> getAllManagers() {
         return userFeignClient.getAllManagers();
     }
 }

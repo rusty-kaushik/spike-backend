@@ -136,7 +136,7 @@ public class UserController {
 
 
     @GetMapping
-    public List<Object[]> getAllUsers() {
+    public List<ManagerDropdownDTO> getAllUsers() {
         try{
             return userService.getAllUsers();
         } catch ( Exception e ) {

@@ -1,5 +1,6 @@
 package com.spike.user.repository;
 
+import com.spike.user.dto.ManagerDropdownDTO;
 import com.spike.user.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +22,7 @@ public interface UserRepository extends JpaRepository<User,Long> , JpaSpecificat
 
     List<User> findAllByName(String name, Pageable page);
 
-    @Query("SELECT u.id, u.name FROM User u WHERE u.role.id = 2")
-    List<Object[]> findAllManagers();
+    @Query("SELECT new com.spike.user.dto.ManagerDropdownDTO(u.id, u.name) FROM User u WHERE u.role.id = 2")
+    List<ManagerDropdownDTO> findAllManagers();
 
 }

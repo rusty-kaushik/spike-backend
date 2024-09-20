@@ -348,7 +348,7 @@ public class UserController {
     }
 
     @GetMapping("/managers")
-    public List<Object[]> getAllManagers(){
+    public List<Object> getAllManagers(){
         return dropdownHelper.getAllManagers();
     }
 }

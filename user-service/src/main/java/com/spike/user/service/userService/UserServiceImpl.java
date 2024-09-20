@@ -81,11 +81,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Object[]> getAllUsers() {
+    public List<ManagerDropdownDTO> getAllUsers() {
         try {
             return userRepository.findAllManagers();
         } catch (Exception e) {
-            throw new RuntimeException("Error fetching user", e.getCause());
+            throw new RuntimeException("Error fetching users", e.getCause());
         }
     }
 
