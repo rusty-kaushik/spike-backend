@@ -126,25 +126,10 @@ public class UserServiceImpl implements UserService {
     public User updateUserFull(Long userId, UserFullUpdateDTO userFullUpdateDTO) {
         logger.info("Starting update process for user ID: {}", userId);
         try {
-            User existingUser = userRepository.findById(userId)
-                    .orElseThrow(() -> {
-                        logger.error("User not found with id: {}", userId);
-                        return new UserNotFoundException("User not found with id: " + userId);
-                    });
-
-            // update user fields
-            setUserFields(existingUser, userFullUpdateDTO);
-            logger.info("User fields updated for user ID: {}", userId);
-
-            // update user socials
-            setSocialUrls(existingUser, userFullUpdateDTO);
-            logger.info("User socials updated for user ID: {}", userId);
-
-            // update user addresses
-            setUserAddresses(existingUser,userFullUpdateDTO.getAddresses());
-            logger.info("User addresses updated for user ID: {}", userId);
-
-            return userRepository.save(existingUser);
+            // Use the helper method to update the user
+            User updatedUser = userHelper.updateUserFromDTO(userId, userFullUpdateDTO);
+            logger.info("User fields updated successfully for user ID: {}", userId);
+            return updatedUser;
         } catch (UserNotFoundException e) {
             logger.error("Error updating user - user not found with id: {}", userId, e);
             throw e;
@@ -155,57 +140,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    // it will set the fields to update the user - logic
-    private void setUserFields(User user, UserFullUpdateDTO userFullUpdateDTO) {
-
-        user.setBackupEmail(userFullUpdateDTO.getBackupEmail());
-        user.setPrimaryMobileNumber(userFullUpdateDTO.getPrimaryMobileNumber());
-        user.setSecondaryMobileNumber(userFullUpdateDTO.getSecondaryMobileNumber());
-        if (userFullUpdateDTO.getUsername() == null || userFullUpdateDTO.getUsername().isEmpty()) {
-            throw new UserNotFoundException("Username cannot be null or empty");
-        }
-        user.setUsername(userFullUpdateDTO.getUsername());
-    }
-
-
-    // it will take fields that we need to update - logic
-    private void setSocialUrls(User user, UserFullUpdateDTO userFullUpdateDTO) {
-        UserSocials userSocials = user.getUserSocials();
-
-        if (userSocials == null) {
-            userSocials = new UserSocials();
-            userSocials.setUser(user);
-            user.setUserSocials(userSocials);
-        }
-
-        userSocials.setLinkedinUrl(userFullUpdateDTO.getLinkedinUrl());
-        userSocials.setFacebookUrl(userFullUpdateDTO.getFacebookUrl());
-        userSocials.setInstagramUrl(userFullUpdateDTO.getInstagramUrl());
-    }
-
-
-    // it will take fields that we need to update - logic
-    private void setUserAddresses(User existingUser, List<UserAddressDTO> newAddresses) {
-        // Clear existing addresses
-        existingUser.getAddresses().clear();
-
-        // Add new addresses
-        for (UserAddressDTO addressDTO : newAddresses) {
-            UserAddress address = new UserAddress();
-            address.setUser(existingUser); // Set the user reference
-            address.setLine1(addressDTO.getLine1());
-            address.setLine2(addressDTO.getLine2());
-            address.setState(addressDTO.getState());
-            address.setDistrict(addressDTO.getDistrict());
-            address.setZip(addressDTO.getZip());
-            address.setCity(addressDTO.getCity());
-            address.setNearestLandmark(addressDTO.getNearestLandmark());
-            address.setCountry(addressDTO.getCountry());
-            address.setType(addressDTO.getType());
-
-            existingUser.getAddresses().add(address);
-        }
-    }
 
     // User Profile Picture update
     @Override
@@ -215,68 +149,15 @@ public class UserServiceImpl implements UserService {
         User existingUser = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
 
-        String currentProfilePictureFilename = getCurrentProfilePictureFilename(existingUser);
+        // Update the profile picture using the helper method
+        UserProfilePicture updatedProfilePicture = userHelper.updateUserProfilePicture(profilePicture, existingUser);
 
-        // If there's an old profile picture, delete it
-        if (currentProfilePictureFilename != null) {
-            deleteOldProfilePicture(currentProfilePictureFilename);
+        // Save the updated profile picture entity
+        if (updatedProfilePicture != null) {
+            userProfilePictureRepository.save(updatedProfilePicture);
+            existingUser.setProfilePicture(updatedProfilePicture);
+            userRepository.save(existingUser);
         }
-
-        // Save the new profile picture and update the user's profile picture entity
-        String newProfilePictureFilename = saveNewProfilePicture(profilePicture, existingUser.getEmployeeCode());
-        updateUserProfilePictureEntity(existingUser, profilePicture, newProfilePictureFilename);
-    }
-
-    private String getCurrentProfilePictureFilename(User user) {
-        return Optional.ofNullable(user.getProfilePicture())
-                .map(UserProfilePicture::getFileName)
-                .orElse(null);
-    }
-
-    private void deleteOldProfilePicture(String filename) throws IOException {
-        Path oldFilePath = Paths.get(uploadDirectory, filename);
-        try {
-            Files.deleteIfExists(oldFilePath);
-            logger.info("Deleted old profile picture: {}", filename);
-        } catch (IOException e) {
-            logger.error("Error deleting old profile picture: {}", filename, e);
-            throw e;  // Propagate the exception if deletion fails
-        }
-    }
-
-    private String saveNewProfilePicture(MultipartFile profilePicture, String employeeCode) throws IOException {
-        if (profilePicture == null || profilePicture.isEmpty()) {
-            throw new IllegalArgumentException("Profile picture cannot be null or empty");
-        }
-
-        String originalFileName = profilePicture.getOriginalFilename();
-        String fileExtension = originalFileName != null ? originalFileName.substring(originalFileName.lastIndexOf('.')) : "";
-        String newProfilePictureFilename = employeeCode + "_profile_picture" + fileExtension;
-
-        Path newFilePath = Paths.get(uploadDirectory, newProfilePictureFilename);
-        Files.copy(profilePicture.getInputStream(), newFilePath);
-        logger.info("Saved new profile picture for user ID: {}", employeeCode);
-
-        return newProfilePictureFilename;
-    }
-
-    private void updateUserProfilePictureEntity(User user, MultipartFile profilePicture, String filename) {
-        UserProfilePicture userProfilePicture = Optional.ofNullable(user.getProfilePicture())
-                .orElseGet(() -> {
-                    UserProfilePicture newProfilePicture = new UserProfilePicture();
-                    newProfilePicture.setUser(user);
-                    return newProfilePicture;
-                });
-
-        userProfilePicture.setOriginalFileName(profilePicture.getOriginalFilename());
-        userProfilePicture.setFileName(filename);
-        userProfilePicture.setFilePath(Paths.get(uploadDirectory, filename).toString());
-        userProfilePicture.setFileType(profilePicture.getContentType());
-        userProfilePicture.setFileSize(profilePicture.getSize());
-
-        userProfilePictureRepository.save(userProfilePicture);
-        user.setProfilePicture(userProfilePicture);
-        userRepository.save(user);
     }
 
 

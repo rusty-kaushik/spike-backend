@@ -1,6 +1,6 @@
 package com.spike.user.service.departmentService;
 
-import com.spike.user.customMapper.UserMapper;
+import com.spike.user.customMapper.DepartmentMapper;
 import com.spike.user.dto.DepartmentCreationDTO;
 import com.spike.user.dto.DepartmentDropdownDTO;
 import com.spike.user.dto.DepartmentResponseDTO;
@@ -14,11 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
-public class DepartmentServiceImpl implements DepartmentService{
+public class DepartmentServiceImpl implements DepartmentService {
 
     private static final Logger logger = LoggerFactory.getLogger(DepartmentService.class);
 
@@ -26,111 +25,70 @@ public class DepartmentServiceImpl implements DepartmentService{
     private DepartmentRepository departmentRepository;
 
     @Autowired
-    private UserMapper userMapper;
+    private DepartmentMapper departmentMapper;
 
-    // Create a new department
     @Override
-    public DepartmentResponseDTO createDepartment(DepartmentCreationDTO department) {
-        logger.info("Creating new department: {}", department);
+    public DepartmentResponseDTO createDepartment(DepartmentCreationDTO departmentCreationDTO) {
+        logger.info("Creating new department: {}", departmentCreationDTO);
         try {
-            Department newDepartment = new Department();
-            newDepartment.setName(department.getName());
+            // Use MapStruct to convert DTO to entity
+            Department newDepartment = departmentMapper.departmentCreationDtoToEntity(departmentCreationDTO);
             Department savedDepartment = departmentRepository.save(newDepartment);
-            DepartmentResponseDTO responseDTO = userMapper.entityToDepartmentDtoResponse(savedDepartment);
-            logger.info("Successfully created department with id: {}", savedDepartment.getId());
-            return responseDTO;
+            return departmentMapper.entityToDepartmentResponseDTO(savedDepartment);
         } catch (Exception e) {
             logger.error("Error creating department", e);
             throw new RuntimeException("Error creating department", e);
         }
     }
 
-    //Get list of all departments
     @Override
     public List<DepartmentDropdownDTO> getAllDepartments() {
         logger.info("Fetching all departments");
         try {
-            List<DepartmentDropdownDTO> allDepartmentDTOs = departmentRepository.findAllDepartmentDTOs();
-            logger.info("Successfully fetched all departments");
-            return allDepartmentDTOs;
+            List<Department> departments = departmentRepository.findAll();
+            return departmentMapper.entityListToDropdownDTOList(departments);
         } catch (Exception e) {
             logger.error("Error fetching all departments", e);
             throw new RuntimeException("Error fetching all departments", e);
         }
     }
 
-    // Get department by id
     @Override
     public DepartmentResponseDTO getDepartmentById(Long id) {
         logger.info("Fetching department with id: {}", id);
-        try {
-            // Fetch the department entity
-            Department department = departmentRepository.findById(id)
-                    .orElseThrow(() -> new DepartmentNotFoundException("Department not found with id: " + id));
+        Department department = departmentRepository.findById(id)
+                .orElseThrow(() -> new DepartmentNotFoundException("Department not found with id: " + id));
 
-            // Convert the Department entity to DepartmentResponseDTO
-            DepartmentResponseDTO departmentResponseDTO = new DepartmentResponseDTO();
-            departmentResponseDTO.setId(department.getId());
-            departmentResponseDTO.setName(department.getName());
-
-            logger.info("Successfully fetched department with id: {}", id);
-            return departmentResponseDTO;
-        } catch (DepartmentNotFoundException e) {
-            logger.error("Department not found with id: {}", id, e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error fetching department with id: {}", id, e);
-            throw new RuntimeException("Unexpected error fetching department", e);
-        }
+        // Use MapStruct to convert entity to DTO
+        return departmentMapper.entityToDepartmentResponseDTO(department);
     }
 
-
-    // Update department by id
     @Override
     public DepartmentResponseDTO updateDepartment(Long id, DepartmentCreationDTO departmentCreationDTO) {
         logger.info("Updating department with id: {}", id);
-        try {
-            Department department = departmentRepository.findById(id)
-                    .orElseThrow(() -> new DepartmentNotFoundException("Department not found with id: " + id));
-            department.setName(departmentCreationDTO.getName());
-            Department updatedDepartment = departmentRepository.save(department);
-            logger.info("Successfully updated department with id: {}", id);
-            DepartmentResponseDTO responseDTO = userMapper.entityToDepartmentDtoResponse(updatedDepartment);
-            return responseDTO;
-        } catch (DepartmentNotFoundException e) {
-            logger.error("Error updating department - not found with id: {}", id, e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error updating department with id: {}", id, e);
-            throw new RuntimeException("Unexpected error updating department", e);
-        }
+        Department department = departmentRepository.findById(id)
+                .orElseThrow(() -> new DepartmentNotFoundException("Department not found with id: " + id));
+
+        // Update entity with new data
+        department.setName(departmentCreationDTO.getName());
+        Department updatedDepartment = departmentRepository.save(department);
+
+        // Convert updated entity to response DTO
+        return departmentMapper.entityToDepartmentResponseDTO(updatedDepartment);
     }
 
-    // Delete department by id
     @Override
     public void deleteDepartment(Long id) {
-        logger.info("Attempting to delete department with id: {}", id);
-        try {
-            if (departmentRepository.existsById(id)) {
-                departmentRepository.deleteById(id);
-                logger.info("Successfully deleted department with id: {}", id);
-            } else {
-                logger.warn("Department with id {} not found", id);
-                throw new DepartmentNotFoundException("Department not found with id: " + id);
-            }
-        } catch (DepartmentNotFoundException e) {
-            logger.error("Department not found with id: {}", id, e);
-            throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error occurred while deleting department with id: {}", id, e);
-            throw new RuntimeException("Unexpected error deleting department", e);
+        logger.info("Deleting department with id: {}", id);
+        if (departmentRepository.existsById(id)) {
+            departmentRepository.deleteById(id);
+        } else {
+            throw new DepartmentNotFoundException("Department not found with id: " + id);
         }
     }
-
 
     @Override
     public boolean checkDepartmentExistence(Long id) {
-        Optional<Department> byName = departmentRepository.findById(id);
-        return byName.isPresent();
+        return departmentRepository.existsById(id);
     }
 }
