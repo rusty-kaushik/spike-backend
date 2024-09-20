@@ -37,6 +37,10 @@ public class RestExceptionHandler {
     public ResponseEntity<Object> handleRoleNotFoundException(RoleNotFoundException ex) {
         return buildResponseEntityForExceptions(ex, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(value = {ContactNotFoundException.class})
+    public ResponseEntity<Object> handleContactsNotFoundException(UserNotFoundException ex) {
+        return buildResponseEntityForExceptions(ex, HttpStatus.NOT_FOUND);
+    }
 
     private ResponseEntity<Object> buildResponseEntityForExceptions(RuntimeException ex, HttpStatus status) {
         RestException restException = new RestException(

@@ -1,10 +1,7 @@
 package com.spike.user.customMapper;
 
 import com.spike.user.dto.*;
-import com.spike.user.entity.Department;
-import com.spike.user.entity.User;
-import com.spike.user.entity.UserAddress;
-import com.spike.user.entity.UserSocials;
+import com.spike.user.entity.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -50,6 +47,10 @@ public interface UserMapper {
     UserAddressDTO entityToDtoAddress(UserAddress userAddress);
 
     DepartmentResponseDTO entityToDepartmentDtoResponse(Department department);
+
+    Contacts contactDtoToEntity(ContactsDto contactsDto);
+
+    ContactsDto entityToContactsDto(Contacts contacts);
 
     // Map UserFullUpdateDTO to User for updates
     @Mapping(target = "password", ignore = true) // Ignore password during update

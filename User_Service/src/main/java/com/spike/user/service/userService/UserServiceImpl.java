@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
             // SETS USER
             User user = userHelper.dtoToEntityForUserMaster(userRequest);
             // SETS ADDRESSES
-            if(userRequest.getAddresses() != null){
+            if (userRequest.getAddresses() != null) {
                 for (UserAddressDTO addressDTO : userRequest.getAddresses()) {
                     UserAddress userAddress = userHelper.dtoToEntityForUserAddress(addressDTO);
                     user.addAddress(userAddress);
@@ -138,7 +138,6 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Unexpected error updating user", e);
         }
     }
-
 
 
     // User Profile Picture update
@@ -366,9 +365,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserProfileDTO getUserById(long userId) throws IOException {
-        User user = userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException("User not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found"));
         String base64Image = userHelper.fetchUserProfilePicture(user);
         return userHelper.entityToUserProfileDto(user, base64Image);
+    }
+
+    @Override
+    public ContactsDto createContacts(ContactsDto contactDto, Long id) {
+
+        logger.info("Starting user creation process");
+        try {
+            User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("user doesn't exist"));
+
+            Contacts userContacts = userHelper.contactsDtoToEntity(contactDto);
+            userContacts.setUserId(user.getId());
+            Contacts contacts = userContactsRepository.save(userContacts);
+
+            return userHelper.entityToContactsDto(contacts);
+        } catch (ContactNotFoundException | RoleNotFoundException | DtoToEntityConversionException e) {
+            throw e;
+        } catch (Exception e) {
+            logger.error("Error creating contacts", e);
+            throw new UnexpectedException("Error creating contacts", e.getCause());
+        }
     }
 
 }
