@@ -23,7 +23,7 @@ public class ContactsDto {
     private String designation;
     private String primaryMobile;
     private String profilePicture;
-    private List<String> addresses;
+    private String addresses;
     private String linkedinUrl;
     private String facebookUrl;
     private String instagramUrl;
