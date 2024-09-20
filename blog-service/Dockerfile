@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
  
 # Copy all JAR files into the container
-COPY blog-service-0.0.1-SNAPSHOT.jar /app/
+COPY /target/*.jar /app/
  
 # Expose the necessary ports
 EXPOSE 8282 
