@@ -13,3 +13,8 @@ comment-service/target/
 
 blog-comment-image/
 comment-service/app.log
+
+spike-ticket/.gitignore
+spike-ticket/.mvn/
+spike-ticket/mvnw
+spike-ticket/mvnw.cmd
