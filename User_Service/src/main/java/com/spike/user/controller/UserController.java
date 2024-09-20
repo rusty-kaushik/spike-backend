@@ -36,10 +36,26 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     // API TO CREATE A NEW USER
-    @Operation(summary = "Admin creates a new user", description = "Creates a new user with a profile picture. Pass the JSON body in the 'data' part and the file in the 'file' part.")
-    @ApiResponses({@ApiResponse(responseCode = "200", description = "Successfully created a new user", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = String.class))}), @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token", content = {@Content(schema = @Schema())}), @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors", content = {@Content(schema = @Schema())}), @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema())})})
+    @Operation(
+            summary = "Admin creates a new user",
+            description = "Creates a new user with a profile picture. Pass the JSON body in the 'data' part and the file in the 'file' part."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully created a new user",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class)) }),
+            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
+                    content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
+                    content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error",
+                    content = { @Content(schema = @Schema()) })
+    })
     @PostMapping("/new-user/{username}")
-    public ResponseEntity<Object> createNewUser(@RequestBody UserCreationRequestDTO data, @PathVariable String username) {
+    public  ResponseEntity<Object>  createNewUser(
+            @RequestBody UserCreationRequestDTO data,
+            @PathVariable String username
+    ) {
         logger.info("Received request to create a new user");
         try {
             logger.info("Setting current auditor to username: {}", username);
@@ -48,8 +64,7 @@ public class UserController {
             User createdUser = userService.createNewUser(data);
             logger.info("User created successfully with username: {}", username);
             return ResponseHandler.responseBuilder("user successfully created", HttpStatus.OK, createdUser);
-        } catch (DepartmentNotFoundException | RoleNotFoundException | DtoToEntityConversionException |
-                 UnexpectedException e) {
+        } catch (DepartmentNotFoundException | RoleNotFoundException | DtoToEntityConversionException | UnexpectedException     e ) {
             throw e;
         } finally {
             logger.info("Clearing current auditor");
@@ -58,18 +73,24 @@ public class UserController {
     }
 
     // API TO ADD PROFILE PICTURE OF A USER
-    @Operation(summary = "USER ADD PROFILE PICTURE", description = "User to add profile picture.")
+    @Operation(
+            summary = "USER ADD PROFILE PICTURE",
+            description = "User to add profile picture."
+    )
     @PostMapping(value = "/add/picture/{userId}/{username}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Object> addProfilePictureOfAUser(@PathVariable long userId, @PathVariable String username, @RequestBody MultipartFile profilePicture) {
+    public  ResponseEntity<Object>  addProfilePictureOfAUser(
+            @PathVariable long userId,
+            @PathVariable String username,
+            @RequestBody MultipartFile profilePicture
+    ) {
         logger.info("Received request to add a new profile picture");
         try {
             logger.info("Setting current auditor to username: {}", username);
             AuditorAwareImpl.setCurrentAuditor(username);
-            UserInfoDTO user = userService.addProfilePictureOfAUser(userId, profilePicture);
+            UserInfoDTO user = userService.addProfilePictureOfAUser(userId,profilePicture);
             logger.info("User added profile picture successfully with username: {}", username);
             return ResponseHandler.responseBuilder("user successfully added profile picture", HttpStatus.OK, user);
-        } catch (DepartmentNotFoundException | RoleNotFoundException | DtoToEntityConversionException |
-                 UnexpectedException e) {
+        } catch (DepartmentNotFoundException | RoleNotFoundException | DtoToEntityConversionException | UnexpectedException     e ) {
             throw e;
         } finally {
             logger.info("Clearing current auditor");
@@ -79,8 +100,21 @@ public class UserController {
 
 
     // API TO UPDATE USER SELF PASSWORD
-    @Operation(summary = "Update self password", description = "Updates the password of user. The API takes old password and new  password in json.")
-    @ApiResponses({@ApiResponse(responseCode = "200", description = "Successfully updated the password of user", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = String.class))}), @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token", content = {@Content(schema = @Schema())}), @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors", content = {@Content(schema = @Schema())}), @ApiResponse(responseCode = "500", description = "Internal Server Error", content = {@Content(schema = @Schema())})})
+    @Operation(
+            summary = "Update self password",
+            description = "Updates the password of user. The API takes old password and new  password in json."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully updated the password of user",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class)) }),
+            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
+                    content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
+                    content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error",
+                    content = { @Content(schema = @Schema()) })
+    })
     @PutMapping("/reset-password/{username}")
     public ResponseEntity<Object> updateSelfPassword(@PathVariable String username, @RequestBody UserChangePasswordDTO userChangePasswordDTO) {
         try {
@@ -103,18 +137,33 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<Object> getAllUsers() {
-        try {
+        try{
             return ResponseHandler.responseBuilder("user creation unsuccessful", HttpStatus.OK, userService.getAllUsers());
-        } catch (Exception e) {
+        } catch ( Exception e ) {
             throw new RuntimeException("Error fetching user", e.getCause());
         }
     }
 
     // API TO UPDATE USER FULL DETAILS
-    @Operation(summary = "Self updates a user full details", description = "Updates an existing user. Pass the JSON body in the 'data' part.")
-    @ApiResponses({@ApiResponse(responseCode = "200", description = "Successfully updated the user", content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))), @ApiResponse(responseCode = "404", description = "User not found", content = @Content(schema = @Schema())), @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors", content = @Content(schema = @Schema())), @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content(schema = @Schema()))})
+    @Operation(
+            summary = "Self updates a user full details",
+            description = "Updates an existing user. Pass the JSON body in the 'data' part."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully updated the user",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
+            @ApiResponse(responseCode = "404", description = "User not found",
+                    content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
+                    content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error",
+                    content = @Content(schema = @Schema()))
+    })
     @PutMapping(value = "/self/{userId}")
-    public ResponseEntity<Object> updateUser(@PathVariable("userId") Long userId, @RequestBody UserFullUpdateDTO userFullUpdateDTO) {
+    public ResponseEntity<Object> updateUser(
+            @PathVariable("userId") Long userId,
+            @RequestBody UserFullUpdateDTO userFullUpdateDTO
+    ) {
         logger.info("Received request to update user with ID: {}", userId);
         try {
             AuditorAwareImpl.setCurrentAuditor(userFullUpdateDTO.getUsername());
@@ -143,10 +192,24 @@ public class UserController {
 
 
     // API TO UPDATE USER PROFILE PICTURE
-    @Operation(summary = "Self updates user's profile picture", description = "Updates the profile picture of a user.")
-    @ApiResponses({@ApiResponse(responseCode = "200", description = "Successfully updated user profile picture", content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))), @ApiResponse(responseCode = "404", description = "User not found", content = @Content(schema = @Schema())), @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors", content = @Content(schema = @Schema())), @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content(schema = @Schema()))})
+    @Operation(
+            summary = "Self updates user's profile picture",
+            description = "Updates the profile picture of a user."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully updated user profile picture",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
+            @ApiResponse(responseCode = "404", description = "User not found",
+                    content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
+                    content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error",
+                    content = @Content(schema = @Schema()))
+    })
     @PutMapping(value = "/self/profile-picture/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Object> updateProfilePicture(@PathVariable Long userId, @RequestBody MultipartFile profilePicture) {
+    public ResponseEntity<Object> updateProfilePicture(
+            @PathVariable Long userId,
+            @RequestBody MultipartFile profilePicture) {
         logger.info("Received request to update profile picture for user ID: {}", userId);
         try {
             userService.updateUserProfilePicture(userId, profilePicture);
@@ -165,8 +228,18 @@ public class UserController {
     }
 
     // API TO DELETE USER
-    @Operation(summary = "Admin deletes a user", description = "Deletes a user based on user ID.")
-    @ApiResponses({@ApiResponse(responseCode = "200", description = "Successfully deleted the user", content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))), @ApiResponse(responseCode = "404", description = "User not found", content = @Content(schema = @Schema())), @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content(schema = @Schema()))})
+    @Operation(
+            summary = "Admin deletes a user",
+            description = "Deletes a user based on user ID."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully deleted the user",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
+            @ApiResponse(responseCode = "404", description = "User not found",
+                    content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error",
+                    content = @Content(schema = @Schema()))
+    })
     @DeleteMapping("/delete-user/{userId}")
     public ResponseEntity<Object> deleteUser(@PathVariable("userId") Long userId) {
         logger.info("Received request to delete user with ID: {}", userId);
@@ -187,11 +260,22 @@ public class UserController {
     }
 
     //get api to get a particular user contact details if provided , otherwise all the user contacts details with the user name
-    @Operation(summary = "Fetch user contact details", description = "fetch user contact details by user name")
-    @ApiResponses({@ApiResponse(responseCode = "302", description = "user contacts found successfully", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = String.class))}), @ApiResponse(responseCode = "404", description = "Not-Found", content = {@Content(schema = @Schema())})})
+    @Operation(
+            summary = "Fetch user contact details",
+            description = "fetch user contact details by user name"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "302", description = "user contacts found successfully",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode = "404", description = "Not-Found",
+                    content = {@Content(schema = @Schema())})})
 
     @GetMapping("usercontacts")
-    public ResponseEntity<Object> getUserContact(@RequestParam(name = "name", required = false) String name, @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize, @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno, @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort) {
+    public ResponseEntity<Object> getUserContact(@RequestParam(name="name", required=false) String name,
+                                                 @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize,
+                                                 @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno,
+                                                 @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort) {
         try {
             logger.info("getting user contact information " + name);
             List<UserContactsDTO> user = userService.getUserContacts(name, pageno, pagesize, sort);
@@ -207,10 +291,23 @@ public class UserController {
 
 
     //get api to display list of all users on dashboard with filtration , pagination and sorting
-    @Operation(summary = "Fetch user details for dashboard", description = "fetch user details by user name , email , joiningDate, salary")
-    @ApiResponses({@ApiResponse(responseCode = "302", description = "user details found successfully", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = String.class))}), @ApiResponse(responseCode = "404", description = "Not-Found", content = {@Content(schema = @Schema())})})
+    @Operation(
+            summary = "Fetch user details for dashboard",
+            description = "fetch user details by user name , email , joiningDate, salary"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "302", description = "user details found successfully",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode = "404", description = "Not-Found",
+                    content = {@Content(schema = @Schema())})})
     @GetMapping("/userinfo-dashboard")
-    public ResponseEntity<Object> getSpecificUserInfoByUsername(@RequestParam(name = "name", required = false) String name, @RequestParam(name = "email", required = false) String email, @RequestParam(name = "salary", required = false) Double salary, @RequestParam(name = "page", defaultValue = "0") int page, @RequestParam(name = "size", defaultValue = "6") int size, @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort) {
+    public ResponseEntity<Object> getSpecificUserInfoByUsername(@RequestParam(name = "name", required = false) String name,
+                                                                @RequestParam(name = "email", required = false) String email,
+                                                                @RequestParam(name = "salary", required = false) Double salary,
+                                                                @RequestParam(name = "page", defaultValue = "0") int page,
+                                                                @RequestParam(name = "size", defaultValue = "6") int size,
+                                                                @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort) {
         try {
             List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, salary, page, size, sort);
             return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.OK, userDashBoard);
@@ -234,8 +331,21 @@ public class UserController {
 
     }
 
-    @Operation(summary = "Retrieve departments by user ID", description = "Fetch a list of departments associated with the specified user ID. Returns an empty list if the user has no associated departments.")
-    @ApiResponses({@ApiResponse(responseCode = "200", description = "Successfully retrieved departments"), @ApiResponse(responseCode = "404", description = "User not found"), @ApiResponse(responseCode = "500", description = "Unexpected error occurred")})
+    @Operation(
+            summary = "Retrieve departments by user ID",
+            description = "Fetch a list of departments associated with the specified user ID. Returns an empty list if the user has no associated departments."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200",
+                    description = "Successfully retrieved departments"
+                   ),
+            @ApiResponse(responseCode = "404",
+                    description = "User not found"
+            ),
+            @ApiResponse(responseCode = "500",
+                    description = "Unexpected error occurred"
+            )
+    })
 
     @GetMapping("/departments/{userId}")
     public ResponseEntity<Object> getDepartmentsByUserId(@PathVariable Long userId) {
@@ -244,7 +354,11 @@ public class UserController {
 
             if (departments.isEmpty()) {
                 // Return 200 OK as there are no departments assigned to the user
-                return ResponseHandler.responseBuilder("No departments assigned to the user with ID " + userId + ".", HttpStatus.OK, "The user does not have any departments assigned.");
+                return ResponseHandler.responseBuilder(
+                        "No departments assigned to the user with ID " + userId + ".",
+                        HttpStatus.OK,
+                        "The user does not have any departments assigned."
+                );
             }
 
             // Return the list of departments with 200 OK
