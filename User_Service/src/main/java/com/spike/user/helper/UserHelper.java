@@ -7,6 +7,7 @@ import com.spike.user.entity.*;
 import com.spike.user.exceptions.DepartmentNotFoundException;
 import com.spike.user.exceptions.DtoToEntityConversionException;
 import com.spike.user.exceptions.RoleNotFoundException;
+import com.spike.user.exceptions.UserNotFoundException;
 import com.spike.user.repository.DepartmentRepository;
 import com.spike.user.repository.RoleRepository;
 import com.spike.user.repository.UserRepository;
@@ -260,4 +261,81 @@ public class UserHelper {
         dto.setProfilePicture(base64Image);
         return dto;
     }
+
+    // Update user helper function
+    public User updateUserFromDTO(Long userId, UserFullUpdateDTO userFullUpdateDTO) {
+        try {
+            User existingUser = userRepository.findById(userId)
+                    .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+
+            // Use the mapper to update fields
+            userMapper.updateUserFromDTO(userFullUpdateDTO, existingUser);
+
+            // Update social fields
+            userMapper.mapSocials(userFullUpdateDTO, existingUser);
+
+
+            // Handle complex fields like departments if needed
+            if (userFullUpdateDTO.getAddresses() != null) {
+                // You can handle addresses here if necessary
+                existingUser.getAddresses().clear(); // Clear existing addresses
+                for (UserAddressDTO addressDTO : userFullUpdateDTO.getAddresses()) {
+                    UserAddress address = userMapper.dtoToEntityAddress(addressDTO);
+                    address.setUser(existingUser);
+                    existingUser.getAddresses().add(address);
+                }
+            }
+
+            // Save the updated user
+            return userRepository.save(existingUser);
+        } catch (Exception e) {
+            logger.error("Could not update user with id: {}", userId, e);
+            throw new DtoToEntityConversionException("Could not update user", e);
+        }
+    }
+
+
+    public UserProfilePicture updateUserProfilePicture(MultipartFile profilePicture, User user) {
+        try {
+            logger.info("Updating profile picture for user: {}", user.getEmployeeCode());
+
+            if (profilePicture != null && !profilePicture.isEmpty()) {
+                String originalFileName = profilePicture.getOriginalFilename();
+                String fileType = profilePicture.getContentType();
+                Long fileSize = profilePicture.getSize();
+
+                // Create a new file name based on employee code
+                String fileExtension = originalFileName != null ? originalFileName.substring(originalFileName.lastIndexOf('.')) : "";
+                String newFileName = user.getEmployeeCode() + "_profile_picture" + fileExtension;
+
+                // Save the new file in the same directory
+                String filePath = uploadDir + File.separator + newFileName;
+                Path path = Paths.get(filePath);
+                Files.copy(profilePicture.getInputStream(), path);
+
+                // Update the UserProfilePicture entity
+                UserProfilePicture userProfilePicture = user.getProfilePicture();
+                if (userProfilePicture == null) {
+                    userProfilePicture = new UserProfilePicture();
+                    userProfilePicture.setUser(user);
+                }
+
+                userProfilePicture.setOriginalFileName(originalFileName);
+                userProfilePicture.setFileName(newFileName);
+                userProfilePicture.setFilePath(filePath);
+                userProfilePicture.setFileType(fileType);
+                userProfilePicture.setFileSize(fileSize);
+
+                return userProfilePicture;
+            } else {
+                logger.warn("No profile picture provided");
+                return null;
+            }
+        } catch (Exception e) {
+            logger.error("Could not update profile picture for user: {}", user.getEmployeeCode(), e);
+            throw new DtoToEntityConversionException("Could not update user profile picture", e);
+        }
+    }
+
+
 }

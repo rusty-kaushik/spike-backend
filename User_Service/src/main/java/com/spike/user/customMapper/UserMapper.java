@@ -7,6 +7,7 @@ import com.spike.user.entity.UserAddress;
 import com.spike.user.entity.UserSocials;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 // Annotates the interface to indicate that it is a MapStruct mapper.
@@ -49,4 +50,25 @@ public interface UserMapper {
     UserAddressDTO entityToDtoAddress(UserAddress userAddress);
 
     DepartmentResponseDTO entityToDepartmentDtoResponse(Department department);
+
+    // Map UserFullUpdateDTO to User for updates
+    @Mapping(target = "password", ignore = true) // Ignore password during update
+    @Mapping(target = "role", ignore = true) // Ignore role if not updating
+    @Mapping(target = "departments", ignore = true) // Ignore departments if not updating
+    @Mapping(target = "userSocials", ignore = true) // Ignore socials if not updating
+    @Mapping(target = "addresses", ignore = true) // Ignore addresses if handled separately
+    User updateUserFromDTO(UserFullUpdateDTO dto, @MappingTarget User user);
+
+    // Method to map social fields from DTO to User
+    default void mapSocials(UserFullUpdateDTO dto, User user) {
+        UserSocials userSocials = user.getUserSocials();
+        if (userSocials == null) {
+            userSocials = new UserSocials(); // Create if it doesn't exist
+        }
+        userSocials.setLinkedinUrl(dto.getLinkedinUrl());
+        userSocials.setFacebookUrl(dto.getFacebookUrl());
+        userSocials.setInstagramUrl(dto.getInstagramUrl());
+        user.setUserSocials(userSocials); // Update the user with new socials
+    }
+
 }
