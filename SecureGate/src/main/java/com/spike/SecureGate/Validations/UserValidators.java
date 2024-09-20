@@ -3,6 +3,7 @@ package com.spike.SecureGate.Validations;
 import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
 import com.spike.SecureGate.enums.IndianState;
+import com.spike.SecureGate.exceptions.ValidationFailedException;
 import com.spike.SecureGate.feignClients.UserFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -86,7 +87,7 @@ public class UserValidators {
         }
 
         // Validate manager ID if present (skip if null, must be positive if provided)
-        if (userRequest.getManagerId() != null && userRequest.getManagerId() > 0) {
+        if (userRequest.getManagerId() != null && !validateUserExistence(userRequest.getManagerId())) {
             throw new IllegalArgumentException("Manager ID must be positive");
         }
 
