@@ -346,4 +346,9 @@ public class UserController {
     public List<City> getCitiesByState(@RequestParam String stateName) throws IOException {
         return dropdownHelper.getCitiesByStateName(stateName);
     }
+
+    @GetMapping("/managers")
+    public List<Object[]> getAllManagers(){
+        return dropdownHelper.getAllManagers();
+    }
 }

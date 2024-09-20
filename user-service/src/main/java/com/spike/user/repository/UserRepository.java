@@ -20,4 +20,8 @@ public interface UserRepository extends JpaRepository<User,Long> , JpaSpecificat
     User findByName(String name);
 
     List<User> findAllByName(String name, Pageable page);
+
+    @Query("SELECT u.id, u.name FROM User u WHERE u.role.id = 2")
+    List<Object[]> findAllManagers();
+
 }

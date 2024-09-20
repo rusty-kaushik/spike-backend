@@ -136,9 +136,9 @@ public class UserController {
 
 
     @GetMapping
-    public ResponseEntity<Object> getAllUsers() {
+    public List<Object[]> getAllUsers() {
         try{
-            return ResponseHandler.responseBuilder("user creation unsuccessful", HttpStatus.OK, userService.getAllUsers());
+            return userService.getAllUsers();
         } catch ( Exception e ) {
             throw new RuntimeException("Error fetching user", e.getCause());
         }
