@@ -292,14 +292,15 @@ public class BlogServiceImpl implements BlogService {
 		
 		
 		
-		if(blog.isEmpty() || blog==null) {
-			
-				UserNotFoundException e = new UserNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
-				log.error("Error ocurred -------------------------"+e);
-				throw e;
-			
-		}
-
+		/*
+		 * if(blog.isEmpty() || blog==null) {
+		 * 
+		 * UserNotFoundException e = new UserNotFoundException(HttpStatus.NO_CONTENT +
+		 * " Data not available, please ! Try again.");
+		 * log.error("Error ocurred -------------------------"+e); throw e;
+		 * 
+		 * }
+		 */
 		log.info("----------------------------------" + blog);
 
 		List<BlogDto> blogDtoList = new ArrayList<>();
