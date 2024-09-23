@@ -2,7 +2,6 @@ package com.spike.SecureGate.Validations;
 
 import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
-import com.spike.SecureGate.enums.IndianState;
 import com.spike.SecureGate.exceptions.ValidationFailedException;
 import com.spike.SecureGate.feignClients.UserFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
