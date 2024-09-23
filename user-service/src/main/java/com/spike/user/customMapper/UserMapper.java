@@ -37,6 +37,10 @@ public interface UserMapper {
 
      //MAP USER TO USERCONTACTSDTO
      @Mapping(target = "profilePicture", ignore=true)
+     @Mapping(source = "userSocials.instagramUrl", target = "instagramUrl")
+     @Mapping(source = "userSocials.facebookUrl", target = "facebookUrl")
+     @Mapping(source = "userSocials.linkedinUrl", target = "linkedinUrl")
+     @Mapping(source = "primaryMobileNumber", target = "primaryMobile")
      UserContactsDTO entityToDtoContact(User user);
 
      //MAP USER TO USERDASHBOARDDTO

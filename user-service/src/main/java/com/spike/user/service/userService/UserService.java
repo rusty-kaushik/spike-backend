@@ -40,7 +40,7 @@ public interface UserService {
 
     UserProfileDTO getUserById(long userId) throws IOException;
 
-    ContactsDto createContacts(ContactsDto contactDto, Long id) ;
+    ContactsDto createContacts(ContactsDto contactDto, Long userIdd) ;
     
     //fetch All-Contacts
     List<ContactsDto> getAllContacts();

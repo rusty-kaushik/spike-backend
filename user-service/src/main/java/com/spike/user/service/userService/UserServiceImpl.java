@@ -27,6 +27,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -338,6 +339,9 @@ public class UserServiceImpl implements UserService {
     }
 
     private List<DepartmentDropdownDTO> convertDepartmentsToDTOs(Set<Department> departments) {
+        if (departments == null || departments.isEmpty()) {
+            return Collections.emptyList();
+        }
         return departments.stream()
                 .map(department -> new DepartmentDropdownDTO(department.getId(), department.getName()))
                 .collect(Collectors.toList());
@@ -376,11 +380,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ContactsDto createContacts(ContactsDto contactDto, Long id) {
+    public ContactsDto createContacts(ContactsDto contactDto, Long userId) {
 
         logger.info("Starting user creation process");
         try {
-            User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("ValidationError","user_id doesn't exist"));
+            User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError","user_id doesn't exist"));
 
             Contacts userContacts = userHelper.contactsDtoToEntity(contactDto);
             userContacts.setUserId(user.getId());
