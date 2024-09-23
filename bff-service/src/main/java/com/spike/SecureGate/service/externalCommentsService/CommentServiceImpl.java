@@ -10,6 +10,7 @@ import com.spike.SecureGate.exceptions.UnexpectedException;
 import com.spike.SecureGate.exceptions.ValidationFailedException;
 import com.spike.SecureGate.feignClients.CommentFeignClient;
 import com.spike.SecureGate.helper.CommentHelper;
+import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,8 @@ public class CommentServiceImpl implements CommentService{
             return commentFeignClient.createNewComment(finalData,blogId);
         } catch ( ValidationFailedException e ) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("Error occurred while creating comment", e);
             throw new UnexpectedException("UnexpectedException","An unexpected error occurred while creating a comment: " + e.getMessage());
@@ -67,6 +70,8 @@ public class CommentServiceImpl implements CommentService{
             return commentFeignClient.UpdateComment(commentUpdateRequestDTO,commentId);
         } catch ( ValidationFailedException e ) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("Error occurred while updating comment", e);
             throw new UnexpectedException("UnexpectedException","An unexpected error occurred while updating a comment: " + e.getMessage());
@@ -84,6 +89,8 @@ public class CommentServiceImpl implements CommentService{
             return commentFeignClient.getAllCommentsOfBlog(blogId);
         } catch ( ValidationFailedException e ) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch ( Exception e ) {
             logger.error("Error occurred while getting comments", e);
             throw new UnexpectedException("UnexpectedException","An unexpected error occurred while getting comments: " + e.getMessage());
@@ -94,6 +101,8 @@ public class CommentServiceImpl implements CommentService{
     public ResponseEntity<Object> getCommentByCommentId(String commentId) {
         try{
             return commentFeignClient.getCommentByCommentId(commentId);
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("Error occurred while getting comment", e);
             throw new UnexpectedException("UnexpectedException","An unexpected error occurred while getting a comment: " + e.getMessage());
@@ -110,6 +119,8 @@ public class CommentServiceImpl implements CommentService{
             return commentFeignClient.deleteCommentByBlogId(blogId, commentId);
         } catch(ValidationFailedException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("Error occurred while deleting comment", e);
             throw new UnexpectedException("UnexpectedException","An unexpected error occurred while deleting a comment: " + e.getMessage());

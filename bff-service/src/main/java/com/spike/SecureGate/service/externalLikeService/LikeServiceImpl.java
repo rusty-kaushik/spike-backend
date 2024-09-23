@@ -4,6 +4,7 @@ import com.spike.SecureGate.Validations.BlogValidators;
 import com.spike.SecureGate.exceptions.BlogNotFoundException;
 import com.spike.SecureGate.exceptions.UnexpectedException;
 import com.spike.SecureGate.feignClients.LikeFeignClient;
+import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class LikeServiceImpl implements LikeService {
             return likeFeignClient.blogLikeAndUnlike(blogId,userName);
         } catch (BlogNotFoundException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("An unexpected error occurred while liking or unliking a blog: {}", e.getMessage());
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while liking or unliking a blog: " + e.getMessage());
@@ -55,6 +58,8 @@ public class LikeServiceImpl implements LikeService {
             return likeFeignClient.getUserNamesWhoLikedBlog(blogId);
         } catch (BlogNotFoundException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("An unexpected error occurred while fetching the list of users: {}", e.getMessage());
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while fetching the list of users: " + e.getMessage());

@@ -62,6 +62,8 @@ public class UserServiceImpl implements UserService{
             return userFeignClient.createNewUser(username, data);
         } catch (ValidationFailedException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("Error occurred while creating a user: " + e.getMessage());
             throw new UnexpectedException( "UnexpectedError","An unexpected error occurred while creating a user: " + e.getMessage());
@@ -93,6 +95,8 @@ public class UserServiceImpl implements UserService{
             return userFeignClient.updateUser(userId, userUpdateRequestDTO);
         } catch (ValidationFailedException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("Error occurred while updating details of the user " + e.getMessage());
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while updating details of the user: " + e.getMessage());
@@ -105,6 +109,8 @@ public class UserServiceImpl implements UserService{
             return userFeignClient.updateProfilePicture(userId,profilePicture );
         } catch (ValidationFailedException e) {
             throw e;
+        }  catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("Error occurred while updating profile picture of the user " + e.getMessage());
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while updating profile picture of the user: " + e.getMessage());
@@ -115,6 +121,8 @@ public class UserServiceImpl implements UserService{
     public ResponseEntity<Object> deleteUser(Long userId) {
         try{
             return userFeignClient.deleteUser(userId);
+        }  catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("Error occurred while deleting user " + e.getMessage());
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while deleting user: " + e.getMessage());
@@ -141,6 +149,8 @@ public class UserServiceImpl implements UserService{
             return userFeignClient.addProfilePictureOfAUser(userId, username, profilePicture);
         } catch (ValidationFailedException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         }
     }
 
