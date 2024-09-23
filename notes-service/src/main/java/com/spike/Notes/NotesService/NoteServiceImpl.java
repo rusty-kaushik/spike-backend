@@ -78,17 +78,22 @@ public class NoteServiceImpl implements NotesService {
 
     // this service will delete a note by noteId
     @Override
-    public NotesDto deleteNote(UUID noteId) {
+    public NotesDto deleteNote(UUID noteId , long userId) {
         NotesEntity note = noteRepository.findNoteById(noteId);
         if (note == null) {
             throw new NoteNotFoundException("Note doesn't exist");
         } else {
-            note.setStatus(status.INACTIVE);
-            NotesEntity noteEntity = noteRepository.save(note);
-            return notesToNoteDto(noteEntity);
+            if (userId == note.getUserId()) {
+                note.setStatus(status.INACTIVE);
+                NotesEntity noteEntity = noteRepository.save(note);
+                return notesToNoteDto(noteEntity);
+            }
+            else{
+                throw new RuntimeException("You are not authorized to delete this note");
+            }
         }
-    }
 
+    }
     //this service will edit a note
     @Override
     public NotesDto editNote(NotesDto notesDto, UUID noteId) {
@@ -108,13 +113,13 @@ public class NoteServiceImpl implements NotesService {
 
     //this service will change the color of a note
     @Override
-    public String changeColor(Color color, UUID noteId) {
+    public NotesDto changeColor(Color color, UUID noteId) {
         NotesEntity note = noteRepository.findNoteById(noteId);
         if(note==null){
             throw new NoteNotFoundException("Note doesn't exist");
         }
         note.setColor(color);
         noteRepository.save(note);
-        return "Color updated successfully";
+        return notesToNoteDto(note);
     }
 }
