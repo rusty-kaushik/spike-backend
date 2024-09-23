@@ -68,7 +68,7 @@ public class PublicController {
             return ResponseHandler.responseBuilder("USER LOGIN SUCCESSFUL", HttpStatus.OK, loginResponseDTO);
         } catch (Exception e)  {
             logger.error("Error while processing login request for user: {}", loginRequestDTO.getUsername());
-            return ResponseHandler.responseBuilder("USER LOGIN UNSUCCESSFUL", HttpStatus.UNAUTHORIZED, "Wrong username or password, Please try again.");
+            return ResponseHandler.errorResponseBuilder("Wrong username or password, Please try again.","USER LOGIN UNSUCCESSFUL", HttpStatus.UNAUTHORIZED );
         }
     }
 }

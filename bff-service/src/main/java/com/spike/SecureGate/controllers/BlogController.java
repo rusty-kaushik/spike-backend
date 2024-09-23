@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
-//@CrossOrigin("*")
 @RestController
 @RequestMapping("/blog")
 public class BlogController {
@@ -34,28 +30,18 @@ public class BlogController {
     // CREATE A BLOG
     @Operation(
             summary = "Create a blog",
-            description = "Any user can create a blog")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully created a blog",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
-    @PostMapping(value = "/create" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+            description = "Any user can create a blog"
+    )
+    @PostMapping(path = "/create", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
-    public ResponseEntity<Object> createBlog(@ModelAttribute BlogCreationRequestDTO blogCreationRequestDTO)
+    public ResponseEntity<Object> createBlog(@ModelAttribute BlogCreationRequestDTO blogDto)
     {
         logger.info("Started authenticating");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         logger.info("Authentication Successful");
         String userName = authentication.getName();
         logger.info("Started creating new Blog");
-        ResponseEntity<Object> user = blogService.createBlog(userName,blogCreationRequestDTO);
+        ResponseEntity<Object> user = blogService.createBlog(userName,blogDto);
         logger.info("Finished creating new Blog");
         return user;
     }
