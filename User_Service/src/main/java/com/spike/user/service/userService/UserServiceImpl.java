@@ -5,6 +5,7 @@ import com.spike.user.entity.*;
 import com.spike.user.exceptions.*;
 import com.spike.user.helper.UserHelper;
 import com.spike.user.repository.DepartmentRepository;
+import com.spike.user.repository.UserContactsRepository;
 import com.spike.user.repository.UserProfilePictureRepository;
 import com.spike.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -48,6 +49,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
+    @Autowired
+    private UserContactsRepository userContactsRepository;
 
     @Value("${file.upload-dir}")
     private String uploadDirectory;
@@ -379,13 +382,14 @@ public class UserServiceImpl implements UserService {
 
             Contacts userContacts = userHelper.contactsDtoToEntity(contactDto);
             userContacts.setUserId(user.getId());
+            System.out.println(userContacts);
             Contacts contacts = userContactsRepository.save(userContacts);
 
             return userHelper.entityToContactsDto(contacts);
         } catch (ContactNotFoundException | RoleNotFoundException | DtoToEntityConversionException e) {
             throw e;
         } catch (Exception e) {
-            logger.error("Error creating contacts", e);
+            logger.error("User_id doesn't exist", e);
             throw new UnexpectedException("Error creating contacts", e.getCause());
         }
     }

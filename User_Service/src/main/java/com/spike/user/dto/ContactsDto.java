@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import com.spike.user.entity.UserAddress;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +24,10 @@ public class ContactsDto {
     private String designation;
     private String primaryMobile;
     private String profilePicture;
-    private String addresses;
+    private List<ContactsaddressDto> addresses;
     private String linkedinUrl;
     private String facebookUrl;
     private String instagramUrl;
+
+
 }
