@@ -11,7 +11,7 @@ COPY /target/*.jar /app/
 EXPOSE 8484
  
 # Define environment variables for each service
-ENV BLOG_SERVICE_PORT=8282
+ENV BLOG_SERVICE_PORT=8484
 
  
 # Run all services using a shell script
