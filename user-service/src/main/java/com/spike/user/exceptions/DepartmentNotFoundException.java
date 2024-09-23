@@ -1,10 +1,14 @@
 package com.spike.user.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class DepartmentNotFoundException extends RuntimeException{
-    public DepartmentNotFoundException(String message) {
+
+    private final String error;
+
+    public DepartmentNotFoundException(String error, String message) {
         super(message);
-    }
-    public DepartmentNotFoundException(String message, Throwable cause) {
-        super(message, cause);
+        this.error = error;
     }
 }

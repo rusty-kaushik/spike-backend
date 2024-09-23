@@ -69,12 +69,12 @@ public class UserHelper {
             // Handle complex fields or relations
             Set<Department> departments = userRequest.getDepartment().stream()
                     .map(deptName -> departmentRepository.findByName(deptName)
-                            .orElseThrow(() -> new DepartmentNotFoundException("Department not found: " + deptName)))
+                            .orElseThrow(() -> new DepartmentNotFoundException("ValidationError","Department not found: " + deptName)))
                     .collect(Collectors.toSet());
             user.setDepartments(departments);
             logger.debug("Departments set: {}", departments);
             Role role = roleRepository.findByName(userRequest.getRole())
-                    .orElseThrow(() -> new RoleNotFoundException("Role not found: " + userRequest.getRole()));
+                    .orElseThrow(() -> new RoleNotFoundException("ValidationError","Role not found: " + userRequest.getRole()));
             user.setRole(role);
             logger.debug("Role set: {}", role);
             return user;
@@ -83,7 +83,7 @@ public class UserHelper {
             throw e;
         } catch (Exception e){
             logger.error("Could not convert UserCreationRequestDTO to User entity", e);
-            throw new DtoToEntityConversionException("Could not convert user DTO to user entity");
+            throw new DtoToEntityConversionException("ConversionError","Could not convert user DTO to user entity");
         }
 
     }
@@ -93,7 +93,7 @@ public class UserHelper {
             return userMapper.dtoToEntityAddress(userAddressDTO);
         } catch (Exception e) {
             logger.error("Could not convert UserAddressDTO to UserAddress entity", e);
-            throw new DtoToEntityConversionException("Could not convert user address DTO to user address entity");
+            throw new DtoToEntityConversionException("ConversionError","Could not convert user address DTO to user address entity");
         }
     }
 
@@ -102,7 +102,7 @@ public class UserHelper {
             return userMapper.dtoToEntitySocials(userRequest);
         } catch (Exception e) {
             logger.error("Could not convert UserCreationRequestDTO to UserSocials entity", e);
-            throw new DtoToEntityConversionException("Could not convert user social url DTO to user social url entity");
+            throw new DtoToEntityConversionException("ConversionError","Could not convert user social url DTO to user social url entity");
         }
     }
 
@@ -146,7 +146,7 @@ public class UserHelper {
             }
         } catch (Exception e) {
             logger.error("Could not convert user profile picture DTO to UserProfilePicture entity", e);
-            throw new DtoToEntityConversionException("Could not convert user profile picture DTO to user profile picture entity", e);
+            throw new DtoToEntityConversionException("ConversionError","Could not convert user profile picture DTO to user profile picture entity"+ e);
         }
     }
 
@@ -184,7 +184,7 @@ public class UserHelper {
             return userMapper.entityToDtoContact(user);
         } catch (Exception e) {
             logger.error("Could not convert User entity to UserContactsDTO", e);
-            throw new DtoToEntityConversionException("Could not convert user entity to user contacts DTO");
+            throw new DtoToEntityConversionException("ConversionError","Could not convert user entity to user contacts DTO");
         }
     }
 
@@ -193,7 +193,7 @@ public class UserHelper {
             return userMapper.entityToDtoAddress(address);
         } catch (Exception e) {
             logger.error("Could not convert UserAddress entity to UserAddressDTO", e);
-            throw new DtoToEntityConversionException("Could not convert user address entity to user address DTO");
+            throw new DtoToEntityConversionException("ConversionError","Could not convert user address entity to user address DTO");
         }
     }
 
@@ -202,7 +202,7 @@ public class UserHelper {
             return userMapper.entityToDtoDashboard(user);
         } catch (Exception e) {
             logger.error("Could not convert User entity to UserDashboardDTO", e);
-            throw new DtoToEntityConversionException("Could not convert user entity to user dashboard DTO");
+            throw new DtoToEntityConversionException("ConversionError","Could not convert user entity to user dashboard DTO");
         }
     }
 
@@ -266,7 +266,7 @@ public class UserHelper {
     public User updateUserFromDTO(Long userId, UserFullUpdateDTO userFullUpdateDTO) {
         try {
             User existingUser = userRepository.findById(userId)
-                    .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+                    .orElseThrow(() -> new UserNotFoundException("ValidationError","User not found with id: " + userId));
 
             // Use the mapper to update fields
             userMapper.updateUserFromDTO(userFullUpdateDTO, existingUser);
@@ -290,7 +290,7 @@ public class UserHelper {
             return userRepository.save(existingUser);
         } catch (Exception e) {
             logger.error("Could not update user with id: {}", userId, e);
-            throw new DtoToEntityConversionException("Could not update user", e);
+            throw new DtoToEntityConversionException("ConversionError","Could not update user"+ e);
         }
     }
 
@@ -333,7 +333,7 @@ public class UserHelper {
             }
         } catch (Exception e) {
             logger.error("Could not update profile picture for user: {}", user.getEmployeeCode(), e);
-            throw new DtoToEntityConversionException("Could not update user profile picture", e);
+            throw new DtoToEntityConversionException("ConversionError","Could not update user profile picture"+ e);
         }
     }
 

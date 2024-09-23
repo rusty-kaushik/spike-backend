@@ -30,28 +30,40 @@ public class BlogValidators {
                 blogCreationRequestDTO.getTitle().isEmpty() ||
                 !blogCreationRequestDTO.getTitle().matches("^[a-zA-Z0-9 ]*$")
         ) {
-            throw new ValidationFailedException("Title cannot be null, empty, or contain special characters or more than 50 characters");
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "Title cannot be null, empty, or contain special characters or more than 50 characters"
+            );
         }
 
         // Validate content
         if (blogCreationRequestDTO.getContent() == null ||
                 blogCreationRequestDTO.getContent().isEmpty()
         ) {
-            throw new ValidationFailedException("Content cannot be null or empty or more than 1000 characters");
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "Content cannot be null or empty or more than 1000 characters"
+            );
         }
 
         // Validate media files if present
         if (blogCreationRequestDTO.getMedia() != null) {
             for (MultipartFile file : blogCreationRequestDTO.getMedia()) {
                 if (file.isEmpty()) {
-                    throw new ValidationFailedException("Media files cannot be empty");
+                    throw new ValidationFailedException(
+                            "ValidationError",
+                            "Media files cannot be empty"
+                    );
                 }
             }
         }
 
         // Validate department names
         if(blogCreationRequestDTO.getDepartmentId() <= 0 || !isDepartmentIdPresent(blogCreationRequestDTO.getDepartmentId()) ) {
-            throw new ValidationFailedException("File size cannot exceed 1 MB");
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "File size cannot exceed 1 MB"
+            );
         }
         return true;
     }
@@ -65,17 +77,26 @@ public class BlogValidators {
     public boolean validateBlogUpdateDto(BlogUpdateRequestDTO blogUpdateRequestDTO) {
         // Validate title
         if (blogUpdateRequestDTO.getTitle() == null || blogUpdateRequestDTO.getTitle().isEmpty() || !blogUpdateRequestDTO.getTitle().matches("^[a-zA-Z0-9 ]*$")) {
-            throw new ValidationFailedException("Title cannot be null, empty, or contain special characters");
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "Title cannot be null, empty, or contain special characters"
+            );
         }
 
         // Validate content
         if (blogUpdateRequestDTO.getContent() == null || blogUpdateRequestDTO.getContent().isEmpty()) {
-            throw new ValidationFailedException("Content cannot be null or empty");
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "Content cannot be null or empty"
+            );
         }
 
         // validate blog ID
         if (!BlogIdExistenceValidation(blogUpdateRequestDTO.getBlogId())) {
-            throw new BlogNotFoundException("Invalid blogId");
+            throw new BlogNotFoundException(
+                    "ValidationError",
+                    "Invalid blog Id"
+            );
         }
 
         return true;
@@ -84,11 +105,17 @@ public class BlogValidators {
     public boolean validateBlogExistence (String blogId) {
 
         if (!isValidUUID(blogId)) {
-            throw new BlogNotFoundException("blogId is not in valid UUID format");
+            throw new BlogNotFoundException(
+                    "ValidationError",
+                    "blogId is not in valid UUID format"
+            );
         }
         // validate blog ID
         if (!BlogIdExistenceValidation(blogId)) {
-            throw new BlogNotFoundException("Invalid blogId");
+            throw new BlogNotFoundException(
+                    "ValidationError",
+                    "Invalid blogId"
+            );
         }
         return true;
     }

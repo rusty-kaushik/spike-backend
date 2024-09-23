@@ -1,5 +1,6 @@
 package com.spike.SecureGate.exceptions;
 
+import com.spike.SecureGate.response.ResponseHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,26 +11,29 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(value = {UnexpectedException.class})
     public ResponseEntity<Object> handleUnexpectedException(UnexpectedException ex) {
-        return buildResponseEntityForExceptions(ex, HttpStatus.FORBIDDEN);
+        return ResponseHandler.errorResponseBuilder(
+                ex.getError(),
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST
+        );
     }
 
     @ExceptionHandler(value = {ValidationFailedException.class})
     public ResponseEntity<Object> handleValidationFailedException(ValidationFailedException ex) {
-        return buildResponseEntityForExceptions(ex, HttpStatus.FORBIDDEN);
+        return ResponseHandler.errorResponseBuilder(
+                ex.getError(),
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST
+        );
     }
 
     @ExceptionHandler(value = {BlogNotFoundException.class})
     public ResponseEntity<Object> handleBlogNotFoundException(BlogNotFoundException ex) {
-        return buildResponseEntityForExceptions(ex, HttpStatus.FORBIDDEN);
-    }
-
-    private ResponseEntity<Object> buildResponseEntityForExceptions(RuntimeException ex, HttpStatus status) {
-        RestException restException = new RestException(
-                ex.getMessage(),
-                ex.getCause(),
-                status
+        // Use dynamic error and message from the exception
+        return ResponseHandler.errorResponseBuilder(
+                ex.getError(),       // Get the error from the exception
+                ex.getMessage(),     // Get the message from the exception
+                HttpStatus.BAD_REQUEST
         );
-        return new ResponseEntity<>(restException, status);
     }
-
 }

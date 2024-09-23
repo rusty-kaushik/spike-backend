@@ -1,10 +1,14 @@
 package com.spike.SecureGate.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class ValidationFailedException extends RuntimeException{
-    public ValidationFailedException(String message) {
+
+    private final String error;
+
+    public ValidationFailedException(String error, String message) {
         super(message);
-    }
-    public ValidationFailedException(String message, Throwable cause) {
-        super(message, cause);
+        this.error = error;
     }
 }

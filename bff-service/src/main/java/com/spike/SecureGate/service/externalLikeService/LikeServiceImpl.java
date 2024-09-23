@@ -26,18 +26,18 @@ public class LikeServiceImpl implements LikeService {
         try {
             if (!blogValidators.isValidUUID(blogId)) {
                 logger.error("Invalid blogId format");
-                throw new BlogNotFoundException("Invalid blogId format");
+                throw new BlogNotFoundException("ValidationError","Invalid blogId format");
             }
             if (!blogValidators.BlogIdExistenceValidation(blogId)) {
                 logger.error("Invalid blogId");
-                throw new BlogNotFoundException("Invalid blogId");
+                throw new BlogNotFoundException("ValidationError","Invalid blogId");
             }
             return likeFeignClient.blogLikeAndUnlike(blogId,userName);
         } catch (BlogNotFoundException e) {
             throw e;
         } catch (Exception e) {
             logger.error("An unexpected error occurred while liking or unliking a blog: {}", e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while liking or unliking a blog: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while liking or unliking a blog: " + e.getMessage());
         }
     }
 
@@ -46,18 +46,18 @@ public class LikeServiceImpl implements LikeService {
         try {
             if (!blogValidators.isValidUUID(blogId)) {
                 logger.error("Invalid blogId format");
-                throw new BlogNotFoundException("Invalid blogId format");
+                throw new BlogNotFoundException("ValidationError","Invalid blogId format");
             }
             if (!blogValidators.BlogIdExistenceValidation(blogId)) {
                 logger.error("Invalid blogId");
-                throw new BlogNotFoundException("Invalid blogId");
+                throw new BlogNotFoundException("ValidationError","Invalid blogId");
             }
             return likeFeignClient.getUserNamesWhoLikedBlog(blogId);
         } catch (BlogNotFoundException e) {
             throw e;
         } catch (Exception e) {
             logger.error("An unexpected error occurred while fetching the list of users: {}", e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while fetching the list of users: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while fetching the list of users: " + e.getMessage());
         }
     }
 

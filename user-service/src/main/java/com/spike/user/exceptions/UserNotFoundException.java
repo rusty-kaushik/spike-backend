@@ -1,12 +1,14 @@
 package com.spike.user.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class UserNotFoundException extends RuntimeException {
 
-    public UserNotFoundException(String message){
-        super(message);
-    }
+    private final String error;
 
-    public UserNotFoundException(String message, Throwable cause){
-        super(message,cause);
+    public UserNotFoundException(String error, String message) {
+        super(message);
+        this.error = error;
     }
 }

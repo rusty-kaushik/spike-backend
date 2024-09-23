@@ -41,11 +41,11 @@ public class CommentServiceImpl implements CommentService{
         try {
             if (!blogValidators.validateBlogExistence(blogId)) {
                 logger.error("Blog do not exists");
-                throw new ValidationFailedException("Blog do not exists");
+                throw new ValidationFailedException("ValidationError","Blog do not exists");
             }
             if (!commentValidator.validateCommentCreationDto(commentCreationRequestDTO)) {
                 logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
+                throw new ValidationFailedException("ValidationError","Invalid BlogCreationRequestDTO");
             }
             CommentCreationFeignDTO finalData = commentHelper.commentCreationDtoTOFeignDto(userName, commentCreationRequestDTO);
             return commentFeignClient.createNewComment(finalData,blogId);
@@ -53,7 +53,7 @@ public class CommentServiceImpl implements CommentService{
             throw e;
         } catch (Exception e) {
             logger.error("Error occurred while creating comment", e);
-            throw new UnexpectedException("An unexpected error occurred while creating a comment: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedException","An unexpected error occurred while creating a comment: " + e.getMessage());
         }
     }
 
@@ -62,14 +62,14 @@ public class CommentServiceImpl implements CommentService{
         try{
             if (!commentValidator.validateCommentUpdateDto(commentUpdateRequestDTO)) {
                 logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid CommentUpdateRequestDTO");
+                throw new ValidationFailedException("ValidationError","Invalid CommentUpdateRequestDTO");
             }
             return commentFeignClient.UpdateComment(commentUpdateRequestDTO,commentId);
         } catch ( ValidationFailedException e ) {
             throw e;
         } catch (Exception e) {
             logger.error("Error occurred while updating comment", e);
-            throw new UnexpectedException("An unexpected error occurred while updating a comment: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedException","An unexpected error occurred while updating a comment: " + e.getMessage());
         }
 
     }
@@ -79,14 +79,14 @@ public class CommentServiceImpl implements CommentService{
         try {
             if (!blogValidators.validateBlogExistence(blogId)) {
                 logger.error("Blog do not exists");
-                throw new ValidationFailedException("Blog do not exists");
+                throw new ValidationFailedException("ValidationError","Blog do not exists");
             }
             return commentFeignClient.getAllCommentsOfBlog(blogId);
         } catch ( ValidationFailedException e ) {
             throw e;
         } catch ( Exception e ) {
             logger.error("Error occurred while getting comments", e);
-            throw new UnexpectedException("An unexpected error occurred while getting comments: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedException","An unexpected error occurred while getting comments: " + e.getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ public class CommentServiceImpl implements CommentService{
             return commentFeignClient.getCommentByCommentId(commentId);
         } catch (Exception e) {
             logger.error("Error occurred while getting comment", e);
-            throw new UnexpectedException("An unexpected error occurred while getting a comment: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedException","An unexpected error occurred while getting a comment: " + e.getMessage());
         }
     }
 
@@ -105,14 +105,14 @@ public class CommentServiceImpl implements CommentService{
         try {
             if (!blogValidators.validateBlogExistence(blogId)) {
                 logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
+                throw new ValidationFailedException("ValidationError","Invalid BlogCreationRequestDTO");
             }
             return commentFeignClient.deleteCommentByBlogId(blogId, commentId);
         } catch(ValidationFailedException e) {
             throw e;
         } catch (Exception e) {
             logger.error("Error occurred while deleting comment", e);
-            throw new UnexpectedException("An unexpected error occurred while deleting a comment: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedException","An unexpected error occurred while deleting a comment: " + e.getMessage());
         }
     }
 

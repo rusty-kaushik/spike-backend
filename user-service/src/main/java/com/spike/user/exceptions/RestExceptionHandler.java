@@ -1,5 +1,6 @@
 package com.spike.user.exceptions;
 
+import com.spike.user.response.ResponseHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -25,8 +26,18 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(value = {PasswordNotMatchException.class})
     public ResponseEntity<Object> handlePasswordNotMatchException(PasswordNotMatchException ex) {
-        return buildResponseEntityForExceptions(ex, HttpStatus.BAD_REQUEST);
+        // Use dynamic error and message from the exception
+        return ResponseHandler.errorResponseBuilder(
+                ex.getError(),       // Get the error from the exception
+                ex.getMessage(),     // Get the message from the exception
+                HttpStatus.BAD_REQUEST
+        );
     }
+
+//    @ExceptionHandler(value = {PasswordNotMatchException.class})
+//    public ResponseEntity<Object> handlePasswordNotMatchException(PasswordNotMatchException ex) {
+//        return buildResponseEntityForExceptions(ex, HttpStatus.BAD_REQUEST);
+//    }
 
     @ExceptionHandler(value = {DtoToEntityConversionException.class})
     public ResponseEntity<Object> handleDtoToEntityConversionException(DtoToEntityConversionException ex) {

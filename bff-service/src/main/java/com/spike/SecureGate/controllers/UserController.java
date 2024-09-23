@@ -109,7 +109,7 @@ public class UserController {
                     content = { @Content(schema = @Schema()) })
     })
     @PutMapping("/reset-password")
-    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+   // @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> updateSelfPassword(@RequestBody UserChangePasswordDTO userChangePasswordDTO)
 
     {

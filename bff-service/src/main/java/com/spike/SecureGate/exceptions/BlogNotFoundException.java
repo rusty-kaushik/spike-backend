@@ -1,10 +1,14 @@
 package com.spike.SecureGate.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class BlogNotFoundException extends RuntimeException{
-    public BlogNotFoundException(String message) {
+
+    private final String error;
+
+    public BlogNotFoundException(String error, String message) {
         super(message);
-    }
-    public BlogNotFoundException(String message, Throwable cause) {
-        super(message, cause);
+        this.error = error;
     }
 }
