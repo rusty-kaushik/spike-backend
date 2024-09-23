@@ -241,7 +241,7 @@ public class UserController {
             @RequestParam(name = "salary", required = false) Double salary,
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "10") int size,
-            @RequestParam(name = "sort", defaultValue = "name,asc") String sort
+            @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort
     )
     {
         logger.info("Started authenticating");
@@ -275,7 +275,7 @@ public class UserController {
             @RequestParam(required=false) String name,
             @RequestParam(required = false, defaultValue = "10") int pageSize,
             @RequestParam(required = false, defaultValue = "0") int pageNo,
-            @RequestParam(name = "sort", defaultValue = "name,asc") String sort
+            @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort
     )
     {
         logger.info("Started authenticating");
