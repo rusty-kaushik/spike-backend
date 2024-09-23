@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import io.swagger.v3.oas.annotations.Hidden;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -69,6 +70,13 @@ public class BlogDto {
 
 	 @JsonProperty(access = Access.READ_ONLY)
 	 private List<String> mediaFile;
+	 
+		/*
+		 * @JsonProperty(access = Access.READ_ONLY)
+		 * 
+		 * @Column(nullable = true)
+		 */	 
+	 private String profilePic;
 
 
 	
