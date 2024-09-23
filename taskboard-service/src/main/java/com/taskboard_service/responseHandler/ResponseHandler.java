@@ -1,7 +1,5 @@
 package com.taskboard_service.responseHandler;
 
-import java.time.LocalDateTime;
-
 import org.springframework.http.HttpStatus;
 
 import lombok.AllArgsConstructor;
@@ -18,8 +16,7 @@ public class ResponseHandler<T>  {
 	private T data;
 	private String message;
 	private HttpStatus httpStatus;
-	private int status; 
-	private LocalDateTime timeStamp;
+	private int httpStatusCode; 
 
 }
 
