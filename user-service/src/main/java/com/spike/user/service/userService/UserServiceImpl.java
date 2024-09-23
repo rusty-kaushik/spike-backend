@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -333,6 +334,9 @@ public class UserServiceImpl implements UserService {
     }
 
     private List<DepartmentDropdownDTO> convertDepartmentsToDTOs(Set<Department> departments) {
+        if (departments == null || departments.isEmpty()) {
+            return Collections.emptyList();
+        }
         return departments.stream()
                 .map(department -> new DepartmentDropdownDTO(department.getId(), department.getName()))
                 .collect(Collectors.toList());
