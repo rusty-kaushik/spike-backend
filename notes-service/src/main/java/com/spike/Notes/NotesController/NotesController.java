@@ -75,16 +75,16 @@ public class NotesController {
             @ApiResponse(responseCode = "400", description = "Error occurred while fetching notes"),
             @ApiResponse(responseCode = "404", description = "Note not found")
     })
-    @DeleteMapping("/delete-note/{id}")
-    public ResponseEntity<Object> deleteNote(@PathVariable String id) {
+    @DeleteMapping("/delete-note/{id}/{userId}")
+    public ResponseEntity<Object> deleteNote(@PathVariable String id, long userId) {
         try {
             UUID noteId = UUID.fromString(id);
-            NotesDto note = noteService.deleteNote(noteId);
+            NotesDto note = noteService.deleteNote(noteId, userId);
             return responseHandler.response("Note deleted successfully", HttpStatus.OK, note);
         } catch (NoteNotFoundException ex) {
             throw new NoteNotFoundException("Note not found with id : " + id);
         } catch (RuntimeException ex) {
-            throw new RuntimeException("Error occurred while deleting note");
+            throw ex;
         }
     }
 
@@ -109,7 +109,7 @@ public class NotesController {
         }
     }
 
-  //put api to change the color of note
+    //put api to change the color of note
     @PutMapping("change-note-color/{id}/{color}")
     private ResponseEntity<Object> ChangeColorOfNote(@PathVariable String id, @PathVariable Color color) {
         try {

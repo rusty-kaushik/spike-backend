@@ -14,7 +14,7 @@ public interface NotesService {
 
     List<NotesDto> getAllNotes(long userId);
 
-    NotesDto deleteNote(UUID noteId);
+    NotesDto deleteNote(UUID noteId, long userId);
 
     NotesDto editNote(NotesDto notesDto, UUID noteId);
 
