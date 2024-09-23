@@ -336,6 +336,22 @@ public class UserHelper {
             throw new DtoToEntityConversionException("ConversionError","Could not update user profile picture"+ e);
         }
     }
+    public ContactsDto entityToContactsDto(Contacts contacts){
+        try{
+            return userMapper.entityToContactsDto(contacts);
+        } catch (Exception e) {
+            logger.error("Could not convert contacts entity to ContactsDTO", e);
+            throw new DtoToEntityConversionException("ConversionError","Could not convert contacts entity to contacts DTO"+e);
+        }
+    }
 
+    public Contacts contactsDtoToEntity(ContactsDto contactsDto){
+        try{
+            return userMapper.contactDtoToEntity(contactsDto);
+        } catch (Exception e) {
+            logger.error("Could not convert contacts dto to Contacts", e);
+            throw new DtoToEntityConversionException("ConversionError","Could not convert contacts dto to Contacts");
+        }
+    }
 
 }

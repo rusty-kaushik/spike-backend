@@ -390,5 +390,13 @@ public class UserController {
 
     }
 
+    @Operation(summary = "ADD CONTACTS", description = "Add contact.")
+    @PostMapping("/new-contacts/{userId}/{username}")
+    public ResponseEntity<Object> createContacts(@RequestBody ContactsDto data, @PathVariable Long userId, @PathVariable String username) {
+        logger.info("Received request to create a new user");
+        AuditorAwareImpl.setCurrentAuditor(username);
+        ContactsDto contactsDto = userService.createContacts(data, userId);
+        return ResponseHandler.responseBuilder("contact successfully created", HttpStatus.OK, contactsDto);
+    }
 
 }

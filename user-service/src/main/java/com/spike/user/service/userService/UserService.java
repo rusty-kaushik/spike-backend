@@ -39,4 +39,6 @@ public interface UserService {
     UserInfoDTO addProfilePictureOfAUser(long userId, MultipartFile profilePicture);
 
     UserProfileDTO getUserById(long userId) throws IOException;
+
+    ContactsDto createContacts(ContactsDto contactDto, Long userId);
 }
