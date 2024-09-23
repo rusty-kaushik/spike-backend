@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
@@ -379,11 +380,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ContactsDto createContacts(ContactsDto contactDto, Long id) {
+    public ContactsDto createContacts(ContactsDto contactDto, Long userId) {
 
         logger.info("Starting user creation process");
         try {
-            User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("ValidationError","user_id doesn't exist"));
+            User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError","user_id doesn't exist"));
 
             Contacts userContacts = userHelper.contactsDtoToEntity(contactDto);
             userContacts.setUserId(user.getId());
@@ -397,5 +398,15 @@ public class UserServiceImpl implements UserService {
             logger.error("User_id doesn't exist", e);
             throw new UnexpectedException("UnexpectedException","Error creating contacts"+e.getCause());
         }
+    }
+
+    public List<ContactsDto> getAllContacts(){
+        List<Contacts> cotactsList=userContactsRepository.findAll();
+        List<ContactsDto> contactsDtoList=new ArrayList<>();
+        for(Contacts contact: cotactsList) {
+        	ContactsDto contactsDto =userHelper.entityToContactsDto(contact);
+        	contactsDtoList.add(contactsDto);
+        }
+        return contactsDtoList;
     }
 }
