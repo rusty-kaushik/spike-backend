@@ -46,23 +46,11 @@ public class BlogValidators {
             );
         }
 
-        // Validate media files if present
-        if (blogCreationRequestDTO.getMedia() != null) {
-            for (MultipartFile file : blogCreationRequestDTO.getMedia()) {
-                if (file.isEmpty()) {
-                    throw new ValidationFailedException(
-                            "ValidationError",
-                            "Media files cannot be empty"
-                    );
-                }
-            }
-        }
-
         // Validate department names
         if(blogCreationRequestDTO.getDepartmentId() <= 0 || !isDepartmentIdPresent(blogCreationRequestDTO.getDepartmentId()) ) {
             throw new ValidationFailedException(
                     "ValidationError",
-                    "File size cannot exceed 1 MB"
+                    "Invalid department"
             );
         }
         return true;
