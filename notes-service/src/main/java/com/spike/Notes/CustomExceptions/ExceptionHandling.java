@@ -14,7 +14,7 @@ public class ExceptionHandling {
     @ExceptionHandler(RuntimeException.class)
     private ResponseEntity<Object> runTimeException(RuntimeException ex){
         Map<String, Object> response= new HashMap<>();
-        response.put("error","Unexcepted error occurred");
+        response.put("error","an error occurred");
         response.put("httpStatusCode", HttpStatus.BAD_REQUEST);
         response.put("message",ex.getMessage());
        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
