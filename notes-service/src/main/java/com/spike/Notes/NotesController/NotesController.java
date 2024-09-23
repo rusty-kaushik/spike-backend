@@ -114,7 +114,7 @@ public class NotesController {
     private ResponseEntity<Object> ChangeColorOfNote(@PathVariable String id, @PathVariable Color color) {
         try {
             UUID noteId = UUID.fromString(id);
-            String response = noteService.changeColor(color, noteId);
+            NotesDto response = noteService.changeColor(color, noteId);
             return responseHandler.response("Color changed successfully", HttpStatus.OK, response);
         } catch (NoteNotFoundException ex) {
             throw (ex);

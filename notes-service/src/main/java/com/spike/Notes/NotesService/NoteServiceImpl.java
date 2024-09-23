@@ -108,13 +108,13 @@ public class NoteServiceImpl implements NotesService {
 
     //this service will change the color of a note
     @Override
-    public String changeColor(Color color, UUID noteId) {
+    public NotesDto changeColor(Color color, UUID noteId) {
         NotesEntity note = noteRepository.findNoteById(noteId);
         if(note==null){
             throw new NoteNotFoundException("Note doesn't exist");
         }
         note.setColor(color);
         noteRepository.save(note);
-        return "Color updated successfully";
+        return notesToNoteDto(note);
     }
 }

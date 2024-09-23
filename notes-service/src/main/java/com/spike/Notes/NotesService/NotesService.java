@@ -18,5 +18,5 @@ public interface NotesService {
 
     NotesDto editNote(NotesDto notesDto, UUID noteId);
 
-    String changeColor(Color color, UUID noteId);
+    NotesDto changeColor(Color color, UUID noteId);
 }
