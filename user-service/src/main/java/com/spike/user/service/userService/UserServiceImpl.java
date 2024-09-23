@@ -5,6 +5,7 @@ import com.spike.user.entity.*;
 import com.spike.user.exceptions.*;
 import com.spike.user.helper.UserHelper;
 import com.spike.user.repository.DepartmentRepository;
+import com.spike.user.repository.UserContactsRepository;
 import com.spike.user.repository.UserProfilePictureRepository;
 import com.spike.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -47,6 +48,9 @@ public class UserServiceImpl implements UserService {
 
     @Value("${file.upload-dir}")
     private String uploadDirectory;
+
+    @Autowired
+    private UserContactsRepository userContactsRepository;
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -370,4 +374,24 @@ public class UserServiceImpl implements UserService {
         return userHelper.entityToUserProfileDto(user, base64Image);
     }
 
+    @Override
+    public ContactsDto createContacts(ContactsDto contactDto, Long id) {
+
+        logger.info("Starting user creation process");
+        try {
+            User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("ValidationError","user_id doesn't exist"));
+
+            Contacts userContacts = userHelper.contactsDtoToEntity(contactDto);
+            userContacts.setUserId(user.getId());
+            System.out.println(userContacts);
+            Contacts contacts = userContactsRepository.save(userContacts);
+
+            return userHelper.entityToContactsDto(contacts);
+        } catch (ContactNotFoundException | RoleNotFoundException | DtoToEntityConversionException e) {
+            throw e;
+        } catch (Exception e) {
+            logger.error("User_id doesn't exist", e);
+            throw new UnexpectedException("UnexpectedException","Error creating contacts"+e.getCause());
+        }
+    }
 }
