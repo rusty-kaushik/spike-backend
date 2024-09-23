@@ -1,7 +1,5 @@
 package com.taskboard_service.exception;
 
-import java.time.LocalDateTime;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,7 +18,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(TaskboadNotFoundException.class)
 	public  ResponseEntity<?> taskboadNotFoundException(TaskboadNotFoundException ex ,WebRequest request){
 
-   ExceptionStatus status=new ExceptionStatus(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage(), request.getDescription(false));		
+   ExceptionStatus status=new ExceptionStatus(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage());		
 		
 		return new ResponseEntity(status,HttpStatus.NOT_FOUND);
 
@@ -30,7 +28,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(DetailsNotFoundException.class)
 	public  ResponseEntity<?>  detailsNotFoundException(DetailsNotFoundException ex ,WebRequest request){
 
-		 ExceptionStatus status=new ExceptionStatus(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage(), request.getDescription(false));		
+		 ExceptionStatus status=new ExceptionStatus( HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage());		
 			
 			return new ResponseEntity(status,HttpStatus.NOT_FOUND);
 		
@@ -40,7 +38,7 @@ public class GlobalExceptionHandler {
 	   @ExceptionHandler(ConstraintViolationException.class)
 	    public ResponseEntity<?> handleConstraintViolationException(ConstraintViolationException e,  WebRequest request) {
 	        if (isControllerException(e)) {
-	        	ExceptionStatus status=new ExceptionStatus(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(),HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage(), request.getDescription(false));		
+	        	ExceptionStatus status=new ExceptionStatus( HttpStatus.NOT_FOUND.value(),HttpStatus.BAD_REQUEST.getReasonPhrase(), e.getMessage());		
 	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(status);
 	        } else {
 	       

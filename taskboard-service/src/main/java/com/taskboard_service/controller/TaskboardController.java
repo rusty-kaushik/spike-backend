@@ -1,6 +1,5 @@
 package com.taskboard_service.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,6 +25,8 @@ import com.taskboard_service.exception.TaskboadNotFoundException;
 import com.taskboard_service.responseHandler.ResponseHandler;
 import com.taskboard_service.service.TaskboardService;
 
+import io.swagger.v3.oas.annotations.Hidden;
+
 @RequestMapping("/taskboard")
 @RestController
 @Validated
@@ -39,37 +40,40 @@ public class TaskboardController {
 public ResponseEntity<ResponseHandler<TaskboardDto>> createTaskboard(@RequestBody TaskboardDto taskboardDto) throws TaskboadNotFoundException{
 		
 		
-		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.createTaskboard(taskboardDto), "Task created successfully", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.createTaskboard(taskboardDto), "Task created successfully", HttpStatus.OK, HttpStatus.OK.value());
 
 	return ResponseEntity.status(HttpStatus.OK).body(resHandler);
 		
 	}
 	
-	@PutMapping("/update/{id}")
-	public ResponseEntity<ResponseHandler<TaskboardDto>> updateTaskboard(@RequestBody TaskboardUpdateDto taskboardDto,@PathVariable UUID id) throws DetailsNotFoundException {
-		
+	@PutMapping("/update/{taskId}")
+	public ResponseEntity<ResponseHandler<TaskboardDto>> updateTaskboard(@RequestBody TaskboardUpdateDto taskboardDto,@PathVariable String taskId) throws DetailsNotFoundException {
+		UUID id = UUID.fromString(taskId);
 	
-		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.updateTaskboard(taskboardDto, id), "Task update successfully", HttpStatus.ACCEPTED, HttpStatus.ACCEPTED.value(), LocalDateTime.now());
+		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.updateTaskboard(taskboardDto, id), "Task update successfully", HttpStatus.ACCEPTED, HttpStatus.ACCEPTED.value());
 
 		return ResponseEntity.status(HttpStatus.OK).body(resHandler);
 			
 		
 	}
 	
-	@PutMapping("/updateStatus/{id}")
-	public ResponseEntity<ResponseHandler<TaskboardDto>> updateTaskboardStatus( @PathVariable UUID id,@RequestParam Status status) throws DetailsNotFoundException {
+	@PutMapping("/updateStatus/{taskId}")
+	public ResponseEntity<ResponseHandler<TaskboardDto>> updateTaskboardStatus( @PathVariable String taskId,@RequestParam Status status) throws DetailsNotFoundException {
 		
-		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.updateTaskboardStatus(status, id), "Task status has been changed successfully", HttpStatus.ACCEPTED, HttpStatus.ACCEPTED.value(), LocalDateTime.now());
+		UUID id = UUID.fromString(taskId);
+		
+		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.updateTaskboardStatus(status, id), "Task status has been changed successfully", HttpStatus.ACCEPTED, HttpStatus.ACCEPTED.value());
 
 		return ResponseEntity.status(HttpStatus.OK).body(resHandler);
 	
 		
 	}
 	
-	@GetMapping("/get/{id}")
-	public ResponseEntity<ResponseHandler<TaskboardDto>> getTaskById(@PathVariable UUID id) throws DetailsNotFoundException {
-
-		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.getTaskById(id), "Successfully retrieve task by id ", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+	@GetMapping("/get/{taskId}")
+	public ResponseEntity<ResponseHandler<TaskboardDto>> getTaskById( @PathVariable String taskId) throws DetailsNotFoundException {
+		UUID id = UUID.fromString(taskId);
+		
+		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.getTaskById(id), "Successfully retrieve task by id ", HttpStatus.OK, HttpStatus.OK.value());
 
 		return ResponseEntity.status(HttpStatus.OK).body(resHandler);
 			
@@ -78,9 +82,11 @@ public ResponseEntity<ResponseHandler<TaskboardDto>> createTaskboard(@RequestBod
 	
 	
 	@GetMapping("/getAll")
+	@Hidden
+	@Deprecated
 	public ResponseEntity<ResponseHandler<List<TaskboardDto>>>  getAllTask() throws TaskboadNotFoundException{
 		
-		ResponseHandler<List<TaskboardDto>> resHandler=new ResponseHandler<List<TaskboardDto>>(service.getAllTask(), "Successfully retrieve all task.", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+		ResponseHandler<List<TaskboardDto>> resHandler=new ResponseHandler<List<TaskboardDto>>(service.getAllTask(), "Successfully retrieve all task.", HttpStatus.OK, HttpStatus.OK.value());
 
 		return ResponseEntity.status(HttpStatus.OK).body(resHandler);
 			
@@ -89,17 +95,19 @@ public ResponseEntity<ResponseHandler<TaskboardDto>> createTaskboard(@RequestBod
 	@GetMapping("/getByDepartmentId/{departmentId}")
 	public ResponseEntity<ResponseHandler<List<TaskboardDto>>> getByDepartmentId(@PathVariable long departmentId){
 		
-		ResponseHandler<List<TaskboardDto>> resHandler=new ResponseHandler<List<TaskboardDto>>(service.getByDepartmentId(departmentId), "Successfully retrieve  task by departmentId", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+		ResponseHandler<List<TaskboardDto>> resHandler=new ResponseHandler<List<TaskboardDto>>(service.getByDepartmentId(departmentId), "Successfully retrieve  task by departmentId", HttpStatus.OK, HttpStatus.OK.value());
 
 		return ResponseEntity.status(HttpStatus.OK).body(resHandler);
 		
 		
 	}
 	
-	@DeleteMapping("delete/{id}")
-	public ResponseEntity<ResponseHandler<Boolean>> deleteTaskById(@PathVariable UUID id) {
+	@DeleteMapping("delete/{taskId}")
+	public ResponseEntity<ResponseHandler<Boolean>> deleteTaskById(@PathVariable String taskId) {
 		
-		ResponseHandler<Boolean> resHandler=new ResponseHandler<Boolean>(service.deleteTaskById(id), "Successfully delete task by id", HttpStatus.OK, HttpStatus.OK.value(), LocalDateTime.now());
+		UUID id = UUID.fromString(taskId);
+		
+		ResponseHandler<Boolean> resHandler=new ResponseHandler<Boolean>(service.deleteTaskById(id), "Successfully delete task by id", HttpStatus.OK, HttpStatus.OK.value());
 
 		return ResponseEntity.status(HttpStatus.OK).body(resHandler);
 	
