@@ -10,6 +10,7 @@ import com.spike.SecureGate.exceptions.UnexpectedException;
 import com.spike.SecureGate.exceptions.ValidationFailedException;
 import com.spike.SecureGate.feignClients.BlogFeignClient;
 import com.spike.SecureGate.helper.BlogHelper;
+import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,8 @@ public class BlogServiceImpl implements BlogService{
             return blogFeignClient.createNewBlog(mediaFiles, blogCreationFeignDTO);
         } catch (ValidationFailedException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("An unexpected error occurred while creating a blog" + e.getMessage());
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while creating a blog: " + e.getMessage());
@@ -73,6 +76,8 @@ public class BlogServiceImpl implements BlogService{
             return blogFeignClient.updateBlog(blogUpdateRequestDTO.getBlogId(), finalData);
         } catch (ValidationFailedException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("An unexpected error occurred while updating a blog" + e.getMessage());
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while updating a blog: " + e.getMessage());
@@ -91,6 +96,8 @@ public class BlogServiceImpl implements BlogService{
             return blogFeignClient.fetchBlogById(blogId);
         } catch (ValidationFailedException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("An unexpected error occurred while fetching a blog" + e.getMessage());
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while fetching a blog: " + e.getMessage());
@@ -103,6 +110,8 @@ public class BlogServiceImpl implements BlogService{
     public ResponseEntity<Object> fetchAllBlogs(int pageNum, int pageSize) {
         try {
             return blogFeignClient.fetchAllBlogs(pageNum, pageSize);
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("An unexpected error occurred while fetching all blogs" + e.getMessage());
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while fetching all blogs: " + e.getMessage());
@@ -125,6 +134,8 @@ public class BlogServiceImpl implements BlogService{
             return blogFeignClient.deleteBlogById(blogId, userName);
         } catch (ValidationFailedException | BlogNotFoundException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("An unexpected error occurred while deleting a blog" + e.getMessage());
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while deleting a blog: " + e.getMessage());
