@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Set;
@@ -393,5 +394,15 @@ public class UserServiceImpl implements UserService {
             logger.error("User_id doesn't exist", e);
             throw new UnexpectedException("UnexpectedException","Error creating contacts"+e.getCause());
         }
+    }
+
+    public List<ContactsDto> getAllContacts(){
+        List<Contacts> cotactsList=userContactsRepository.findAll();
+        List<ContactsDto> contactsDtoList=new ArrayList<>();
+        for(Contacts contact: cotactsList) {
+        	ContactsDto contactsDto =userHelper.entityToContactsDto(contact);
+        	contactsDtoList.add(contactsDto);
+        }
+        return contactsDtoList;
     }
 }

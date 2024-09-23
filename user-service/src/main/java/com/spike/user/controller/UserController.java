@@ -396,7 +396,14 @@ public class UserController {
         logger.info("Received request to create a new user");
         AuditorAwareImpl.setCurrentAuditor(username);
         ContactsDto contactsDto = userService.createContacts(data, userId);
-        return ResponseHandler.responseBuilder("contact successfully created", HttpStatus.OK, contactsDto);
+        return ResponseHandler.responseBuilder("contact successfully created", HttpStatus.CREATED , contactsDto);
+    }
+    
+    @Operation(summary = "SHOW ALL CONTACTS", description = "show all contacts.")
+    @GetMapping("/get-All/contacts")
+    public ResponseEntity<Object> getAllContacts(){
+    	List<ContactsDto> contactsDtoList= userService.getAllContacts();
+    	return ResponseHandler.responseBuilder("show all contacts ", HttpStatus.OK, contactsDtoList);
     }
 
 }
