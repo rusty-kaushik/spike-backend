@@ -1,10 +1,14 @@
 package com.spike.user.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class RoleNotFoundException extends RuntimeException{
-    public RoleNotFoundException(String message) {
+
+    private final String error;
+
+    public RoleNotFoundException(String error, String message) {
         super(message);
-    }
-    public RoleNotFoundException(String message, Throwable cause) {
-        super(message, cause);
+        this.error = error;
     }
 }

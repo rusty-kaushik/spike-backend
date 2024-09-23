@@ -1,10 +1,14 @@
 package com.spike.user.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class DtoToEntityConversionException extends RuntimeException{
-    public DtoToEntityConversionException(String message) {
+
+    private final String error;
+
+    public DtoToEntityConversionException(String error, String message) {
         super(message);
-    }
-    public DtoToEntityConversionException(String message, Throwable cause) {
-        super(message, cause);
+        this.error = error;
     }
 }

@@ -1,10 +1,15 @@
 package com.spike.user.exceptions;
 
-public class PasswordNotMatchException extends RuntimeException{
-    public PasswordNotMatchException(String message) {
+import lombok.Getter;
+
+@Getter
+public class PasswordNotMatchException extends RuntimeException {
+
+    private final String error;
+
+    public PasswordNotMatchException(String error, String message) {
         super(message);
+        this.error = error;
     }
-    public PasswordNotMatchException(String message, Throwable cause) {
-        super(message, cause);
-    }
+
 }

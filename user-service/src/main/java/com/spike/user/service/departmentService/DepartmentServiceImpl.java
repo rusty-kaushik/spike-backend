@@ -57,7 +57,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public DepartmentResponseDTO getDepartmentById(Long id) {
         logger.info("Fetching department with id: {}", id);
         Department department = departmentRepository.findById(id)
-                .orElseThrow(() -> new DepartmentNotFoundException("Department not found with id: " + id));
+                .orElseThrow(() -> new DepartmentNotFoundException("ValidationError","Department not found with id: " + id));
 
         // Use MapStruct to convert entity to DTO
         return departmentMapper.entityToDepartmentResponseDTO(department);
@@ -67,7 +67,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public DepartmentResponseDTO updateDepartment(Long id, DepartmentCreationDTO departmentCreationDTO) {
         logger.info("Updating department with id: {}", id);
         Department department = departmentRepository.findById(id)
-                .orElseThrow(() -> new DepartmentNotFoundException("Department not found with id: " + id));
+                .orElseThrow(() -> new DepartmentNotFoundException("ValidationError","Department not found with id: " + id));
 
         // Update entity with new data
         department.setName(departmentCreationDTO.getName());
@@ -83,7 +83,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         if (departmentRepository.existsById(id)) {
             departmentRepository.deleteById(id);
         } else {
-            throw new DepartmentNotFoundException("Department not found with id: " + id);
+            throw new DepartmentNotFoundException("ValidationError","Department not found with id: " + id);
         }
     }
 

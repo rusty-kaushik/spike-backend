@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
             throw e;
         } catch (Exception e) {
             logger.error("Error creating user", e);
-            throw new UnexpectedException("Error creating user", e.getCause());
+            throw new UnexpectedException("UnexpectedException","Error creating user"+ e.getCause());
         }
 
     }
@@ -96,11 +96,14 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findByUsername(username);
             if (existingUser == null) {
                 logger.warn("User not found: {}", username);
-                throw new UserNotFoundException("User not found");
+                throw new UserNotFoundException("ValidationError","User not found");
             }
             if (!passwordEncoder.matches(userChangePasswordDTO.getOldPassword(), existingUser.getPassword())) {
                 logger.warn("Old password does not match for user: {}", username);
-                throw new PasswordNotMatchException("Old password does not match");
+                throw new PasswordNotMatchException(
+                        "InvalidPassword",
+                        "Old password does not match."
+                );
             }
             existingUser.setPassword(passwordEncoder.encode(userChangePasswordDTO.getNewPassword()));
             userRepository.save(existingUser);
@@ -111,7 +114,7 @@ public class UserServiceImpl implements UserService {
             throw e;
         } catch (Exception e) {
             logger.error("An unexpected error occurred while updating password for user: {}", username, e);
-            throw new UnexpectedException("An unexpected error occurred while updating the password", e);
+            throw new UnexpectedException("UnexpectedException","An unexpected error occurred while updating the password"+ e);
         }
     }
 
@@ -143,7 +146,7 @@ public class UserServiceImpl implements UserService {
     public void updateUserProfilePicture(Long userId, MultipartFile profilePicture) throws IOException {
         logger.info("Starting profile picture update for user ID: {}", userId);
         User existingUser = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+                .orElseThrow(() -> new UserNotFoundException("ValidationError","User not found with id: " + userId));
 
         // Update the profile picture using the helper method
         UserProfilePicture updatedProfilePicture = userHelper.updateUserProfilePicture(profilePicture, existingUser);
@@ -165,7 +168,7 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findById(userId)
                     .orElseThrow(() -> {
                         logger.error("User not found with id: {}", userId);
-                        return new UserNotFoundException("User not found with id: " + userId);
+                        return new UserNotFoundException("ValidationError","User not found with id: " + userId);
                     });
 
             userRepository.delete(existingUser);
@@ -185,7 +188,7 @@ public class UserServiceImpl implements UserService {
             PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
             Page<User> user = userRepository.findAll(specs, pageRequest);
             if (user.isEmpty()) {
-                throw new UserNotFoundException("list is empty,no user found with the given name: " + name);
+                throw new UserNotFoundException("ValidationError","list is empty,no user found with the given name: " + name);
             } else {
                 return user.stream().map(this::userToUserContacsDto).collect(Collectors.toList());
             }
@@ -251,7 +254,7 @@ public class UserServiceImpl implements UserService {
             //fetched filtered , paginated , sorted users
             Page<User> user = userRepository.findAll(specs, pageRequest);
             if (user.isEmpty()) {
-                throw new UserNotFoundException("No user found");
+                throw new UserNotFoundException("ValidationError","No user found");
             }
             //convert to user dashboard dto
             return user.stream().map(this::userToUserDashboardDto).collect(Collectors.toList());
@@ -297,7 +300,7 @@ public class UserServiceImpl implements UserService {
         User byUsername = userRepository.findByUsername(username);
 
         if (byUsername == null) {
-            throw new UserNotFoundException("User not found with username: " + username);
+            throw new UserNotFoundException("ValidationError","User not found with username: " + username);
         }
 
         // Convert the User entity to DTO
@@ -325,7 +328,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> {
                     logger.error("User not found with id: {}", userId);
-                    return new UserNotFoundException("User not found with id: " + userId);
+                    return new UserNotFoundException("ValidationError","User not found with id: " + userId);
                 });
     }
 
@@ -338,7 +341,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfoDTO addProfilePictureOfAUser(long userId, MultipartFile profilePicture) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError","User not found with id: " + userId));
         user.addPicture(userHelper.dtoToEntityForUserPicture(profilePicture, user));
         User saved = userRepository.save(user);
         String base64Image = null;
@@ -362,7 +365,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserProfileDTO getUserById(long userId) throws IOException {
-        User user = userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException("User not found"));
+        User user = userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException("ValidationError","User not found"));
         String base64Image = userHelper.fetchUserProfilePicture(user);
         return userHelper.entityToUserProfileDto(user, base64Image);
     }

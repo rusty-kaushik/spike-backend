@@ -1,10 +1,15 @@
 package com.spike.SecureGate.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class UnexpectedException extends RuntimeException{
-    public UnexpectedException(String message) {
+
+    private final String error;
+
+
+    public UnexpectedException(String error, String message) {
         super(message);
-    }
-    public UnexpectedException(String message, Throwable cause) {
-        super(message, cause);
+        this.error = error;
     }
 }

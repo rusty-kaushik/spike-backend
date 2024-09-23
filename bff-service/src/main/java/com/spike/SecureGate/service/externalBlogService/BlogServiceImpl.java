@@ -41,7 +41,7 @@ public class BlogServiceImpl implements BlogService{
         try {
             if (!blogValidators.validateBlogCreationDto(blogCreationRequestDTO)) {
                 logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
+                throw new ValidationFailedException("ValidationError","Invalid BlogCreationRequestDTO");
             }
             // Convert request DTO to Feign DTO
             BlogCreationFeignDTO blogCreationFeignDTO = blogHelper.blogCreationDtoTOFeignDto(userName, blogCreationRequestDTO);
@@ -52,7 +52,7 @@ public class BlogServiceImpl implements BlogService{
             throw e;
         } catch (Exception e) {
             logger.error("An unexpected error occurred while creating a blog" + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while creating a blog: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while creating a blog: " + e.getMessage());
         }
     }
 
@@ -63,11 +63,11 @@ public class BlogServiceImpl implements BlogService{
         try {
             if (!blogValidators.isValidUUID(blogUpdateRequestDTO.getBlogId())) {
                 logger.error("Invalid blogId format");
-                throw new BlogNotFoundException("Invalid blogId format");
+                throw new BlogNotFoundException("ValidationError","Invalid blogId format");
             }
             if (!blogValidators.validateBlogUpdateDto(blogUpdateRequestDTO)) {
                 logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
+                throw new ValidationFailedException("ValidationError","Invalid BlogCreationRequestDTO");
             }
             BlogUpdateFeignDTO finalData = blogHelper.blogUpdateDtoTOFeignDto(userName, blogUpdateRequestDTO);
             return blogFeignClient.updateBlog(blogUpdateRequestDTO.getBlogId(), finalData);
@@ -75,7 +75,7 @@ public class BlogServiceImpl implements BlogService{
             throw e;
         } catch (Exception e) {
             logger.error("An unexpected error occurred while updating a blog" + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while updating a blog: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while updating a blog: " + e.getMessage());
         }
     }
 
@@ -86,14 +86,14 @@ public class BlogServiceImpl implements BlogService{
         try {
             if (!blogValidators.isValidUUID(blogId)) {
                 logger.error("Invalid blogId format");
-                throw new BlogNotFoundException("Invalid blogId format");
+                throw new BlogNotFoundException("ValidationError","Invalid blogId format");
             }
             return blogFeignClient.fetchBlogById(blogId);
         } catch (ValidationFailedException e) {
             throw e;
         } catch (Exception e) {
             logger.error("An unexpected error occurred while fetching a blog" + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while fetching a blog: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while fetching a blog: " + e.getMessage());
         }
     }
 
@@ -105,7 +105,7 @@ public class BlogServiceImpl implements BlogService{
             return blogFeignClient.fetchAllBlogs(pageNum, pageSize);
         } catch (Exception e) {
             logger.error("An unexpected error occurred while fetching all blogs" + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while fetching all blogs: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while fetching all blogs: " + e.getMessage());
         }
     }
 
@@ -116,18 +116,18 @@ public class BlogServiceImpl implements BlogService{
         try {
             if (!blogValidators.isValidUUID(blogId)) {
                 logger.error("Invalid blogId format");
-                throw new ValidationFailedException("Invalid blogId format");
+                throw new ValidationFailedException("ValidationError","Invalid blogId format");
             }
             if (!blogValidators.validateBlogExistence(blogId)) {
                 logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid BlogCreationRequestDTO");
+                throw new ValidationFailedException("ValidationError","Invalid BlogCreationRequestDTO");
             }
             return blogFeignClient.deleteBlogById(blogId, userName);
         } catch (ValidationFailedException | BlogNotFoundException e) {
             throw e;
         } catch (Exception e) {
             logger.error("An unexpected error occurred while deleting a blog" + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while deleting a blog: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while deleting a blog: " + e.getMessage());
         }
     }
 }

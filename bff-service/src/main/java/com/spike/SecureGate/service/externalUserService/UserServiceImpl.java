@@ -15,8 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import feign.FeignException;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -55,31 +54,32 @@ public class UserServiceImpl implements UserService{
             // Validate the user request
             if (!userValidators.validateUserCreationDetails(data)) {
                 logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid data");
+                throw new ValidationFailedException(
+                        "ValidationError",
+                        "Invalid data"
+                );
             }
             return userFeignClient.createNewUser(username, data);
         } catch (ValidationFailedException e) {
             throw e;
         } catch (Exception e) {
             logger.error("Error occurred while creating a user: " + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while creating a user: " + e.getMessage());
+            throw new UnexpectedException( "UnexpectedError","An unexpected error occurred while creating a user: " + e.getMessage());
         }
     }
 
     @Override
     public ResponseEntity<Object> updateSelfPassword(String userName, UserChangePasswordDTO userChangePasswordDTO) {
         try {
-            if (!userValidators.validateUserUpdatePassword(userChangePasswordDTO)) {
-                logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid data");
-            }
-            ResponseEntity<Object> result = userFeignClient.updateSelfPassword(userName, userChangePasswordDTO);
-            return result;
+            userValidators.validateUserUpdatePassword(userChangePasswordDTO);
+            return userFeignClient.updateSelfPassword(userName, userChangePasswordDTO);
         } catch (ValidationFailedException e) {
             throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
             logger.error("Error occurred while updating password of the user " + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while updating password of the user: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while updating password of the user: " + e.getMessage());
         }
     }
 
@@ -88,14 +88,14 @@ public class UserServiceImpl implements UserService{
         try{
             if (!userValidators.validateUserSelfDetailsUpdate(userUpdateRequestDTO)) {
                 logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid data");
+                throw new ValidationFailedException( "ValidationError","Invalid data");
             }
             return userFeignClient.updateUser(userId, userUpdateRequestDTO);
         } catch (ValidationFailedException e) {
             throw e;
         } catch (Exception e) {
             logger.error("Error occurred while updating details of the user " + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while updating details of the user: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while updating details of the user: " + e.getMessage());
         }
     }
 
@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService{
             throw e;
         } catch (Exception e) {
             logger.error("Error occurred while updating profile picture of the user " + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while updating profile picture of the user: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while updating profile picture of the user: " + e.getMessage());
         }
     }
 
@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService{
             return userFeignClient.deleteUser(userId);
         } catch (Exception e) {
             logger.error("Error occurred while deleting user " + e.getMessage());
-            throw new UnexpectedException("An unexpected error occurred while deleting user: " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while deleting user: " + e.getMessage());
         }
     }
 
@@ -136,7 +136,7 @@ public class UserServiceImpl implements UserService{
         try {
             if (!userValidators.validateUserExistence(userId)) {
                 logger.error("Validation failed");
-                throw new ValidationFailedException("Invalid user");
+                throw new ValidationFailedException( "ValidationError","Invalid user");
             }
             return userFeignClient.addProfilePictureOfAUser(userId, username, profilePicture);
         } catch (ValidationFailedException e) {

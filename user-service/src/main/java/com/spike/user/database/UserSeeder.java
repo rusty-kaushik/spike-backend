@@ -36,7 +36,7 @@ public class UserSeeder {
             if (user == null) {
                 logger.info("Started to seed user_master");
                 Role adminRole = roleRepository.findById(1L)
-                        .orElseThrow(() -> new RoleNotFoundException("Role not found"));
+                        .orElseThrow(() -> new RoleNotFoundException("ValidationError","Role not found"));
                 User admin = new User();
                 admin.setId(1L);
                 admin.setBackupEmail("backup_admin@in2it.com");
@@ -63,7 +63,7 @@ public class UserSeeder {
         } catch (RoleNotFoundException e) {
             throw e;
         } catch (Exception e) {
-            throw new UnexpectedException("Admin cannot be created for unknown reason.");
+            throw new UnexpectedException("UnexpectedException","Admin cannot be created for unknown reason.");
         }
     }
 }
