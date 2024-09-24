@@ -36,7 +36,7 @@ public interface UserFeignClient {
     @PutMapping(value = "/spike/user/self/profile-picture/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     ResponseEntity<Object> updateProfilePicture(
             @PathVariable Long userId,
-            @RequestPart("file") MultipartFile profilePicture
+            @RequestBody MultipartFile profilePicture
     );
 
     // DELETE USER
@@ -104,7 +104,7 @@ public interface UserFeignClient {
     ResponseEntity<Object>  addProfilePictureOfAUser(
             @PathVariable long userId,
             @PathVariable String username,
-            @RequestPart("file") MultipartFile profilePicture
+            @RequestBody MultipartFile profilePicture
     );
 
     @GetMapping("/spike/user/self/{userId}")

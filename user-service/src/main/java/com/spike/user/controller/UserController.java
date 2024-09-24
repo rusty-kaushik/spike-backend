@@ -81,7 +81,7 @@ public class UserController {
     public  ResponseEntity<Object>  addProfilePictureOfAUser(
             @PathVariable long userId,
             @PathVariable String username,
-            @RequestPart("file") MultipartFile profilePicture
+            @RequestBody MultipartFile profilePicture
     ) {
         logger.info("Received request to add a new profile picture");
         try {
@@ -209,7 +209,7 @@ public class UserController {
     @PutMapping(value = "/self/profile-picture/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Object> updateProfilePicture(
             @PathVariable Long userId,
-            @RequestPart("profilePicture") MultipartFile profilePicture) {
+            @RequestBody MultipartFile profilePicture) {
         logger.info("Received request to update profile picture for user ID: {}", userId);
         try {
             userService.updateUserProfilePicture(userId, profilePicture);
