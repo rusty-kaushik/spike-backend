@@ -272,13 +272,14 @@ public class UserController {
                     content = {@Content(schema = @Schema())})})
 
     @GetMapping("usercontacts")
-    public ResponseEntity<Object> getUserContact(@RequestParam(name="name", required=false) String name, 
-                                                 @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize, 
-                                                 @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno, 
+    public ResponseEntity<Object> getUserContact(@RequestParam(name="userId") Long userId,
+                                                 @RequestParam(name="name", required=false) String name,
+                                                 @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize,
+                                                 @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno,
                                                  @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort) {
         try {
             logger.info("getting user contact information " + name);
-            List<UserContactsDTO> user = userService.getUserContacts(name, pageno, pagesize, sort);
+            List<UserContactsDTO> user = userService.getUserContacts(userId,name, pageno, pagesize, sort);
             return ResponseHandler.responseBuilder("user contacts found successfully", HttpStatus.OK, user);
         } catch (UserNotFoundException ex) {
             throw ex;
@@ -288,7 +289,6 @@ public class UserController {
         }
 
     }
-
 
     //get api to display list of all users on dashboard with filtration , pagination and sorting
     @Operation(

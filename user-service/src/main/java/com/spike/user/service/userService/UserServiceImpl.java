@@ -25,11 +25,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -197,29 +193,76 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public List<UserContactsDTO> getUserContacts(String name, int pageno, int pagesize, String sort) {
+    public List<UserContactsDTO> getUserContacts(Long userId, String name, int pageno, int pagesize, String sort) {
         logger.info("starts fetching user contacts");
         try {
-            Specification<User> specs = Specification.where(userHelper.filterByName(name));
+            // Check if the user with the given userId exists or not
+            Optional<User> userOptional = userRepository.findById(userId);
+            if (!userOptional.isPresent()) {
+                throw new UserNotFoundException("ValidationError", "User with id: " + userId + " not found.");
+            }
+
             String[] sortParams = sort.split(",");
             Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);
             PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
-            Page<User> user = userRepository.findAll(specs, pageRequest);
-            if (user.isEmpty()) {
-                throw new UserNotFoundException("ValidationError","list is empty,no user found with the given name: " + name);
-            } else {
-                return user.stream().map(this::userToUserContacsDto).collect(Collectors.toList());
+
+            List<UserContactsDTO> combinedContactsDto = new ArrayList<>();
+
+            // Fetch personal contacts for the logged-in user only
+            if (userId != null) {
+                Specification<Contacts> personalContactsSpec = Specification
+                        .where(userHelper.hasName(name))
+                        .and(userHelper.filterByUserId(userId)); // Filter by userId
+
+                Page<Contacts> personalContacts = userContactsRepository.findAll(personalContactsSpec, pageRequest);
+
+                // Convert personal contacts to DTO
+                List<UserContactsDTO> personalContactsDto = personalContacts.stream()
+                        .map(this::personalContactsToContactDto)
+                        .collect(Collectors.toList());
+
+                combinedContactsDto.addAll(personalContactsDto); // Add personal contacts
             }
+
+            // Fetch user contacts of all  employees, filtered by name if provided
+            Specification<User> userSpec = Specification.where(userHelper.filterByName(name));
+            Page<User> userContacts = userRepository.findAll(userSpec, pageRequest);
+
+            // Convert user contacts to DTO
+            List<UserContactsDTO> userContactsDto = userContacts.stream()
+                    .map(this::userToUserContacsDto)
+                    .collect(Collectors.toList());
+
+            // Add all user contacts
+            combinedContactsDto.addAll(userContactsDto);
+
+            if (combinedContactsDto.isEmpty()) {
+                throw new UserNotFoundException("ValidationError", "No contacts found for the user with the given name: " + name);
+            }
+            return combinedContactsDto;
         } catch (UserNotFoundException e) {
-            logger.error("user doesn't exist");
+            logger.error("User doesn't exist: {}", e.getMessage());
             throw e;
-        } catch (Exception ex) {
-            logger.error("Unexpected error Occur while fetching user contacts", ex);
+        } catch (Exception e) {
+            logger.error("Unexpected error while fetching user contacts", e);
             throw new RuntimeException("Unexpected error while fetching user contacts");
         }
-
     }
 
+    // convert contacts into contact dto
+    private UserContactsDTO personalContactsToContactDto(Contacts contacts) {
+        UserContactsDTO contactsDto = userHelper.entityToPersonalContactsDto(contacts);
+        contactsDto.setId(contacts.getUserId());
+        List<UserAddressDTO> addresses = contacts.getAddresses().stream()
+                .map(address -> userHelper.entityToAddressDto(address))
+                .collect(Collectors.toList());
+        contactsDto.setPrimaryMobile(contacts.getPrimaryMobile());
+        contactsDto.setAddresses(addresses);
+        contactsDto.setInstagramUrl(contacts.getInstagramUrl() != null ? contacts.getInstagramUrl() : null);
+        contactsDto.setFacebookUrl(contacts.getFacebookUrl() != null ? contacts.getFacebookUrl() : null);
+        contactsDto.setLinkedinUrl(contacts.getLinkedinUrl() != null ? contacts.getLinkedinUrl() : null);
+        return contactsDto;
+    }
 
     private UserContactsDTO userToUserContacsDto(User user) {
 

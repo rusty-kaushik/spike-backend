@@ -75,5 +75,9 @@ public interface UserMapper {
         userSocials.setInstagramUrl(dto.getInstagramUrl());
         user.setUserSocials(userSocials); // Update the user with new socials
     }
+    ContactsDto entityToContactDto(Contacts contacts);
 
+    UserAddressDTO contactToAddressDto(ContactAddress address);
+
+    UserContactsDTO entityToPersonalContactsDto(Contacts contacts);
 }
