@@ -13,7 +13,7 @@ public interface DepartmentService {
 
     ResponseEntity<Object> departmentDropdown();
 
-    ResponseEntity<Object> departmentById(Long id);
+    ResponseEntity<Object> departmentById(long id);
 
     ResponseEntity<Object> updateDepartmentById(Long id, DepartmentCreationDTO department);
 

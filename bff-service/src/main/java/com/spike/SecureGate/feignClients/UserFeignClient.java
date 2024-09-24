@@ -81,7 +81,7 @@ public interface UserFeignClient {
 
     @GetMapping("/spike/department/{`id`}")
     ResponseEntity<Object> getDepartmentById(
-            @PathVariable Long id
+            @PathVariable long id
     );
 
     @GetMapping("/spike/department/exist/{id}")
@@ -119,4 +119,5 @@ public interface UserFeignClient {
 
     @GetMapping("/spike/user")
     List<Object> getAllManagers();
+
 }
