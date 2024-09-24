@@ -335,7 +335,7 @@ class UserServiceImplTest {
         // Verify the results
         assertNotNull(resultDto);
         assertEquals(user.getId(), resultDto.getId());
-        assertEquals(user.getPrimaryMobileNumber(), resultDto.getPrimaryMobile());
+        assertEquals(user.getPrimaryMobileNumber(), resultDto.getPrimaryMobileNumber());
         assertEquals(socials.getInstagramUrl(), resultDto.getInstagramUrl());
         assertEquals(socials.getFacebookUrl(), resultDto.getFacebookUrl());
         assertEquals(socials.getLinkedinUrl(), resultDto.getLinkedinUrl());

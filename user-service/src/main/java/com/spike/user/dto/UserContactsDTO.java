@@ -15,7 +15,7 @@ public class UserContactsDTO {
     private Long id;
     private String name;
     private String designation;
-    private String primaryMobile;
+    private String primaryMobileNumber;
     private String profilePicture;
     private List<UserAddressDTO> addresses;
     private String linkedinUrl;
