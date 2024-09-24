@@ -41,7 +41,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public ResponseEntity<Object> departmentById(long id) {
+    public ResponseEntity<Object> departmentById(Long id) {
         try {
             if (!departmentValidator.validateDepartmentExists(id)) {
                 return ResponseEntity.badRequest().body("Invalid department");
