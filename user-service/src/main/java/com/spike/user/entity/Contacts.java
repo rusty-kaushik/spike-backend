@@ -29,7 +29,7 @@ public class Contacts extends Auditable {
     private String designation;
     @Column(nullable = false, unique = true, length = 10)
     @Size(max = 11, min = 10)
-    private String primaryMobile;
+    private String primaryMobileNumber;
     @OneToMany(cascade = CascadeType.ALL)
 //    @JsonManagedReference
     private List<ContactAddress> addresses;

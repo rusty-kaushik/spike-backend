@@ -138,8 +138,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ResponseEntity<Object> fetchUsersForContactPage(String name, int pageSize, int pageNo, String sort) {
-        return userFeignClient.getUserContact(name, pageSize, pageNo, sort);
+    public ResponseEntity<Object> fetchUsersForContactPage(Long userId,String name, int pageSize, int pageNo, String sort) {
+        return userFeignClient.getUserContact(userId, name, pageSize, pageNo, sort);
     }
 
     @Override
@@ -224,6 +224,21 @@ public class UserServiceImpl implements UserService{
         }
 
         return countryNames;
+    }
+
+    @Override
+    public ResponseEntity<Object> createContact(ContactCreationRequestDTO contactCreationRequestDTO, Long userId, String username) {
+        try{
+            userValidators.validateUserContactCreation(contactCreationRequestDTO);
+            return userFeignClient.createContacts(contactCreationRequestDTO, userId, username);
+        }catch (ValidationFailedException e) {
+            throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
+        } catch (Exception e) {
+            logger.error("Error occurred while creating a user contact: " + e.getMessage());
+            throw new UnexpectedException( "UnexpectedError","An unexpected error occurred while creating a user contact: " + e.getMessage());
+        }
     }
 
 

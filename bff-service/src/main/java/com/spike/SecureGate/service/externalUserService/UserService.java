@@ -24,7 +24,7 @@ public interface UserService {
 
     ResponseEntity<Object> fetchUsersForEmployeePage(String name, String email, Double salary, int page, int size, String sort);
 
-    ResponseEntity<Object> fetchUsersForContactPage(String name, int pageSize, int pageNo, String sort);
+    ResponseEntity<Object> fetchUsersForContactPage(Long userId,String name, int pageSize, int pageNo, String sort);
 
     ResponseEntity<Object> addProfilePicture(MultipartFile profilePicture, String username, long userId);
 
@@ -33,4 +33,6 @@ public interface UserService {
     ResponseEntity<Object> fetchDepartmentsOfAUser(long userId);
 
     List<String> getCountriesWithStates();
+
+    ResponseEntity<Object> createContact(ContactCreationRequestDTO contactCreationRequestDTO, Long userId, String username);
 }

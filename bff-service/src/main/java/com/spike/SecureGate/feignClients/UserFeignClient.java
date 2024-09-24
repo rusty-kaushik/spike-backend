@@ -65,6 +65,7 @@ public interface UserFeignClient {
     // GET USERS FOR CONTACT PAGE
     @GetMapping("/spike/user/usercontacts")
     public ResponseEntity<Object> getUserContact(
+            @RequestParam(name="userId") Long userId,
             @RequestParam String name,
             @RequestParam int pagesize,
             @RequestParam int pageno,
@@ -119,5 +120,6 @@ public interface UserFeignClient {
 
     @GetMapping("/spike/user")
     List<Object> getAllManagers();
+
 
 }

@@ -272,6 +272,7 @@ public class UserController {
     @GetMapping("/contacts")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> fetchUsersForContactPage(
+            @RequestParam(name="userId") Long userId,
             @RequestParam(required=false) String name,
             @RequestParam(required = false, defaultValue = "10") int pageSize,
             @RequestParam(required = false, defaultValue = "0") int pageNo,
@@ -282,7 +283,7 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         logger.info("Authentication Successful");
         logger.info("Started fetching users for contact page");
-        ResponseEntity<Object> user = userService.fetchUsersForContactPage(name,pageSize,pageNo,sort);
+        ResponseEntity<Object> user = userService.fetchUsersForContactPage(userId,name,pageSize,pageNo,sort);
         logger.info("Finished fetching users for contact page");
         return user;
     }
