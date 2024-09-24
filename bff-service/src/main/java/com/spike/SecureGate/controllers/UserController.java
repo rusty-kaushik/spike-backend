@@ -81,7 +81,7 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> addProfilePicture(
             @PathVariable long userId,
-            @RequestBody MultipartFile profilePicture
+            @RequestPart("file") MultipartFile profilePicture
     ) {
         logger.info("Started authenticating");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -173,7 +173,7 @@ public class UserController {
     @PutMapping(value = "/update/profile-picture", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> updateSelfPictureDetails(
-            @RequestBody MultipartFile profilePicture
+            @RequestPart("file") MultipartFile profilePicture
     )
     {
         logger.info("Started authenticating");

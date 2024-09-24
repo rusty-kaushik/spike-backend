@@ -81,7 +81,7 @@ public class UserController {
     public  ResponseEntity<Object>  addProfilePictureOfAUser(
             @PathVariable long userId,
             @PathVariable String username,
-            @RequestBody MultipartFile profilePicture
+            @RequestPart("file") MultipartFile profilePicture
     ) {
         logger.info("Received request to add a new profile picture");
         try {
@@ -209,7 +209,7 @@ public class UserController {
     @PutMapping(value = "/self/profile-picture/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Object> updateProfilePicture(
             @PathVariable Long userId,
-            @RequestBody MultipartFile profilePicture) {
+            @RequestPart("profilePicture") MultipartFile profilePicture) {
         logger.info("Received request to update profile picture for user ID: {}", userId);
         try {
             userService.updateUserProfilePicture(userId, profilePicture);
@@ -364,18 +364,14 @@ public class UserController {
             // Return the list of departments with 200 OK
             return ResponseHandler.responseBuilder("Departments successfully retrieved.", HttpStatus.OK, departments);
 
-        } catch (UserNotFoundException e) {
-            // Log the exception for debugging
-            logger.error("User not found: {}", userId, e);
-            // Return 404 Not Found with a user-friendly error message
-            return ResponseHandler.responseBuilder("No user found with the provided ID.", HttpStatus.NOT_FOUND, "User not found for this id.");
         } catch (Exception e) {
             // Log the exception for debugging
-            logger.error("Error retrieving departments for user: {}", userId, e);
+            logger.error("User not found for that id {} : {} ", userId, e.getMessage());
             // Return 500 Internal Server Error with a detailed error message
-            return ResponseHandler.responseBuilder("An unexpected error occurred while retrieving departments.", HttpStatus.INTERNAL_SERVER_ERROR, "Please try again later or contact support if the problem persists.");
+            return ResponseHandler.responseBuilder("User not found for the id." +userId, HttpStatus.NOT_FOUND, "Please try again later or contact support if the problem persists.");
         }
     }
+
 
     @GetMapping("/self/{userId}")
     public ResponseEntity<Object> getUserById(@PathVariable long userId) {
