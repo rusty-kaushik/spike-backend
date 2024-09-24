@@ -314,8 +314,6 @@ public class BlogServiceImpl implements BlogService {
 					log.error("Please ! Check your services connection . May be down.");
 				}
 				
-				
-		
 				BlogDto blogDto = objectMapper.blogToDtoConverter(blog2);
 				if(userPicture!=null) {
 					
