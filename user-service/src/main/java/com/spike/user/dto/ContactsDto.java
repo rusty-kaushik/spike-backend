@@ -19,8 +19,8 @@ public class ContactsDto {
     private String name;
     private String designation;
     private String primaryMobile;
-
-    private List<ContactsAddressDto> addresses;
+    private String profilePicture;
+    private List<UserAddressDTO> addresses;
     private String linkedinUrl;
     private String facebookUrl;
     private String instagramUrl;

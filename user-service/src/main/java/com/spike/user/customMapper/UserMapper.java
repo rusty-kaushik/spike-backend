@@ -76,4 +76,9 @@ public interface UserMapper {
         user.setUserSocials(userSocials); // Update the user with new socials
     }
 
+    ContactsDto entityToContactDto(Contacts contacts);
+
+    UserAddressDTO contactToAddressDto(ContactAddress address);
+
+    UserContactsDTO entityToPersonalContactsDto(Contacts contacts);
 }

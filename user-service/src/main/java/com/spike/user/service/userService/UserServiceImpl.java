@@ -25,11 +25,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,7 +61,7 @@ public class UserServiceImpl implements UserService {
             // SETS USER
             User user = userHelper.dtoToEntityForUserMaster(userRequest);
             // SETS ADDRESSES
-            if(userRequest.getAddresses() != null){
+            if (userRequest.getAddresses() != null) {
                 for (UserAddressDTO addressDTO : userRequest.getAddresses()) {
                     UserAddress userAddress = userHelper.dtoToEntityForUserAddress(addressDTO);
                     user.addAddress(userAddress);
@@ -81,7 +77,7 @@ public class UserServiceImpl implements UserService {
             throw e;
         } catch (Exception e) {
             logger.error("Error creating user", e);
-            throw new UnexpectedException("UnexpectedException","Error creating user"+ e.getCause());
+            throw new UnexpectedException("UnexpectedException", "Error creating user" + e.getCause());
         }
 
     }
@@ -102,7 +98,7 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findByUsername(username);
             if (existingUser == null) {
                 logger.warn("User not found: {}", username);
-                throw new UserNotFoundException("ValidationError","User not found");
+                throw new UserNotFoundException("ValidationError", "User not found");
             }
             if (!passwordEncoder.matches(userChangePasswordDTO.getOldPassword(), existingUser.getPassword())) {
                 logger.warn("Old password does not match for user: {}", username);
@@ -120,7 +116,7 @@ public class UserServiceImpl implements UserService {
             throw e;
         } catch (Exception e) {
             logger.error("An unexpected error occurred while updating password for user: {}", username, e);
-            throw new UnexpectedException("UnexpectedException","An unexpected error occurred while updating the password"+ e);
+            throw new UnexpectedException("UnexpectedException", "An unexpected error occurred while updating the password" + e);
         }
     }
 
@@ -145,14 +141,13 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     // User Profile Picture update
     @Override
     @Transactional
     public void updateUserProfilePicture(Long userId, MultipartFile profilePicture) throws IOException {
         logger.info("Starting profile picture update for user ID: {}", userId);
         User existingUser = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("ValidationError","User not found with id: " + userId));
+                .orElseThrow(() -> new UserNotFoundException("ValidationError", "User not found with id: " + userId));
 
         // Update the profile picture using the helper method
         UserProfilePicture updatedProfilePicture = userHelper.updateUserProfilePicture(profilePicture, existingUser);
@@ -174,7 +169,7 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findById(userId)
                     .orElseThrow(() -> {
                         logger.error("User not found with id: {}", userId);
-                        return new UserNotFoundException("ValidationError","User not found with id: " + userId);
+                        return new UserNotFoundException("ValidationError", "User not found with id: " + userId);
                     });
 
             userRepository.delete(existingUser);
@@ -185,29 +180,76 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public List<UserContactsDTO> getUserContacts(String name, int pageno, int pagesize, String sort) {
+    public List<UserContactsDTO> getUserContacts(Long userId, String name, int pageno, int pagesize, String sort) {
         logger.info("starts fetching user contacts");
         try {
-            Specification<User> specs = Specification.where(userHelper.filterByName(name));
+            // Check if the user with the given userId exists or not
+            Optional<User> userOptional = userRepository.findById(userId);
+            if (!userOptional.isPresent()) {
+                throw new UserNotFoundException("ValidationError", "User with id: " + userId + " not found.");
+            }
+
             String[] sortParams = sort.split(",");
             Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);
             PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
-            Page<User> user = userRepository.findAll(specs, pageRequest);
-            if (user.isEmpty()) {
-                throw new UserNotFoundException("ValidationError","list is empty,no user found with the given name: " + name);
-            } else {
-                return user.stream().map(this::userToUserContacsDto).collect(Collectors.toList());
+
+            List<UserContactsDTO> combinedContactsDto = new ArrayList<>();
+
+            // Fetch personal contacts for the logged-in user only
+            if (userId != null) {
+                Specification<Contacts> personalContactsSpec = Specification
+                        .where(userHelper.hasName(name))
+                        .and(userHelper.filterByUserId(userId)); // Filter by userId
+
+                Page<Contacts> personalContacts = userContactsRepository.findAll(personalContactsSpec, pageRequest);
+
+                // Convert personal contacts to DTO
+                List<UserContactsDTO> personalContactsDto = personalContacts.stream()
+                        .map(this::personalContactsToContactDto)
+                        .collect(Collectors.toList());
+
+                combinedContactsDto.addAll(personalContactsDto); // Add personal contacts
             }
+
+            // Fetch user contacts of all  employees, filtered by name if provided
+            Specification<User> userSpec = Specification.where(userHelper.filterByName(name));
+            Page<User> userContacts = userRepository.findAll(userSpec, pageRequest);
+
+            // Convert user contacts to DTO
+            List<UserContactsDTO> userContactsDto = userContacts.stream()
+                    .map(this::userToUserContacsDto)
+                    .collect(Collectors.toList());
+
+                // Add all user contacts
+            combinedContactsDto.addAll(userContactsDto);
+
+            if (combinedContactsDto.isEmpty()) {
+                throw new UserNotFoundException("ValidationError", "No contacts found for the user with the given name: " + name);
+            }
+            return combinedContactsDto;
         } catch (UserNotFoundException e) {
-            logger.error("user doesn't exist");
+            logger.error("User doesn't exist: {}", e.getMessage());
             throw e;
-        } catch (Exception ex) {
-            logger.error("Unexpected error Occur while fetching user contacts", ex);
+        } catch (Exception e) {
+            logger.error("Unexpected error while fetching user contacts", e);
             throw new RuntimeException("Unexpected error while fetching user contacts");
         }
-
     }
 
+    // convert contacts into contact dto
+    private UserContactsDTO personalContactsToContactDto(Contacts contacts) {
+        UserContactsDTO contactsDto = userHelper.entityToPersonalContactsDto(contacts);
+        contactsDto.setId(contacts.getUserId());
+        List<UserAddressDTO> addresses = contacts.getAddresses().stream()
+                .map(address -> userHelper.entityToAddressDto(address))
+                .collect(Collectors.toList());
+        contactsDto.setPrimaryMobile(contacts.getPrimaryMobile());
+        contactsDto.setAddresses(addresses);
+        contactsDto.setInstagramUrl(contacts.getInstagramUrl() != null ? contacts.getInstagramUrl() : null);
+        contactsDto.setFacebookUrl(contacts.getFacebookUrl() != null ? contacts.getFacebookUrl() : null);
+        contactsDto.setLinkedinUrl(contacts.getLinkedinUrl() != null ? contacts.getLinkedinUrl() : null);
+        return contactsDto;
+    }
 
     private UserContactsDTO userToUserContacsDto(User user) {
 
@@ -260,7 +302,7 @@ public class UserServiceImpl implements UserService {
             //fetched filtered , paginated , sorted users
             Page<User> user = userRepository.findAll(specs, pageRequest);
             if (user.isEmpty()) {
-                throw new UserNotFoundException("ValidationError","No user found");
+                throw new UserNotFoundException("ValidationError", "No user found");
             }
             //convert to user dashboard dto
             return user.stream().map(this::userToUserDashboardDto).collect(Collectors.toList());
@@ -306,7 +348,7 @@ public class UserServiceImpl implements UserService {
         User byUsername = userRepository.findByUsername(username);
 
         if (byUsername == null) {
-            throw new UserNotFoundException("ValidationError","User not found with username: " + username);
+            throw new UserNotFoundException("ValidationError", "User not found with username: " + username);
         }
 
         // Convert the User entity to DTO
@@ -334,7 +376,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> {
                     logger.error("User not found with id: {}", userId);
-                    return new UserNotFoundException("ValidationError","User not found with id: " + userId);
+                    return new UserNotFoundException("ValidationError", "User not found with id: " + userId);
                 });
     }
 
@@ -350,7 +392,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfoDTO addProfilePictureOfAUser(long userId, MultipartFile profilePicture) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError","User not found with id: " + userId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError", "User not found with id: " + userId));
         user.addPicture(userHelper.dtoToEntityForUserPicture(profilePicture, user));
         User saved = userRepository.save(user);
         String base64Image = null;
@@ -374,7 +416,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserProfileDTO getUserById(long userId) throws IOException {
-        User user = userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException("ValidationError","User not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError", "User not found"));
         String base64Image = userHelper.fetchUserProfilePicture(user);
         return userHelper.entityToUserProfileDto(user, base64Image);
     }
@@ -384,7 +426,7 @@ public class UserServiceImpl implements UserService {
 
         logger.info("Starting user creation process");
         try {
-            User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError","user_id doesn't exist"));
+            User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError", "user_id doesn't exist"));
 
             Contacts userContacts = userHelper.contactsDtoToEntity(contactDto);
             userContacts.setUserId(user.getId());
@@ -396,17 +438,19 @@ public class UserServiceImpl implements UserService {
             throw e;
         } catch (Exception e) {
             logger.error("User_id doesn't exist", e);
-            throw new UnexpectedException("UnexpectedException","Error creating contacts"+e.getCause());
+            throw new UnexpectedException("UnexpectedException", "Error creating contacts" + e.getCause());
         }
     }
 
-    public List<ContactsDto> getAllContacts(){
-        List<Contacts> cotactsList=userContactsRepository.findAll();
-        List<ContactsDto> contactsDtoList=new ArrayList<>();
-        for(Contacts contact: cotactsList) {
-        	ContactsDto contactsDto =userHelper.entityToContactsDto(contact);
-        	contactsDtoList.add(contactsDto);
+    public List<ContactsDto> getAllContacts() {
+        List<Contacts> cotactsList = userContactsRepository.findAll();
+        List<ContactsDto> contactsDtoList = new ArrayList<>();
+        for (Contacts contact : cotactsList) {
+            ContactsDto contactsDto = userHelper.entityToContactsDto(contact);
+            contactsDtoList.add(contactsDto);
         }
         return contactsDtoList;
     }
+
+
 }

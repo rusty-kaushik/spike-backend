@@ -13,7 +13,6 @@ import com.spike.user.repository.RoleRepository;
 import com.spike.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,7 +28,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
-import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -151,7 +149,7 @@ public class UserHelper {
     }
 
     //this specification will filter record based on user name
-    public Specification<User> filterByName(String name) {
+    public Specification<Contacts> hasName(String name) {
         return (root, query, cb) -> {
             if (name != null) {
                 return cb.like(cb.lower(root.get("name")), "%" + name.toLowerCase() + "%");
@@ -160,6 +158,15 @@ public class UserHelper {
         };
     }
 
+//this specification will filter user contacts record based on filter
+public Specification<User> filterByName(String name) {
+    return (root, query, cb) -> {
+        if (name != null) {
+            return cb.like(cb.lower(root.get("name")), "%" + name.toLowerCase() + "%");
+        }
+        return null;
+    };
+}
     //this specification will filter record based on user email
     public Specification<User> filterByEmail(String email) {
         return (root, query, cb) -> {
@@ -170,13 +177,14 @@ public class UserHelper {
         };
     }
 
-
+    public Specification<Contacts> filterByUserId(Long userId) {
+        return (root, query, cb) -> userId != null ? cb.equal(root.get("userId"), userId) : null;
+    }
 
     //this specification will filter record based on user salary
     public Specification<User> filterBySalary(Double salary) {
         return (root, query, cb) -> salary != null ? cb.equal(root.get("salary"), salary) : null;
     }
-
 
 
     public UserContactsDTO entityToUserContactsDto(User user){
@@ -353,5 +361,24 @@ public class UserHelper {
             throw new DtoToEntityConversionException("ConversionError","Could not convert contacts dto to Contacts");
         }
     }
+
+    public UserAddressDTO entityToAddressDto(ContactAddress address) {
+        try{
+            return userMapper.contactToAddressDto(address);
+        } catch (Exception e) {
+            logger.error("Could not convert contacts dto to Contacts", e);
+            throw new DtoToEntityConversionException("ConversionError","Could not convert contacts dto to Contacts");
+        }
+    }
+
+    public UserContactsDTO entityToPersonalContactsDto(Contacts contacts) {
+        try {
+            return userMapper.entityToPersonalContactsDto(contacts);
+        } catch (Exception e) {
+            logger.error("Could not convert contacts to Contacts dto ", e);
+            throw new DtoToEntityConversionException("ConversionError", "Could not convert contacts  to Contacts dto ");
+        }
+    }
+
 
 }

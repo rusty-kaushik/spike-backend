@@ -25,7 +25,7 @@ public interface UserService {
     void deleteUser(Long userId);
 
     //fetch particular user contacts if name is provided otherwise all the user contacts
-    List<UserContactsDTO> getUserContacts(String name, int pageno, int pagesize, String sort);
+    List<UserContactsDTO> getUserContacts(Long userId ,String name, int pageno, int pagesize, String sort);
 
     //fetch user dashboard data with filtration if provided otherwise show all the user details
     List<UserDashboardDTO> getUserFilteredDashboard(String name, String email, Double salary, int page, int size, String sort);
