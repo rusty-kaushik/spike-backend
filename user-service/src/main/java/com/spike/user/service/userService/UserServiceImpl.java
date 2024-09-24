@@ -151,19 +151,45 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUserProfilePicture(Long userId, MultipartFile profilePicture) throws IOException {
         logger.info("Starting profile picture update for user ID: {}", userId);
+
+        // Find the user by ID or throw an exception if not found
         User existingUser = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("ValidationError","User not found with id: " + userId));
+                .orElseThrow(() -> new UserNotFoundException("ValidationError", "User not found with id: " + userId));
+
+        // Get the current profile picture to delete if necessary
+        UserProfilePicture currentProfilePicture = existingUser.getProfilePicture();
 
         // Update the profile picture using the helper method
         UserProfilePicture updatedProfilePicture = userHelper.updateUserProfilePicture(profilePicture, existingUser);
 
-        // Save the updated profile picture entity
+        // If a new profile picture is created, delete the old file and save the new one
         if (updatedProfilePicture != null) {
+            // Delete old file if it exists
+            if (currentProfilePicture != null && currentProfilePicture.getFilePath() != null) {
+                deleteOldFile(currentProfilePicture.getFilePath());
+            }
+
+            // Save the new profile picture entity
             userProfilePictureRepository.save(updatedProfilePicture);
             existingUser.setProfilePicture(updatedProfilePicture);
             userRepository.save(existingUser);
+
+            logger.info("Profile picture updated successfully for user ID: {}", userId);
         }
     }
+
+    // Helper method to delete the old profile picture file
+    private void deleteOldFile(String filePath) {
+        File oldFile = new File(filePath);
+        if (oldFile.exists()) {
+            logger.info("Deleting old profile picture: {}", oldFile.getPath());
+            if (!oldFile.delete()) {
+                logger.warn("Could not delete old profile picture: {}", oldFile.getPath());
+            }
+        }
+    }
+
+
 
 
     @Override
@@ -327,15 +353,17 @@ public class UserServiceImpl implements UserService {
 
         User user = findUserById(userId);
 
-        return convertDepartmentsToDTOs(user.getDepartments());
+        Set<Department> departments = user.getDepartments();
+        if (departments == null || departments.isEmpty()) {
+            logger.info("No departments found for user with id: {}", userId);
+        }
+
+        return convertDepartmentsToDTOs(departments);
     }
 
     private User findUserById(long userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> {
-                    logger.error("User not found with id: {}", userId);
-                    return new UserNotFoundException("ValidationError","User not found with id: " + userId);
-                });
+                .orElseThrow(() -> new UserNotFoundException("ValidationError","User not found with id: " + userId));
     }
 
     private List<DepartmentDropdownDTO> convertDepartmentsToDTOs(Set<Department> departments) {

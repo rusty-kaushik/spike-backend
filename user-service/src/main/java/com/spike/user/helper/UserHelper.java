@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Set;
@@ -308,12 +309,14 @@ public class UserHelper {
                 String fileExtension = originalFileName != null ? originalFileName.substring(originalFileName.lastIndexOf('.')) : "";
                 String newFileName = user.getEmployeeCode() + "_profile_picture" + fileExtension;
 
-                // Save the new file in the same directory
+                // Define the file path where the profile picture will be saved
                 String filePath = uploadDir + File.separator + newFileName;
                 Path path = Paths.get(filePath);
-                Files.copy(profilePicture.getInputStream(), path);
 
-                // Update the UserProfilePicture entity
+                // Copy the new profile picture to the file system
+                Files.copy(profilePicture.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+                // Update or create a new UserProfilePicture entity
                 UserProfilePicture userProfilePicture = user.getProfilePicture();
                 if (userProfilePicture == null) {
                     userProfilePicture = new UserProfilePicture();
@@ -328,14 +331,22 @@ public class UserHelper {
 
                 return userProfilePicture;
             } else {
-                logger.warn("No profile picture provided");
+                logger.warn("No profile picture provided for user: {}", user.getEmployeeCode());
                 return null;
             }
+        } catch (IOException e) {
+            logger.error("Error occurred while saving profile picture for user: {}", user.getEmployeeCode(), e);
+            // Throw a custom exception with relevant error details
+            throw new DtoToEntityConversionException("ConversionError", "Could not update user profile picture due to file operation error.");
         } catch (Exception e) {
-            logger.error("Could not update profile picture for user: {}", user.getEmployeeCode(), e);
-            throw new DtoToEntityConversionException("ConversionError","Could not update user profile picture"+ e);
+            logger.error("Unexpected error occurred during profile picture update for user: {}", user.getEmployeeCode(), e);
+            // Throw a custom exception with relevant error details
+            throw new DtoToEntityConversionException("ConversionError", "Could not update user profile picture due to unexpected error: " + e.getMessage());
         }
     }
+
+
+
     public ContactsDto entityToContactsDto(Contacts contacts){
         try{
             return userMapper.entityToContactsDto(contacts);

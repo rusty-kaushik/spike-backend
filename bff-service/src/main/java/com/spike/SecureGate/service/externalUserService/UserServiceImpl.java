@@ -4,12 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.Validations.UserValidators;
 import com.spike.SecureGate.exceptions.UnexpectedException;
+import com.spike.SecureGate.exceptions.UserNotFoundException;
 import com.spike.SecureGate.exceptions.ValidationFailedException;
 import com.spike.SecureGate.feignClients.UserFeignClient;
+import com.spike.SecureGate.response.ResponseHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -160,10 +163,43 @@ public class UserServiceImpl implements UserService{
     }
 
 
+
     @Override
     public ResponseEntity<Object> fetchDepartmentsOfAUser(long userId) {
-        return userFeignClient.getDepartmentsByUserId(userId);
+        logger.info("Started fetching departments for user ID: {}", userId);
+        try {
+            // Call to the Feign client to get departments
+            ResponseEntity<Object> response = userFeignClient.getDepartmentsByUserId(userId);
+
+            // Check the status of the response
+            if (response.getStatusCode() == HttpStatus.OK) {
+                logger.info("Successfully retrieved departments for user ID: {}", userId);
+                return response; // Return the successful response
+            } else if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
+                // If user is not found, throw a UserNotFoundException
+                logger.error("User not found for ID: {}", userId);
+                throw new UserNotFoundException("ValidationError", "User not found with id: " + userId);
+            } else {
+                // Handle other status codes if needed
+                logger.warn("No departments found for user ID: {}", userId);
+                return ResponseHandler.responseBuilder(
+                        "No departments found for user ID: " + userId,
+                        HttpStatus.OK,
+                        "The user does not have any departments assigned."
+                );
+            }
+        } catch (Exception e) {
+            logger.error("User not found for user ID {}: {}", userId, e.getMessage());
+            return ResponseHandler.responseBuilder(
+                    "User not found with this associated id -> " +userId,
+                    HttpStatus.NOT_FOUND,
+                    "User not exists with this id -> "+userId
+            );
+        }
     }
+
+
+
 
     @Override
     public List<String> getCountriesWithStates() {
