@@ -142,12 +142,21 @@ public class BlogServiceController {
 
 	// pagination
 
-	@GetMapping("/getByUserId/{userName}")
+	@GetMapping("/getByUserName/{userName}")
 	@Operation(summary = "Get a blog by userName", description = "Returns a Blog as per the userName.")
-	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogsByAutherId(@PathVariable @Valid String userName) {
-		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getByAutherID(userName),
+	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogsByAutherName(@PathVariable @Valid String userName) {
+		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getByAutherName(userName),
 				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value());
 
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/getByUserId/{userId}")
+	@Operation(summary = "Get a blog by userName", description = "Returns a Blog as per the userName.")
+	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogsByAutherId(@PathVariable @Valid long userId) {
+		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getByAutherID(userId),
+				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value());
+		
 		return ResponseEntity.ok(response);
 	}
 

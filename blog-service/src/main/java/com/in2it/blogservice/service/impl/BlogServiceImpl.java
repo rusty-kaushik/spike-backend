@@ -338,9 +338,9 @@ public class BlogServiceImpl implements BlogService {
 
 	// Get blog by userId or we can say unique userName
 	@Override
-	public List<BlogDto> getByAutherID(String userName) {
+	public List<BlogDto> getByAutherName(String userName) {
 
-		List<Blog> byAuthorId = repo.findByAuthorId(userName);
+		List<Blog> byAuthorId = repo.findByAuthorName(userName);
 
 		List<BlogDto> blogDtoList = new ArrayList<>();
 
@@ -362,6 +362,34 @@ public class BlogServiceImpl implements BlogService {
 			throw userNotFoundException;
 		}
 
+	}
+	
+	// Get blog by userId or we can say unique userId
+	@Override
+	public List<BlogDto> getByAutherID(long userId) {
+		
+		List<Blog> byAuthorId = repo.findByAuthorId(userId);
+		
+		List<BlogDto> blogDtoList = new ArrayList<>();
+		
+		if (!byAuthorId.isEmpty()) {
+			
+			for (Blog blog2 : byAuthorId) {
+				
+				if (blog2 != null) {
+					BlogDto blogToDtoConverter = objectMapper.blogToDtoConverter(blog2);
+					blogDtoList.add(blogToDtoConverter);
+				}
+			}
+			
+			return blogDtoList;
+		} else {
+			
+			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+			log.error("userNotFoundException----------------------------"+userNotFoundException);
+			throw userNotFoundException;
+		}
+		
 	}
 
 	// Get blog by blog_id
