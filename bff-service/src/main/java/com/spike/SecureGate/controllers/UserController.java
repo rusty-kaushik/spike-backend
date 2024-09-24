@@ -173,7 +173,7 @@ public class UserController {
     @PutMapping(value = "/update/profile-picture", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> updateSelfPictureDetails(
-            @RequestPart("file") MultipartFile profilePicture
+            @RequestBody MultipartFile profilePicture
     )
     {
         logger.info("Started authenticating");
