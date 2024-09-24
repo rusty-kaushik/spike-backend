@@ -256,7 +256,7 @@ public class UserServiceImpl implements UserService {
         List<UserAddressDTO> addresses = contacts.getAddresses().stream()
                 .map(address -> userHelper.entityToAddressDto(address))
                 .collect(Collectors.toList());
-        contactsDto.setPrimaryMobile(contacts.getPrimaryMobile());
+        contactsDto.setPrimaryMobileNumber(contacts.getPrimaryMobileNumber());
         contactsDto.setAddresses(addresses);
         contactsDto.setInstagramUrl(contacts.getInstagramUrl() != null ? contacts.getInstagramUrl() : null);
         contactsDto.setFacebookUrl(contacts.getFacebookUrl() != null ? contacts.getFacebookUrl() : null);
@@ -274,7 +274,7 @@ public class UserServiceImpl implements UserService {
                 //.filter(address -> "CURRENT".equals(address.getType()))
                 .map(address -> userHelper.entityToUserAddressDto(address))
                 .collect(Collectors.toList());
-        userContactsDto.setPrimaryMobile(user.getPrimaryMobileNumber());
+        userContactsDto.setPrimaryMobileNumber(user.getPrimaryMobileNumber());
         userContactsDto.setAddresses(addresses);
         userContactsDto.setInstagramUrl(user.getUserSocials() != null ? user.getUserSocials().getInstagramUrl() : null);
         userContactsDto.setFacebookUrl(user.getUserSocials() != null ? user.getUserSocials().getFacebookUrl() : null);
@@ -334,7 +334,7 @@ public class UserServiceImpl implements UserService {
         UserDashboardDTO userDashboardDTO = userHelper.entityToUserDashboardDto(user);
         userDashboardDTO.setId(user.getId());
         //convert image into base64
-        userDashboardDTO.setPrimaryMobile(user.getPrimaryMobileNumber());
+        userDashboardDTO.setPrimaryMobileNumber(user.getPrimaryMobileNumber());
 
         if (user.getProfilePicture() != null) {
             String filePath = user.getProfilePicture().getFilePath();
