@@ -14,7 +14,7 @@ public class ExceptionController {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ExceptionHandler(FeignException.class)
-	public  ResponseEntity<?> yFeignException(FeignException ex ,WebRequest request)
+	public  ResponseEntity<?> feignException(FeignException ex ,WebRequest request)
 	{
 
 		ExceptionProperties exceptionResponse=new ExceptionProperties(LocalDateTime.now(), HttpStatus.BAD_REQUEST.getReasonPhrase(), HttpStatus.BAD_REQUEST.value(), ex.getMessage(), request.getDescription(false));		
@@ -23,14 +23,5 @@ public class ExceptionController {
 
 	}
 	
-//	@SuppressWarnings({ "rawtypes", "unchecked" })
-//	@ExceptionHandler(PersistingException.class)
-//	public  ResponseEntity<?> persistingException(PersistingException ex ,WebRequest request)
-//	{
-//
-//		ExceptionProperties exceptionResponse=new ExceptionProperties(LocalDateTime.now(), HttpStatus.BAD_REQUEST.getReasonPhrase(), HttpStatus.BAD_REQUEST.value(), ex.getMessage(), request.getDescription(false));		
-//		
-//		return new ResponseEntity(exceptionResponse,HttpStatus.BAD_REQUEST);
-//
-//	}
+
 }
