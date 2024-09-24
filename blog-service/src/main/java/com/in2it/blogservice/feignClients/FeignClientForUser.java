@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.in2it.blogservice.dto.UserInfoDTO;
 
-@FeignClient(name = "user-service", url = "http://99.99.99.185:8181/spike/user")
+@FeignClient(name = "user-service", url = "${spike.user-service}")
 public interface FeignClientForUser {
 
 	@GetMapping("/username/{username}")

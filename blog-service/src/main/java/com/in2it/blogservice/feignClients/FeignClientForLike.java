@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.in2it.blogservice.dto.Response;
 
-@FeignClient(name = "Like-service", url = "http://localhost:8484/spike/blog/like")
+@FeignClient(name = "Like-service", url = "${spike.like-service}")
 public interface FeignClientForLike 
 {
 	@DeleteMapping("/unlike/deleted-blog/{blogId}")
