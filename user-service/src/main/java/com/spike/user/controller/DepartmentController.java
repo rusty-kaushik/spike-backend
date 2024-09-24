@@ -73,7 +73,7 @@ public class DepartmentController {
             description = "Fetches a department by its ID."
     )
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getDepartmentById(@PathVariable long id) {
+    public ResponseEntity<Object> getDepartmentById(@PathVariable Long id) {
         logger.info("Start: Fetching department with ID {}", id);
         try {
             DepartmentResponseDTO department = departmentService.getDepartmentById(id);
