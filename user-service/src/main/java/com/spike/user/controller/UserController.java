@@ -364,11 +364,16 @@ public class UserController {
             // Return the list of departments with 200 OK
             return ResponseHandler.responseBuilder("Departments successfully retrieved.", HttpStatus.OK, departments);
 
-        } catch (Exception e) {
+        } catch (UserNotFoundException e) {
             // Log the exception for debugging
             logger.error("User not found for that id {} : {} ", userId, e.getMessage());
+            // Return 404 NOT FOUND Error with a detailed error message
+            return ResponseHandler.responseBuilder("User not found for the id -> " +userId, HttpStatus.NOT_FOUND, "User not exists for that id ->" +userId);
+        } catch (Exception e) {
+            // Log the exception for debugging
+            logger.error("An error occurred while retrieving departments for user {} : {} ", userId, e.getMessage());
             // Return 500 Internal Server Error with a detailed error message
-            return ResponseHandler.responseBuilder("User not found for the id." +userId, HttpStatus.NOT_FOUND, "Please try again later or contact support if the problem persists.");
+            return ResponseHandler.responseBuilder("An error occurred while retrieving departments for user -> " + userId, HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred while retrieving departments for user -> " + userId);
         }
     }
 

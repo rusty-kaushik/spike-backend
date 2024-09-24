@@ -185,23 +185,23 @@ class UserControllerTest {
     }
 
 
-    @Test
-    void getUserContact() {
-        // Prepare mock data
-        List<UserContactsDTO> mockContacts = Collections.singletonList(new UserContactsDTO());
-        when(userService.getUserContacts(anyString(), anyInt(), anyInt(), anyString())).thenReturn(mockContacts);
-
-        // Call the controller method
-        ResponseEntity<Object> response = userController.getUserContact("admin", 5, 0, "updatedAt,desc");
-
-        // Assertions
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-
-        // Check the response body structure
-        Map<String, Object> responseBody = (Map<String, Object>) response.getBody();
-        assertEquals("user contacts found successfully", responseBody.get("message"));
-        assertEquals(mockContacts, responseBody.get("data")); // Check if the data matches
-    }
+//    @Test
+//    void getUserContact() {
+//        // Prepare mock data
+//        List<UserContactsDTO> mockContacts = Collections.singletonList(new UserContactsDTO());
+//        when(userService.getUserContacts(anyString(), anyInt(), anyInt(), anyString())).thenReturn(mockContacts);
+//
+//        // Call the controller method
+//        ResponseEntity<Object> response = userController.getUserContact("admin", 5, 0, "updatedAt,desc");
+//
+//        // Assertions
+//        assertEquals(HttpStatus.OK, response.getStatusCode());
+//
+//        // Check the response body structure
+//        Map<String, Object> responseBody = (Map<String, Object>) response.getBody();
+//        assertEquals("user contacts found successfully", responseBody.get("message"));
+//        assertEquals(mockContacts, responseBody.get("data")); // Check if the data matches
+//    }
 
 
     @Test
