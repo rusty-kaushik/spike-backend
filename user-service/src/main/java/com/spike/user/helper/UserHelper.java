@@ -171,8 +171,19 @@ public class UserHelper {
         };
     }
 
+    public Specification<Contacts> filterByUserId(Long userId) {
+        return (root, query, cb) -> userId != null ? cb.equal(root.get("userId"), userId) : null;
+    }
 
-
+    //this specification will filter record based on user name
+    public Specification<Contacts> hasName(String name) {
+        return (root, query, cb) -> {
+            if (name != null) {
+                return cb.like(cb.lower(root.get("name")), "%" + name.toLowerCase() + "%");
+            }
+            return null;
+        };
+    }
     //this specification will filter record based on user salary
     public Specification<User> filterBySalary(Double salary) {
         return (root, query, cb) -> salary != null ? cb.equal(root.get("salary"), salary) : null;
@@ -381,4 +392,21 @@ public class UserHelper {
         }
     }
 
+    public UserAddressDTO entityToAddressDto(ContactAddress address) {
+        try{
+            return userMapper.contactToAddressDto(address);
+        } catch (Exception e) {
+            logger.error("Could not convert contacts dto to Contacts", e);
+            throw new DtoToEntityConversionException("ConversionError","Could not convert contacts dto to Contacts");
+        }
+    }
+
+    public UserContactsDTO entityToPersonalContactsDto(Contacts contacts) {
+        try {
+            return userMapper.entityToPersonalContactsDto(contacts);
+        } catch (Exception e) {
+            logger.error("Could not convert contacts to Contacts dto ", e);
+            throw new DtoToEntityConversionException("ConversionError", "Could not convert contacts  to Contacts dto ");
+        }
+    }
 }
