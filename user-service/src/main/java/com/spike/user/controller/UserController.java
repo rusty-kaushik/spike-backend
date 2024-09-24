@@ -81,7 +81,7 @@ public class UserController {
     public  ResponseEntity<Object>  addProfilePictureOfAUser(
             @PathVariable long userId,
             @PathVariable String username,
-            @RequestBody MultipartFile profilePicture
+            @RequestPart("file") MultipartFile profilePicture
     ) {
         logger.info("Received request to add a new profile picture");
         try {

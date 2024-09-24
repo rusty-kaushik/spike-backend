@@ -104,7 +104,7 @@ public interface UserFeignClient {
     ResponseEntity<Object>  addProfilePictureOfAUser(
             @PathVariable long userId,
             @PathVariable String username,
-            @RequestBody MultipartFile profilePicture
+            @RequestPart("file") MultipartFile profilePicture
     );
 
     @GetMapping("/spike/user/self/{userId}")
