@@ -71,24 +71,24 @@ public class DepartmentController {
         return user;
     }
 
-//    @Operation(
-//            summary = "DEPARTMENT BY ID ",
-//            description = "DEPARTMENT BY ID"
-//    )
-//    @GetMapping("/{id}")
-//    //@PreAuthorize("hasRole('ADMIN')")
-//    public ResponseEntity<Object> departmentById(
-//            @PathVariable long id
-//    )
-//    {
-//        logger.info("Started authenticating");
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        logger.info("Authentication Successful");
-//        logger.info("Started fetching users for contact page");
-//        ResponseEntity<Object> user = departmentService.departmentById(id);
-//        logger.info("Finished fetching users for contact page");
-//        return user;
-//    }
+    @Operation(
+            summary = "DEPARTMENT BY ID ",
+            description = "DEPARTMENT BY ID"
+    )
+    @GetMapping("/{id}")
+    //@PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Object> departmentById(
+            @PathVariable long id
+    )
+    {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        logger.info("Started fetching users for contact page");
+        ResponseEntity<Object> user = departmentService.departmentById(id);
+        logger.info("Finished fetching users for contact page");
+        return user;
+    }
 
     @Operation(
             summary = "UPDATE DEPARTMENT BY ID ",
