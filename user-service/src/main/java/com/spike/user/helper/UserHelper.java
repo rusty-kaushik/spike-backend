@@ -296,7 +296,7 @@ public class UserHelper {
     }
 
 
-    public UserProfilePicture updateUserProfilePicture(MultipartFile profilePicture, User user) {
+    public UserProfilePicture updateUserProfilePicture(MultipartFile profilePicture, User user, String oldFilePath) {
         try {
             logger.info("Updating profile picture for user: {}", user.getEmployeeCode());
 
@@ -310,8 +310,13 @@ public class UserHelper {
                 String newFileName = user.getEmployeeCode() + "_profile_picture" + fileExtension;
 
                 // Define the file path where the profile picture will be saved
-                String filePath = uploadDir + File.separator + newFileName;
+                String filePath = oldFilePath != null ? oldFilePath : (uploadDir + File.separator + newFileName);
                 Path path = Paths.get(filePath);
+
+                // If an old file path exists, delete the old file
+                if (oldFilePath != null) {
+                    deleteOldFile(oldFilePath);
+                }
 
                 // Copy the new profile picture to the file system
                 Files.copy(profilePicture.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
@@ -336,14 +341,25 @@ public class UserHelper {
             }
         } catch (IOException e) {
             logger.error("Error occurred while saving profile picture for user: {}", user.getEmployeeCode(), e);
-            // Throw a custom exception with relevant error details
             throw new DtoToEntityConversionException("ConversionError", "Could not update user profile picture due to file operation error.");
         } catch (Exception e) {
             logger.error("Unexpected error occurred during profile picture update for user: {}", user.getEmployeeCode(), e);
-            // Throw a custom exception with relevant error details
             throw new DtoToEntityConversionException("ConversionError", "Could not update user profile picture due to unexpected error: " + e.getMessage());
         }
     }
+
+    // Helper method to delete the old profile picture file
+    private void deleteOldFile(String filePath) {
+        File oldFile = new File(filePath);
+        if (oldFile.exists()) {
+            logger.info("Deleting old profile picture: {}", oldFile.getPath());
+            if (!oldFile.delete()) {
+                logger.warn("Could not delete old profile picture: {}", oldFile.getPath());
+            }
+        }
+    }
+
+
 
 
 

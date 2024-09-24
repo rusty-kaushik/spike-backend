@@ -158,36 +158,22 @@ public class UserServiceImpl implements UserService {
 
         // Get the current profile picture to delete if necessary
         UserProfilePicture currentProfilePicture = existingUser.getProfilePicture();
+        String oldFilePath = currentProfilePicture != null ? currentProfilePicture.getFilePath() : null;
 
         // Update the profile picture using the helper method
-        UserProfilePicture updatedProfilePicture = userHelper.updateUserProfilePicture(profilePicture, existingUser);
+        UserProfilePicture updatedProfilePicture = userHelper.updateUserProfilePicture(profilePicture, existingUser, oldFilePath);
 
-        // If a new profile picture is created, delete the old file and save the new one
+        // Save the new profile picture entity if created
         if (updatedProfilePicture != null) {
-            // Delete old file if it exists
-            if (currentProfilePicture != null && currentProfilePicture.getFilePath() != null) {
-                deleteOldFile(currentProfilePicture.getFilePath());
-            }
-
-            // Save the new profile picture entity
-            userProfilePictureRepository.save(updatedProfilePicture);
             existingUser.setProfilePicture(updatedProfilePicture);
             userRepository.save(existingUser);
-
             logger.info("Profile picture updated successfully for user ID: {}", userId);
+        } else {
+            logger.warn("No profile picture was provided for user ID: {}", userId);
         }
     }
 
-    // Helper method to delete the old profile picture file
-    private void deleteOldFile(String filePath) {
-        File oldFile = new File(filePath);
-        if (oldFile.exists()) {
-            logger.info("Deleting old profile picture: {}", oldFile.getPath());
-            if (!oldFile.delete()) {
-                logger.warn("Could not delete old profile picture: {}", oldFile.getPath());
-            }
-        }
-    }
+
 
 
 
