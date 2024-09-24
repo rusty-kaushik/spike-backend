@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.in2it.blogservice.dto.Response;
 
-@FeignClient(name = "comment-service", url = "http://localhost:8383/spike/blog/")
+@FeignClient(name = "comment-service", url = "${spike.comment-service}")
 public interface FeignClientForComment {
 
-	@DeleteMapping("deleteByBlogId/{blogId}")
+	@DeleteMapping("/deleteByBlogId/{blogId}")
 	public abstract ResponseEntity<Response<Boolean>> deleteCommentsByblogId(@PathVariable String blogId);
 	
 }

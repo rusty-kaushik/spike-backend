@@ -1,5 +1,6 @@
 package com.in2it.blogservice.service.impl;
 
+import java.io.Console;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,10 @@ import com.in2it.blogservice.customException.LikeServiceDownException;
 import com.in2it.blogservice.customException.UserNotFoundException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
+import com.in2it.blogservice.dto.UserInfoDTO;
 import com.in2it.blogservice.feignClients.FeignClientForComment;
 import com.in2it.blogservice.feignClients.FeignClientForLike;
+import com.in2it.blogservice.feignClients.FeignClientForUser;
 import com.in2it.blogservice.mapper.Converter;
 import com.in2it.blogservice.model.Blog;
 import com.in2it.blogservice.repository.BlogRepository;
@@ -50,6 +53,9 @@ public class BlogServiceImpl implements BlogService {
 	private FeignClientForComment commentFeign;
 	@Autowired
 	private FeignClientForLike likeFeign;
+	
+	@Autowired
+	private FeignClientForUser userFeign;
 
 	// This method is used to save data in database and save Media in file system .
 	@Override
@@ -290,17 +296,7 @@ public class BlogServiceImpl implements BlogService {
 
 		List<Blog> blog = repo.findAll(pageable,true);
 		
-		
-		
-		/*
-		 * if(blog.isEmpty() || blog==null) {
-		 * 
-		 * UserNotFoundException e = new UserNotFoundException(HttpStatus.NO_CONTENT +
-		 * " Data not available, please ! Try again.");
-		 * log.error("Error ocurred -------------------------"+e); throw e;
-		 * 
-		 * }
-		 */
+	
 		log.info("----------------------------------" + blog);
 
 		List<BlogDto> blogDtoList = new ArrayList<>();
@@ -308,9 +304,22 @@ public class BlogServiceImpl implements BlogService {
 		for (Blog blog2 : blog) {
 
 			if (blog2 != null) {
-				BlogDto blogToDtoConverter = objectMapper.blogToDtoConverter(blog2);
-
-				blogDtoList.add(blogToDtoConverter);
+				UserInfoDTO userPicture=null;
+				try {
+					
+             	userPicture = userFeign.getUserByUsername(blog2.getUserName());
+					
+			
+				}catch (Exception e) {
+					log.error("Please ! Check your services connection . May be down.");
+				}
+				
+				BlogDto blogDto = objectMapper.blogToDtoConverter(blog2);
+				if(userPicture!=null) {
+					
+					blogDto.setProfilePic(userPicture.getPicture());	
+				}
+				blogDtoList.add(blogDto);
 			}
 		}
 
@@ -329,9 +338,9 @@ public class BlogServiceImpl implements BlogService {
 
 	// Get blog by userId or we can say unique userName
 	@Override
-	public List<BlogDto> getByAutherID(String userName) {
+	public List<BlogDto> getByAutherName(String userName) {
 
-		List<Blog> byAuthorId = repo.findByAuthorId(userName);
+		List<Blog> byAuthorId = repo.findByAuthorName(userName);
 
 		List<BlogDto> blogDtoList = new ArrayList<>();
 
@@ -353,6 +362,34 @@ public class BlogServiceImpl implements BlogService {
 			throw userNotFoundException;
 		}
 
+	}
+	
+	// Get blog by userId or we can say unique userId
+	@Override
+	public List<BlogDto> getByAutherID(long userId) {
+		
+		List<Blog> byAuthorId = repo.findByAuthorId(userId);
+		
+		List<BlogDto> blogDtoList = new ArrayList<>();
+		
+		if (!byAuthorId.isEmpty()) {
+			
+			for (Blog blog2 : byAuthorId) {
+				
+				if (blog2 != null) {
+					BlogDto blogToDtoConverter = objectMapper.blogToDtoConverter(blog2);
+					blogDtoList.add(blogToDtoConverter);
+				}
+			}
+			
+			return blogDtoList;
+		} else {
+			
+			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+			log.error("userNotFoundException----------------------------"+userNotFoundException);
+			throw userNotFoundException;
+		}
+		
 	}
 
 	// Get blog by blog_id
