@@ -54,7 +54,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public DepartmentResponseDTO getDepartmentById(long id) {
+    public DepartmentResponseDTO getDepartmentById(Long id) {
         logger.info("Fetching department with id: {}", id);
         Department department = departmentRepository.findById(id)
                 .orElseThrow(() -> new DepartmentNotFoundException("ValidationError","Department not found with id: " + id));

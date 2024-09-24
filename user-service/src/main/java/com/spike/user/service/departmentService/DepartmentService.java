@@ -34,7 +34,7 @@ public interface DepartmentService {
      * @return The department entity with the given ID.
      * @throws DepartmentNotFoundException if no department with the given ID exists.
      */
-    DepartmentResponseDTO getDepartmentById(long id);
+    DepartmentResponseDTO getDepartmentById(Long id);
 
     /**
      * Retrieves a department by its Name.

@@ -82,7 +82,7 @@ public interface UserFeignClient {
 
     @GetMapping("/spike/department/{`id`}")
     ResponseEntity<Object> getDepartmentById(
-            @PathVariable long id
+            @PathVariable Long id
     );
 
     @GetMapping("/spike/department/exist/{id}")
@@ -121,5 +121,13 @@ public interface UserFeignClient {
     @GetMapping("/spike/user")
     List<Object> getAllManagers();
 
+    @PostMapping("/spike/user/new-contacts/{userId}/{username}")
+    ResponseEntity<Object> createContacts(
+            @RequestBody ContactCreationRequestDTO contactCreationRequestDTO,
+            @PathVariable Long userId,
+            @PathVariable String username
+    );
 
+    @GetMapping("/spike/user/get-All/contacts")
+    ResponseEntity<Object> getAllContacts();
 }
