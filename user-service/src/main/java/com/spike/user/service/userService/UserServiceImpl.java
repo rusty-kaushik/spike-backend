@@ -476,4 +476,12 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Error deleting contact", e);
         }
     }
+    public ContactsDto updateContact(Long contactId , ContactsDto contactDto) {
+    	//Contacts contacts=userContactsRepository.findById(contactId).orElseThrow(()->new ContactNotFoundException("contact of thid id doesn't exist"));
+    	
+    	Contacts con=userHelper.contactsDtoToEntity(contactDto);
+    	con.setId(contactId);
+        ContactsDto dto= userHelper.entityToContactsDto( userContactsRepository.save(con));
+    	return dto;
+    }
 }

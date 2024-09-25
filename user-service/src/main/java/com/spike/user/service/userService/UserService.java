@@ -47,4 +47,6 @@ public interface UserService {
     
     //Delete contact by user id
     public void deleteContacts(Long id);
+    
+    public ContactsDto updateContact(Long contactId , ContactsDto contactDto) ;
 }

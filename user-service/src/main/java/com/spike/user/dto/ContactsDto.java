@@ -14,6 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 public class ContactsDto {
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	private long id;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private long userId;
     private String name;
