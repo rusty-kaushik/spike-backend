@@ -197,20 +197,37 @@ public class BlogControllerTest {
 	    }
 	    
 	    @Test
-	    public void getBlogsByAutherId() 
+	    public void getBlogsByAutherName() 
 	    {
 	    	String userId="user-1";
 	        
 	    	List<BlogDto> allBlogDto = new ArrayList<>();
 		    
-	        when(serviceImpl.getByAutherID(any(String.class))).thenReturn(allBlogDto);
+	        when(serviceImpl.getByAutherName(any(String.class))).thenReturn(allBlogDto);
 
-	        ResponseEntity<ResponseHandler<List<BlogDto>>>  response = blogController.getBlogsByAutherId(userId);
+	        ResponseEntity<ResponseHandler<List<BlogDto>>>  response = blogController.getBlogsByAutherName(userId);
 	        
 	        assertEquals(HttpStatus.OK, response.getStatusCode());
 	        assertEquals("Data retrieved successfully.", response.getBody().getMessage());
 	        assertEquals(allBlogDto, response.getBody().getData());
 	    
+	    }
+	    
+	    @Test
+	    public void getBlogsByAutherId() 
+	    {
+	    	long userId=12;
+	    	
+	    	List<BlogDto> allBlogDto = new ArrayList<>();
+	    	
+	    	when(serviceImpl.getByAutherID(any(Long.class))).thenReturn(allBlogDto);
+	    	
+	    	ResponseEntity<ResponseHandler<List<BlogDto>>>  response = blogController.getBlogsByAutherId(userId);
+	    	
+	    	assertEquals(HttpStatus.OK, response.getStatusCode());
+	    	assertEquals("Data retrieved successfully.", response.getBody().getMessage());
+	    	assertEquals(allBlogDto, response.getBody().getData());
+	    	
 	    }
 	    
 	    @Test

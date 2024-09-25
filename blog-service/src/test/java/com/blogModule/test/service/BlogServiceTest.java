@@ -411,7 +411,7 @@ public class BlogServiceTest {
 	}
 	
 	@Test
-	public void getByAutherID() throws IOException
+	public void getByAutherName() throws IOException
 	{
 		
 		String userName = "Sumit";		
@@ -424,18 +424,46 @@ public class BlogServiceTest {
 	    
 	    List<BlogDto> blogList = Arrays.asList(blogDto);
 
-	    when(repo.findByAuthorId(any(String.class))).thenReturn(Arrays.asList(existingBlog));
+	    when(repo.findByAuthorName(any(String.class))).thenReturn(Arrays.asList(existingBlog));
 	    when(objectMapper.blogToDtoConverter(any(Blog.class))).thenReturn(blogDto);
 	    
 	    
 	    // Act
-	    List<BlogDto> result = service.getByAutherID(userName);
+	    List<BlogDto> result = service.getByAutherName(userName);
 	    // Assert
 	    assertNotNull(result);
 	    assertEquals(blogList, result);
 	    	
 	    verify(objectMapper, times(1)).blogToDtoConverter(existingBlog);
-	    verify(repo, times(1)).findByAuthorId(userName);
+	    verify(repo, times(1)).findByAuthorName(userName);
+	}
+	
+	@Test
+	public void getByAutherID() throws IOException
+	{
+		
+		long userId = 12;		
+		
+		Blog existingBlog = new Blog();
+		existingBlog.setUserId(userId);
+		
+		BlogDto blogDto = new BlogDto();
+		blogDto.setUserId(userId);
+		
+		List<BlogDto> blogList = Arrays.asList(blogDto);
+		
+		when(repo.findByAuthorId(any(Long.class))).thenReturn(Arrays.asList(existingBlog));
+		when(objectMapper.blogToDtoConverter(any(Blog.class))).thenReturn(blogDto);
+		
+		
+		// Act
+		List<BlogDto> result = service.getByAutherID(userId);
+		// Assert
+		assertNotNull(result);
+		assertEquals(blogList, result);
+		
+		verify(objectMapper, times(1)).blogToDtoConverter(existingBlog);
+		verify(repo, times(1)).findByAuthorId(userId);
 	}
 
 	@Test
