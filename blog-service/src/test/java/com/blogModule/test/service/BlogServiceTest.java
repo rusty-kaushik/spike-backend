@@ -78,14 +78,14 @@ public class BlogServiceTest {
 //	    Making dummy objects of Blog and BlogDto
 	    BlogDto blogDto = new BlogDto();
 	    blogDto.setDepartmentId(12);
-	    blogDto.setUserName("Sumit");
+	    blogDto.setName("Sumit");
 	    blogDto.setTitle("Java");
 	    blogDto.setContent("Java is a good language");
 	    blogDto.setMediaFile(List.of("Media.png"));
 
 	    Blog blog = new Blog();
 	    blog.setDepartmentId(12);
-	    blog.setUserName("Sumit");
+	    blog.setName("Sumit");
 	    blog.setTitle("Java");
 	    blog.setContent("Java is a good language");
 	    blog.setMediaFile(List.of("Media.png"));
@@ -118,7 +118,7 @@ public class BlogServiceTest {
 	    verify(objectMapper, times(1)).dtoToBlogConverter(blogDto, List.of("Media.png"), List.of("src/main/resources/static/image/Media.png"));
 	    verify(repo, times(1)).save(any(Blog.class));
 	    assertEquals(expectedDto.getDepartmentId(), result.getDepartmentId());
-	    assertEquals(expectedDto.getUserName(), result.getUserName());
+	    assertEquals(expectedDto.getName(), result.getName());
 	    assertEquals(expectedDto.getContent(), result.getContent());
 	    assertEquals(expectedDto.getTitle(), result.getTitle());
 	    
@@ -417,10 +417,10 @@ public class BlogServiceTest {
 		String userName = "Sumit";		
 		
 	    Blog existingBlog = new Blog();
-	    existingBlog.setUserName(userName);
+	    existingBlog.setName(userName);
 	    
 	    BlogDto blogDto = new BlogDto();
-	    blogDto.setUserName(userName);
+	    blogDto.setName(userName);
 	    
 	    List<BlogDto> blogList = Arrays.asList(blogDto);
 
