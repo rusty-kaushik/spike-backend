@@ -179,7 +179,7 @@ public class UserController {
         } catch (UserNotFoundException e) {
             logger.error("User with ID {} not found: {}", userId, e.getMessage());
             // Return 404 Not Found with a user-friendly error message
-            return ResponseHandler.responseBuilder("User not found.", HttpStatus.NOT_FOUND, "No user found with the provided ID.");
+            return ResponseHandler.responseBuilder("User not found with this id -> " +userId, HttpStatus.NOT_FOUND, "No user found with the provided ID -> " +userId);
         } catch (Exception e) {
             logger.error("Error updating user: {}", e.getMessage());
             // Return 500 Internal Server Error with a clear error message
