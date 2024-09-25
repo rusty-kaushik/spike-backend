@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Set;
@@ -170,8 +171,19 @@ public class UserHelper {
         };
     }
 
+    public Specification<Contacts> filterByUserId(Long userId) {
+        return (root, query, cb) -> userId != null ? cb.equal(root.get("userId"), userId) : null;
+    }
 
-
+    //this specification will filter record based on user name
+    public Specification<Contacts> hasName(String name) {
+        return (root, query, cb) -> {
+            if (name != null) {
+                return cb.like(cb.lower(root.get("name")), "%" + name.toLowerCase() + "%");
+            }
+            return null;
+        };
+    }
     //this specification will filter record based on user salary
     public Specification<User> filterBySalary(Double salary) {
         return (root, query, cb) -> salary != null ? cb.equal(root.get("salary"), salary) : null;
@@ -295,7 +307,7 @@ public class UserHelper {
     }
 
 
-    public UserProfilePicture updateUserProfilePicture(MultipartFile profilePicture, User user) {
+    public UserProfilePicture updateUserProfilePicture(MultipartFile profilePicture, User user, String oldFilePath) {
         try {
             logger.info("Updating profile picture for user: {}", user.getEmployeeCode());
 
@@ -308,12 +320,19 @@ public class UserHelper {
                 String fileExtension = originalFileName != null ? originalFileName.substring(originalFileName.lastIndexOf('.')) : "";
                 String newFileName = user.getEmployeeCode() + "_profile_picture" + fileExtension;
 
-                // Save the new file in the same directory
-                String filePath = uploadDir + File.separator + newFileName;
+                // Define the file path where the profile picture will be saved
+                String filePath = oldFilePath != null ? oldFilePath : (uploadDir + File.separator + newFileName);
                 Path path = Paths.get(filePath);
-                Files.copy(profilePicture.getInputStream(), path);
 
-                // Update the UserProfilePicture entity
+                // If an old file path exists, delete the old file
+                if (oldFilePath != null) {
+                    deleteOldFile(oldFilePath);
+                }
+
+                // Copy the new profile picture to the file system
+                Files.copy(profilePicture.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+                // Update or create a new UserProfilePicture entity
                 UserProfilePicture userProfilePicture = user.getProfilePicture();
                 if (userProfilePicture == null) {
                     userProfilePicture = new UserProfilePicture();
@@ -328,14 +347,66 @@ public class UserHelper {
 
                 return userProfilePicture;
             } else {
-                logger.warn("No profile picture provided");
+                logger.warn("No profile picture provided for user: {}", user.getEmployeeCode());
                 return null;
             }
+        } catch (IOException e) {
+            logger.error("Error occurred while saving profile picture for user: {}", user.getEmployeeCode(), e);
+            throw new DtoToEntityConversionException("ConversionError", "Could not update user profile picture due to file operation error.");
         } catch (Exception e) {
-            logger.error("Could not update profile picture for user: {}", user.getEmployeeCode(), e);
-            throw new DtoToEntityConversionException("ConversionError","Could not update user profile picture"+ e);
+            logger.error("Unexpected error occurred during profile picture update for user: {}", user.getEmployeeCode(), e);
+            throw new DtoToEntityConversionException("ConversionError", "Could not update user profile picture due to unexpected error: " + e.getMessage());
+        }
+    }
+
+    // Helper method to delete the old profile picture file
+    private void deleteOldFile(String filePath) {
+        File oldFile = new File(filePath);
+        if (oldFile.exists()) {
+            logger.info("Deleting old profile picture: {}", oldFile.getPath());
+            if (!oldFile.delete()) {
+                logger.warn("Could not delete old profile picture: {}", oldFile.getPath());
+            }
         }
     }
 
 
+
+
+
+    public ContactsDto entityToContactsDto(Contacts contacts){
+        try{
+            return userMapper.entityToContactsDto(contacts);
+        } catch (Exception e) {
+            logger.error("Could not convert contacts entity to ContactsDTO", e);
+            throw new DtoToEntityConversionException("ConversionError","Could not convert contacts entity to contacts DTO"+e);
+        }
+    }
+
+    public Contacts contactsDtoToEntity(ContactsDto contactsDto){
+        try{
+            return userMapper.contactDtoToEntity(contactsDto);
+        } catch (Exception e) {
+            logger.error("Could not convert contacts dto to Contacts", e);
+            throw new DtoToEntityConversionException("ConversionError","Could not convert contacts dto to Contacts");
+        }
+    }
+
+    public UserAddressDTO entityToAddressDto(ContactAddress address) {
+        try{
+            return userMapper.contactToAddressDto(address);
+        } catch (Exception e) {
+            logger.error("Could not convert contacts dto to Contacts", e);
+            throw new DtoToEntityConversionException("ConversionError","Could not convert contacts dto to Contacts");
+        }
+    }
+
+    public UserContactsDTO entityToPersonalContactsDto(Contacts contacts) {
+        try {
+            return userMapper.entityToPersonalContactsDto(contacts);
+        } catch (Exception e) {
+            logger.error("Could not convert contacts to Contacts dto ", e);
+            throw new DtoToEntityConversionException("ConversionError", "Could not convert contacts  to Contacts dto ");
+        }
+    }
 }

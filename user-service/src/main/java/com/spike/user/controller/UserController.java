@@ -81,7 +81,7 @@ public class UserController {
     public  ResponseEntity<Object>  addProfilePictureOfAUser(
             @PathVariable long userId,
             @PathVariable String username,
-            @RequestBody MultipartFile profilePicture
+            @RequestPart("file") MultipartFile profilePicture
     ) {
         logger.info("Received request to add a new profile picture");
         try {
@@ -272,13 +272,14 @@ public class UserController {
                     content = {@Content(schema = @Schema())})})
 
     @GetMapping("usercontacts")
-    public ResponseEntity<Object> getUserContact(@RequestParam(name="name", required=false) String name, 
-                                                 @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize, 
-                                                 @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno, 
+    public ResponseEntity<Object> getUserContact(@RequestParam(name="userId") Long userId,
+                                                 @RequestParam(name="name", required=false) String name,
+                                                 @RequestParam(name = "pagesize", required = false, defaultValue = "5") int pagesize,
+                                                 @RequestParam(name = "pageno", required = false, defaultValue = "0") int pageno,
                                                  @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort) {
         try {
             logger.info("getting user contact information " + name);
-            List<UserContactsDTO> user = userService.getUserContacts(name, pageno, pagesize, sort);
+            List<UserContactsDTO> user = userService.getUserContacts(userId,name, pageno, pagesize, sort);
             return ResponseHandler.responseBuilder("user contacts found successfully", HttpStatus.OK, user);
         } catch (UserNotFoundException ex) {
             throw ex;
@@ -288,7 +289,6 @@ public class UserController {
         }
 
     }
-
 
     //get api to display list of all users on dashboard with filtration , pagination and sorting
     @Operation(
@@ -366,16 +366,17 @@ public class UserController {
 
         } catch (UserNotFoundException e) {
             // Log the exception for debugging
-            logger.error("User not found: {}", userId, e);
-            // Return 404 Not Found with a user-friendly error message
-            return ResponseHandler.responseBuilder("No user found with the provided ID.", HttpStatus.NOT_FOUND, "User not found for this id.");
+            logger.error("User not found for that id {} : {} ", userId, e.getMessage());
+            // Return 404 NOT FOUND Error with a detailed error message
+            return ResponseHandler.responseBuilder("User not found for the id -> " +userId, HttpStatus.NOT_FOUND, "User not exists for that id ->" +userId);
         } catch (Exception e) {
             // Log the exception for debugging
-            logger.error("Error retrieving departments for user: {}", userId, e);
+            logger.error("An error occurred while retrieving departments for user {} : {} ", userId, e.getMessage());
             // Return 500 Internal Server Error with a detailed error message
-            return ResponseHandler.responseBuilder("An unexpected error occurred while retrieving departments.", HttpStatus.INTERNAL_SERVER_ERROR, "Please try again later or contact support if the problem persists.");
+            return ResponseHandler.responseBuilder("An error occurred while retrieving departments for user -> " + userId, HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred while retrieving departments for user -> " + userId);
         }
     }
+
 
     @GetMapping("/self/{userId}")
     public ResponseEntity<Object> getUserById(@PathVariable long userId) {
@@ -390,5 +391,38 @@ public class UserController {
 
     }
 
+    @Operation(summary = "ADD CONTACTS", description = "Add contact.")
+    @PostMapping("/new-contacts/{userId}/{username}")
+    public ResponseEntity<Object> createContacts(@RequestBody ContactsDto data, @PathVariable Long userId, @PathVariable String username) {
+        logger.info("Received request to create a new user");
+        AuditorAwareImpl.setCurrentAuditor(username);
+        ContactsDto contactsDto = userService.createContacts(data, userId);
+        return ResponseHandler.responseBuilder("contact successfully created", HttpStatus.CREATED , contactsDto);
+    }
+    
+    @Operation(summary = "SHOW ALL CONTACTS", description = "show all contacts.")
+    @GetMapping("/get-All/contacts")
+    public ResponseEntity<Object> getAllContacts(){
+    	List<ContactsDto> contactsDtoList= userService.getAllContacts();
+    	return ResponseHandler.responseBuilder("show all contacts ", HttpStatus.OK, contactsDtoList);
+    }
 
+    @DeleteMapping("/delete-contact/{contactId}")
+    public ResponseEntity<Object> deleteContact(@PathVariable Long contactId){
+	   logger.info("Received request to delete contact with ID: {}", contactId);
+	    try {
+	        userService.deleteContacts(contactId);
+	        logger.info("Contact deleted successfully with ID: {}", contactId);
+	        // Return 200 OK with a success message
+	        return ResponseHandler.responseBuilder("Contact successfully deleted.", HttpStatus.OK, "The Contact has been deleted successfully.");
+	    } catch (ContactNotFoundException e) {
+	        logger.error("User with ID {} not found: {}", contactId, e.getMessage());
+	        // Return 404 Not Found with a user-friendly error message
+	        return ResponseHandler.responseBuilder("contact not found.", HttpStatus.NOT_FOUND, "No contact found with the provided ID.");
+	    } catch (Exception e) {
+	        logger.error("Error deleting user with ID {}: {}", contactId, e.getMessage());
+	        // Return 500 Internal Server Error with a detailed error message
+	        return ResponseHandler.responseBuilder("Contact deletion unsuccessful.", HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred while attempting to delete the contact. Please try again later.");
+	    } 
+   }
 }

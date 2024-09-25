@@ -65,6 +65,7 @@ public interface UserFeignClient {
     // GET USERS FOR CONTACT PAGE
     @GetMapping("/spike/user/usercontacts")
     public ResponseEntity<Object> getUserContact(
+            @RequestParam(name="userId") Long userId,
             @RequestParam String name,
             @RequestParam int pagesize,
             @RequestParam int pageno,
@@ -104,7 +105,7 @@ public interface UserFeignClient {
     ResponseEntity<Object>  addProfilePictureOfAUser(
             @PathVariable long userId,
             @PathVariable String username,
-            @RequestBody MultipartFile profilePicture
+            @RequestPart("file") MultipartFile profilePicture
     );
 
     @GetMapping("/spike/user/self/{userId}")
@@ -119,4 +120,14 @@ public interface UserFeignClient {
 
     @GetMapping("/spike/user")
     List<Object> getAllManagers();
+
+    @PostMapping("/spike/user/new-contacts/{userId}/{username}")
+    ResponseEntity<Object> createContacts(
+            @RequestBody ContactCreationRequestDTO contactCreationRequestDTO,
+            @PathVariable Long userId,
+            @PathVariable String username
+    );
+
+    @GetMapping("/spike/user/get-All/contacts")
+    ResponseEntity<Object> getAllContacts();
 }

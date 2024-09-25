@@ -64,6 +64,16 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public DepartmentResponseDTO getDepartmentByName(String name) {
+        logger.info("Fetching department with name: {}", name);
+        Department department = departmentRepository.findByName(name)
+                .orElseThrow(() -> new DepartmentNotFoundException("ValidationError","Department not found with name: " + name));
+
+        // Use MapStruct to convert entity to DTO
+        return departmentMapper.entityToDepartmentResponseDTO(department);
+    }
+
+    @Override
     public DepartmentResponseDTO updateDepartment(Long id, DepartmentCreationDTO departmentCreationDTO) {
         logger.info("Updating department with id: {}", id);
         Department department = departmentRepository.findById(id)

@@ -2,7 +2,6 @@ package com.spike.SecureGate.Validations;
 
 import com.spike.SecureGate.DTO.userDto.*;
 import com.spike.SecureGate.JdbcHelper.UserDbService;
-import com.spike.SecureGate.enums.IndianState;
 import com.spike.SecureGate.exceptions.ValidationFailedException;
 import com.spike.SecureGate.feignClients.UserFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -309,5 +308,60 @@ public class UserValidators {
     public boolean validateUserExistence(long userId) {
         ResponseEntity<Object> responseEntity = userFeignClient.getUserById(userId);
         return responseEntity.getStatusCode().value() == 200;
+    }
+
+    public boolean validateUserContactCreation(ContactCreationRequestDTO contactCreationRequestDTO) {
+        if (contactCreationRequestDTO == null) {
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "Data is required"
+            );
+        }
+
+        // Validate name (name cannot be null or empty, and no special characters allowed)
+        if (contactCreationRequestDTO.getName() == null || contactCreationRequestDTO.getName().isEmpty() || !contactCreationRequestDTO.getName().matches("^[a-zA-Z0-9 ]*$")) {
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "Name cannot be null, empty, or contain special characters"
+            );
+        }
+
+        // Validate primary mobile number (must not be null and must be valid)
+        if (contactCreationRequestDTO.getPrimaryMobile() == null || !isValidPhoneNumber(contactCreationRequestDTO.getPrimaryMobile())) {
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "Primary mobile number cannot be null and must have a valid format"
+            );
+        }
+
+        // Validate designation if present
+        if (contactCreationRequestDTO.getDesignation() != null && contactCreationRequestDTO.getDesignation().isEmpty()) {
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "Designation cannot be empty"
+            );
+        }
+
+        // Validate addresses if present
+        if (contactCreationRequestDTO.getAddresses() == null || contactCreationRequestDTO.getAddresses().isEmpty()) {
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "At least one address is required."
+            );
+        }
+
+        if (contactCreationRequestDTO.getAddresses().size() > 2) {
+            throw new ValidationFailedException(
+                    "ValidationError",
+                    "A maximum of 2 addresses is allowed."
+            );
+        }
+
+        // Validate each address
+        for (UserAddressDTO address : contactCreationRequestDTO.getAddresses()) {
+            validateAddress(address);
+        }
+
+        return true;
     }
 }

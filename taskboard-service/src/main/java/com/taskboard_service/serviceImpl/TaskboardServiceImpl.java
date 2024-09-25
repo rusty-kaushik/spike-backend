@@ -97,19 +97,11 @@ public class TaskboardServiceImpl implements TaskboardService{
 	
 	
 	@Override
+	@Deprecated
 	public List<TaskboardDto>  getAllTask() throws TaskboadNotFoundException{
 		
 		
 		List<Taskboard> taskboard = repo.findAll();
-		
-		
-		if(taskboard.isEmpty() || taskboard==null) {
-			
-			TaskboadNotFoundException e = new TaskboadNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
-			log.error("Error ocurred -------------------------"+e);
-			throw e;
-		
-	}
 		
 		List<TaskboardDto> taskboardDtos=new ArrayList<>();
 		

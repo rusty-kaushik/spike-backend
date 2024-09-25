@@ -16,5 +16,5 @@ public class BlogCreationRequestDTO {
     private long departmentId;
     private String title;
     private String content;
-    private List<MultipartFile> media;
+    List<MultipartFile> media;
 }

@@ -72,4 +72,13 @@ public class GlobalExceptionHandler {
 		
 		
 	}
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<?> serviceDownException (Exception exception, WebRequest request){
+		
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.BAD_GATEWAY.value(), HttpStatus.BAD_GATEWAY.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(response);
+		
+		
+		
+	}
 }
