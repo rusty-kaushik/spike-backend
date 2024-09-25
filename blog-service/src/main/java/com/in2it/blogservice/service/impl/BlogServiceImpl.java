@@ -5,12 +5,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +26,7 @@ import com.in2it.blogservice.customException.UserNotFoundException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
 import com.in2it.blogservice.dto.UserInfoDTO;
+import com.in2it.blogservice.feignClients.FeignClientDepartment;
 import com.in2it.blogservice.feignClients.FeignClientForComment;
 import com.in2it.blogservice.feignClients.FeignClientForLike;
 import com.in2it.blogservice.feignClients.FeignClientForUser;
@@ -56,6 +60,9 @@ public class BlogServiceImpl implements BlogService {
 	
 	@Autowired
 	private FeignClientForUser userFeign;
+	
+	@Autowired
+	private FeignClientDepartment clientDepartment;
 
 	// This method is used to save data in database and save Media in file system .
 	@Override
@@ -181,8 +188,7 @@ public class BlogServiceImpl implements BlogService {
 				if(blog.getLikeCount()>0) {
 					likeFeign.unlikeDeletedBlog(bId);
 				}
-				
-
+	
 			}
 			catch (Exception e) {
 
@@ -295,8 +301,7 @@ public class BlogServiceImpl implements BlogService {
 		
 
 		List<Blog> blog = repo.findAll(pageable,true);
-		
-	
+
 		log.info("----------------------------------" + blog);
 
 		List<BlogDto> blogDtoList = new ArrayList<>();
@@ -304,20 +309,42 @@ public class BlogServiceImpl implements BlogService {
 		for (Blog blog2 : blog) {
 
 			if (blog2 != null) {
-				UserInfoDTO userPicture=null;
+				String profilePicture=null;
+				String department=null;
+				
 				try {
 					
-             	userPicture = userFeign.getUserByUsername(blog2.getUserName());
+					ResponseEntity<Object> departmentById = clientDepartment.getDepartmentById(blog2.getDepartmentId());
+					Map<String, Object> depart = (Map<String, Object>) departmentById.getBody();
+					department = (String) ((Map<String, Object>) depart.get("data")).get("name");
 					
-			
-				}catch (Exception e) {
-					log.error("Please ! Check your services connection . May be down.");
+				} catch (Exception e) {
+					log.error("Please ! Check your services connection . May be down."+e);
 				}
 				
+				try {
+			     
+				ResponseEntity<Object> user = userFeign.getUserById(blog2.getUserId());
+             	
+				 Map<String, Object> body = (Map<String, Object>) user.getBody();
+				 profilePicture = (String) ((Map<String, Object>) body.get("data")).get("profilePicture");
+				
+				}catch (Exception e) {
+					log.error("Please ! Check your services connection . May be down."+e);
+				}
+				
+				
+				
+				
+				
 				BlogDto blogDto = objectMapper.blogToDtoConverter(blog2);
-				if(userPicture!=null) {
+				if(profilePicture!=null) {
 					
-					blogDto.setProfilePic(userPicture.getPicture());	
+					blogDto.setProfilePic(profilePicture);	
+				}
+				
+				if(department!=null) {
+					blogDto.setDepartmentName(department);
 				}
 				blogDtoList.add(blogDto);
 			}

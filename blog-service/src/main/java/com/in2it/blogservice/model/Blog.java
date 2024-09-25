@@ -41,7 +41,8 @@ public class Blog {
 	
 	
 	@NotBlank(message = "userName cannot be blank") 
-	private String userName;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
+	@Column(name="userName")
+	private String name;;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
 	
 	
 	private long userId; // Taking autherId as userName

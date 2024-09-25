@@ -29,10 +29,16 @@ public class BlogDto {
 	private UUID id;
 
 	@NotBlank(message = "departmentId cannot be blank")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private long departmentId;
+	
+
+	@JsonProperty(access = Access.READ_ONLY)
+	private String departmentName;
 
 	@NotNull
-	private String userName; // Taking autherId as userName
+	@Column(name="userName")
+	private String name; // Taking autherId as userName
 	
 	@NotNull
 	private long userId; // Taking autherId as userName
