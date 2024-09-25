@@ -300,7 +300,10 @@ public class UserHelper {
 
             // Save the updated user
             return userRepository.save(existingUser);
-        } catch (Exception e) {
+        } catch (UserNotFoundException e) {
+            logger.error("User not found during update: {}", e.getMessage());
+            throw e;
+        }catch (Exception e) {
             logger.error("Could not update user with id: {}", userId, e);
             throw new DtoToEntityConversionException("ConversionError","Could not update user"+ e);
         }
