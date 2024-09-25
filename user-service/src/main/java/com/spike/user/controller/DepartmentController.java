@@ -90,6 +90,29 @@ public class DepartmentController {
         }
     }
 
+    @Operation(
+            summary = "Get department by Name",
+            description = "Fetches a department by its NAME."
+    )
+    @GetMapping("/name/{name}") // Changed to avoid ambiguity
+    public ResponseEntity<Object> getDepartmentByName(@PathVariable String name) {
+        logger.info("Start: Fetching department with Name {}", name);
+        try {
+            DepartmentResponseDTO department = departmentService.getDepartmentByName(name);
+            return ResponseHandler.responseBuilder("Department fetched successfully", HttpStatus.OK, department);
+        } catch (DepartmentNotFoundException e) {
+            logger.warn("Department with Name {} not found: {}", name, e.getMessage());
+            return ResponseHandler.responseBuilder("Department not found: " + e.getMessage(), HttpStatus.NOT_FOUND, "Department not found");
+        } catch (Exception e) {
+            logger.error("Error fetching department with Name {}: {}", name, e.getMessage());
+            return ResponseHandler.responseBuilder("Error fetching department: " + e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY, "Fetch failed");
+        } finally {
+            logger.info("End: Fetching department with Name {}", name);
+            AuditorAwareImpl.clear();
+        }
+    }
+
+
     // check if department exists
     @Operation(
             summary = "Check if department exists",
