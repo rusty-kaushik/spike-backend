@@ -466,4 +466,14 @@ public class UserServiceImpl implements UserService {
         }
         return contactsDtoList;
     }
+    
+    public void deleteContacts(Long id) {
+    	try {
+    	Contacts con= userContactsRepository.findById(id).orElseThrow(()->new ContactNotFoundException( "contact's id doesn't exist "));
+    	 userContactsRepository.delete(con);
+    	}catch (Exception e) {
+            logger.error("Error deleting user with ID: {}", id, e);
+            throw new RuntimeException("Error deleting contact", e);
+        }
+    }
 }
