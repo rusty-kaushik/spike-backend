@@ -44,4 +44,7 @@ public interface UserService {
     
     //fetch All-Contacts
     List<ContactsDto> getAllContacts();
+    
+    //Delete contact by user id
+    public void deleteContacts(Long id);
 }

@@ -19,7 +19,7 @@ public class ContactsDto {
     private String name;
     private String designation;
     private String primaryMobileNumber;
-    private List<ContactsAddressDto> addresses;
+    private List<UserAddressDTO> addresses;
     private String linkedinUrl;
     private String facebookUrl;
     private String instagramUrl;

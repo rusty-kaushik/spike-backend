@@ -407,4 +407,22 @@ public class UserController {
     	return ResponseHandler.responseBuilder("show all contacts ", HttpStatus.OK, contactsDtoList);
     }
 
+    @DeleteMapping("/delete-contact/{contactId}")
+    public ResponseEntity<Object> deleteContact(@PathVariable Long contactId){
+	   logger.info("Received request to delete contact with ID: {}", contactId);
+	    try {
+	        userService.deleteContacts(contactId);
+	        logger.info("Contact deleted successfully with ID: {}", contactId);
+	        // Return 200 OK with a success message
+	        return ResponseHandler.responseBuilder("Contact successfully deleted.", HttpStatus.OK, "The Contact has been deleted successfully.");
+	    } catch (ContactNotFoundException e) {
+	        logger.error("User with ID {} not found: {}", contactId, e.getMessage());
+	        // Return 404 Not Found with a user-friendly error message
+	        return ResponseHandler.responseBuilder("contact not found.", HttpStatus.NOT_FOUND, "No contact found with the provided ID.");
+	    } catch (Exception e) {
+	        logger.error("Error deleting user with ID {}: {}", contactId, e.getMessage());
+	        // Return 500 Internal Server Error with a detailed error message
+	        return ResponseHandler.responseBuilder("Contact deletion unsuccessful.", HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred while attempting to delete the contact. Please try again later.");
+	    } 
+   }
 }
