@@ -425,4 +425,25 @@ public class UserController {
 	        return ResponseHandler.responseBuilder("Contact deletion unsuccessful.", HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred while attempting to delete the contact. Please try again later.");
 	    } 
    }
+    @PutMapping("/update-contacts/{contactId}")
+    public ResponseEntity<Object> updateContacts(@PathVariable Long contactId, @RequestBody ContactsDto contactsDto){
+    	 try {
+ 	        if(contactId!= null) {
+ 	        	userService.updateContact(contactId, contactsDto);
+ 	        	 return ResponseHandler.responseBuilder("Contact successfully updated.", HttpStatus.OK, "The Contact has been updated successfully.");
+ 	        }else {
+ 	        	throw new ContactNotFoundException("contact id doesn't exist");
+ 	        }
+ 	          
+ 	    } catch (ContactNotFoundException e) {
+ 	        logger.error("User with ID {} not found: {}", contactId, e.getMessage());
+ 	        // Return 404 Not Found with a user-friendly error message
+ 	        return ResponseHandler.responseBuilder("contact not found.", HttpStatus.NOT_FOUND, "No contact found with the provided ID.");
+ 	    } catch (Exception e) {
+ 	        logger.error("Error updated user with ID {}: {}", contactId, e.getMessage());
+ 	        // Return 500 Internal Server Error with a detailed error message
+ 	        return ResponseHandler.responseBuilder("Contact update unsuccessful.", HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred while attempting to update the contact. Please try again later.");
+ 	    } 
+    	
+    }
 }
