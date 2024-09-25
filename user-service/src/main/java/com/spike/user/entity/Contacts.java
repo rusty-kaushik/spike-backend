@@ -21,14 +21,13 @@ public class Contacts extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private long userId;
-    @Size(min = 1, max = 100)
-    @Column(name = "name", nullable = false, length = 100)
+   
+    @Column(nullable = false)
     private String name;
     private String designation;
-    @Column(nullable = false, unique = true, length = 10)
-    @Size(max = 11, min = 10)
+    @Column(nullable = false)
     private String primaryMobileNumber;
     @OneToMany(cascade = CascadeType.ALL)
 //    @JsonManagedReference
