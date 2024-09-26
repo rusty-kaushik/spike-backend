@@ -36,8 +36,9 @@ public class BlogDto {
 	@JsonProperty(access = Access.READ_ONLY)
 	private String departmentName;
 
-	@NotNull
+
 	@Column(name="userName")
+	@Hidden
 	private String name; // Taking autherId as userName
 	
 	@NotNull

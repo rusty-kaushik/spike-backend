@@ -16,6 +16,7 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -32,8 +33,8 @@ public class Converter {
 	@Autowired
 	ModelMapper mapper;
 
-	/* static way to create file path */
-	public final String fileUploadDir = ".\\blog-media";
+	@Value("${file.dir}")
+	private final String fileUploadDir=null;
 
 	private static long randomId = 0;
 
@@ -155,7 +156,7 @@ public class Converter {
 				paths.add(encodedString);
 
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error("file not found ---------------------"+e);
 			}
 
 		}
