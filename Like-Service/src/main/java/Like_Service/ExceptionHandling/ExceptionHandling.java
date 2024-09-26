@@ -16,7 +16,7 @@ public class ExceptionHandling {
     @ExceptionHandler(BlogNotFoundException.class)
     public ResponseEntity BlogNotFoundExceptionHandling(BlogNotFoundException ex) {
         Map<String, Object> response = new HashMap<>();
-        response.put("httpStatusCode", HttpStatus.BAD_REQUEST.value());
+        response.put("httpStatusCode", HttpStatus.NO_CONTENT.value());
         response.put("error", "Blog Not found Error Occured");
         response.put("message", ex.getMessage());
         return ResponseEntity.badRequest().body(response);
@@ -28,7 +28,7 @@ public class ExceptionHandling {
     public ResponseEntity<?> handleIllegalArgumentException(UserNotFoundException ex) {
         Map<String, Object> response = new HashMap<>();
         //response.put("timestamp", System.currentTimeMillis());
-        response.put("httpStatusCode", HttpStatus.BAD_REQUEST.value());
+        response.put("httpStatusCode", HttpStatus.NO_CONTENT.value());
         response.put("error", "User Not found Error Occurred");
         response.put("message", ex.getMessage());
         return ResponseEntity.badRequest().body(response);
