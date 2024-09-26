@@ -56,11 +56,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public ResponseEntity<Object> updateDepartmentById(Long id, DepartmentCreationDTO department) {
         try {
-            if (!departmentValidator.validateDepartmentCreation(department)) {
+            if (id == null || department == null) {
                 return ResponseEntity.badRequest().body("Invalid department data");
-            }
-            if (!departmentValidator.validateDepartmentExists(id)) {
-                return ResponseEntity.badRequest().body("Invalid department");
             }
             ResponseEntity<Object> responseEntity = userFeignClient.updateDepartment(id, department);
             return responseEntity;
@@ -72,13 +69,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public ResponseEntity<Object> deleteDepartmentById(Long id) {
         try {
-            if (!departmentValidator.validateDepartmentExists(id)) {
+            if (id == null) {
                 return ResponseEntity.badRequest().body("Invalid department");
             }
             ResponseEntity<Object> responseEntity = userFeignClient.deleteDepartment(id);
             return responseEntity;
         } catch (FeignException e) {
-                return ResponseEntity.status(e.status()).body(e.contentUTF8());
-            }
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
+        }
     }
 }
