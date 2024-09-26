@@ -25,9 +25,9 @@ public class ExceptionHandling {
     private ResponseEntity<Object> noteNotFoundException(NoteNotFoundException ex){
         Map<String, Object> response= new HashMap<>();
         response.put("error","Note not found");
-        response.put("httpStatusCode", HttpStatus.NOT_FOUND);
+        response.put("httpStatusCode", HttpStatus.NO_CONTENT);
         response.put("message",ex.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
 
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -70,7 +71,7 @@ public class NoteServiceImpl implements NotesService {
     public List<NotesDto> getAllNotes(long userId) {
         List<NotesEntity> notes = noteRepository.findAllByUserId(userId);
         if (notes.isEmpty()) {
-            throw new NoteNotFoundException("Notes Not Found");
+           return Collections.emptyList();
         }
         return notes.stream().map(this::notesToNoteDto).collect(Collectors.toList());
     }

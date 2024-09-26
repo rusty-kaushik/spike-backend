@@ -48,7 +48,7 @@ public class NotesController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "notes fetched successfully"),
             @ApiResponse(responseCode = "400", description = "Error occurred while fetching notes"),
-            @ApiResponse(responseCode = "404", description = "Note not found")
+            @ApiResponse(responseCode = "204", description = "Note not found")
     })
     @GetMapping("/get-notes/{userId}")
     public ResponseEntity<Object> getNotes(@RequestParam(name = "content", required = false) String content, @PathVariable Long userId) {
@@ -61,7 +61,7 @@ public class NotesController {
                 return responseHandler.response("Notes fetched successfully", HttpStatus.OK, notes);
             }
         } catch (NoteNotFoundException ex) {
-            throw new NoteNotFoundException("Note not found with userid : " + userId);
+            return responseHandler.response("Note Not Found",HttpStatus.OK, "Note not found");
         } catch (RuntimeException ex) {
             throw new RuntimeException("Error occurred while fetching notes");
         }
