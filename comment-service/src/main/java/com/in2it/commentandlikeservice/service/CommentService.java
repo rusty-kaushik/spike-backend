@@ -13,7 +13,8 @@ public interface CommentService {
 
 	public List<CommentDto> getByBlogId(String blogId);
 
-	public CommentDto updateComment(CommentUpdateDto updateDto, String commentId);
+//	public CommentDto updateComment(CommentUpdateDto updateDto, String commentId);
+	public CommentDto updateComment(String content, String commentId);
 
 	public CommentDto deleteByCommentId(String blogId, String commentId);
 	
