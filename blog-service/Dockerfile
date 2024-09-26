@@ -7,10 +7,10 @@ WORKDIR /app
 # Copy all JAR files into the container
 COPY /target/*.jar /app/
 
-RUN mkdir -p /app/profile_pictures
+# RUN mkdir -p /app/profile_pictures
 
 
-COPY /opt/java-app/user/profile_pictures /app/profile_pictures
+# COPY /opt/java-app/user/profile_pictures /app/profile_pictures
  
  
 # Expose the necessary ports
