@@ -25,4 +25,23 @@ public class ResponseHandler {
         response.put("message", message);  // Use dynamic message
         return new ResponseEntity<>(response, httpStatus);
     }
+
+    //Method for building response for get api with total count
+    public static ResponseEntity<Object> fetchCountResponseForContact(Object responseObject, String message , HttpStatus httpStatus, long totalCount) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", message);
+        response.put("data",responseObject);
+        response.put("httpStatusCode", httpStatus.value());
+        response.put("totalContacts", totalCount);
+        return new ResponseEntity<>(response, httpStatus);
+    }
+
+    public static ResponseEntity<Object> fetchCountResponseForEmployee(Object responseObject, String message , HttpStatus httpStatus, long totalCount) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", message);
+        response.put("data",responseObject);
+        response.put("httpStatusCode", httpStatus.value());
+        response.put("totalEmployees", totalCount);
+        return new ResponseEntity<>(response, httpStatus);
+    }
 }
