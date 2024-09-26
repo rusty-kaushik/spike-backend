@@ -111,7 +111,7 @@ public class CommentServiceImpl implements CommentService {
 		List<Comment> commentList = commentRepository.findByBlogIdAndStatus(blogId, "Active");
 		log.info("commentList---------------------------------" + commentList);
 		if (commentList.isEmpty()) {
-			throw new CommentNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
+			throw new CommentNotFoundException(HttpStatus.NOT_FOUND + " Data not available, please ! Try again.");
 		} else {
 
 			for (Comment com : commentList) {
