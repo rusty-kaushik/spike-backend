@@ -333,6 +333,7 @@ public class UserServiceImpl implements UserService {
     private UserDashboardDTO userToUserDashboardDto(User user) {
         UserDashboardDTO userDashboardDTO = userHelper.entityToUserDashboardDto(user);
         userDashboardDTO.setId(user.getId());
+        userDashboardDTO.setJoiningDate(user.getJoiningDate());
         //convert image into base64
         userDashboardDTO.setPrimaryMobileNumber(user.getPrimaryMobileNumber());
 
