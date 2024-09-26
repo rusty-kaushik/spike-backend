@@ -10,7 +10,7 @@ EXPOSE 8181
 ENV USER_SERVICE_PORT=8181
 
 # Make sure the upload directory exists inside the container
-RUN mkdir -p /opt/java-app/user/profile_pictures
+RUN mkdir -p /app/profile_pictures
 
 # Run all services using a shell script
 CMD ["sh", "-c", "\
