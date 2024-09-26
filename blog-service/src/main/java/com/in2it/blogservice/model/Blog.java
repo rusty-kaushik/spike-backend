@@ -39,8 +39,7 @@ public class Blog {
 	@Range(min = 1 , message = "min number of digits is should be 1")
 	private long departmentId;
 	
-	
-	@NotBlank(message = "userName cannot be blank") 
+	 
 	@Column(name="userName")
 	private String name;;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
 	

@@ -68,6 +68,24 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public BlogDto saveBlogWithFile(BlogDto blogDto, List<MultipartFile> multipartFile) {
 		Blog blog = null;
+		
+		
+	String name=null;
+		
+		try {
+			
+			ResponseEntity<Object> user = userFeign.getUserById(blogDto.getUserId());
+			Map<String, Object> depart = (Map<String, Object>) user.getBody();
+			name = (String) ((Map<String, Object>) depart.get("data")).get("name");
+			
+			blogDto.setName(name);
+			
+		} catch (Exception e) {
+			log.error("Please ! Check your services connection . May be down."+e);
+		}
+		
+		
+		
 
 		log.info("------------------------" + blogDto);
 		// Set original file name is this list.
