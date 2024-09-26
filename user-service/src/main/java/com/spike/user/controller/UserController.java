@@ -280,7 +280,8 @@ public class UserController {
         try {
             logger.info("getting user contact information " + name);
             List<UserContactsDTO> user = userService.getUserContacts(userId,name, pageno, pagesize, sort);
-            return ResponseHandler.responseBuilder("user contacts found successfully", HttpStatus.OK, user);
+            long totalContacts = user.size();
+            return ResponseHandler.fetchCountResponseForContact(user, "User contacts found successfully", HttpStatus.OK, totalContacts);
         } catch (UserNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
@@ -310,7 +311,8 @@ public class UserController {
                                                                 @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort) {
         try {
             List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, salary, page, size, sort);
-            return ResponseHandler.responseBuilder("user info dashboard displayed successfully", HttpStatus.OK, userDashBoard);
+            long totalEmployees = userDashBoard.size();
+            return ResponseHandler.fetchCountResponseForEmployee(userDashBoard, "user info dashboard displayed successfully",HttpStatus.OK,totalEmployees);
         } catch (UserNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
