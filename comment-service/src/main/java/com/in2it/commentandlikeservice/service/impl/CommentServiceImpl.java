@@ -87,16 +87,16 @@ public class CommentServiceImpl implements CommentService {
 
 	// This method is used to update BLOG with Blog_id with limited permissions
 	@Override
-	public CommentDto updateComment(CommentUpdateDto updateDto, String commentId) {
+	public CommentDto updateComment(String content, String commentId) {
 
 		Comment comment = null;
 
 		comment = commentRepository.findById(commentId)
 				.orElseThrow(() -> new CommentNotFoundException("Comment dosen't exist with given id"));
 
-		log.info("===================" + updateDto);
-		if (updateDto.getContent() != null)
-			comment.setContent(updateDto.getContent());
+		log.info("===================" + content);
+		if (content != null)
+			comment.setContent(content);
 
 		comment.setUpdatedDateTime(LocalDateTime.now());
 		comment.setUpdatedBy(comment.getUserName());
@@ -110,9 +110,9 @@ public class CommentServiceImpl implements CommentService {
 
 		List<Comment> commentList = commentRepository.findByBlogIdAndStatus(blogId, "Active");
 		log.info("commentList---------------------------------" + commentList);
-		if (commentList.isEmpty()) {
-			throw new CommentNotFoundException(HttpStatus.NOT_FOUND + " Data not available, please ! Try again.");
-		} else {
+//		if (commentList.isEmpty()) {
+//			throw new CommentNotFoundException(HttpStatus.NOT_FOUND + " Data not available, please ! Try again.");
+//		} else {
 
 			for (Comment com : commentList) {
 
@@ -120,7 +120,7 @@ public class CommentServiceImpl implements CommentService {
 				commentListDto.add(commentDtoConvertor);
 				System.out.println(commentDtoConvertor + "***********");
 			}
-		}
+//		}
 
 		return commentListDto;
 	}

@@ -15,8 +15,8 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(IdInvalidException.class)
 	public ResponseEntity<?> idInvalidExceptionhandler(IdInvalidException ex, WebRequest request) {
 
-		ExceptionStatus status = new ExceptionStatus(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(),
-				HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage(), request.getDescription(false));
+		ExceptionStatus status = new ExceptionStatus( HttpStatus.NOT_FOUND.value(),
+				HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage());
 
 		return new ResponseEntity(status, HttpStatus.NOT_FOUND);
 
@@ -26,8 +26,8 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(InfoMissingException.class)
 	public ResponseEntity<?> InfoMissingExceptionhandler(InfoMissingException ex, WebRequest request) {
 
-		ExceptionStatus status = new ExceptionStatus(LocalDateTime.now(), HttpStatus.NON_AUTHORITATIVE_INFORMATION.value(),
-				HttpStatus.NON_AUTHORITATIVE_INFORMATION.getReasonPhrase(), ex.getMessage(), request.getDescription(false));
+		ExceptionStatus status = new ExceptionStatus( HttpStatus.NON_AUTHORITATIVE_INFORMATION.value(),
+				HttpStatus.NON_AUTHORITATIVE_INFORMATION.getReasonPhrase(), ex.getMessage());
 
 		return new ResponseEntity(status, HttpStatus.NOT_FOUND);
 
@@ -37,8 +37,8 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<?> UserNotFoundExceptionhandler(UserNotFoundException ex, WebRequest request) {
 
-		ExceptionStatus status = new ExceptionStatus(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(),
-				HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage(), request.getDescription(false));
+		ExceptionStatus status = new ExceptionStatus( HttpStatus.NOT_FOUND.value(),
+				HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage());
 
 		return new ResponseEntity(status, HttpStatus.NOT_FOUND);
 
