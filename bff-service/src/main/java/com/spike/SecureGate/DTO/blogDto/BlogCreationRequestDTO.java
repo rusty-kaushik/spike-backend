@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BlogCreationRequestDTO {
+    private long userId;
     private long departmentId;
     private String title;
     private String content;

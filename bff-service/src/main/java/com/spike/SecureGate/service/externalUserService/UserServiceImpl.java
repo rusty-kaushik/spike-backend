@@ -134,12 +134,26 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ResponseEntity<Object> fetchUsersForEmployeePage(String name, String email, Double salary, int page, int size, String sort) {
-        return userFeignClient.getSpecificUserInfoByUsername(name, email, salary, page, size, sort);
+        try{
+            return userFeignClient.getSpecificUserInfoByUsername(name, email, salary, page, size, sort);
+        }  catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
+        } catch (Exception e) {
+            logger.error("Error occurred while fetching employee page " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while de: " + e.getMessage());
+        }
     }
 
     @Override
     public ResponseEntity<Object> fetchUsersForContactPage(Long userId,String name, int pageSize, int pageNo, String sort) {
-        return userFeignClient.getUserContact(userId, name, pageSize, pageNo, sort);
+        try{
+            return userFeignClient.getUserContact(userId, name, pageSize, pageNo, sort);
+        }  catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
+        } catch (Exception e) {
+            logger.error("Error occurred while fetching employee page " + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while de: " + e.getMessage());
+        }
     }
 
     @Override

@@ -32,16 +32,15 @@ public class BlogController {
             summary = "Create a blog",
             description = "Any user can create a blog"
     )
-    @PostMapping(path = "/create", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    @PostMapping(path = "/create/{userId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> createBlog(@ModelAttribute BlogCreationRequestDTO blogDto)
     {
         logger.info("Started authenticating");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         logger.info("Authentication Successful");
-        String userName = authentication.getName();
         logger.info("Started creating new Blog");
-        ResponseEntity<Object> user = blogService.createBlog(userName,blogDto);
+        ResponseEntity<Object> user = blogService.createBlog(blogDto);
         logger.info("Finished creating new Blog");
         return user;
     }

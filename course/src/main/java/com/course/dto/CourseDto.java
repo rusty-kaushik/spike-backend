@@ -1,6 +1,7 @@
 package com.course.dto;
 
 import java.time.LocalTime;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,6 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,7 +39,10 @@ public class CourseDto {
 	@NotNull
 	private String department;
 
-	private String duration;
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+	private Date startDate;
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+	private Date endDate;
 
 	private String createdBy;
 	@JsonProperty(access = Access.READ_ONLY)

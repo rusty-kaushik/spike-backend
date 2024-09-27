@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 public class BlogHelper {
 
     // CONVERTS A BLOG CREATION REQUEST DATA TO FEIGN CREATION REQUEST DATA
-    public BlogCreationFeignDTO blogCreationDtoTOFeignDto(String userName, BlogCreationRequestDTO content) {
+    public BlogCreationFeignDTO blogCreationDtoTOFeignDto(BlogCreationRequestDTO content) {
         BlogCreationFeignDTO blogDto = new BlogCreationFeignDTO();
-        blogDto.setUserName(userName);
         blogDto.setTitle(content.getTitle());
         blogDto.setContent(content.getContent());
         blogDto.setDepartmentId(content.getDepartmentId());
+        blogDto.setUserId(content.getUserId());
         return blogDto;
     }
 
