@@ -1,6 +1,7 @@
 package com.spike.Notes.NotesController;
 
 import com.spike.Notes.CustomExceptions.NoteNotFoundException;
+import com.spike.Notes.CustomExceptions.UserNotFoundException;
 import com.spike.Notes.NotesDto.NotesDto;
 import com.spike.Notes.NotesEntity.Color;
 import com.spike.Notes.NotesService.NotesService;
@@ -37,6 +38,8 @@ public class NotesController {
         try {
             NotesDto note = noteService.createNote(userId);
             return responseHandler.response("Note created successfully", HttpStatus.CREATED, note);
+        } catch (UserNotFoundException ex) {
+            return responseHandler.response("User Not Found with id "+userId , HttpStatus.OK, "User not found");
         } catch (RuntimeException ex) {
             throw new RuntimeException("Error occurred while creating notes", ex);
         }
@@ -82,7 +85,7 @@ public class NotesController {
             NotesDto note = noteService.deleteNote(noteId, userId);
             return responseHandler.response("Note deleted successfully", HttpStatus.OK, note);
         } catch (NoteNotFoundException ex) {
-            throw new NoteNotFoundException("Note not found with id : " + id);
+            return responseHandler.response("Note Not Found with id: "+id ,HttpStatus.OK, "Note not found");
         } catch (RuntimeException ex) {
             throw ex;
         }
@@ -103,7 +106,7 @@ public class NotesController {
             NotesDto note = noteService.editNote(notesDto, noteId);
             return responseHandler.response("Note edited successfully", HttpStatus.OK, note);
         } catch (NoteNotFoundException ex) {
-            throw new NoteNotFoundException("Note not found with id : " + id);
+            return responseHandler.response("Note Not Found with id: "+id ,HttpStatus.OK, "Note not found");
         } catch (RuntimeException ex) {
             throw new RuntimeException("Error occurred while editing a note");
         }
@@ -117,7 +120,7 @@ public class NotesController {
             NotesDto response = noteService.changeColor(color, noteId);
             return responseHandler.response("Color changed successfully", HttpStatus.OK, response);
         } catch (NoteNotFoundException ex) {
-            throw (ex);
+            return responseHandler.response("Note Not Found with id: "+id ,HttpStatus.OK, "Note not found");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
