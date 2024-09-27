@@ -25,12 +25,16 @@ import com.in2it.spiketicket.service.TicketService;
 import com.in2it.spiketicket.service.exception.HierarchyException;
 import com.in2it.spiketicket.service.exception.StatusNotFoundException;
 import com.in2it.spiketicket.service.exception.TicketNotFoundException;
+import com.in2it.spiketicket.util.PDFGenerator;
 
 @Service
 public class TicketServiceImpl implements TicketService {
 
 	@Autowired
 	TicketRepository repository;
+	
+	@Autowired
+	PDFGenerator pdfGenerator;
 
 	@Autowired
 	ModelMapper mapper;
@@ -41,7 +45,7 @@ public class TicketServiceImpl implements TicketService {
 		if (dto != null) {
 			Ticket ticket = repository.save(Ticket.builder().assignedBy(dto.getAssignedBy()).title(dto.getTitle())
 					.description(dto.getDescription()).assignTo(dto.getAssignTo()).createdAt(LocalDate.now())
-					.status(Status.INPROGRESS).deleted(false).build());
+					.status(Status.OPEN).deleted(false).build());
 			return mapper.map(ticket, TicketDto.class);
 		}
 		return null;
@@ -55,7 +59,6 @@ public class TicketServiceImpl implements TicketService {
 
 		List<TicketDto> ticketDtos = pageOfTickets.getContent().stream()
 				.map(ticket -> mapper.map(ticket, TicketDto.class)).collect(Collectors.toList());
-
 		return new PageImpl<>(ticketDtos, pageable, pageOfTickets.getTotalElements());
 	}
 
@@ -161,6 +164,13 @@ public class TicketServiceImpl implements TicketService {
 		return new PageImpl<>(ticketDtos, pageable, ticketPage.getTotalElements());
 
 	}
+	
+	@Override
+	public List<TicketDto> getAllTickets() {
+		List<Ticket> all = repository.findAll();
+		return all.stream().map(ticket-> mapper.map(ticket, TicketDto.class)).collect(Collectors.toList());
+	
+	}
 
 //	=====================================================================================================================================
 	private List<Sort.Order> createSortOrder(List<String> sortList, String sortDirection) {
@@ -178,5 +188,7 @@ public class TicketServiceImpl implements TicketService {
 		}
 		return sorts;
 	}
+
+	
 
 }

@@ -16,8 +16,12 @@ comment-service/app.log
 
 spike-ticket/.gitignore
 spike-ticket/.mvn/
+
 spike-ticket/mvnw
 spike-ticket/mvnw.cmd
+
+
+spike-ticket/PdfReportRepo/
 
 Calender-Event-Service/.gitignore
 Calender-Event-Service/.mvn/
@@ -40,3 +44,6 @@ Mail-Service/.project
 Mail-Service/.settings/
 Mail-Service/target/
 Mail-Service/allMailAttachments/
+
+
+

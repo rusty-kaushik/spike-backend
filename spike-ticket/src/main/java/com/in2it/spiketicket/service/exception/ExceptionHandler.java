@@ -50,4 +50,12 @@ public class ExceptionHandler {
 		
 	}
 
+	@org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
+	public ResponseEntity<?> requiredFieldException(Exception exception, WebRequest request) {
+		
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),
+				HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		
+	}
 }

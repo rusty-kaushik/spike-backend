@@ -29,5 +29,7 @@ public interface TicketService {
 	long getCountOfTotalTicket();
 
 	long getCountByStatus(String status);
+	
+	List<TicketDto> getAllTickets();
 
 }
