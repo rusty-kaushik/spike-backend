@@ -140,6 +140,22 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public User updateUserByAdmin(Long userId, UserUpdateRequestDTO userUpdateRequestDTO) {
+        logger.info("Starting update process for user ID: {}", userId);
+        try{
+            // Use the helper method to update the user
+            User updatedUser = userHelper.userFullUpdateByAdmin(userId, userUpdateRequestDTO);
+            logger.info("User fields updated successfully for user ID: {}", userId);
+            return updatedUser;
+        }catch (UserNotFoundException e) {
+            logger.error("Error updating user - user not found with id: {}", userId, e);
+            throw e;
+        }catch (Exception e){
+            logger.error("Unexpected error updating user with id: {}", userId, e);
+            throw new RuntimeException("Unexpected error updating user", e);
+        }
+    }
 
 
     // User Profile Picture update

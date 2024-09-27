@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spike.user.customMapper.UserMapper;
 import com.spike.user.dto.*;
 import com.spike.user.entity.*;
-import com.spike.user.exceptions.DepartmentNotFoundException;
-import com.spike.user.exceptions.DtoToEntityConversionException;
-import com.spike.user.exceptions.RoleNotFoundException;
-import com.spike.user.exceptions.UserNotFoundException;
+import com.spike.user.exceptions.*;
 import com.spike.user.repository.DepartmentRepository;
 import com.spike.user.repository.RoleRepository;
 import com.spike.user.repository.UserRepository;
@@ -308,6 +305,43 @@ public class UserHelper {
             throw new DtoToEntityConversionException("ConversionError","Could not update user"+ e);
         }
     }
+
+    // update user by admin helper function
+    public User userFullUpdateByAdmin(Long userId, UserUpdateRequestDTO userUpdateRequestDTO)  {
+        try {
+            // Find the existing user
+            User existingUser = userRepository.findById(userId)
+                    .orElseThrow(() -> new UserNotFoundException("ValidationError", "User not found with id: " + userId));
+
+
+            // Update user fields using the mapper
+            userMapper.updateUserByAdminDTO(userUpdateRequestDTO, existingUser);
+
+            // Update social fields
+            userMapper.mapSocialsByAdmin(userUpdateRequestDTO, existingUser);
+
+            // Handle addresses
+            if (userUpdateRequestDTO.getAddresses() != null) {
+                existingUser.getAddresses().clear(); // Clear existing addresses
+                for (UserAddressDTO addressDTO : userUpdateRequestDTO.getAddresses()) {
+                    UserAddress address = userMapper.dtoToEntityAddress(addressDTO);
+                    address.setUser(existingUser);
+                    existingUser.getAddresses().add(address);
+                }
+            }
+
+            // Save and return the updated user
+            return userRepository.save(existingUser);
+        } catch (UserNotFoundException e) {
+            logger.error("User not found during update: {}", e.getMessage());
+            throw e;
+        } catch (Exception e) {
+            logger.error("Could not update user with id: {}", userId, e);
+            throw new DtoToEntityConversionException("ConversionError", "Could not update user" + e);
+        }
+    }
+
+
 
 
     public UserProfilePicture updateUserProfilePicture(MultipartFile profilePicture, User user, String oldFilePath) {
