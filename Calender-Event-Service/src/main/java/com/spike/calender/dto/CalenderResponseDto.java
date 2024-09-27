@@ -23,13 +23,13 @@ public class CalenderResponseDto {
 
 	private String color;
 
-	private LocalDate startingDate;
+	private String startingDate;
 
-	private LocalDate endingDate;
+	private String endingDate;
 
-	private LocalTime startingTime;
+	private String startingTime;
 
-	private LocalTime endingTime;
+	private String endingTime;
 
 	private String[] sharedBy;
 
@@ -37,8 +37,8 @@ public class CalenderResponseDto {
 	
 	private String link;
 	
-	private LocalDateTime updatedAt;
-	private LocalDateTime createdAt;
+	private String updatedAt;
+	private String createdAt;
 	private String createdBy;
 	private String updatedBy;
 }
