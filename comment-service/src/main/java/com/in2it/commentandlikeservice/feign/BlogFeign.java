@@ -1,5 +1,6 @@
 package com.in2it.commentandlikeservice.feign;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,7 @@ import com.in2it.commentandlikeservice.dto.BlogDto;
 
 import jakarta.validation.Valid;
 
-@FeignClient(name="blog-service" , url="http://99.99.99.185:8282/spike/blog")
+@FeignClient(name="blog-service" , url="${blog-service.feign.address}")
 public interface BlogFeign {
 
 	@GetMapping("/getByBlogId/{blogId}")

@@ -1,14 +1,19 @@
 package com.in2it.blogservice.service.impl;
 
+import java.io.Console;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,8 +25,11 @@ import com.in2it.blogservice.customException.LikeServiceDownException;
 import com.in2it.blogservice.customException.UserNotFoundException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
+import com.in2it.blogservice.dto.UserInfoDTO;
+import com.in2it.blogservice.feignClients.FeignClientDepartment;
 import com.in2it.blogservice.feignClients.FeignClientForComment;
 import com.in2it.blogservice.feignClients.FeignClientForLike;
+import com.in2it.blogservice.feignClients.FeignClientForUser;
 import com.in2it.blogservice.mapper.Converter;
 import com.in2it.blogservice.model.Blog;
 import com.in2it.blogservice.repository.BlogRepository;
@@ -49,11 +57,35 @@ public class BlogServiceImpl implements BlogService {
 	private FeignClientForComment commentFeign;
 	@Autowired
 	private FeignClientForLike likeFeign;
+	
+	@Autowired
+	private FeignClientForUser userFeign;
+	
+	@Autowired
+	private FeignClientDepartment clientDepartment;
 
 	// This method is used to save data in database and save Media in file system .
 	@Override
 	public BlogDto saveBlogWithFile(BlogDto blogDto, List<MultipartFile> multipartFile) {
 		Blog blog = null;
+		
+		
+	String name=null;
+		
+		try {
+			
+			ResponseEntity<Object> user = userFeign.getUserById(blogDto.getUserId());
+			Map<String, Object> depart = (Map<String, Object>) user.getBody();
+			name = (String) ((Map<String, Object>) depart.get("data")).get("name");
+			
+			blogDto.setName(name);
+			
+		} catch (Exception e) {
+			log.error("Please ! Check your services connection . May be down."+e);
+		}
+		
+		
+		
 
 		log.info("------------------------" + blogDto);
 		// Set original file name is this list.
@@ -162,26 +194,25 @@ public class BlogServiceImpl implements BlogService {
 		if (blog.getId().equals(id) && updatedBy != null) {
 			log.info("============================" + blog);
  
-			UUID blogId = blog.getId();
+			    UUID blogId = blog.getId();
 			    String bId = blogId.toString();
 			
 			try {
-				
-				commentFeign.deleteCommentsByblogId(bId);
-
+				if(blog.getCommentCount()>0) {
+					
+					commentFeign.deleteCommentsByblogId(bId);
+					
+				}
+				if(blog.getLikeCount()>0) {
+					likeFeign.unlikeDeletedBlog(bId);
+				}
+	
 			}
 			catch (Exception e) {
 
-			    	  throw new CommentServiceDownException("Please ! Check your comment-service connection . May be down.");
+				log.error("Please ! Check your services connection . May be down.");
+			    	  throw new CommentServiceDownException("Please ! Check your services connection . May be down.");
 			}
-			try {
-				likeFeign.unlikeDeletedBlog(bId);
-			}
-			catch (Exception e) {
-
-			    	  throw new LikeServiceDownException("Please ! Check your Like-service connection . May be down.");
-			}
-			
 			repo.deleteBlogById(id, updatedBy, LocalDateTime.now());
 
 			return true;
@@ -284,16 +315,10 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public List<BlogDto> getBlog(int pageNum, int pageSize) {
 
-		PageRequest pageable = PageRequest.of(pageNum, pageSize);
+		PageRequest pageable = PageRequest.of(pageNum, pageSize, Sort.by("created_date_time").descending());
+		
 
 		List<Blog> blog = repo.findAll(pageable,true);
-		if(blog.isEmpty() || blog==null) {
-			
-				UserNotFoundException e = new UserNotFoundException(HttpStatus.NO_CONTENT + " Data not available, please ! Try again.");
-				log.error("Error ocurred -------------------------"+e);
-				throw e;
-			
-		}
 
 		log.info("----------------------------------" + blog);
 
@@ -302,20 +327,65 @@ public class BlogServiceImpl implements BlogService {
 		for (Blog blog2 : blog) {
 
 			if (blog2 != null) {
-				BlogDto blogToDtoConverter = objectMapper.blogToDtoConverter(blog2);
-
-				blogDtoList.add(blogToDtoConverter);
+				String profilePicture=null;
+				String department=null;
+				
+				try {
+					
+					ResponseEntity<Object> departmentById = clientDepartment.getDepartmentById(blog2.getDepartmentId());
+					Map<String, Object> depart = (Map<String, Object>) departmentById.getBody();
+					department = (String) ((Map<String, Object>) depart.get("data")).get("name");
+					
+				} catch (Exception e) {
+					log.error("Please ! Check your services connection . May be down."+e);
+				}
+				
+				try {
+			     
+				ResponseEntity<Object> user = userFeign.getUserById(blog2.getUserId());
+             	
+				 Map<String, Object> body = (Map<String, Object>) user.getBody();
+				 profilePicture = (String) ((Map<String, Object>) body.get("data")).get("profilePicture");
+				
+				}catch (Exception e) {
+					log.error("Please ! Check your services connection . May be down."+e);
+				}
+				
+				
+				
+				
+				
+				BlogDto blogDto = objectMapper.blogToDtoConverter(blog2);
+				if(profilePicture!=null) {
+					
+					blogDto.setProfilePic(profilePicture);	
+				}
+				
+				if(department!=null) {
+					blogDto.setDepartmentName(department);
+				}
+				blogDtoList.add(blogDto);
 			}
 		}
 
 		return blogDtoList;
 	}
+	
+	
+	// helper class 
+	
+	public int getTotalResult() {
+
+        int size = repo.findByStatus(true).size();
+		return size;
+	}
+	
 
 	// Get blog by userId or we can say unique userName
 	@Override
-	public List<BlogDto> getByAutherID(String userName) {
+	public List<BlogDto> getByAutherName(String userName) {
 
-		List<Blog> byAuthorId = repo.findByAuthorId(userName);
+		List<Blog> byAuthorId = repo.findByAuthorName(userName);
 
 		List<BlogDto> blogDtoList = new ArrayList<>();
 
@@ -337,6 +407,34 @@ public class BlogServiceImpl implements BlogService {
 			throw userNotFoundException;
 		}
 
+	}
+	
+	// Get blog by userId or we can say unique userId
+	@Override
+	public List<BlogDto> getByAutherID(long userId) {
+		
+		List<Blog> byAuthorId = repo.findByAuthorId(userId);
+		
+		List<BlogDto> blogDtoList = new ArrayList<>();
+		
+		if (!byAuthorId.isEmpty()) {
+			
+			for (Blog blog2 : byAuthorId) {
+				
+				if (blog2 != null) {
+					BlogDto blogToDtoConverter = objectMapper.blogToDtoConverter(blog2);
+					blogDtoList.add(blogToDtoConverter);
+				}
+			}
+			
+			return blogDtoList;
+		} else {
+			
+			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+			log.error("userNotFoundException----------------------------"+userNotFoundException);
+			throw userNotFoundException;
+		}
+		
 	}
 
 	// Get blog by blog_id

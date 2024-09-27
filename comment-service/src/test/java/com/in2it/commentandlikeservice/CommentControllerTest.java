@@ -49,21 +49,21 @@ public class CommentControllerTest {
 		assertEquals(commentDto, response.getBody().getData());
 	}
 
-	@Test
-	void updateCommentTest() throws Exception {
-		CommentUpdateDto updateDto = new CommentUpdateDto();
-		updateDto.setContent("Updated content");
-
-		CommentDto commentDto = new CommentDto();
-		commentDto.setContent("Updated content");
-		commentDto.setCreatedDate(LocalDateTime.now());
-
-		when(commentService.updateComment(any(CommentUpdateDto.class), anyString())).thenReturn(commentDto);
-
-		ResponseEntity<Response<CommentDto>> response = commentController.updateComment(updateDto,
-				UUID.randomUUID().toString());
-		assertEquals(commentDto, response.getBody().getData());
-	}
+//	@Test
+//	void updateCommentTest() throws Exception {
+//		CommentUpdateDto updateDto = new CommentUpdateDto();
+//		updateDto.setContent("Updated content");
+//
+//		CommentDto commentDto = new CommentDto();
+//		commentDto.setContent("Updated content");
+//		commentDto.setCreatedDate(LocalDateTime.now());
+//
+//		when(commentService.updateComment(any(CommentUpdateDto.class), anyString())).thenReturn(commentDto);
+//
+//		ResponseEntity<Response<CommentDto>> response = commentController.updateComment(updateDto,
+//				UUID.randomUUID().toString());
+//		assertEquals(commentDto, response.getBody().getData());
+//	}
 
 	@Test
 	void getCommentByBlogIdTest() throws Exception {

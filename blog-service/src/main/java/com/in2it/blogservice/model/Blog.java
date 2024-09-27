@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,9 +39,12 @@ public class Blog {
 	@Range(min = 1 , message = "min number of digits is should be 1")
 	private long departmentId;
 	
+	 
+	@Column(name="userName")
+	private String name;;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
 	
-	@NotBlank(message = "userName cannot be blank") 
-	private String userName;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
+	
+	private long userId; // Taking autherId as userName
 	
 	@NotBlank(message = "title cannot be blank") 
 	private String title;
@@ -64,7 +68,7 @@ public class Blog {
 	 private boolean status;
 	 
 	 @Column(nullable = false, updatable = false)
-	 private LocalDateTime cretedDateTime;
+	 private LocalDateTime createdDateTime;
 	 
 	 private LocalDateTime updatedDateTime;
 	 

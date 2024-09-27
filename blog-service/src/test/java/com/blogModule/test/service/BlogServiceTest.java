@@ -26,6 +26,7 @@ import org.mockito.Mock;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.multipart.MultipartFile;
@@ -77,14 +78,14 @@ public class BlogServiceTest {
 //	    Making dummy objects of Blog and BlogDto
 	    BlogDto blogDto = new BlogDto();
 	    blogDto.setDepartmentId(12);
-	    blogDto.setUserName("Sumit");
+	    blogDto.setName("Sumit");
 	    blogDto.setTitle("Java");
 	    blogDto.setContent("Java is a good language");
 	    blogDto.setMediaFile(List.of("Media.png"));
 
 	    Blog blog = new Blog();
 	    blog.setDepartmentId(12);
-	    blog.setUserName("Sumit");
+	    blog.setName("Sumit");
 	    blog.setTitle("Java");
 	    blog.setContent("Java is a good language");
 	    blog.setMediaFile(List.of("Media.png"));
@@ -117,7 +118,7 @@ public class BlogServiceTest {
 	    verify(objectMapper, times(1)).dtoToBlogConverter(blogDto, List.of("Media.png"), List.of("src/main/resources/static/image/Media.png"));
 	    verify(repo, times(1)).save(any(Blog.class));
 	    assertEquals(expectedDto.getDepartmentId(), result.getDepartmentId());
-	    assertEquals(expectedDto.getUserName(), result.getUserName());
+	    assertEquals(expectedDto.getName(), result.getName());
 	    assertEquals(expectedDto.getContent(), result.getContent());
 	    assertEquals(expectedDto.getTitle(), result.getTitle());
 	    
@@ -406,35 +407,63 @@ public class BlogServiceTest {
 	    assertEquals(blogList, result);
 	    	
 	    verify(objectMapper, times(1)).blogToDtoConverter(existingBlog);
-	    verify(repo, times(1)).findAll(PageRequest.of(0, 5), true);
+	    verify(repo, times(1)).findAll(PageRequest.of(0, 5,Sort.by("created_date_time").descending()), true);
+	}
+	
+	@Test
+	public void getByAutherName() throws IOException
+	{
+		
+		String userName = "Sumit";		
+		
+	    Blog existingBlog = new Blog();
+	    existingBlog.setName(userName);
+	    
+	    BlogDto blogDto = new BlogDto();
+	    blogDto.setName(userName);
+	    
+	    List<BlogDto> blogList = Arrays.asList(blogDto);
+
+	    when(repo.findByAuthorName(any(String.class))).thenReturn(Arrays.asList(existingBlog));
+	    when(objectMapper.blogToDtoConverter(any(Blog.class))).thenReturn(blogDto);
+	    
+	    
+	    // Act
+	    List<BlogDto> result = service.getByAutherName(userName);
+	    // Assert
+	    assertNotNull(result);
+	    assertEquals(blogList, result);
+	    	
+	    verify(objectMapper, times(1)).blogToDtoConverter(existingBlog);
+	    verify(repo, times(1)).findByAuthorName(userName);
 	}
 	
 	@Test
 	public void getByAutherID() throws IOException
 	{
 		
-		String userName = "Sumit";		
+		long userId = 12;		
 		
-	    Blog existingBlog = new Blog();
-	    existingBlog.setUserName(userName);
-	    
-	    BlogDto blogDto = new BlogDto();
-	    blogDto.setUserName(userName);
-	    
-	    List<BlogDto> blogList = Arrays.asList(blogDto);
-
-	    when(repo.findByAuthorId(any(String.class))).thenReturn(Arrays.asList(existingBlog));
-	    when(objectMapper.blogToDtoConverter(any(Blog.class))).thenReturn(blogDto);
-	    
-	    
-	    // Act
-	    List<BlogDto> result = service.getByAutherID(userName);
-	    // Assert
-	    assertNotNull(result);
-	    assertEquals(blogList, result);
-	    	
-	    verify(objectMapper, times(1)).blogToDtoConverter(existingBlog);
-	    verify(repo, times(1)).findByAuthorId(userName);
+		Blog existingBlog = new Blog();
+		existingBlog.setUserId(userId);
+		
+		BlogDto blogDto = new BlogDto();
+		blogDto.setUserId(userId);
+		
+		List<BlogDto> blogList = Arrays.asList(blogDto);
+		
+		when(repo.findByAuthorId(any(Long.class))).thenReturn(Arrays.asList(existingBlog));
+		when(objectMapper.blogToDtoConverter(any(Blog.class))).thenReturn(blogDto);
+		
+		
+		// Act
+		List<BlogDto> result = service.getByAutherID(userId);
+		// Assert
+		assertNotNull(result);
+		assertEquals(blogList, result);
+		
+		verify(objectMapper, times(1)).blogToDtoConverter(existingBlog);
+		verify(repo, times(1)).findByAuthorId(userId);
 	}
 
 	@Test
