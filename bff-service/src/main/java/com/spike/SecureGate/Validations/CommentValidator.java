@@ -34,10 +34,10 @@ public class CommentValidator {
         return true;
     }
 
-    public boolean validateCommentUpdateDto(CommentUpdateRequestDTO commentUpdateRequestDTO) {
-        if (commentUpdateRequestDTO.getContent() == null ||
-                commentUpdateRequestDTO.getContent().isEmpty() ||
-                commentUpdateRequestDTO.getContent().length() > 1000
+    public boolean validateCommentUpdateDto( String content) {
+        if (content  == null ||
+                content.isEmpty() ||
+                content.length() > 1000
         ) {
             throw new IllegalArgumentException("Content cannot be null or empty  or more than 1000 characters");
         }

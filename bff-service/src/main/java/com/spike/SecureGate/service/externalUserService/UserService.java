@@ -32,7 +32,9 @@ public interface UserService {
 
     ResponseEntity<Object> fetchDepartmentsOfAUser(long userId);
 
-    List<String> getCountriesWithStates();
-
     ResponseEntity<Object> createContact(ContactCreationRequestDTO contactCreationRequestDTO, Long userId, String username);
+
+    ResponseEntity<Object> updateContact(Long contactId, ContactCreationRequestDTO contactCreationRequestDTO);
+
+    ResponseEntity<Object> deleteContact(Long contactId);
 }

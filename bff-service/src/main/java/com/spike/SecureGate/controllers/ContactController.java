@@ -55,6 +55,48 @@ public class ContactController {
         return user;
     }
 
+    // UPDATE A CONTACT
+    @Operation(
+            summary = "User creates a new contact",
+            description = "Creates a new user contact."
+    )
+    @PutMapping("/update/{contactId}")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> updateContact(
+            @PathVariable Long contactId,
+            @RequestBody ContactCreationRequestDTO contactCreationRequestDTO
+
+    ) {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        String userName = authentication.getName();
+        logger.info("Started creating new User contact");
+        ResponseEntity<Object> user = userService.updateContact(contactId,contactCreationRequestDTO);
+        logger.info("Finished creating new User contact");
+        return user;
+    }
+
+    // DELETE A CONTACT
+    @Operation(
+            summary = "Delete a contact",
+            description = "Delete a contact."
+    )
+    @DeleteMapping("/delete/{contactId}")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> deleteContact(
+            @PathVariable Long contactId
+
+    ) {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        String userName = authentication.getName();
+        logger.info("Started creating new User contact");
+        ResponseEntity<Object> user = userService.deleteContact(contactId);
+        logger.info("Finished creating new User contact");
+        return user;
+    }
 
 
 }

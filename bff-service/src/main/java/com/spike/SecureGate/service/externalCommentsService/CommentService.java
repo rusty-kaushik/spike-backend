@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface CommentService {
     ResponseEntity<Object> createNewComment(String blogId, String userName, CommentCreationRequestDTO commentCreationRequestDTO);
 
-    ResponseEntity<Object> updateComment(String commentId, CommentUpdateRequestDTO commentUpdateRequestDTO);
+    ResponseEntity<Object> updateComment(String commentId, String content);
 
     ResponseEntity<Object> getAllCommentsOfABlog(String blogId);
 

@@ -34,18 +34,8 @@ public class CommentController {
     // CREATE A COMMENT
     @Operation(
             summary = "Creates a new comment",
-            description = "Add a comment to the blog")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully added a comment",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Add a comment to the blog"
+    )
     @PostMapping(value = "/add-comment/{blogId}" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> createComment(
@@ -66,30 +56,20 @@ public class CommentController {
     // EDIT A COMMENT
     @Operation(
             summary = "Edits a comment",
-            description = "Edit a comment to the blog you added.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully added a comment",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Edit a comment to the blog you added."
+    )
     @PutMapping("/update/{commentId}")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> updateComment(
-            @PathVariable String commentId,
-            @ModelAttribute CommentUpdateRequestDTO commentUpdateRequestDTO
+            @RequestBody String content,
+            @PathVariable String commentId
     )
     {
         logger.info("Started authenticating");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         logger.info("Authentication Successful");
         logger.info("Started updating comment");
-        ResponseEntity<Object> data = commentService.updateComment(commentId,commentUpdateRequestDTO);
+        ResponseEntity<Object> data = commentService.updateComment(commentId,content);
         logger.info("Finished updating comment");
         return data;
     }
@@ -97,18 +77,8 @@ public class CommentController {
     // GET ALL COMMENTS OF A BLOG
     @Operation(
             summary = "Get all comments of the blog",
-            description = "Get all comments of the blog")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully added a comment",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Get all comments of the blog"
+    )
     @GetMapping("/get/all/{blogId}")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> getAllCommentsOfABlog(
@@ -127,18 +97,8 @@ public class CommentController {
     // GET A COMMENT BY ID
     @Operation(
             summary = "Get a comment",
-            description = "Returns a comment by id")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully added a comment",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Returns a comment by id"
+    )
     @GetMapping("/get/comment/{commentId}")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> getCommentByCommentId(
@@ -157,18 +117,8 @@ public class CommentController {
     // GET A COMMENT BY ID
     @Operation(
             summary = "deletes a comment",
-            description = "Deletes a comment")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully deleted a comment",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Deletes a comment"
+    )
     @DeleteMapping("/delete/{blogId}/{commentId}")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> deleteComment(

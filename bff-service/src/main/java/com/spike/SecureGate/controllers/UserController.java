@@ -46,17 +46,6 @@ public class UserController {
             summary = "Admin creates a new user",
             description = "Creates a new user with a profile picture. Pass the JSON body in the 'data' part and the file in the 'file' part."
     )
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully created a new user",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
     @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> createUser(
@@ -96,18 +85,8 @@ public class UserController {
     // CHANGE USER SELF PASSWORD
     @Operation(
             summary = "Update self password",
-            description = "Updates the password of user. The API takes old password and new  password in json.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated the password of user",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Updates the password of user. The API takes old password and new  password in json."
+    )
     @PutMapping("/reset-password")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> updateSelfPassword(@RequestBody UserChangePasswordDTO userChangePasswordDTO)
@@ -126,18 +105,8 @@ public class UserController {
     // UPDATE SELF DETAILS
     @Operation(
             summary = "Update self details",
-            description = "Updates the details of user.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated the details of user",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Updates the details of user."
+    )
     @PutMapping("/update/details/{userId}")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> updateSelfDetails(
@@ -158,18 +127,8 @@ public class UserController {
     // UPDATE SELF PROFILE PICTURE
     @Operation(
             summary = "Update self profile picture",
-            description = "Updates the profile picture of user.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated the profile of user",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Updates the profile picture of user."
+    )
     @PutMapping(value = "/update/profile-picture", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> updateSelfPictureDetails(
@@ -190,18 +149,8 @@ public class UserController {
     // DELETE USER
     @Operation(
             summary = "Delete a user",
-            description = "Delete a user")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully deleted user",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Delete a user"
+    )
     @DeleteMapping("/delete/{userId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> deleteUser(
@@ -222,17 +171,6 @@ public class UserController {
             summary = "Fetch users for employee page",
             description = "Fetch users for employee page."
     )
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
     @GetMapping("/employees")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> fetchUsersForEmployeePage(
@@ -258,17 +196,6 @@ public class UserController {
             summary = "Fetch users for contacts page",
             description = "Fetch users for contacts page."
     )
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated the addresses of user",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
     @GetMapping("/contacts")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> fetchUsersForContactPage(

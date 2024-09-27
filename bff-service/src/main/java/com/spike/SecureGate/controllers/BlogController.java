@@ -32,7 +32,7 @@ public class BlogController {
             summary = "Create a blog",
             description = "Any user can create a blog"
     )
-    @PostMapping(path = "/create/{userId}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+    @PostMapping(path = "/create", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> createBlog(@ModelAttribute BlogCreationRequestDTO blogDto)
     {
@@ -48,18 +48,8 @@ public class BlogController {
     // UPDATE A BLOG
     @Operation(
             summary = "Update a blog",
-            description = "Any user can update his/her blog")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully updated the blog",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Any user can update his/her blog"
+    )
     @PutMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> updateBlog(@RequestBody BlogUpdateRequestDTO blogUpdateRequestDTO)
@@ -77,18 +67,8 @@ public class BlogController {
     // FETCH A BLOG BY ID
     @Operation(
             summary = "Fetch a blog by ID",
-            description = "Any user can fetch a blog by ID")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully fetched the blog",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Any user can fetch a blog by ID"
+    )
     @GetMapping("/get/{blogId}")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> fetchBlogById(@PathVariable String blogId)
@@ -105,18 +85,8 @@ public class BlogController {
     // FETCH ALL BLOGS
     @Operation(
             summary = "Fetch all blogs",
-            description = "Any user can fetch all blogs")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully fetched all blog",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Any user can fetch all blogs"
+    )
     @GetMapping("/get-all")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> fetchAllBlogs(
@@ -135,18 +105,8 @@ public class BlogController {
     // DELETE A BLOG BY ID
     @Operation(
             summary = "Delete a blog by ID",
-            description = "Any user can delete his/her blog")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully deleted the blog",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)) }),
-            @ApiResponse(responseCode = "403", description = "Forbidden - Invalid token",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
-                    content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = { @Content(schema = @Schema()) })
-    })
+            description = "Any user can delete his/her blog"
+    )
     @DeleteMapping("/delete/{blogId}")
     @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
     public ResponseEntity<Object> deleteBlogById(@PathVariable String blogId)

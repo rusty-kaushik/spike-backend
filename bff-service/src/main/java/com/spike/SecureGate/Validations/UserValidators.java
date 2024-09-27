@@ -327,7 +327,7 @@ public class UserValidators {
         }
 
         // Validate primary mobile number (must not be null and must be valid)
-        if (contactCreationRequestDTO.getPrimaryMobile() == null || !isValidPhoneNumber(contactCreationRequestDTO.getPrimaryMobile())) {
+        if (contactCreationRequestDTO.getPrimaryMobileNumber() == null || !isValidPhoneNumber(contactCreationRequestDTO.getPrimaryMobileNumber())) {
             throw new ValidationFailedException(
                     "ValidationError",
                     "Primary mobile number cannot be null and must have a valid format"

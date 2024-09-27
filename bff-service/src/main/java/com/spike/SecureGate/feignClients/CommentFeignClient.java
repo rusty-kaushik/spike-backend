@@ -2,6 +2,7 @@ package com.spike.SecureGate.feignClients;
 
 import com.spike.SecureGate.DTO.commentDto.CommentCreationFeignDTO;
 import com.spike.SecureGate.DTO.commentDto.CommentUpdateRequestDTO;
+import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,8 +23,8 @@ public interface CommentFeignClient {
 
     // UPDATE A COMMENT BY COMMENT ID
     @PutMapping("/spike/blog/update/comment/{commentId}")
-    ResponseEntity<Object> UpdateComment(
-            @RequestBody CommentUpdateRequestDTO updateDto,
+    ResponseEntity<Object> updateComment(
+            @RequestBody String content,
             @PathVariable String commentId
     );
 

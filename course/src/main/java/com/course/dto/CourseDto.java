@@ -39,10 +39,7 @@ public class CourseDto {
 	@NotNull
 	private String department;
 
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-	private Date startDate;
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-	private Date endDate;
+	private String duration;
 
 	private String createdBy;
 	@JsonProperty(access = Access.READ_ONLY)

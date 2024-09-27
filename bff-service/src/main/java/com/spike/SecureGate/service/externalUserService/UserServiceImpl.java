@@ -17,19 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-import java.util.List;
 import feign.FeignException;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -212,39 +200,39 @@ public class UserServiceImpl implements UserService{
         }
     }
 
-
-
-
-    @Override
-    public List<String> getCountriesWithStates() {
-        // Make the API call
-        String xmlResponse = restTemplate.getForObject(COUNTRIES_API_URL, String.class, GeoName);
-
-        // Parse the XML response
-        List<String> countryNames = new ArrayList<>();
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            InputStream is = new ByteArrayInputStream(xmlResponse.getBytes());
-            Document document = builder.parse(is);
-
-            NodeList countryNodes = document.getElementsByTagName("country");
-            for (int i = 0; i < countryNodes.getLength(); i++) {
-                String countryName = document.getElementsByTagName("countryName").item(i).getTextContent();
-                countryNames.add(countryName);
-            }
-        } catch (Exception e) {
-            e.printStackTrace(); // Handle exception properly in production code
-        }
-
-        return countryNames;
-    }
-
     @Override
     public ResponseEntity<Object> createContact(ContactCreationRequestDTO contactCreationRequestDTO, Long userId, String username) {
         try{
             userValidators.validateUserContactCreation(contactCreationRequestDTO);
             return userFeignClient.createContacts(contactCreationRequestDTO, userId, username);
+        }catch (ValidationFailedException e) {
+            throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
+        } catch (Exception e) {
+            logger.error("Error occurred while creating a user contact: " + e.getMessage());
+            throw new UnexpectedException( "UnexpectedError","An unexpected error occurred while creating a user contact: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> updateContact(Long contactId, ContactCreationRequestDTO contactCreationRequestDTO) {
+        try{
+            return userFeignClient.updateContacts(contactId, contactCreationRequestDTO);
+        }catch (ValidationFailedException e) {
+            throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
+        } catch (Exception e) {
+            logger.error("Error occurred while creating a user contact: " + e.getMessage());
+            throw new UnexpectedException( "UnexpectedError","An unexpected error occurred while creating a user contact: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> deleteContact(Long contactId) {
+        try{
+            return  userFeignClient.deleteContact(contactId);
         }catch (ValidationFailedException e) {
             throw e;
         } catch (FeignException e) {

@@ -61,13 +61,13 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public ResponseEntity<Object> updateComment(String commentId, CommentUpdateRequestDTO commentUpdateRequestDTO) {
+    public ResponseEntity<Object> updateComment(String commentId,  String content) {
         try{
-            if (!commentValidator.validateCommentUpdateDto(commentUpdateRequestDTO)) {
+            if (!commentValidator.validateCommentUpdateDto(content)) {
                 logger.error("Validation failed");
                 throw new ValidationFailedException("ValidationError","Invalid CommentUpdateRequestDTO");
             }
-            return commentFeignClient.UpdateComment(commentUpdateRequestDTO,commentId);
+            return commentFeignClient.updateComment(commentId, content);
         } catch ( ValidationFailedException e ) {
             throw e;
         } catch (FeignException e) {

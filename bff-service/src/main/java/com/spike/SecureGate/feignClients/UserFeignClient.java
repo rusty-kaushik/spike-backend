@@ -123,11 +123,19 @@ public interface UserFeignClient {
 
     @PostMapping("/spike/user/new-contacts/{userId}/{username}")
     ResponseEntity<Object> createContacts(
-            @RequestBody ContactCreationRequestDTO contactCreationRequestDTO,
+            @RequestBody ContactCreationRequestDTO data,
             @PathVariable Long userId,
             @PathVariable String username
     );
 
-    @GetMapping("/spike/user/get-All/contacts")
-    ResponseEntity<Object> getAllContacts();
+    @DeleteMapping("/spike/user/delete-contact/{contactId}")
+    ResponseEntity<Object> deleteContact(
+            @PathVariable Long contactId
+    );
+
+    @PutMapping("/spike/user/update-contacts/{contactId}")
+    ResponseEntity<Object> updateContacts(
+            @PathVariable Long contactId,
+            @RequestBody ContactCreationRequestDTO data
+    );
 }
