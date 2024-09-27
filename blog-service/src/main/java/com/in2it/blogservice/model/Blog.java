@@ -35,9 +35,8 @@ public class Blog {
 	private UUID id;
 	
 	
-	@Digits(integer = 5 , fraction = 0, message = "min length of digits is 5")
-	@Range(min = 1 , message = "min number of digits is should be 1")
-	private long departmentId;
+
+	private String departmentName;
 	
 	 
 	@Column(name="userName")

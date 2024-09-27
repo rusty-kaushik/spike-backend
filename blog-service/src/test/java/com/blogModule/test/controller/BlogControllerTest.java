@@ -203,9 +203,9 @@ public class BlogControllerTest {
 	        
 	    	List<BlogDto> allBlogDto = new ArrayList<>();
 		    
-	        when(serviceImpl.getByAutherName(any(String.class))).thenReturn(allBlogDto);
+	        when(serviceImpl.getByAutherName(any(Integer.class), any(Integer.class), any(String.class))).thenReturn(allBlogDto);
 
-	        ResponseEntity<ResponseHandler<List<BlogDto>>>  response = blogController.getBlogsByAutherName(userId);
+	        ResponseEntity<ResponseHandler<List<BlogDto>>>  response = blogController.getBlogsByAutherName(0, 10, userId);
 	        
 	        assertEquals(HttpStatus.OK, response.getStatusCode());
 	        assertEquals("Data retrieved successfully.", response.getBody().getMessage());

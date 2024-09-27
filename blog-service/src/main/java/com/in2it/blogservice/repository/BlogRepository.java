@@ -25,7 +25,13 @@ public interface BlogRepository extends JpaRepository<Blog,UUID>{
 	 List<Blog> findByTitleContainingAllIgnoringCaseAndStatus(PageRequest pageable,String title, Boolean status);
 	
 	@Query(value= "select  * from blog where status=true and user_name =%:userName% ", nativeQuery = true)
-	 List<Blog> findByAuthorName(String userName);
+	 List<Blog> findByAuthorName(PageRequest pageable,String userName);
+	
+	
+	List<Blog> findByNameContainingAllIgnoringCaseAndStatus(PageRequest pageable,String userName, Boolean status);
+	
+	
+	
 	
 	@Query(value= "select  * from blog where status=true and user_id =%:userId% ", nativeQuery = true)
 	List<Blog> findByAuthorId(long userId);
