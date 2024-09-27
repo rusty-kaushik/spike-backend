@@ -101,24 +101,7 @@ public class PDFGenerator {
 
 	}
 
-//	private void addLogo(Document document) {
-//		try {	
-//			Image pdf_img = Image.getInstance(pdf_logoImgPath);
-//			pdf_img.scalePercent(pdf_logoImgScale[0], pdf_logoImgScale[1]);
-//			pdf_img.setAlignment(Element.ALIGN_LEFT);
-//			document.add(pdf_img);
-//			
-//			
-//			Image img = Image.getInstance(logoImgPath);
-//			img.scalePercent(logoImgScale[0], logoImgScale[1]);
-//			img.setAlignment(Element.ALIGN_RIGHT);
-//			document.add(img);
-//			
-//		} catch (DocumentException | IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+
 
 	private void addLogo(Document document) {
 		try {
