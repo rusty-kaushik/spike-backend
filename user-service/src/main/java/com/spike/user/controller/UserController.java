@@ -204,7 +204,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema()))
     })
-    @PutMapping(value = "/full-update/{userId}")
+    @PutMapping(value = "/admin/{userId}")
     public ResponseEntity<Object> updateUserFull(
             @PathVariable("userId") Long userId,
             @RequestBody UserUpdateRequestDTO userUpdateRequestDTO
