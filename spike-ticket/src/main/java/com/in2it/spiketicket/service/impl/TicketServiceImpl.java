@@ -164,7 +164,6 @@ public class TicketServiceImpl implements TicketService {
 		return new PageImpl<>(ticketDtos, pageable, ticketPage.getTotalElements());
 
 	}
-
 	
 	@Override
 	public List<TicketDto> getAllTickets() {
@@ -172,7 +171,6 @@ public class TicketServiceImpl implements TicketService {
 		return all.stream().map(ticket-> mapper.map(ticket, TicketDto.class)).collect(Collectors.toList());
 	
 	}
-
 
 //	=====================================================================================================================================
 	private List<Sort.Order> createSortOrder(List<String> sortList, String sortDirection) {
@@ -191,6 +189,6 @@ public class TicketServiceImpl implements TicketService {
 		return sorts;
 	}
 
-
 	
+
 }

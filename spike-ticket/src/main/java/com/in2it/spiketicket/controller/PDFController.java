@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.in2it.spiketicket.util.PDFGenerator;
 
 @RestController
-@RequestMapping("/ticket/pdf")
+@RequestMapping("/tickets")
 public class PDFController {
 
     @Autowired
     private PDFGenerator pdfGenerator;
 
-    @GetMapping("/get-all-tickets-in-pdf-formate")
+    @GetMapping("/export/pdf")
     public ResponseEntity<String> generatePdfReport() {
         try {
             pdfGenerator.generatePdfReport();
