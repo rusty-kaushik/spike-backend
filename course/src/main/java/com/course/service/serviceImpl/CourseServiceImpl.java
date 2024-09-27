@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.course.dto.CourseDto;
 import com.course.dto.CourseUpdateDto;
+import com.course.exceptionHandler.CourseNotFoundException;
 import com.course.exceptionHandler.IdInvalidException;
 import com.course.model.Course;
 import com.course.repo.CourseRepo;
@@ -78,4 +79,9 @@ public class CourseServiceImpl implements CourseService {
 		return courseDto;
 	}
 
+	public void deleteCourse(String courseId) {
+		Course course=courseRepo.findById(courseId).orElseThrow(()->new CourseNotFoundException("Course with given id doesn't exist "));
+		courseRepo.deleteById(courseId);
+		
+	}
 }
