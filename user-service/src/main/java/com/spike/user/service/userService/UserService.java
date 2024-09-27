@@ -18,6 +18,9 @@ public interface UserService {
     // User self update
     User updateUserFull(Long userId, UserFullUpdateDTO userRequest);
 
+    // Update user by admin
+    User updateUserByAdmin(Long userId, UserUpdateRequestDTO userUpdateRequestDTO);
+
     // Update user profile picture
     void updateUserProfilePicture(Long userId, MultipartFile profilePicture) throws IOException;
 

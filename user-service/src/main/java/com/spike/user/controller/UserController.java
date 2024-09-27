@@ -158,6 +158,56 @@ public class UserController {
         }
     }
 
+    @Operation(
+            summary = "Admin updates a user full details",
+            description = "Updates an existing user. Pass the JSON body in the 'data' part."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully updated the user",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
+            @ApiResponse(responseCode = "404", description = "User not found",
+                    content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "422", description = "Unprocessable Entity - Validation errors",
+                    content = @Content(schema = @Schema())),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error",
+                    content = @Content(schema = @Schema()))
+    })
+    @PutMapping(value = "/admin/{userId}")
+    public ResponseEntity<Object> updateUserFull(
+            @PathVariable("userId") Long userId,
+            @RequestBody UserUpdateRequestDTO userUpdateRequestDTO
+    ) {
+        logger.info("Received request to update user with ID: {}", userId);
+        try {
+            AuditorAwareImpl.setCurrentAuditor(userUpdateRequestDTO.getUsername());
+            logger.info("Setting current auditor to '{}'", userUpdateRequestDTO.getUsername());
+
+            // Perform the update operation
+            logger.info("Updating user with ID: {}", userId);
+            User updatedUser = userService.updateUserByAdmin(userId, userUpdateRequestDTO);
+            logger.info("User updated successfully with ID: {}", userId);
+
+            // Return 200 OK with the updated user information
+            return ResponseHandler.responseBuilder("User successfully updated.", HttpStatus.OK, updatedUser);
+        } catch (UserNotFoundException e) {
+            logger.error("User with ID {} not found: {}", userId, e.getMessage());
+            // Return 404 Not Found with a user-friendly error message
+            return ResponseHandler.responseBuilder("User not found with this id -> " + userId, HttpStatus.NOT_FOUND, "No user found with the provided ID -> " + userId);
+        } catch (DtoToEntityConversionException e) {
+            logger.error("Error during DTO to entity conversion: {}", e.getMessage());
+            // Return 422 Unprocessable Entity for validation errors
+            return ResponseHandler.responseBuilder("Validation error during update.", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
+        } catch (Exception e) {
+            logger.error("Error updating user: {}", e.getMessage());
+            // Return 500 Internal Server Error with a clear error message
+            return ResponseHandler.responseBuilder("User update unsuccessful.", HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred while updating the user. Please try again later.");
+        } finally {
+            logger.info("Clearing current auditor");
+            AuditorAwareImpl.clear();
+        }
+    }
+
+
 
     // API TO UPDATE USER PROFILE PICTURE
     @Operation(
