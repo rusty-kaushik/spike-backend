@@ -27,6 +27,9 @@ public class EmailServiceImpl implements EmailService{
 	private EmailServiceImplHelper serviceHelper;
 	@Autowired
 	private JavaMailSender javaMailSender;
+	
+	
+	
 	@Override
 	public String sendMail( List<MultipartFile> attachments, EMailDto withoutAttachmentMailDto) throws MailNotSentException, MessagingException, DirectoryException, FileHandlingException, IOException
 	{	        
@@ -59,7 +62,6 @@ public class EmailServiceImpl implements EmailService{
 		javaMailSender.send(mimeMessage);
 
 		serviceHelper.saveMail(attachmentOldNames, attachmentNewNames, attachmentPaths, withoutAttachmentMailDto);
-        System.out.println("All Emails has been Sent Successfully");
 	    
         return "Success";
 	}
@@ -68,7 +70,6 @@ public class EmailServiceImpl implements EmailService{
 	public String sendMail( EMailDto withoutAttachmentMailDto) throws MessagingException
 	{
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-		System.out.println(withoutAttachmentMailDto.toString());
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
 		helper.setCc(withoutAttachmentMailDto.getSharedBy());
@@ -79,10 +80,8 @@ public class EmailServiceImpl implements EmailService{
 		javaMailSender.send(mimeMessage);
 
 		serviceHelper.saveMail(withoutAttachmentMailDto);
-        System.out.println("All Emails has been Sent Successfully");
 	    
         return "Success";
 	}
 
-	
 }

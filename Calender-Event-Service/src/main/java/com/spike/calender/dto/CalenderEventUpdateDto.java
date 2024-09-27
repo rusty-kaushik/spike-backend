@@ -1,7 +1,5 @@
 package com.spike.calender.dto;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -15,11 +13,11 @@ import lombok.NoArgsConstructor;
 public class CalenderEventUpdateDto {
 
 	private String eventId;
-	private Optional<String> color;
-	private Optional<String> newStartingDate;
-	private Optional<String> newendingDate;
-	private Optional<String> newStartingTime;
-	private Optional<String> newEndingTime;
-	private Optional<String> description;
-	private Optional<String> updatedBy;
+	private String color;
+	private String newStartingDate;
+	private String newEndingDate;
+	private String newStartingTime;
+	private String newEndingTime;
+	private String description;
+	private String updatedBy;
 }

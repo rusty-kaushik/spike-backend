@@ -45,4 +45,11 @@ public class CustomMailBodyMessages {
 	            "sumitkumarmishra8235@gmail.com\n" +
 	            "8235691034";
 	}
+	public String getCustomMessageForEventScheduler(String eventName, LocalDate startingDate, LocalTime startingTime, String link, String description)
+	{
+		return "\n\nHi Team,\n\nI hope this message finds you well! As you know that we organized an event "
+			+eventName+" on "+startingDate+" and "+startingTime
+			+" at Microsoft Teams.\n\n So, be ready event "+eventName+" will start 10 minutes later. \n\nEvent Details:\n\nDate: "+startingDate+"\nTime: "
+			+startingTime+"\nPlateform: "+link+"\nAgenda: "+description;
+	}
 }
