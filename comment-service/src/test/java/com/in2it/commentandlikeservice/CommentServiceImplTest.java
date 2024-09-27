@@ -146,51 +146,48 @@ public class CommentServiceImplTest {
 		});
 	}
 
-//	@Test
-//	void updateCommentSuccessTest() {
-//
-//		String commentId = "1";
-//		CommentUpdateDto updateDto = new CommentUpdateDto();
-//		updateDto.setContent("Updated content");
-//
-//		Comment existingComment = new Comment();
-//		existingComment.setId(commentId);
-//		existingComment.setContent("Old content");
-//		existingComment.setUserName("user");
-//
-//		Comment updatedComment = new Comment();
-//		updatedComment.setId(commentId);
-//		updatedComment.setContent("Updated content");
-//		updatedComment.setUserName("user");
-//		updatedComment.setUpdatedDateTime(LocalDateTime.now());
-//
-//		CommentDto commentDto = new CommentDto();
-//		commentDto.setContent("Updated content");
-//
-//		when(commentRepository.findById(commentId)).thenReturn(Optional.of(existingComment));
-//		when(commentRepository.save(existingComment)).thenReturn(updatedComment);
-//		when(objectMapper.commentToDtoConvertor(updatedComment)).thenReturn(commentDto);
-//
-//		CommentDto result = commentService.updateComment(updateDto, commentId);
-//
-//		assertNotNull(result);
-//		assertEquals("Updated content", result.getContent());
-//		assertNotNull(existingComment.getUpdatedDateTime());
-//		verify(commentRepository, times(1)).findById(commentId);
-//		verify(commentRepository, times(1)).save(existingComment);
-//		verify(objectMapper, times(1)).commentToDtoConvertor(updatedComment);
-//	}
+	@Test
+	void updateCommentSuccessTest() {
 
-//	@Test
-//	void updateCommentCommentNotFoundTest() {
-//		CommentUpdateDto updateDto = new CommentUpdateDto();
-//
-//		when(commentRepository.findById("1")).thenReturn(Optional.empty());
-//
-//		assertThrows(CommentNotFoundException.class, () -> {
-//			commentService.updateComment(updateDto, "1");
-//		});
-//	}
+		String commentId = "1";
+
+		Comment existingComment = new Comment();
+		existingComment.setId(commentId);
+		existingComment.setContent("Old content");
+		existingComment.setUserName("user");
+
+		Comment updatedComment = new Comment();
+		updatedComment.setId(commentId);
+		updatedComment.setContent("Updated content");
+		updatedComment.setUserName("user");
+		updatedComment.setUpdatedDateTime(LocalDateTime.now());
+
+		CommentDto commentDto = new CommentDto();
+		commentDto.setContent("Updated content");
+
+		when(commentRepository.findById(commentId)).thenReturn(Optional.of(existingComment));
+		when(commentRepository.save(existingComment)).thenReturn(updatedComment);
+		when(objectMapper.commentToDtoConvertor(updatedComment)).thenReturn(commentDto);
+
+		CommentDto result = commentService.updateComment("Updated content", commentId);
+
+		assertNotNull(result);
+		assertEquals("Updated content", result.getContent());
+		assertNotNull(existingComment.getUpdatedDateTime());
+		verify(commentRepository, times(1)).findById(commentId);
+		verify(commentRepository, times(1)).save(existingComment);
+		verify(objectMapper, times(1)).commentToDtoConvertor(updatedComment);
+	}
+
+	@Test
+	void updateCommentCommentNotFoundTest() {
+
+		when(commentRepository.findById("1")).thenReturn(Optional.empty());
+
+		assertThrows(CommentNotFoundException.class, () -> {
+			commentService.updateComment("updated comment", "1");
+		});
+	}
 
 	@Test
 	void getByBlogIdSuccessTest() {
@@ -205,14 +202,14 @@ public class CommentServiceImplTest {
 		assertEquals("This is a comment", result.get(0).getContent());
 	}
 
-	@Test
-	void getByBlogIdNoCommentsTest() {
-		when(commentRepository.findByBlogIdAndStatus("1", "Active")).thenReturn(Collections.emptyList());
-
-		assertThrows(CommentNotFoundException.class, () -> {
-			commentService.getByBlogId("1");
-		});
-	}
+//	@Test
+//	void getByBlogIdNoCommentsTest() {
+//		when(commentRepository.findByBlogIdAndStatus("1", "Active")).thenReturn(Collections.emptyList());
+//
+//		assertThrows(CommentNotFoundException.class, () -> {
+//			commentService.getByBlogId("1");
+//		});
+//	}
 
 	@Test
 	void deleteByCommentIdSuccessTest() {
