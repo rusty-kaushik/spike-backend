@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
+import jakarta.validation.ConstraintViolationException;
+
 
 
 @ControllerAdvice
@@ -22,7 +24,7 @@ public class ExceptionHandler {
 	}
 
 	@org.springframework.web.bind.annotation.ExceptionHandler(HierarchyException.class)
-	public ResponseEntity<?> requiredFieldException(HierarchyException exception, WebRequest request) {
+	public ResponseEntity<?> hierarchyException(HierarchyException exception, WebRequest request) {
 
 		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),
 				HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
@@ -39,5 +41,21 @@ public class ExceptionHandler {
 
 	}
 
+	@org.springframework.web.bind.annotation.ExceptionHandler(ConstraintViolationException.class)
+	public ResponseEntity<?> requiredFieldException(ConstraintViolationException exception, WebRequest request) {
+		
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),
+				HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		
+	}
 
+	@org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
+	public ResponseEntity<?> requiredFieldException(Exception exception, WebRequest request) {
+		
+		ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(),
+				HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage(), request.getDescription(false));
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		
+	}
 }
