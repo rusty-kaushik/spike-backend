@@ -252,7 +252,7 @@ public class UserServiceImpl implements UserService {
     // convert contacts into contact dto
     private UserContactsDTO personalContactsToContactDto(Contacts contacts) {
         UserContactsDTO contactsDto = userHelper.entityToPersonalContactsDto(contacts);
-        contactsDto.setId(contacts.getUserId());
+        contactsDto.setId(contacts.getId());
         List<UserAddressDTO> addresses = contacts.getAddresses().stream()
                 .map(address -> userHelper.entityToAddressDto(address))
                 .collect(Collectors.toList());
