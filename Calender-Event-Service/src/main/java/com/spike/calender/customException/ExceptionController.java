@@ -22,6 +22,35 @@ public class ExceptionController {
 		return new ResponseEntity(exceptionResponse,HttpStatus.BAD_REQUEST);
 
 	}
-	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@ExceptionHandler(WrongDateAndTimeException.class)
+	public  ResponseEntity<?> wrongDateAndTimeException(WrongDateAndTimeException ex ,WebRequest request)
+	{
+
+		ExceptionProperties exceptionResponse=new ExceptionProperties(LocalDateTime.now(), HttpStatus.BAD_REQUEST.getReasonPhrase()  , HttpStatus.BAD_REQUEST.value(), ex.getMessage(), request.getDescription(false));		
+		
+		return new ResponseEntity(exceptionResponse,HttpStatus.BAD_REQUEST);
+
+	}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@ExceptionHandler(DataNotFoundException.class)
+	public  ResponseEntity<?> dataNotFoundException(DataNotFoundException ex ,WebRequest request)
+	{
+
+		ExceptionProperties exceptionResponse=new ExceptionProperties(LocalDateTime.now(), HttpStatus.NOT_FOUND.getReasonPhrase()  , HttpStatus.NOT_FOUND.value(), ex.getMessage(), request.getDescription(false));		
+		
+		return new ResponseEntity(exceptionResponse,HttpStatus.NOT_FOUND);
+
+	}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@ExceptionHandler(InvalidException.class)
+	public  ResponseEntity<?> invalidException(InvalidException ex ,WebRequest request)
+	{
+
+		ExceptionProperties exceptionResponse=new ExceptionProperties(LocalDateTime.now(), HttpStatus.NOT_ACCEPTABLE.getReasonPhrase()  , HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage(), request.getDescription(false));		
+		
+		return new ResponseEntity(exceptionResponse,HttpStatus.NOT_ACCEPTABLE);
+
+	}
 
 }
