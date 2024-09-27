@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class BlogCreationFeignDTO {
     private long departmentId;
-    private String userName;
+    private long userId;
     private String title;
     private String content;
 }

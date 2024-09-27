@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.UUID;
 
 public interface BlogService {
-    ResponseEntity<Object> createBlog(String userName, BlogCreationRequestDTO blogCreationRequestDTO);
+    ResponseEntity<Object> createBlog(BlogCreationRequestDTO blogCreationRequestDTO);
 
     ResponseEntity<Object> updateBlog(String username, BlogUpdateRequestDTO blogUpdateRequestDTO);
 

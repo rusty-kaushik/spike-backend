@@ -38,14 +38,14 @@ public class BlogServiceImpl implements BlogService{
 
     // CREATE A BLOG
     @Override
-    public ResponseEntity<Object> createBlog(String userName, BlogCreationRequestDTO blogCreationRequestDTO) {
+    public ResponseEntity<Object> createBlog(BlogCreationRequestDTO blogCreationRequestDTO) {
         try {
             if (!blogValidators.validateBlogCreationDto(blogCreationRequestDTO)) {
                 logger.error("Validation failed");
                 throw new ValidationFailedException("ValidationError","Invalid BlogCreationRequestDTO");
             }
             // Convert request DTO to Feign DTO
-            BlogCreationFeignDTO blogCreationFeignDTO = blogHelper.blogCreationDtoTOFeignDto(userName, blogCreationRequestDTO);
+            BlogCreationFeignDTO blogCreationFeignDTO = blogHelper.blogCreationDtoTOFeignDto(blogCreationRequestDTO);
             // Call external blog service
             List<MultipartFile> mediaFiles = blogCreationRequestDTO.getMedia();
             return blogFeignClient.createNewBlog(mediaFiles, blogCreationFeignDTO);

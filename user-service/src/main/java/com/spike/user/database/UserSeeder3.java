@@ -6,20 +6,20 @@ import com.spike.user.exceptions.RoleNotFoundException;
 import com.spike.user.exceptions.UnexpectedException;
 import com.spike.user.repository.RoleRepository;
 import com.spike.user.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 @Component
-public class UserSeeder {
+public class UserSeeder3 {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserSeeder.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserSeeder3.class);
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -32,26 +32,26 @@ public class UserSeeder {
     public void seedAdminUser() {
         try {
             logger.info("Started UserSeeder");
-            User user = userRepository.findByUsername("backend_admin");
+            User user = userRepository.findByUsername("admin");
             if (user == null) {
                 logger.info("Started to seed user_master");
                 Role adminRole = roleRepository.findById(1L)
                         .orElseThrow(() -> new RoleNotFoundException("ValidationError","Role not found"));
                 User admin = new User();
-                admin.setId(1L);
-                admin.setBackupEmail("backup_backend_admin@in2it.com");
+                admin.setId(3L);
+                admin.setBackupEmail("backup_admin@in2it.com");
                 admin.setDesignation("ADMIN");
-                admin.setEmail("backend_admin@in2it.com");
-                admin.setEmployeeCode("IN2IT1");
+                admin.setEmail("admin@in2it.com");
+                admin.setEmployeeCode("IN2IT3");
                 admin.setJoiningDate(new GregorianCalendar(2024, Calendar.JANUARY, 1).getTime());
                 admin.setManagerId(null);
-                admin.setName("Backend");
-                admin.setPassword(passwordEncoder.encode("Z7g@1Lw9Qv#"));
+                admin.setName("Admin");
+                admin.setPassword(passwordEncoder.encode("mR6k!V#0sP3"));
                 admin.setPostCreate(true);
-                admin.setPrimaryMobileNumber("9958032167");
+                admin.setPrimaryMobileNumber("7894561230");
                 admin.setSalary(0.0);
-                admin.setSecondaryMobileNumber("9958032167");
-                admin.setUsername("backend_admin");
+                admin.setSecondaryMobileNumber("7894561230");
+                admin.setUsername("admin");
                 admin.setProfilePicture(null);
                 admin.setRole(adminRole);
                 admin.setUserSocials(null);
