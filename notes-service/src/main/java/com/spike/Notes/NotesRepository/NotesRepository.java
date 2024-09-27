@@ -20,4 +20,10 @@ public interface NotesRepository extends JpaRepository<NotesEntity, UUID> {
      //this query like fetch notes based on content and ignore case-sensitivity and support partial searches
     @Query("From NotesEntity Where userId=:userId AND LOWER(content) LIKE CONCAT('%', LOWER(:content), '%') AND status='ACTIVE' ")
     List<NotesEntity> findAllByContent(@Param("content") String content, @Param("userId") long userId);
+
+    //this query will fetch userid from user table
+    @Query(value = "SELECT u.id FROM user_master u WHERE u.id = :userId", nativeQuery = true)
+    Long findByUserId(@Param("userId") Long userId);
+
+
 }

@@ -30,4 +30,13 @@ public class ExceptionHandling {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
 
     }
+    @ExceptionHandler(UserNotFoundException.class)
+    private ResponseEntity<Object> userNotFoundException(UserNotFoundException ex){
+        Map<String, Object> response= new HashMap<>();
+        response.put("error","Note not found");
+        response.put("httpStatusCode", HttpStatus.NOT_FOUND);
+        response.put("message",ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+
+    }
 }
