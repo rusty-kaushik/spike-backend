@@ -25,7 +25,11 @@ public interface BlogRepository extends JpaRepository<Blog,UUID>{
 	 List<Blog> findByTitleContainingAllIgnoringCaseAndStatus(PageRequest pageable,String title, Boolean status);
 	
 	@Query(value= "select  * from blog where status=true and user_name =%:userName% ", nativeQuery = true)
-	 List<Blog> findByAuthorId(String userName);
+	 List<Blog> findByAuthorName(String userName);
+	
+	@Query(value= "select  * from blog where status=true and user_id =%:userId% ", nativeQuery = true)
+	List<Blog> findByAuthorId(long userId);
+	
 	
 
 	 @Query(value= "select  * from blog where status=true", nativeQuery = true)
@@ -45,4 +49,6 @@ public interface BlogRepository extends JpaRepository<Blog,UUID>{
 	
 	@Query(value= "select  * from blog where status=true and department_id=%:departmentId%", nativeQuery = true)
 	List<Blog> getByDepartmentId(long departmentId);
+	
+	List<Blog> findByStatus(boolean status);
 }

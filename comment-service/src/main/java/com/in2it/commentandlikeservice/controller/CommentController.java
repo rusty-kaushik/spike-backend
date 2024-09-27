@@ -47,10 +47,10 @@ public class CommentController {
 
 	@Operation(summary = "API to update the comment of a blog")
 	@PutMapping(path = "/update/comment/{commentId}")
-	public ResponseEntity<Response<CommentDto>> updateComment(@RequestBody CommentUpdateDto updateDto,
+	public ResponseEntity<Response<CommentDto>> updateComment(@RequestBody String content,
 			@Valid @PathVariable("commentId") String commentId) {
 
-		CommentDto comment = commentService.updateComment(updateDto, commentId);
+		CommentDto comment = commentService.updateComment(content, commentId);
 
 		return ResponseEntity.status(HttpStatus.OK).body(new Response<CommentDto>(comment,
 				"Comment successfully updated", HttpStatus.OK, HttpStatus.OK.value()));

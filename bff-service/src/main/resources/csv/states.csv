@@ -1,0 +1,5024 @@
+name,country_id,country_code,country_name
+Badakhshan,1,AF,Afghanistan
+Badghis,1,AF,Afghanistan
+Baghlan,1,AF,Afghanistan
+Balkh,1,AF,Afghanistan
+Bamyan,1,AF,Afghanistan
+Daykundi,1,AF,Afghanistan
+Farah,1,AF,Afghanistan
+Faryab,1,AF,Afghanistan
+Ghazni,1,AF,Afghanistan
+Ghōr,1,AF,Afghanistan
+Helmand,1,AF,Afghanistan
+Herat,1,AF,Afghanistan
+Jowzjan,1,AF,Afghanistan
+Kabul,1,AF,Afghanistan
+Kandahar,1,AF,Afghanistan
+Kapisa,1,AF,Afghanistan
+Khost,1,AF,Afghanistan
+Kunar,1,AF,Afghanistan
+Kunduz Province,1,AF,Afghanistan
+Laghman,1,AF,Afghanistan
+Logar,1,AF,Afghanistan
+Nangarhar,1,AF,Afghanistan
+Nimruz,1,AF,Afghanistan
+Nuristan,1,AF,Afghanistan
+Paktia,1,AF,Afghanistan
+Paktika,1,AF,Afghanistan
+Panjshir,1,AF,Afghanistan
+Parwan,1,AF,Afghanistan
+Samangan,1,AF,Afghanistan
+Sar-e Pol,1,AF,Afghanistan
+Takhar,1,AF,Afghanistan
+Urozgan,1,AF,Afghanistan
+Zabul,1,AF,Afghanistan
+Berat County,3,AL,Albania
+Berat District,3,AL,Albania
+Bulqizë District,3,AL,Albania
+Delvinë District,3,AL,Albania
+Devoll District,3,AL,Albania
+Dibër County,3,AL,Albania
+Dibër District,3,AL,Albania
+Durrës County,3,AL,Albania
+Durrës District,3,AL,Albania
+Elbasan County,3,AL,Albania
+Fier County,3,AL,Albania
+Fier District,3,AL,Albania
+Gjirokastër County,3,AL,Albania
+Gjirokastër District,3,AL,Albania
+Gramsh District,3,AL,Albania
+Has District,3,AL,Albania
+Kavajë District,3,AL,Albania
+Kolonjë District,3,AL,Albania
+Korçë County,3,AL,Albania
+Korçë District,3,AL,Albania
+Krujë District,3,AL,Albania
+Kuçovë District,3,AL,Albania
+Kukës County,3,AL,Albania
+Kukës District,3,AL,Albania
+Kurbin District,3,AL,Albania
+Lezhë County,3,AL,Albania
+Lezhë District,3,AL,Albania
+Librazhd District,3,AL,Albania
+Lushnjë District,3,AL,Albania
+Malësi e Madhe District,3,AL,Albania
+Mallakastër District,3,AL,Albania
+Mat District,3,AL,Albania
+Mirditë District,3,AL,Albania
+Peqin District,3,AL,Albania
+Përmet District,3,AL,Albania
+Pogradec District,3,AL,Albania
+Pukë District,3,AL,Albania
+Sarandë District,3,AL,Albania
+Shkodër County,3,AL,Albania
+Shkodër District,3,AL,Albania
+Skrapar District,3,AL,Albania
+Tepelenë District,3,AL,Albania
+Tirana County,3,AL,Albania
+Tirana District,3,AL,Albania
+Tropojë District,3,AL,Albania
+Vlorë County,3,AL,Albania
+Vlorë District,3,AL,Albania
+Adrar,4,DZ,Algeria
+Aïn Defla,4,DZ,Algeria
+Aïn Témouchent,4,DZ,Algeria
+Algiers,4,DZ,Algeria
+Annaba,4,DZ,Algeria
+Batna,4,DZ,Algeria
+Béchar,4,DZ,Algeria
+Béjaïa,4,DZ,Algeria
+Béni Abbès,4,DZ,Algeria
+Biskra,4,DZ,Algeria
+Blida,4,DZ,Algeria
+Bordj Baji Mokhtar,4,DZ,Algeria
+Bordj Bou Arréridj,4,DZ,Algeria
+Bouïra,4,DZ,Algeria
+Boumerdès,4,DZ,Algeria
+Chlef,4,DZ,Algeria
+Constantine,4,DZ,Algeria
+Djanet,4,DZ,Algeria
+Djelfa,4,DZ,Algeria
+El Bayadh,4,DZ,Algeria
+El M'ghair,4,DZ,Algeria
+El Menia,4,DZ,Algeria
+El Oued,4,DZ,Algeria
+El Tarf,4,DZ,Algeria
+Ghardaïa,4,DZ,Algeria
+Guelma,4,DZ,Algeria
+Illizi,4,DZ,Algeria
+In Guezzam,4,DZ,Algeria
+In Salah,4,DZ,Algeria
+Jijel,4,DZ,Algeria
+Khenchela,4,DZ,Algeria
+Laghouat,4,DZ,Algeria
+M'Sila,4,DZ,Algeria
+Mascara,4,DZ,Algeria
+Médéa,4,DZ,Algeria
+Mila,4,DZ,Algeria
+Mostaganem,4,DZ,Algeria
+Naama,4,DZ,Algeria
+Oran,4,DZ,Algeria
+Ouargla,4,DZ,Algeria
+Ouled Djellal,4,DZ,Algeria
+Oum El Bouaghi,4,DZ,Algeria
+Relizane,4,DZ,Algeria
+Saïda,4,DZ,Algeria
+Sétif,4,DZ,Algeria
+Sidi Bel Abbès,4,DZ,Algeria
+Skikda,4,DZ,Algeria
+Souk Ahras,4,DZ,Algeria
+Tamanghasset,4,DZ,Algeria
+Tébessa,4,DZ,Algeria
+Tiaret,4,DZ,Algeria
+Timimoun,4,DZ,Algeria
+Tindouf,4,DZ,Algeria
+Tipasa,4,DZ,Algeria
+Tissemsilt,4,DZ,Algeria
+Tizi Ouzou,4,DZ,Algeria
+Tlemcen,4,DZ,Algeria
+Touggourt,4,DZ,Algeria
+Andorra la Vella,6,AD,Andorra
+Canillo,6,AD,Andorra
+Encamp,6,AD,Andorra
+Escaldes-Engordany,6,AD,Andorra
+La Massana,6,AD,Andorra
+Ordino,6,AD,Andorra
+Sant Julià de Lòria,6,AD,Andorra
+Bengo Province,7,AO,Angola
+Benguela Province,7,AO,Angola
+Bié Province,7,AO,Angola
+Cabinda Province,7,AO,Angola
+Cuando Cubango Province,7,AO,Angola
+Cuanza Norte Province,7,AO,Angola
+Cuanza Sul,7,AO,Angola
+Cunene Province,7,AO,Angola
+Huambo Province,7,AO,Angola
+Huíla Province,7,AO,Angola
+Luanda Province,7,AO,Angola
+Lunda Norte Province,7,AO,Angola
+Lunda Sul Province,7,AO,Angola
+Malanje Province,7,AO,Angola
+Moxico Province,7,AO,Angola
+Uíge Province,7,AO,Angola
+Zaire Province,7,AO,Angola
+Barbuda,10,AG,Antigua and Barbuda
+Redonda,10,AG,Antigua and Barbuda
+Saint George Parish,10,AG,Antigua and Barbuda
+Saint John Parish,10,AG,Antigua and Barbuda
+Saint Mary Parish,10,AG,Antigua and Barbuda
+Saint Paul Parish,10,AG,Antigua and Barbuda
+Saint Peter Parish,10,AG,Antigua and Barbuda
+Saint Philip Parish,10,AG,Antigua and Barbuda
+Buenos Aires,11,AR,Argentina
+Catamarca,11,AR,Argentina
+Chaco,11,AR,Argentina
+Chubut,11,AR,Argentina
+Ciudad Autónoma de Buenos Aires,11,AR,Argentina
+Córdoba,11,AR,Argentina
+Corrientes,11,AR,Argentina
+Entre Ríos,11,AR,Argentina
+Formosa,11,AR,Argentina
+Jujuy,11,AR,Argentina
+La Pampa,11,AR,Argentina
+La Rioja,11,AR,Argentina
+Mendoza,11,AR,Argentina
+Misiones,11,AR,Argentina
+Neuquén,11,AR,Argentina
+Río Negro,11,AR,Argentina
+Salta,11,AR,Argentina
+San Juan,11,AR,Argentina
+San Luis,11,AR,Argentina
+Santa Cruz,11,AR,Argentina
+Santa Fe,11,AR,Argentina
+Santiago del Estero,11,AR,Argentina
+Tierra del Fuego,11,AR,Argentina
+Tucumán,11,AR,Argentina
+Aragatsotn Region,12,AM,Armenia
+Ararat Province,12,AM,Armenia
+Armavir Region,12,AM,Armenia
+Gegharkunik Province,12,AM,Armenia
+Kotayk Region,12,AM,Armenia
+Lori Region,12,AM,Armenia
+Shirak Region,12,AM,Armenia
+Syunik Province,12,AM,Armenia
+Tavush Region,12,AM,Armenia
+Vayots Dzor Region,12,AM,Armenia
+Yerevan,12,AM,Armenia
+Australian Capital Territory,14,AU,Australia
+New South Wales,14,AU,Australia
+Northern Territory,14,AU,Australia
+Queensland,14,AU,Australia
+South Australia,14,AU,Australia
+Tasmania,14,AU,Australia
+Victoria,14,AU,Australia
+Western Australia,14,AU,Australia
+Burgenland,15,AT,Austria
+Carinthia,15,AT,Austria
+Lower Austria,15,AT,Austria
+Salzburg,15,AT,Austria
+Styria,15,AT,Austria
+Tyrol,15,AT,Austria
+Upper Austria,15,AT,Austria
+Vienna,15,AT,Austria
+Vorarlberg,15,AT,Austria
+Absheron District,16,AZ,Azerbaijan
+Agdam District,16,AZ,Azerbaijan
+Agdash District,16,AZ,Azerbaijan
+Aghjabadi District,16,AZ,Azerbaijan
+Agstafa District,16,AZ,Azerbaijan
+Agsu District,16,AZ,Azerbaijan
+Astara District,16,AZ,Azerbaijan
+Babek District,16,AZ,Azerbaijan
+Baku,16,AZ,Azerbaijan
+Balakan District,16,AZ,Azerbaijan
+Barda District,16,AZ,Azerbaijan
+Beylagan District,16,AZ,Azerbaijan
+Bilasuvar District,16,AZ,Azerbaijan
+Dashkasan District,16,AZ,Azerbaijan
+Fizuli District,16,AZ,Azerbaijan
+Ganja,16,AZ,Azerbaijan
+Gədəbəy,16,AZ,Azerbaijan
+Gobustan District,16,AZ,Azerbaijan
+Goranboy District,16,AZ,Azerbaijan
+Goychay,16,AZ,Azerbaijan
+Goygol District,16,AZ,Azerbaijan
+Hajigabul District,16,AZ,Azerbaijan
+Imishli District,16,AZ,Azerbaijan
+Ismailli District,16,AZ,Azerbaijan
+Jabrayil District,16,AZ,Azerbaijan
+Jalilabad District,16,AZ,Azerbaijan
+Julfa District,16,AZ,Azerbaijan
+Kalbajar District,16,AZ,Azerbaijan
+Kangarli District,16,AZ,Azerbaijan
+Khachmaz District,16,AZ,Azerbaijan
+Khizi District,16,AZ,Azerbaijan
+Khojali District,16,AZ,Azerbaijan
+Kurdamir District,16,AZ,Azerbaijan
+Lachin District,16,AZ,Azerbaijan
+Lankaran,16,AZ,Azerbaijan
+Lankaran District,16,AZ,Azerbaijan
+Lerik District,16,AZ,Azerbaijan
+Martuni,16,AZ,Azerbaijan
+Masally District,16,AZ,Azerbaijan
+Mingachevir,16,AZ,Azerbaijan
+Nakhchivan Autonomous Republic,16,AZ,Azerbaijan
+Neftchala District,16,AZ,Azerbaijan
+Oghuz District,16,AZ,Azerbaijan
+Ordubad District,16,AZ,Azerbaijan
+Qabala District,16,AZ,Azerbaijan
+Qakh District,16,AZ,Azerbaijan
+Qazakh District,16,AZ,Azerbaijan
+Quba District,16,AZ,Azerbaijan
+Qubadli District,16,AZ,Azerbaijan
+Qusar District,16,AZ,Azerbaijan
+Saatly District,16,AZ,Azerbaijan
+Sabirabad District,16,AZ,Azerbaijan
+Sadarak District,16,AZ,Azerbaijan
+Salyan District,16,AZ,Azerbaijan
+Samukh District,16,AZ,Azerbaijan
+Shabran District,16,AZ,Azerbaijan
+Shahbuz District,16,AZ,Azerbaijan
+Shaki,16,AZ,Azerbaijan
+Shaki District,16,AZ,Azerbaijan
+Shamakhi District,16,AZ,Azerbaijan
+Shamkir District,16,AZ,Azerbaijan
+Sharur District,16,AZ,Azerbaijan
+Shirvan,16,AZ,Azerbaijan
+Shusha District,16,AZ,Azerbaijan
+Siazan District,16,AZ,Azerbaijan
+Sumqayit,16,AZ,Azerbaijan
+Tartar District,16,AZ,Azerbaijan
+Tovuz District,16,AZ,Azerbaijan
+Ujar District,16,AZ,Azerbaijan
+Yardymli District,16,AZ,Azerbaijan
+Yevlakh,16,AZ,Azerbaijan
+Yevlakh District,16,AZ,Azerbaijan
+Zangilan District,16,AZ,Azerbaijan
+Zaqatala District,16,AZ,Azerbaijan
+Zardab District,16,AZ,Azerbaijan
+Capital,18,BH,Bahrain
+Central,18,BH,Bahrain
+Muharraq,18,BH,Bahrain
+Northern,18,BH,Bahrain
+Southern,18,BH,Bahrain
+Barisal ,19,BD,Bangladesh
+Chittagong ,19,BD,Bangladesh
+Dhaka ,19,BD,Bangladesh
+Khulna ,19,BD,Bangladesh
+Mymensingh ,19,BD,Bangladesh
+Rajshahi ,19,BD,Bangladesh
+Rangpur ,19,BD,Bangladesh
+Sylhet ,19,BD,Bangladesh
+Christ Church,20,BB,Barbados
+Saint Andrew,20,BB,Barbados
+Saint George,20,BB,Barbados
+Saint James,20,BB,Barbados
+Saint John,20,BB,Barbados
+Saint Joseph,20,BB,Barbados
+Saint Lucy,20,BB,Barbados
+Saint Michael,20,BB,Barbados
+Saint Peter,20,BB,Barbados
+Saint Philip,20,BB,Barbados
+Saint Thomas,20,BB,Barbados
+Brest Region,21,BY,Belarus
+Gomel Region,21,BY,Belarus
+Grodno Region,21,BY,Belarus
+Minsk,21,BY,Belarus
+Minsk Region,21,BY,Belarus
+Mogilev Region,21,BY,Belarus
+Vitebsk Region,21,BY,Belarus
+Antwerp,22,BE,Belgium
+Brussels-Capital Region,22,BE,Belgium
+East Flanders,22,BE,Belgium
+Flanders,22,BE,Belgium
+Flemish Brabant,22,BE,Belgium
+Hainaut,22,BE,Belgium
+Liège,22,BE,Belgium
+Limburg,22,BE,Belgium
+Luxembourg,22,BE,Belgium
+Namur,22,BE,Belgium
+Wallonia,22,BE,Belgium
+Walloon Brabant,22,BE,Belgium
+West Flanders,22,BE,Belgium
+Belize District,23,BZ,Belize
+Cayo District,23,BZ,Belize
+Corozal District,23,BZ,Belize
+Orange Walk District,23,BZ,Belize
+Stann Creek District,23,BZ,Belize
+Toledo District,23,BZ,Belize
+Alibori Department,24,BJ,Benin
+Atakora Department,24,BJ,Benin
+Atlantique Department,24,BJ,Benin
+Borgou Department,24,BJ,Benin
+Collines Department,24,BJ,Benin
+Donga Department,24,BJ,Benin
+Kouffo Department,24,BJ,Benin
+Littoral Department,24,BJ,Benin
+Mono Department,24,BJ,Benin
+Ouémé Department,24,BJ,Benin
+Plateau Department,24,BJ,Benin
+Zou Department,24,BJ,Benin
+Devonshire,25,BM,Bermuda
+Hamilton,25,BM,Bermuda
+Paget,25,BM,Bermuda
+Pembroke,25,BM,Bermuda
+Saint George's,25,BM,Bermuda
+Sandys,25,BM,Bermuda
+Smith's,25,BM,Bermuda
+Southampton,25,BM,Bermuda
+Warwick,25,BM,Bermuda
+Bumthang ,26,BT,Bhutan
+Chukha ,26,BT,Bhutan
+Dagana ,26,BT,Bhutan
+Gasa ,26,BT,Bhutan
+Haa ,26,BT,Bhutan
+Lhuntse ,26,BT,Bhutan
+Mongar ,26,BT,Bhutan
+Paro ,26,BT,Bhutan
+Pemagatshel ,26,BT,Bhutan
+Punakha ,26,BT,Bhutan
+Samdrup Jongkhar ,26,BT,Bhutan
+Samtse ,26,BT,Bhutan
+Sarpang ,26,BT,Bhutan
+Thimphu ,26,BT,Bhutan
+"Trashi Yangtse	",26,BT,Bhutan
+Trashigang ,26,BT,Bhutan
+Trongsa ,26,BT,Bhutan
+Tsirang ,26,BT,Bhutan
+Wangdue Phodrang ,26,BT,Bhutan
+Zhemgang ,26,BT,Bhutan
+Beni Department,27,BO,Bolivia
+Chuquisaca Department,27,BO,Bolivia
+Cochabamba Department,27,BO,Bolivia
+La Paz Department,27,BO,Bolivia
+Oruro Department,27,BO,Bolivia
+Pando Department,27,BO,Bolivia
+Potosí Department,27,BO,Bolivia
+Santa Cruz Department,27,BO,Bolivia
+Tarija Department,27,BO,Bolivia
+Bonaire,155,BQ,"Bonaire, Sint Eustatius and Saba"
+Saba,155,BQ,"Bonaire, Sint Eustatius and Saba"
+Sint Eustatius,155,BQ,"Bonaire, Sint Eustatius and Saba"
+Bosnian Podrinje Canton,28,BA,Bosnia and Herzegovina
+Brčko District,28,BA,Bosnia and Herzegovina
+Canton 10,28,BA,Bosnia and Herzegovina
+Central Bosnia Canton,28,BA,Bosnia and Herzegovina
+Federation of Bosnia and Herzegovina,28,BA,Bosnia and Herzegovina
+Herzegovina-Neretva Canton,28,BA,Bosnia and Herzegovina
+Posavina Canton,28,BA,Bosnia and Herzegovina
+Republika Srpska,28,BA,Bosnia and Herzegovina
+Sarajevo Canton,28,BA,Bosnia and Herzegovina
+Tuzla Canton,28,BA,Bosnia and Herzegovina
+Una-Sana Canton,28,BA,Bosnia and Herzegovina
+West Herzegovina Canton,28,BA,Bosnia and Herzegovina
+Zenica-Doboj Canton,28,BA,Bosnia and Herzegovina
+Central District,29,BW,Botswana
+Ghanzi District,29,BW,Botswana
+Kgalagadi District,29,BW,Botswana
+Kgatleng District,29,BW,Botswana
+Kweneng District,29,BW,Botswana
+Ngamiland,29,BW,Botswana
+North-East District,29,BW,Botswana
+North-West District,29,BW,Botswana
+South-East District,29,BW,Botswana
+Southern District,29,BW,Botswana
+Acre,31,BR,Brazil
+Alagoas,31,BR,Brazil
+Amapá,31,BR,Brazil
+Amazonas,31,BR,Brazil
+Bahia,31,BR,Brazil
+Ceará,31,BR,Brazil
+Distrito Federal,31,BR,Brazil
+Espírito Santo,31,BR,Brazil
+Goiás,31,BR,Brazil
+Maranhão,31,BR,Brazil
+Mato Grosso,31,BR,Brazil
+Mato Grosso do Sul,31,BR,Brazil
+Minas Gerais,31,BR,Brazil
+Pará,31,BR,Brazil
+Paraíba,31,BR,Brazil
+Paraná,31,BR,Brazil
+Pernambuco,31,BR,Brazil
+Piauí,31,BR,Brazil
+Rio de Janeiro,31,BR,Brazil
+Rio Grande do Norte,31,BR,Brazil
+Rio Grande do Sul,31,BR,Brazil
+Rondônia,31,BR,Brazil
+Roraima,31,BR,Brazil
+Santa Catarina,31,BR,Brazil
+São Paulo,31,BR,Brazil
+Sergipe,31,BR,Brazil
+Tocantins,31,BR,Brazil
+Belait District,33,BN,Brunei
+Brunei-Muara District,33,BN,Brunei
+Temburong District,33,BN,Brunei
+Tutong District,33,BN,Brunei
+Blagoevgrad Province,34,BG,Bulgaria
+Burgas Province,34,BG,Bulgaria
+Dobrich Province,34,BG,Bulgaria
+Gabrovo Province,34,BG,Bulgaria
+Haskovo Province,34,BG,Bulgaria
+Kardzhali Province,34,BG,Bulgaria
+Kyustendil Province,34,BG,Bulgaria
+Lovech Province,34,BG,Bulgaria
+Montana Province,34,BG,Bulgaria
+Pazardzhik Province,34,BG,Bulgaria
+Pernik Province,34,BG,Bulgaria
+Pleven Province,34,BG,Bulgaria
+Plovdiv Province,34,BG,Bulgaria
+Razgrad Province,34,BG,Bulgaria
+Ruse Province,34,BG,Bulgaria
+Shumen,34,BG,Bulgaria
+Silistra Province,34,BG,Bulgaria
+Sliven Province,34,BG,Bulgaria
+Smolyan Province,34,BG,Bulgaria
+Sofia City Province,34,BG,Bulgaria
+Sofia Province,34,BG,Bulgaria
+Stara Zagora Province,34,BG,Bulgaria
+Targovishte Province,34,BG,Bulgaria
+Varna Province,34,BG,Bulgaria
+Veliko Tarnovo Province,34,BG,Bulgaria
+Vidin Province,34,BG,Bulgaria
+Vratsa Province,34,BG,Bulgaria
+Yambol Province,34,BG,Bulgaria
+Balé Province,35,BF,Burkina Faso
+Bam Province,35,BF,Burkina Faso
+Banwa Province,35,BF,Burkina Faso
+Bazèga Province,35,BF,Burkina Faso
+Boucle du Mouhoun Region,35,BF,Burkina Faso
+Bougouriba Province,35,BF,Burkina Faso
+Boulgou,35,BF,Burkina Faso
+Cascades Region,35,BF,Burkina Faso
+Centre,35,BF,Burkina Faso
+Centre-Est Region,35,BF,Burkina Faso
+Centre-Nord Region,35,BF,Burkina Faso
+Centre-Ouest Region,35,BF,Burkina Faso
+Centre-Sud Region,35,BF,Burkina Faso
+Comoé Province,35,BF,Burkina Faso
+Est Region,35,BF,Burkina Faso
+Ganzourgou Province,35,BF,Burkina Faso
+Gnagna Province,35,BF,Burkina Faso
+Gourma Province,35,BF,Burkina Faso
+Hauts-Bassins Region,35,BF,Burkina Faso
+Houet Province,35,BF,Burkina Faso
+Ioba Province,35,BF,Burkina Faso
+Kadiogo Province,35,BF,Burkina Faso
+Kénédougou Province,35,BF,Burkina Faso
+Komondjari Province,35,BF,Burkina Faso
+Kompienga Province,35,BF,Burkina Faso
+Kossi Province,35,BF,Burkina Faso
+Koulpélogo Province,35,BF,Burkina Faso
+Kouritenga Province,35,BF,Burkina Faso
+Kourwéogo Province,35,BF,Burkina Faso
+Léraba Province,35,BF,Burkina Faso
+Loroum Province,35,BF,Burkina Faso
+Mouhoun,35,BF,Burkina Faso
+Nahouri Province,35,BF,Burkina Faso
+Namentenga Province,35,BF,Burkina Faso
+Nayala Province,35,BF,Burkina Faso
+"Nord Region, Burkina Faso",35,BF,Burkina Faso
+Noumbiel Province,35,BF,Burkina Faso
+Oubritenga Province,35,BF,Burkina Faso
+Oudalan Province,35,BF,Burkina Faso
+Passoré Province,35,BF,Burkina Faso
+Plateau-Central Region,35,BF,Burkina Faso
+Poni Province,35,BF,Burkina Faso
+Sahel Region,35,BF,Burkina Faso
+Sanguié Province,35,BF,Burkina Faso
+Sanmatenga Province,35,BF,Burkina Faso
+Séno Province,35,BF,Burkina Faso
+Sissili Province,35,BF,Burkina Faso
+Soum Province,35,BF,Burkina Faso
+Sourou Province,35,BF,Burkina Faso
+Sud-Ouest Region,35,BF,Burkina Faso
+Tapoa Province,35,BF,Burkina Faso
+Tuy Province,35,BF,Burkina Faso
+Yagha Province,35,BF,Burkina Faso
+Yatenga Province,35,BF,Burkina Faso
+Ziro Province,35,BF,Burkina Faso
+Zondoma Province,35,BF,Burkina Faso
+Zoundwéogo Province,35,BF,Burkina Faso
+Bubanza Province,36,BI,Burundi
+Bujumbura Mairie Province,36,BI,Burundi
+Bujumbura Rural Province,36,BI,Burundi
+Bururi Province,36,BI,Burundi
+Cankuzo Province,36,BI,Burundi
+Cibitoke Province,36,BI,Burundi
+Gitega Province,36,BI,Burundi
+Karuzi Province,36,BI,Burundi
+Kayanza Province,36,BI,Burundi
+Kirundo Province,36,BI,Burundi
+Makamba Province,36,BI,Burundi
+Muramvya Province,36,BI,Burundi
+Muyinga Province,36,BI,Burundi
+Mwaro Province,36,BI,Burundi
+Ngozi Province,36,BI,Burundi
+Rumonge Province,36,BI,Burundi
+Rutana Province,36,BI,Burundi
+Ruyigi Province,36,BI,Burundi
+Banteay Meanchey,37,KH,Cambodia
+Battambang,37,KH,Cambodia
+Kampong Cham,37,KH,Cambodia
+Kampong Chhnang,37,KH,Cambodia
+Kampong Speu,37,KH,Cambodia
+Kampong Thom,37,KH,Cambodia
+Kampot,37,KH,Cambodia
+Kandal,37,KH,Cambodia
+Kep,37,KH,Cambodia
+Koh Kong,37,KH,Cambodia
+Kratie,37,KH,Cambodia
+Mondulkiri,37,KH,Cambodia
+Oddar Meanchey,37,KH,Cambodia
+Pailin,37,KH,Cambodia
+Phnom Penh,37,KH,Cambodia
+Preah Vihear,37,KH,Cambodia
+Prey Veng,37,KH,Cambodia
+Pursat,37,KH,Cambodia
+Ratanakiri,37,KH,Cambodia
+Siem Reap,37,KH,Cambodia
+Sihanoukville,37,KH,Cambodia
+Stung Treng,37,KH,Cambodia
+Svay Rieng,37,KH,Cambodia
+Takeo,37,KH,Cambodia
+Adamawa,38,CM,Cameroon
+Centre,38,CM,Cameroon
+East,38,CM,Cameroon
+Far North,38,CM,Cameroon
+Littoral,38,CM,Cameroon
+North,38,CM,Cameroon
+Northwest,38,CM,Cameroon
+South,38,CM,Cameroon
+Southwest,38,CM,Cameroon
+West,38,CM,Cameroon
+Alberta,39,CA,Canada
+British Columbia,39,CA,Canada
+Manitoba,39,CA,Canada
+New Brunswick,39,CA,Canada
+Newfoundland and Labrador,39,CA,Canada
+Northwest Territories,39,CA,Canada
+Nova Scotia,39,CA,Canada
+Nunavut,39,CA,Canada
+Ontario,39,CA,Canada
+Prince Edward Island,39,CA,Canada
+Quebec,39,CA,Canada
+Saskatchewan,39,CA,Canada
+Yukon,39,CA,Canada
+Barlavento Islands,40,CV,Cape Verde
+Boa Vista,40,CV,Cape Verde
+Brava,40,CV,Cape Verde
+Maio Municipality,40,CV,Cape Verde
+Mosteiros,40,CV,Cape Verde
+Paul,40,CV,Cape Verde
+Porto Novo,40,CV,Cape Verde
+Praia,40,CV,Cape Verde
+Ribeira Brava Municipality,40,CV,Cape Verde
+Ribeira Grande,40,CV,Cape Verde
+Ribeira Grande de Santiago,40,CV,Cape Verde
+Sal,40,CV,Cape Verde
+Santa Catarina,40,CV,Cape Verde
+Santa Catarina do Fogo,40,CV,Cape Verde
+Santa Cruz,40,CV,Cape Verde
+São Domingos,40,CV,Cape Verde
+São Filipe,40,CV,Cape Verde
+São Lourenço dos Órgãos,40,CV,Cape Verde
+São Miguel,40,CV,Cape Verde
+São Vicente,40,CV,Cape Verde
+Sotavento Islands,40,CV,Cape Verde
+Tarrafal,40,CV,Cape Verde
+Tarrafal de São Nicolau,40,CV,Cape Verde
+Bamingui-Bangoran Prefecture,42,CF,Central African Republic
+Bangui,42,CF,Central African Republic
+Basse-Kotto Prefecture,42,CF,Central African Republic
+Haut-Mbomou Prefecture,42,CF,Central African Republic
+Haute-Kotto Prefecture,42,CF,Central African Republic
+Kémo Prefecture,42,CF,Central African Republic
+Lobaye Prefecture,42,CF,Central African Republic
+Mambéré-Kadéï,42,CF,Central African Republic
+Mbomou Prefecture,42,CF,Central African Republic
+Nana-Grébizi Economic Prefecture,42,CF,Central African Republic
+Nana-Mambéré Prefecture,42,CF,Central African Republic
+Ombella-M'Poko Prefecture,42,CF,Central African Republic
+Ouaka Prefecture,42,CF,Central African Republic
+Ouham Prefecture,42,CF,Central African Republic
+Ouham-Pendé Prefecture,42,CF,Central African Republic
+Sangha-Mbaéré,42,CF,Central African Republic
+Vakaga Prefecture,42,CF,Central African Republic
+Bahr el Gazel,43,TD,Chad
+Batha,43,TD,Chad
+Borkou,43,TD,Chad
+Chari-Baguirmi,43,TD,Chad
+Ennedi-Est,43,TD,Chad
+Ennedi-Ouest,43,TD,Chad
+Guéra,43,TD,Chad
+Hadjer-Lamis,43,TD,Chad
+Kanem,43,TD,Chad
+Lac,43,TD,Chad
+Logone Occidental,43,TD,Chad
+Logone Oriental,43,TD,Chad
+Mandoul,43,TD,Chad
+Mayo-Kebbi Est,43,TD,Chad
+Mayo-Kebbi Ouest,43,TD,Chad
+Moyen-Chari,43,TD,Chad
+N'Djamena,43,TD,Chad
+Ouaddaï,43,TD,Chad
+Salamat,43,TD,Chad
+Sila,43,TD,Chad
+Tandjilé,43,TD,Chad
+Tibesti,43,TD,Chad
+Wadi Fira,43,TD,Chad
+Aisén del General Carlos Ibañez del Campo,44,CL,Chile
+Antofagasta,44,CL,Chile
+Arica y Parinacota,44,CL,Chile
+Atacama,44,CL,Chile
+Biobío,44,CL,Chile
+Coquimbo,44,CL,Chile
+La Araucanía,44,CL,Chile
+Libertador General Bernardo O'Higgins,44,CL,Chile
+Los Lagos,44,CL,Chile
+Los Ríos,44,CL,Chile
+Magallanes y de la Antártica Chilena,44,CL,Chile
+Maule,44,CL,Chile
+Ñuble,44,CL,Chile
+Región Metropolitana de Santiago,44,CL,Chile
+Tarapacá,44,CL,Chile
+Valparaíso,44,CL,Chile
+Anhui,45,CN,China
+Beijing,45,CN,China
+Chongqing,45,CN,China
+Fujian,45,CN,China
+Gansu,45,CN,China
+Guangdong,45,CN,China
+Guangxi Zhuang,45,CN,China
+Guizhou,45,CN,China
+Hainan,45,CN,China
+Hebei,45,CN,China
+Heilongjiang,45,CN,China
+Henan,45,CN,China
+Hong Kong SAR,45,CN,China
+Hubei,45,CN,China
+Hunan,45,CN,China
+Inner Mongolia,45,CN,China
+Jiangsu,45,CN,China
+Jiangxi,45,CN,China
+Jilin,45,CN,China
+Liaoning,45,CN,China
+Macau SAR,45,CN,China
+Ningxia Huizu,45,CN,China
+Qinghai,45,CN,China
+Shaanxi,45,CN,China
+Shandong,45,CN,China
+Shanghai,45,CN,China
+Shanxi,45,CN,China
+Sichuan,45,CN,China
+Taiwan,45,CN,China
+Tianjin,45,CN,China
+Xinjiang,45,CN,China
+Xizang,45,CN,China
+Yunnan,45,CN,China
+Zhejiang,45,CN,China
+Amazonas,48,CO,Colombia
+Antioquia,48,CO,Colombia
+Arauca,48,CO,Colombia
+"Archipiélago de San Andrés, Providencia y Santa Catalina",48,CO,Colombia
+Atlántico,48,CO,Colombia
+Bogotá D.C.,48,CO,Colombia
+Bolívar,48,CO,Colombia
+Boyacá,48,CO,Colombia
+Caldas,48,CO,Colombia
+Caquetá,48,CO,Colombia
+Casanare,48,CO,Colombia
+Cauca,48,CO,Colombia
+Cesar,48,CO,Colombia
+Chocó,48,CO,Colombia
+Córdoba,48,CO,Colombia
+Cundinamarca,48,CO,Colombia
+Guainía,48,CO,Colombia
+Guaviare,48,CO,Colombia
+Huila,48,CO,Colombia
+La Guajira,48,CO,Colombia
+Magdalena,48,CO,Colombia
+Meta,48,CO,Colombia
+Nariño,48,CO,Colombia
+Norte de Santander,48,CO,Colombia
+Putumayo,48,CO,Colombia
+Quindío,48,CO,Colombia
+Risaralda,48,CO,Colombia
+Santander,48,CO,Colombia
+Sucre,48,CO,Colombia
+Tolima,48,CO,Colombia
+Valle del Cauca,48,CO,Colombia
+Vaupés,48,CO,Colombia
+Vichada,48,CO,Colombia
+Anjouan,49,KM,Comoros
+Grande Comore,49,KM,Comoros
+Mohéli,49,KM,Comoros
+Bouenza Department,50,CG,Congo
+Brazzaville,50,CG,Congo
+Cuvette Department,50,CG,Congo
+Cuvette-Ouest Department,50,CG,Congo
+Kouilou Department,50,CG,Congo
+Lékoumou Department,50,CG,Congo
+Likouala Department,50,CG,Congo
+Niari Department,50,CG,Congo
+Plateaux Department,50,CG,Congo
+Pointe-Noire,50,CG,Congo
+Pool Department,50,CG,Congo
+Sangha Department,50,CG,Congo
+Alajuela Province,53,CR,Costa Rica
+Guanacaste Province,53,CR,Costa Rica
+Heredia Province,53,CR,Costa Rica
+Limón Province,53,CR,Costa Rica
+Provincia de Cartago,53,CR,Costa Rica
+Puntarenas Province,53,CR,Costa Rica
+San José Province,53,CR,Costa Rica
+Abidjan,54,CI,Cote D'Ivoire (Ivory Coast)
+Agnéby,54,CI,Cote D'Ivoire (Ivory Coast)
+Bafing Region,54,CI,Cote D'Ivoire (Ivory Coast)
+Bas-Sassandra District,54,CI,Cote D'Ivoire (Ivory Coast)
+Bas-Sassandra Region,54,CI,Cote D'Ivoire (Ivory Coast)
+Comoé District,54,CI,Cote D'Ivoire (Ivory Coast)
+Denguélé District,54,CI,Cote D'Ivoire (Ivory Coast)
+Denguélé Region,54,CI,Cote D'Ivoire (Ivory Coast)
+Dix-Huit Montagnes,54,CI,Cote D'Ivoire (Ivory Coast)
+Fromager,54,CI,Cote D'Ivoire (Ivory Coast)
+Gôh-Djiboua District,54,CI,Cote D'Ivoire (Ivory Coast)
+Haut-Sassandra,54,CI,Cote D'Ivoire (Ivory Coast)
+Lacs District,54,CI,Cote D'Ivoire (Ivory Coast)
+Lacs Region,54,CI,Cote D'Ivoire (Ivory Coast)
+Lagunes District,54,CI,Cote D'Ivoire (Ivory Coast)
+Lagunes region,54,CI,Cote D'Ivoire (Ivory Coast)
+Marahoué Region,54,CI,Cote D'Ivoire (Ivory Coast)
+Montagnes District,54,CI,Cote D'Ivoire (Ivory Coast)
+Moyen-Cavally,54,CI,Cote D'Ivoire (Ivory Coast)
+Moyen-Comoé,54,CI,Cote D'Ivoire (Ivory Coast)
+N'zi-Comoé,54,CI,Cote D'Ivoire (Ivory Coast)
+Sassandra-Marahoué District,54,CI,Cote D'Ivoire (Ivory Coast)
+Savanes Region,54,CI,Cote D'Ivoire (Ivory Coast)
+Sud-Bandama,54,CI,Cote D'Ivoire (Ivory Coast)
+Sud-Comoé,54,CI,Cote D'Ivoire (Ivory Coast)
+Vallée du Bandama District,54,CI,Cote D'Ivoire (Ivory Coast)
+Vallée du Bandama Region,54,CI,Cote D'Ivoire (Ivory Coast)
+Woroba District,54,CI,Cote D'Ivoire (Ivory Coast)
+Worodougou,54,CI,Cote D'Ivoire (Ivory Coast)
+Yamoussoukro,54,CI,Cote D'Ivoire (Ivory Coast)
+Zanzan Region,54,CI,Cote D'Ivoire (Ivory Coast)
+Bjelovar-Bilogora,55,HR,Croatia
+Brod-Posavina,55,HR,Croatia
+Dubrovnik-Neretva,55,HR,Croatia
+Istria,55,HR,Croatia
+Karlovac,55,HR,Croatia
+Koprivnica-Križevci,55,HR,Croatia
+Krapina-Zagorje,55,HR,Croatia
+Lika-Senj,55,HR,Croatia
+Međimurje,55,HR,Croatia
+Osijek-Baranja,55,HR,Croatia
+Požega-Slavonia,55,HR,Croatia
+Primorje-Gorski Kotar,55,HR,Croatia
+Šibenik-Knin,55,HR,Croatia
+Sisak-Moslavina,55,HR,Croatia
+Split-Dalmatia,55,HR,Croatia
+Varaždin,55,HR,Croatia
+Virovitica-Podravina,55,HR,Croatia
+Vukovar-Syrmia,55,HR,Croatia
+Zadar,55,HR,Croatia
+Zagreb,55,HR,Croatia
+Zagreb,55,HR,Croatia
+Artemisa Province,56,CU,Cuba
+Camagüey Province,56,CU,Cuba
+Ciego de Ávila Province,56,CU,Cuba
+Cienfuegos Province,56,CU,Cuba
+Granma Province,56,CU,Cuba
+Guantánamo Province,56,CU,Cuba
+Havana Province,56,CU,Cuba
+Holguín Province,56,CU,Cuba
+Isla de la Juventud,56,CU,Cuba
+Las Tunas Province,56,CU,Cuba
+Matanzas Province,56,CU,Cuba
+Mayabeque Province,56,CU,Cuba
+Pinar del Río Province,56,CU,Cuba
+Sancti Spíritus Province,56,CU,Cuba
+Santiago de Cuba Province,56,CU,Cuba
+Villa Clara Province,56,CU,Cuba
+Famagusta District (Mağusa),57,CY,Cyprus
+Kyrenia District (Keryneia),57,CY,Cyprus
+Larnaca District (Larnaka),57,CY,Cyprus
+Limassol District (Leymasun),57,CY,Cyprus
+Nicosia District (Lefkoşa),57,CY,Cyprus
+Paphos District (Pafos),57,CY,Cyprus
+Benešov,58,CZ,Czech Republic
+Beroun,58,CZ,Czech Republic
+Blansko,58,CZ,Czech Republic
+Břeclav,58,CZ,Czech Republic
+Brno-město,58,CZ,Czech Republic
+Brno-venkov,58,CZ,Czech Republic
+Bruntál,58,CZ,Czech Republic
+Česká Lípa,58,CZ,Czech Republic
+České Budějovice,58,CZ,Czech Republic
+Český Krumlov,58,CZ,Czech Republic
+Cheb,58,CZ,Czech Republic
+Chomutov,58,CZ,Czech Republic
+Chrudim,58,CZ,Czech Republic
+Děčín,58,CZ,Czech Republic
+Domažlice,58,CZ,Czech Republic
+Frýdek-Místek,58,CZ,Czech Republic
+Havlíčkův Brod,58,CZ,Czech Republic
+Hodonín,58,CZ,Czech Republic
+Hradec Králové,58,CZ,Czech Republic
+Jablonec nad Nisou,58,CZ,Czech Republic
+Jeseník,58,CZ,Czech Republic
+Jičín,58,CZ,Czech Republic
+Jihlava,58,CZ,Czech Republic
+Jihočeský kraj,58,CZ,Czech Republic
+Jihomoravský kraj,58,CZ,Czech Republic
+Jindřichův Hradec,58,CZ,Czech Republic
+Karlovarský kraj,58,CZ,Czech Republic
+Karlovy Vary,58,CZ,Czech Republic
+Karviná,58,CZ,Czech Republic
+Kladno,58,CZ,Czech Republic
+Klatovy,58,CZ,Czech Republic
+Kolín,58,CZ,Czech Republic
+Kraj Vysočina,58,CZ,Czech Republic
+Královéhradecký kraj,58,CZ,Czech Republic
+Kroměříž,58,CZ,Czech Republic
+Kutná Hora,58,CZ,Czech Republic
+Liberec,58,CZ,Czech Republic
+Liberecký kraj,58,CZ,Czech Republic
+Litoměřice,58,CZ,Czech Republic
+Louny,58,CZ,Czech Republic
+Mělník,58,CZ,Czech Republic
+Mladá Boleslav,58,CZ,Czech Republic
+Moravskoslezský kraj,58,CZ,Czech Republic
+Most,58,CZ,Czech Republic
+Náchod,58,CZ,Czech Republic
+Nový Jičín,58,CZ,Czech Republic
+Nymburk,58,CZ,Czech Republic
+Olomouc,58,CZ,Czech Republic
+Olomoucký kraj,58,CZ,Czech Republic
+Opava,58,CZ,Czech Republic
+Ostrava-město,58,CZ,Czech Republic
+Pardubice,58,CZ,Czech Republic
+Pardubický kraj,58,CZ,Czech Republic
+Pelhřimov,58,CZ,Czech Republic
+Písek,58,CZ,Czech Republic
+Plzeň-jih,58,CZ,Czech Republic
+Plzeň-město,58,CZ,Czech Republic
+Plzeň-sever,58,CZ,Czech Republic
+Plzeňský kraj,58,CZ,Czech Republic
+Prachatice,58,CZ,Czech Republic
+Praha-východ,58,CZ,Czech Republic
+Praha-západ,58,CZ,Czech Republic
+"Praha, Hlavní město",58,CZ,Czech Republic
+Přerov,58,CZ,Czech Republic
+Příbram,58,CZ,Czech Republic
+Prostějov,58,CZ,Czech Republic
+Rakovník,58,CZ,Czech Republic
+Rokycany,58,CZ,Czech Republic
+Rychnov nad Kněžnou,58,CZ,Czech Republic
+Semily,58,CZ,Czech Republic
+Sokolov,58,CZ,Czech Republic
+Strakonice,58,CZ,Czech Republic
+Středočeský kraj,58,CZ,Czech Republic
+Šumperk,58,CZ,Czech Republic
+Svitavy,58,CZ,Czech Republic
+Tábor,58,CZ,Czech Republic
+Tachov,58,CZ,Czech Republic
+Teplice,58,CZ,Czech Republic
+Třebíč,58,CZ,Czech Republic
+Trutnov,58,CZ,Czech Republic
+Uherské Hradiště,58,CZ,Czech Republic
+Ústecký kraj,58,CZ,Czech Republic
+Ústí nad Labem,58,CZ,Czech Republic
+Ústí nad Orlicí,58,CZ,Czech Republic
+Vsetín,58,CZ,Czech Republic
+Vyškov,58,CZ,Czech Republic
+Žďár nad Sázavou,58,CZ,Czech Republic
+Zlín,58,CZ,Czech Republic
+Zlínský kraj,58,CZ,Czech Republic
+Znojmo,58,CZ,Czech Republic
+Bas-Uélé,51,CD,Democratic Republic of the Congo
+Équateur,51,CD,Democratic Republic of the Congo
+Haut-Katanga,51,CD,Democratic Republic of the Congo
+Haut-Lomami,51,CD,Democratic Republic of the Congo
+Haut-Uélé,51,CD,Democratic Republic of the Congo
+Ituri,51,CD,Democratic Republic of the Congo
+Kasaï,51,CD,Democratic Republic of the Congo
+Kasaï Central,51,CD,Democratic Republic of the Congo
+Kasaï Oriental,51,CD,Democratic Republic of the Congo
+Kinshasa,51,CD,Democratic Republic of the Congo
+Kongo Central,51,CD,Democratic Republic of the Congo
+Kwango,51,CD,Democratic Republic of the Congo
+Kwilu,51,CD,Democratic Republic of the Congo
+Lomami,51,CD,Democratic Republic of the Congo
+Lualaba,51,CD,Democratic Republic of the Congo
+Mai-Ndombe,51,CD,Democratic Republic of the Congo
+Maniema,51,CD,Democratic Republic of the Congo
+Mongala,51,CD,Democratic Republic of the Congo
+Nord-Kivu,51,CD,Democratic Republic of the Congo
+Nord-Ubangi,51,CD,Democratic Republic of the Congo
+Sankuru,51,CD,Democratic Republic of the Congo
+Sud-Kivu,51,CD,Democratic Republic of the Congo
+Sud-Ubangi,51,CD,Democratic Republic of the Congo
+Tanganyika,51,CD,Democratic Republic of the Congo
+Tshopo,51,CD,Democratic Republic of the Congo
+Tshuapa,51,CD,Democratic Republic of the Congo
+Capital Region of Denmark,59,DK,Denmark
+Central Denmark Region,59,DK,Denmark
+North Denmark Region,59,DK,Denmark
+Region of Southern Denmark,59,DK,Denmark
+Region Zealand,59,DK,Denmark
+Ali Sabieh Region,60,DJ,Djibouti
+Arta Region,60,DJ,Djibouti
+Dikhil Region,60,DJ,Djibouti
+Djibouti,60,DJ,Djibouti
+Obock Region,60,DJ,Djibouti
+Tadjourah Region,60,DJ,Djibouti
+Saint Andrew Parish,61,DM,Dominica
+Saint David Parish,61,DM,Dominica
+Saint George Parish,61,DM,Dominica
+Saint John Parish,61,DM,Dominica
+Saint Joseph Parish,61,DM,Dominica
+Saint Luke Parish,61,DM,Dominica
+Saint Mark Parish,61,DM,Dominica
+Saint Patrick Parish,61,DM,Dominica
+Saint Paul Parish,61,DM,Dominica
+Saint Peter Parish,61,DM,Dominica
+Azua Province,62,DO,Dominican Republic
+Baoruco Province,62,DO,Dominican Republic
+Barahona Province,62,DO,Dominican Republic
+Dajabón Province,62,DO,Dominican Republic
+Distrito Nacional,62,DO,Dominican Republic
+Duarte Province,62,DO,Dominican Republic
+El Seibo Province,62,DO,Dominican Republic
+Espaillat Province,62,DO,Dominican Republic
+Hato Mayor Province,62,DO,Dominican Republic
+Hermanas Mirabal Province,62,DO,Dominican Republic
+Independencia,62,DO,Dominican Republic
+La Altagracia Province,62,DO,Dominican Republic
+La Romana Province,62,DO,Dominican Republic
+La Vega Province,62,DO,Dominican Republic
+María Trinidad Sánchez Province,62,DO,Dominican Republic
+Monseñor Nouel Province,62,DO,Dominican Republic
+Monte Cristi Province,62,DO,Dominican Republic
+Monte Plata Province,62,DO,Dominican Republic
+Pedernales Province,62,DO,Dominican Republic
+Peravia Province,62,DO,Dominican Republic
+Puerto Plata Province,62,DO,Dominican Republic
+Samaná Province,62,DO,Dominican Republic
+San Cristóbal Province,62,DO,Dominican Republic
+San José de Ocoa Province,62,DO,Dominican Republic
+San Juan Province,62,DO,Dominican Republic
+San Pedro de Macorís,62,DO,Dominican Republic
+Sánchez Ramírez Province,62,DO,Dominican Republic
+Santiago Province,62,DO,Dominican Republic
+Santiago Rodríguez Province,62,DO,Dominican Republic
+Santo Domingo Province,62,DO,Dominican Republic
+Valverde Province,62,DO,Dominican Republic
+Azuay,64,EC,Ecuador
+Bolívar,64,EC,Ecuador
+Cañar,64,EC,Ecuador
+Carchi,64,EC,Ecuador
+Chimborazo,64,EC,Ecuador
+Cotopaxi,64,EC,Ecuador
+El Oro,64,EC,Ecuador
+Esmeraldas,64,EC,Ecuador
+Galápagos,64,EC,Ecuador
+Guayas,64,EC,Ecuador
+Imbabura,64,EC,Ecuador
+Loja,64,EC,Ecuador
+Los Ríos,64,EC,Ecuador
+Manabí,64,EC,Ecuador
+Morona-Santiago,64,EC,Ecuador
+Napo,64,EC,Ecuador
+Orellana,64,EC,Ecuador
+Pastaza,64,EC,Ecuador
+Pichincha,64,EC,Ecuador
+Santa Elena,64,EC,Ecuador
+Santo Domingo de los Tsáchilas,64,EC,Ecuador
+Sucumbíos,64,EC,Ecuador
+Tungurahua,64,EC,Ecuador
+Zamora Chinchipe,64,EC,Ecuador
+Alexandria,65,EG,Egypt
+Aswan,65,EG,Egypt
+Asyut,65,EG,Egypt
+Beheira,65,EG,Egypt
+Beni Suef,65,EG,Egypt
+Cairo,65,EG,Egypt
+Dakahlia,65,EG,Egypt
+Damietta,65,EG,Egypt
+Faiyum,65,EG,Egypt
+Gharbia,65,EG,Egypt
+Giza,65,EG,Egypt
+Ismailia,65,EG,Egypt
+Kafr el-Sheikh,65,EG,Egypt
+Luxor,65,EG,Egypt
+Matrouh,65,EG,Egypt
+Minya,65,EG,Egypt
+Monufia,65,EG,Egypt
+New Valley,65,EG,Egypt
+North Sinai,65,EG,Egypt
+Port Said,65,EG,Egypt
+Qalyubia,65,EG,Egypt
+Qena,65,EG,Egypt
+Red Sea,65,EG,Egypt
+Sharqia,65,EG,Egypt
+Sohag,65,EG,Egypt
+South Sinai,65,EG,Egypt
+Suez,65,EG,Egypt
+Ahuachapán Department,66,SV,El Salvador
+Cabañas Department,66,SV,El Salvador
+Chalatenango Department,66,SV,El Salvador
+Cuscatlán Department,66,SV,El Salvador
+La Libertad Department,66,SV,El Salvador
+La Paz Department,66,SV,El Salvador
+La Unión Department,66,SV,El Salvador
+Morazán Department,66,SV,El Salvador
+San Miguel Department,66,SV,El Salvador
+San Salvador Department,66,SV,El Salvador
+San Vicente Department,66,SV,El Salvador
+Santa Ana Department,66,SV,El Salvador
+Sonsonate Department,66,SV,El Salvador
+Usulután Department,66,SV,El Salvador
+Annobón Province,67,GQ,Equatorial Guinea
+Bioko Norte Province,67,GQ,Equatorial Guinea
+Bioko Sur Province,67,GQ,Equatorial Guinea
+Centro Sur Province,67,GQ,Equatorial Guinea
+Insular Region,67,GQ,Equatorial Guinea
+Kié-Ntem Province,67,GQ,Equatorial Guinea
+Litoral Province,67,GQ,Equatorial Guinea
+Río Muni,67,GQ,Equatorial Guinea
+Wele-Nzas Province,67,GQ,Equatorial Guinea
+Anseba Region,68,ER,Eritrea
+Debub Region,68,ER,Eritrea
+Gash-Barka Region,68,ER,Eritrea
+Maekel Region,68,ER,Eritrea
+Northern Red Sea Region,68,ER,Eritrea
+Southern Red Sea Region,68,ER,Eritrea
+Harju County,69,EE,Estonia
+Hiiu County,69,EE,Estonia
+Ida-Viru County,69,EE,Estonia
+Järva County,69,EE,Estonia
+Jõgeva County,69,EE,Estonia
+Lääne County,69,EE,Estonia
+Lääne-Viru County,69,EE,Estonia
+Pärnu County,69,EE,Estonia
+Põlva County,69,EE,Estonia
+Rapla County,69,EE,Estonia
+Saare County,69,EE,Estonia
+Tartu County,69,EE,Estonia
+Valga County,69,EE,Estonia
+Viljandi County,69,EE,Estonia
+Võru County,69,EE,Estonia
+Hhohho District,212,SZ,Eswatini
+Lubombo District,212,SZ,Eswatini
+Manzini District,212,SZ,Eswatini
+Shiselweni District,212,SZ,Eswatini
+Addis Ababa,70,ET,Ethiopia
+Afar Region,70,ET,Ethiopia
+Amhara Region,70,ET,Ethiopia
+Benishangul-Gumuz Region,70,ET,Ethiopia
+Dire Dawa,70,ET,Ethiopia
+Gambela Region,70,ET,Ethiopia
+Harari Region,70,ET,Ethiopia
+Oromia Region,70,ET,Ethiopia
+Somali Region,70,ET,Ethiopia
+"Southern Nations, Nationalities, and Peoples' Region",70,ET,Ethiopia
+Tigray Region,70,ET,Ethiopia
+Eysturoy,72,FO,Faroe Islands
+Northern Isles,72,FO,Faroe Islands
+Sandoy,72,FO,Faroe Islands
+Streymoy,72,FO,Faroe Islands
+Suðuroy,72,FO,Faroe Islands
+Vágar,72,FO,Faroe Islands
+Ba,73,FJ,Fiji Islands
+Bua,73,FJ,Fiji Islands
+Cakaudrove,73,FJ,Fiji Islands
+Central Division,73,FJ,Fiji Islands
+Eastern Division,73,FJ,Fiji Islands
+Kadavu,73,FJ,Fiji Islands
+Lau,73,FJ,Fiji Islands
+Lomaiviti,73,FJ,Fiji Islands
+Macuata,73,FJ,Fiji Islands
+Nadroga-Navosa,73,FJ,Fiji Islands
+Naitasiri,73,FJ,Fiji Islands
+Namosi,73,FJ,Fiji Islands
+Northern Division,73,FJ,Fiji Islands
+Ra,73,FJ,Fiji Islands
+Rewa,73,FJ,Fiji Islands
+Rotuma,73,FJ,Fiji Islands
+Serua,73,FJ,Fiji Islands
+Tailevu,73,FJ,Fiji Islands
+Western Division,73,FJ,Fiji Islands
+Åland Islands,74,FI,Finland
+Central Finland,74,FI,Finland
+Central Ostrobothnia,74,FI,Finland
+Finland Proper,74,FI,Finland
+Kainuu,74,FI,Finland
+Kymenlaakso,74,FI,Finland
+Lapland,74,FI,Finland
+North Karelia,74,FI,Finland
+Northern Ostrobothnia,74,FI,Finland
+Northern Savonia,74,FI,Finland
+Ostrobothnia,74,FI,Finland
+Päijänne Tavastia,74,FI,Finland
+Pirkanmaa,74,FI,Finland
+Satakunta,74,FI,Finland
+South Karelia,74,FI,Finland
+Southern Ostrobothnia,74,FI,Finland
+Southern Savonia,74,FI,Finland
+Tavastia Proper,74,FI,Finland
+Uusimaa,74,FI,Finland
+Ain,75,FR,France
+Aisne,75,FR,France
+Allier,75,FR,France
+Alpes-de-Haute-Provence,75,FR,France
+Alpes-Maritimes,75,FR,France
+Alsace,75,FR,France
+Ardèche,75,FR,France
+Ardennes,75,FR,France
+Ariège,75,FR,France
+Aube,75,FR,France
+Aude,75,FR,France
+Auvergne-Rhône-Alpes,75,FR,France
+Aveyron,75,FR,France
+Bas-Rhin,75,FR,France
+Bouches-du-Rhône,75,FR,France
+Bourgogne-Franche-Comté,75,FR,France
+Bretagne,75,FR,France
+Calvados,75,FR,France
+Cantal,75,FR,France
+Centre-Val de Loire,75,FR,France
+Charente,75,FR,France
+Charente-Maritime,75,FR,France
+Cher,75,FR,France
+Clipperton,75,FR,France
+Corrèze,75,FR,France
+Corse,75,FR,France
+Corse-du-Sud,75,FR,France
+Côte-d'Or,75,FR,France
+Côtes-d'Armor,75,FR,France
+Creuse,75,FR,France
+Deux-Sèvres,75,FR,France
+Dordogne,75,FR,France
+Doubs,75,FR,France
+Drôme,75,FR,France
+Essonne,75,FR,France
+Eure,75,FR,France
+Eure-et-Loir,75,FR,France
+Finistère,75,FR,France
+French Guiana,75,FR,France
+French Polynesia,75,FR,France
+French Southern and Antarctic Lands,75,FR,France
+Gard,75,FR,France
+Gers,75,FR,France
+Gironde,75,FR,France
+Grand-Est,75,FR,France
+Guadeloupe,75,FR,France
+Haut-Rhin,75,FR,France
+Haute-Corse,75,FR,France
+Haute-Garonne,75,FR,France
+Haute-Loire,75,FR,France
+Haute-Marne,75,FR,France
+Haute-Saône,75,FR,France
+Haute-Savoie,75,FR,France
+Haute-Vienne,75,FR,France
+Hautes-Alpes,75,FR,France
+Hautes-Pyrénées,75,FR,France
+Hauts-de-France,75,FR,France
+Hauts-de-Seine,75,FR,France
+Hérault,75,FR,France
+Île-de-France,75,FR,France
+Ille-et-Vilaine,75,FR,France
+Indre,75,FR,France
+Indre-et-Loire,75,FR,France
+Isère,75,FR,France
+Jura,75,FR,France
+La Réunion,75,FR,France
+Landes,75,FR,France
+Loir-et-Cher,75,FR,France
+Loire,75,FR,France
+Loire-Atlantique,75,FR,France
+Loiret,75,FR,France
+Lot,75,FR,France
+Lot-et-Garonne,75,FR,France
+Lozère,75,FR,France
+Maine-et-Loire,75,FR,France
+Manche,75,FR,France
+Marne,75,FR,France
+Martinique,75,FR,France
+Mayenne,75,FR,France
+Mayotte,75,FR,France
+Métropole de Lyon,75,FR,France
+Meurthe-et-Moselle,75,FR,France
+Meuse,75,FR,France
+Morbihan,75,FR,France
+Moselle,75,FR,France
+Nièvre,75,FR,France
+Nord,75,FR,France
+Normandie,75,FR,France
+Nouvelle-Aquitaine,75,FR,France
+Occitanie,75,FR,France
+Oise,75,FR,France
+Orne,75,FR,France
+Paris,75,FR,France
+Pas-de-Calais,75,FR,France
+Pays-de-la-Loire,75,FR,France
+Provence-Alpes-Côte-d’Azur,75,FR,France
+Puy-de-Dôme,75,FR,France
+Pyrénées-Atlantiques,75,FR,France
+Pyrénées-Orientales,75,FR,France
+Rhône,75,FR,France
+Saint Pierre and Miquelon,75,FR,France
+Saint-Barthélemy,75,FR,France
+Saint-Martin,75,FR,France
+Saône-et-Loire,75,FR,France
+Sarthe,75,FR,France
+Savoie,75,FR,France
+Seine-et-Marne,75,FR,France
+Seine-Maritime,75,FR,France
+Seine-Saint-Denis,75,FR,France
+Somme,75,FR,France
+Tarn,75,FR,France
+Tarn-et-Garonne,75,FR,France
+Territoire de Belfort,75,FR,France
+Val-d'Oise,75,FR,France
+Val-de-Marne,75,FR,France
+Var,75,FR,France
+Vaucluse,75,FR,France
+Vendée,75,FR,France
+Vienne,75,FR,France
+Vosges,75,FR,France
+Wallis and Futuna,75,FR,France
+Yonne,75,FR,France
+Yvelines,75,FR,France
+Estuaire Province,79,GA,Gabon
+Haut-Ogooué Province,79,GA,Gabon
+Moyen-Ogooué Province,79,GA,Gabon
+Ngounié Province,79,GA,Gabon
+Nyanga Province,79,GA,Gabon
+Ogooué-Ivindo Province,79,GA,Gabon
+Ogooué-Lolo Province,79,GA,Gabon
+Ogooué-Maritime Province,79,GA,Gabon
+Woleu-Ntem Province,79,GA,Gabon
+Abkhazia,81,GE,Georgia
+Adjara,81,GE,Georgia
+Guria,81,GE,Georgia
+Imereti,81,GE,Georgia
+Kakheti,81,GE,Georgia
+Khelvachauri Municipality,81,GE,Georgia
+Kvemo Kartli,81,GE,Georgia
+Mtskheta-Mtianeti,81,GE,Georgia
+Racha-Lechkhumi and Kvemo Svaneti,81,GE,Georgia
+Samegrelo-Zemo Svaneti,81,GE,Georgia
+Samtskhe-Javakheti,81,GE,Georgia
+Senaki Municipality,81,GE,Georgia
+Shida Kartli,81,GE,Georgia
+Tbilisi,81,GE,Georgia
+Baden-Württemberg,82,DE,Germany
+Bavaria,82,DE,Germany
+Berlin,82,DE,Germany
+Brandenburg,82,DE,Germany
+Bremen,82,DE,Germany
+Hamburg,82,DE,Germany
+Hessen,82,DE,Germany
+Lower Saxony,82,DE,Germany
+Mecklenburg-Vorpommern,82,DE,Germany
+North Rhine-Westphalia,82,DE,Germany
+Rhineland-Palatinate,82,DE,Germany
+Saarland,82,DE,Germany
+Saxony,82,DE,Germany
+Saxony-Anhalt,82,DE,Germany
+Schleswig-Holstein,82,DE,Germany
+Thuringia,82,DE,Germany
+Ahafo,83,GH,Ghana
+Ashanti,83,GH,Ghana
+Bono,83,GH,Ghana
+Bono East,83,GH,Ghana
+Central,83,GH,Ghana
+Eastern,83,GH,Ghana
+Greater Accra,83,GH,Ghana
+North East,83,GH,Ghana
+Northern,83,GH,Ghana
+Oti,83,GH,Ghana
+Savannah,83,GH,Ghana
+Upper East,83,GH,Ghana
+Upper West,83,GH,Ghana
+Volta,83,GH,Ghana
+Western,83,GH,Ghana
+Western North,83,GH,Ghana
+Achaea Regional Unit,85,GR,Greece
+Aetolia-Acarnania Regional Unit,85,GR,Greece
+Arcadia Prefecture,85,GR,Greece
+Argolis Regional Unit,85,GR,Greece
+Attica Region,85,GR,Greece
+Boeotia Regional Unit,85,GR,Greece
+Central Greece Region,85,GR,Greece
+Central Macedonia,85,GR,Greece
+Chania Regional Unit,85,GR,Greece
+Corfu Prefecture,85,GR,Greece
+Corinthia Regional Unit,85,GR,Greece
+Crete Region,85,GR,Greece
+Drama Regional Unit,85,GR,Greece
+East Attica Regional Unit,85,GR,Greece
+East Macedonia and Thrace,85,GR,Greece
+Epirus Region,85,GR,Greece
+Euboea,85,GR,Greece
+Grevena Prefecture,85,GR,Greece
+Imathia Regional Unit,85,GR,Greece
+Ioannina Regional Unit,85,GR,Greece
+Ionian Islands Region,85,GR,Greece
+Karditsa Regional Unit,85,GR,Greece
+Kastoria Regional Unit,85,GR,Greece
+Kefalonia Prefecture,85,GR,Greece
+Kilkis Regional Unit,85,GR,Greece
+Kozani Prefecture,85,GR,Greece
+Laconia,85,GR,Greece
+Larissa Prefecture,85,GR,Greece
+Lefkada Regional Unit,85,GR,Greece
+Pella Regional Unit,85,GR,Greece
+Peloponnese Region,85,GR,Greece
+Phthiotis Prefecture,85,GR,Greece
+Preveza Prefecture,85,GR,Greece
+Serres Prefecture,85,GR,Greece
+South Aegean,85,GR,Greece
+Thessaloniki Regional Unit,85,GR,Greece
+West Greece Region,85,GR,Greece
+West Macedonia Region,85,GR,Greece
+Carriacou and Petite Martinique,87,GD,Grenada
+Saint Andrew Parish,87,GD,Grenada
+Saint David Parish,87,GD,Grenada
+Saint George Parish,87,GD,Grenada
+Saint John Parish,87,GD,Grenada
+Saint Mark Parish,87,GD,Grenada
+Saint Patrick Parish,87,GD,Grenada
+Alta Verapaz ,90,GT,Guatemala
+Baja Verapaz ,90,GT,Guatemala
+Chimaltenango ,90,GT,Guatemala
+Chiquimula ,90,GT,Guatemala
+El Progreso ,90,GT,Guatemala
+Escuintla ,90,GT,Guatemala
+Guatemala ,90,GT,Guatemala
+Huehuetenango ,90,GT,Guatemala
+Izabal ,90,GT,Guatemala
+Jalapa ,90,GT,Guatemala
+Jutiapa ,90,GT,Guatemala
+Petén ,90,GT,Guatemala
+Quetzaltenango ,90,GT,Guatemala
+Quiché ,90,GT,Guatemala
+Retalhuleu ,90,GT,Guatemala
+Sacatepéquez ,90,GT,Guatemala
+San Marcos ,90,GT,Guatemala
+Santa Rosa ,90,GT,Guatemala
+Sololá ,90,GT,Guatemala
+Suchitepéquez ,90,GT,Guatemala
+Totonicapán ,90,GT,Guatemala
+Zacapa,90,GT,Guatemala
+Beyla Prefecture,92,GN,Guinea
+Boffa Prefecture,92,GN,Guinea
+Boké Prefecture,92,GN,Guinea
+Boké Region,92,GN,Guinea
+Conakry,92,GN,Guinea
+Coyah Prefecture,92,GN,Guinea
+Dabola Prefecture,92,GN,Guinea
+Dalaba Prefecture,92,GN,Guinea
+Dinguiraye Prefecture,92,GN,Guinea
+Dubréka Prefecture,92,GN,Guinea
+Faranah Prefecture,92,GN,Guinea
+Forécariah Prefecture,92,GN,Guinea
+Fria Prefecture,92,GN,Guinea
+Gaoual Prefecture,92,GN,Guinea
+Guéckédou Prefecture,92,GN,Guinea
+Kankan Prefecture,92,GN,Guinea
+Kankan Region,92,GN,Guinea
+Kérouané Prefecture,92,GN,Guinea
+Kindia Prefecture,92,GN,Guinea
+Kindia Region,92,GN,Guinea
+Kissidougou Prefecture,92,GN,Guinea
+Koubia Prefecture,92,GN,Guinea
+Koundara Prefecture,92,GN,Guinea
+Kouroussa Prefecture,92,GN,Guinea
+Labé Prefecture,92,GN,Guinea
+Labé Region,92,GN,Guinea
+Lélouma Prefecture,92,GN,Guinea
+Lola Prefecture,92,GN,Guinea
+Macenta Prefecture,92,GN,Guinea
+Mali Prefecture,92,GN,Guinea
+Mamou Prefecture,92,GN,Guinea
+Mamou Region,92,GN,Guinea
+Mandiana Prefecture,92,GN,Guinea
+Nzérékoré Prefecture,92,GN,Guinea
+Nzérékoré Region,92,GN,Guinea
+Pita Prefecture,92,GN,Guinea
+Siguiri Prefecture,92,GN,Guinea
+Télimélé Prefecture,92,GN,Guinea
+Tougué Prefecture,92,GN,Guinea
+Yomou Prefecture,92,GN,Guinea
+Bafatá,93,GW,Guinea-Bissau
+Biombo Region,93,GW,Guinea-Bissau
+Bolama Region,93,GW,Guinea-Bissau
+Cacheu Region,93,GW,Guinea-Bissau
+Gabú Region,93,GW,Guinea-Bissau
+Leste Province,93,GW,Guinea-Bissau
+Norte Province,93,GW,Guinea-Bissau
+Oio Region,93,GW,Guinea-Bissau
+Quinara Region,93,GW,Guinea-Bissau
+Sul Province,93,GW,Guinea-Bissau
+Tombali Region,93,GW,Guinea-Bissau
+Barima-Waini,94,GY,Guyana
+Cuyuni-Mazaruni,94,GY,Guyana
+Demerara-Mahaica,94,GY,Guyana
+East Berbice-Corentyne,94,GY,Guyana
+Essequibo Islands-West Demerara,94,GY,Guyana
+Mahaica-Berbice,94,GY,Guyana
+Pomeroon-Supenaam,94,GY,Guyana
+Potaro-Siparuni,94,GY,Guyana
+Upper Demerara-Berbice,94,GY,Guyana
+Upper Takutu-Upper Essequibo,94,GY,Guyana
+Artibonite,95,HT,Haiti
+Centre,95,HT,Haiti
+Grand'Anse,95,HT,Haiti
+Nippes,95,HT,Haiti
+Nord,95,HT,Haiti
+Nord-Est,95,HT,Haiti
+Nord-Ouest,95,HT,Haiti
+Ouest,95,HT,Haiti
+Sud,95,HT,Haiti
+Sud-Est,95,HT,Haiti
+Atlántida Department,97,HN,Honduras
+Bay Islands Department,97,HN,Honduras
+Choluteca Department,97,HN,Honduras
+Colón Department,97,HN,Honduras
+Comayagua Department,97,HN,Honduras
+Copán Department,97,HN,Honduras
+Cortés Department,97,HN,Honduras
+El Paraíso Department,97,HN,Honduras
+Francisco Morazán Department,97,HN,Honduras
+Gracias a Dios Department,97,HN,Honduras
+Intibucá Department,97,HN,Honduras
+La Paz Department,97,HN,Honduras
+Lempira Department,97,HN,Honduras
+Ocotepeque Department,97,HN,Honduras
+Olancho Department,97,HN,Honduras
+Santa Bárbara Department,97,HN,Honduras
+Valle Department,97,HN,Honduras
+Yoro Department,97,HN,Honduras
+Central and Western,98,HK,Hong Kong S.A.R.
+Eastern,98,HK,Hong Kong S.A.R.
+Islands,98,HK,Hong Kong S.A.R.
+Kowloon City,98,HK,Hong Kong S.A.R.
+Kwai Tsing,98,HK,Hong Kong S.A.R.
+Kwun Tong,98,HK,Hong Kong S.A.R.
+North,98,HK,Hong Kong S.A.R.
+Sai Kung,98,HK,Hong Kong S.A.R.
+Sha Tin,98,HK,Hong Kong S.A.R.
+Sham Shui Po,98,HK,Hong Kong S.A.R.
+Southern,98,HK,Hong Kong S.A.R.
+Tai Po,98,HK,Hong Kong S.A.R.
+Tsuen Wan,98,HK,Hong Kong S.A.R.
+Tuen Mun,98,HK,Hong Kong S.A.R.
+Wan Chai,98,HK,Hong Kong S.A.R.
+Wong Tai Sin,98,HK,Hong Kong S.A.R.
+Yau Tsim Mong,98,HK,Hong Kong S.A.R.
+Yuen Long,98,HK,Hong Kong S.A.R.
+Bács-Kiskun,99,HU,Hungary
+Baranya,99,HU,Hungary
+Békés,99,HU,Hungary
+Békéscsaba,99,HU,Hungary
+Borsod-Abaúj-Zemplén,99,HU,Hungary
+Budapest,99,HU,Hungary
+Csongrád County,99,HU,Hungary
+Debrecen,99,HU,Hungary
+Dunaújváros,99,HU,Hungary
+Eger,99,HU,Hungary
+Érd,99,HU,Hungary
+Fejér County,99,HU,Hungary
+Győr,99,HU,Hungary
+Győr-Moson-Sopron County,99,HU,Hungary
+Hajdú-Bihar County,99,HU,Hungary
+Heves County,99,HU,Hungary
+Hódmezővásárhely,99,HU,Hungary
+Jász-Nagykun-Szolnok County,99,HU,Hungary
+Kaposvár,99,HU,Hungary
+Kecskemét,99,HU,Hungary
+Komárom-Esztergom,99,HU,Hungary
+Miskolc,99,HU,Hungary
+Nagykanizsa,99,HU,Hungary
+Nógrád County,99,HU,Hungary
+Nyíregyháza,99,HU,Hungary
+Pécs,99,HU,Hungary
+Pest County,99,HU,Hungary
+Salgótarján,99,HU,Hungary
+Somogy County,99,HU,Hungary
+Sopron,99,HU,Hungary
+Szabolcs-Szatmár-Bereg County,99,HU,Hungary
+Szeged,99,HU,Hungary
+Székesfehérvár,99,HU,Hungary
+Szekszárd,99,HU,Hungary
+Szolnok,99,HU,Hungary
+Szombathely,99,HU,Hungary
+Tatabánya,99,HU,Hungary
+Tolna County,99,HU,Hungary
+Vas County,99,HU,Hungary
+Veszprém,99,HU,Hungary
+Veszprém County,99,HU,Hungary
+Zala County,99,HU,Hungary
+Zalaegerszeg,99,HU,Hungary
+Capital Region,100,IS,Iceland
+Eastern Region,100,IS,Iceland
+Northeastern Region,100,IS,Iceland
+Northwestern Region,100,IS,Iceland
+Southern Peninsula Region,100,IS,Iceland
+Southern Region,100,IS,Iceland
+Western Region,100,IS,Iceland
+Westfjords,100,IS,Iceland
+Andaman and Nicobar Islands,101,IN,India
+Andhra Pradesh,101,IN,India
+Arunachal Pradesh,101,IN,India
+Assam,101,IN,India
+Bihar,101,IN,India
+Chandigarh,101,IN,India
+Chhattisgarh,101,IN,India
+Dadra and Nagar Haveli and Daman and Diu,101,IN,India
+Delhi,101,IN,India
+Goa,101,IN,India
+Gujarat,101,IN,India
+Haryana,101,IN,India
+Himachal Pradesh,101,IN,India
+Jammu and Kashmir,101,IN,India
+Jharkhand,101,IN,India
+Karnataka,101,IN,India
+Kerala,101,IN,India
+Ladakh,101,IN,India
+Lakshadweep,101,IN,India
+Madhya Pradesh,101,IN,India
+Maharashtra,101,IN,India
+Manipur,101,IN,India
+Meghalaya,101,IN,India
+Mizoram,101,IN,India
+Nagaland,101,IN,India
+Odisha,101,IN,India
+Puducherry,101,IN,India
+Punjab,101,IN,India
+Rajasthan,101,IN,India
+Sikkim,101,IN,India
+Tamil Nadu,101,IN,India
+Telangana,101,IN,India
+Tripura,101,IN,India
+Uttar Pradesh,101,IN,India
+Uttarakhand,101,IN,India
+West Bengal,101,IN,India
+Aceh,102,ID,Indonesia
+Bali,102,ID,Indonesia
+Banten,102,ID,Indonesia
+Bengkulu,102,ID,Indonesia
+DI Yogyakarta,102,ID,Indonesia
+DKI Jakarta,102,ID,Indonesia
+Gorontalo,102,ID,Indonesia
+Jambi,102,ID,Indonesia
+Jawa Barat,102,ID,Indonesia
+Jawa Tengah,102,ID,Indonesia
+Jawa Timur,102,ID,Indonesia
+Kalimantan Barat,102,ID,Indonesia
+Kalimantan Selatan,102,ID,Indonesia
+Kalimantan Tengah,102,ID,Indonesia
+Kalimantan Timur,102,ID,Indonesia
+Kalimantan Utara,102,ID,Indonesia
+Kepulauan Bangka Belitung,102,ID,Indonesia
+Kepulauan Riau,102,ID,Indonesia
+Lampung,102,ID,Indonesia
+Maluku,102,ID,Indonesia
+Maluku Utara,102,ID,Indonesia
+Nusa Tenggara Barat,102,ID,Indonesia
+Nusa Tenggara Timur,102,ID,Indonesia
+Papua,102,ID,Indonesia
+Papua Barat,102,ID,Indonesia
+Papua Barat Daya,102,ID,Indonesia
+Papua Pegunungan,102,ID,Indonesia
+Papua Selatan,102,ID,Indonesia
+Papua Tengah,102,ID,Indonesia
+Riau,102,ID,Indonesia
+Sulawesi Barat,102,ID,Indonesia
+Sulawesi Selatan,102,ID,Indonesia
+Sulawesi Tengah,102,ID,Indonesia
+Sulawesi Tenggara,102,ID,Indonesia
+Sulawesi Utara,102,ID,Indonesia
+Sumatera Barat,102,ID,Indonesia
+Sumatera Selatan,102,ID,Indonesia
+Sumatera Utara,102,ID,Indonesia
+Alborz,103,IR,Iran
+Ardabil,103,IR,Iran
+Bushehr,103,IR,Iran
+Chaharmahal and Bakhtiari,103,IR,Iran
+East Azerbaijan,103,IR,Iran
+Fars,103,IR,Iran
+Gilan,103,IR,Iran
+Golestan,103,IR,Iran
+Hamadan,103,IR,Iran
+Hormozgan,103,IR,Iran
+Ilam,103,IR,Iran
+Isfahan,103,IR,Iran
+Kerman,103,IR,Iran
+Kermanshah,103,IR,Iran
+Khuzestan,103,IR,Iran
+Kohgiluyeh and Boyer-Ahmad,103,IR,Iran
+Kurdistan,103,IR,Iran
+Lorestan,103,IR,Iran
+Markazi,103,IR,Iran
+Mazandaran,103,IR,Iran
+North Khorasan,103,IR,Iran
+Qazvin,103,IR,Iran
+Qom,103,IR,Iran
+Razavi Khorasan,103,IR,Iran
+Semnan,103,IR,Iran
+Sistan and Baluchestan,103,IR,Iran
+South Khorasan,103,IR,Iran
+Tehran,103,IR,Iran
+West Azarbaijan,103,IR,Iran
+Yazd,103,IR,Iran
+Zanjan,103,IR,Iran
+Al Anbar,104,IQ,Iraq
+Al Muthanna,104,IQ,Iraq
+Al-Qādisiyyah,104,IQ,Iraq
+Babylon,104,IQ,Iraq
+Baghdad,104,IQ,Iraq
+Basra,104,IQ,Iraq
+Dhi Qar,104,IQ,Iraq
+Diyala,104,IQ,Iraq
+Dohuk,104,IQ,Iraq
+Erbil,104,IQ,Iraq
+Karbala,104,IQ,Iraq
+Kirkuk,104,IQ,Iraq
+Maysan,104,IQ,Iraq
+Najaf,104,IQ,Iraq
+Nineveh,104,IQ,Iraq
+Saladin,104,IQ,Iraq
+Sulaymaniyah,104,IQ,Iraq
+Wasit,104,IQ,Iraq
+Carlow,105,IE,Ireland
+Cavan,105,IE,Ireland
+Clare,105,IE,Ireland
+Connacht,105,IE,Ireland
+Cork,105,IE,Ireland
+Donegal,105,IE,Ireland
+Dublin,105,IE,Ireland
+Galway,105,IE,Ireland
+Kerry,105,IE,Ireland
+Kildare,105,IE,Ireland
+Kilkenny,105,IE,Ireland
+Laois,105,IE,Ireland
+Leinster,105,IE,Ireland
+Limerick,105,IE,Ireland
+Longford,105,IE,Ireland
+Louth,105,IE,Ireland
+Mayo,105,IE,Ireland
+Meath,105,IE,Ireland
+Monaghan,105,IE,Ireland
+Munster,105,IE,Ireland
+Offaly,105,IE,Ireland
+Roscommon,105,IE,Ireland
+Sligo,105,IE,Ireland
+Tipperary,105,IE,Ireland
+Ulster,105,IE,Ireland
+Waterford,105,IE,Ireland
+Westmeath,105,IE,Ireland
+Wexford,105,IE,Ireland
+Wicklow,105,IE,Ireland
+Central District,106,IL,Israel
+Haifa District,106,IL,Israel
+Jerusalem District,106,IL,Israel
+Northern District,106,IL,Israel
+Southern District,106,IL,Israel
+Tel Aviv District,106,IL,Israel
+Abruzzo,107,IT,Italy
+Agrigento,107,IT,Italy
+Alessandria,107,IT,Italy
+Ancona,107,IT,Italy
+Aosta Valley,107,IT,Italy
+Apulia,107,IT,Italy
+Ascoli Piceno,107,IT,Italy
+Asti,107,IT,Italy
+Avellino,107,IT,Italy
+Barletta-Andria-Trani,107,IT,Italy
+Basilicata,107,IT,Italy
+Belluno,107,IT,Italy
+Benevento,107,IT,Italy
+Bergamo,107,IT,Italy
+Biella,107,IT,Italy
+Brescia,107,IT,Italy
+Brindisi,107,IT,Italy
+Calabria,107,IT,Italy
+Caltanissetta,107,IT,Italy
+Campania,107,IT,Italy
+Campobasso,107,IT,Italy
+Caserta,107,IT,Italy
+Catanzaro,107,IT,Italy
+Chieti,107,IT,Italy
+Como,107,IT,Italy
+Cosenza,107,IT,Italy
+Cremona,107,IT,Italy
+Crotone,107,IT,Italy
+Cuneo,107,IT,Italy
+Emilia-Romagna,107,IT,Italy
+Enna,107,IT,Italy
+Fermo,107,IT,Italy
+Ferrara,107,IT,Italy
+Foggia,107,IT,Italy
+Forlì-Cesena,107,IT,Italy
+Friuli–Venezia Giulia,107,IT,Italy
+Frosinone,107,IT,Italy
+Gorizia,107,IT,Italy
+Grosseto,107,IT,Italy
+Imperia,107,IT,Italy
+Isernia,107,IT,Italy
+L'Aquila,107,IT,Italy
+La Spezia,107,IT,Italy
+Latina,107,IT,Italy
+Lazio,107,IT,Italy
+Lecce,107,IT,Italy
+Lecco,107,IT,Italy
+Liguria,107,IT,Italy
+Livorno,107,IT,Italy
+Lodi,107,IT,Italy
+Lombardy,107,IT,Italy
+Lucca,107,IT,Italy
+Macerata,107,IT,Italy
+Mantua,107,IT,Italy
+Marche,107,IT,Italy
+Massa and Carrara,107,IT,Italy
+Matera,107,IT,Italy
+Medio Campidano,107,IT,Italy
+Modena,107,IT,Italy
+Molise,107,IT,Italy
+Monza and Brianza,107,IT,Italy
+Novara,107,IT,Italy
+Nuoro,107,IT,Italy
+Oristano,107,IT,Italy
+Padua,107,IT,Italy
+Palermo,107,IT,Italy
+Parma,107,IT,Italy
+Pavia,107,IT,Italy
+Perugia,107,IT,Italy
+Pesaro and Urbino,107,IT,Italy
+Pescara,107,IT,Italy
+Piacenza,107,IT,Italy
+Piedmont,107,IT,Italy
+Pisa,107,IT,Italy
+Pistoia,107,IT,Italy
+Pordenone,107,IT,Italy
+Potenza,107,IT,Italy
+Prato,107,IT,Italy
+Ragusa,107,IT,Italy
+Ravenna,107,IT,Italy
+Reggio Emilia,107,IT,Italy
+Rieti,107,IT,Italy
+Rimini,107,IT,Italy
+Rovigo,107,IT,Italy
+Salerno,107,IT,Italy
+Sardinia,107,IT,Italy
+Sassari,107,IT,Italy
+Savona,107,IT,Italy
+Sicily,107,IT,Italy
+Siena,107,IT,Italy
+Siracusa,107,IT,Italy
+Sondrio,107,IT,Italy
+South Sardinia,107,IT,Italy
+Taranto,107,IT,Italy
+Teramo,107,IT,Italy
+Terni,107,IT,Italy
+Trapani,107,IT,Italy
+Trentino-South Tyrol,107,IT,Italy
+Treviso,107,IT,Italy
+Trieste,107,IT,Italy
+Tuscany,107,IT,Italy
+Udine,107,IT,Italy
+Umbria,107,IT,Italy
+Varese,107,IT,Italy
+Veneto,107,IT,Italy
+Verbano-Cusio-Ossola,107,IT,Italy
+Vercelli,107,IT,Italy
+Verona,107,IT,Italy
+Vibo Valentia,107,IT,Italy
+Vicenza,107,IT,Italy
+Viterbo,107,IT,Italy
+Clarendon Parish,108,JM,Jamaica
+Hanover Parish,108,JM,Jamaica
+Kingston Parish,108,JM,Jamaica
+Manchester Parish,108,JM,Jamaica
+Portland Parish,108,JM,Jamaica
+Saint Andrew,108,JM,Jamaica
+Saint Ann Parish,108,JM,Jamaica
+Saint Catherine Parish,108,JM,Jamaica
+Saint Elizabeth Parish,108,JM,Jamaica
+Saint James Parish,108,JM,Jamaica
+Saint Mary Parish,108,JM,Jamaica
+Saint Thomas Parish,108,JM,Jamaica
+Trelawny Parish,108,JM,Jamaica
+Westmoreland Parish,108,JM,Jamaica
+Aichi Prefecture,109,JP,Japan
+Akita Prefecture,109,JP,Japan
+Aomori Prefecture,109,JP,Japan
+Chiba Prefecture,109,JP,Japan
+Ehime Prefecture,109,JP,Japan
+Fukui Prefecture,109,JP,Japan
+Fukuoka Prefecture,109,JP,Japan
+Fukushima Prefecture,109,JP,Japan
+Gifu Prefecture,109,JP,Japan
+Gunma Prefecture,109,JP,Japan
+Hiroshima Prefecture,109,JP,Japan
+Hokkaidō Prefecture,109,JP,Japan
+Hyōgo Prefecture,109,JP,Japan
+Ibaraki Prefecture,109,JP,Japan
+Ishikawa Prefecture,109,JP,Japan
+Iwate Prefecture,109,JP,Japan
+Kagawa Prefecture,109,JP,Japan
+Kagoshima Prefecture,109,JP,Japan
+Kanagawa Prefecture,109,JP,Japan
+Kōchi Prefecture,109,JP,Japan
+Kumamoto Prefecture,109,JP,Japan
+Kyōto Prefecture,109,JP,Japan
+Mie Prefecture,109,JP,Japan
+Miyagi Prefecture,109,JP,Japan
+Miyazaki Prefecture,109,JP,Japan
+Nagano Prefecture,109,JP,Japan
+Nagasaki Prefecture,109,JP,Japan
+Nara Prefecture,109,JP,Japan
+Niigata Prefecture,109,JP,Japan
+Ōita Prefecture,109,JP,Japan
+Okayama Prefecture,109,JP,Japan
+Okinawa Prefecture,109,JP,Japan
+Ōsaka Prefecture,109,JP,Japan
+Saga Prefecture,109,JP,Japan
+Saitama Prefecture,109,JP,Japan
+Shiga Prefecture,109,JP,Japan
+Shimane Prefecture,109,JP,Japan
+Shizuoka Prefecture,109,JP,Japan
+Tochigi Prefecture,109,JP,Japan
+Tokushima Prefecture,109,JP,Japan
+Tokyo,109,JP,Japan
+Tottori Prefecture,109,JP,Japan
+Toyama Prefecture,109,JP,Japan
+Wakayama Prefecture,109,JP,Japan
+Yamagata Prefecture,109,JP,Japan
+Yamaguchi Prefecture,109,JP,Japan
+Yamanashi Prefecture,109,JP,Japan
+Ajloun,111,JO,Jordan
+Amman,111,JO,Jordan
+Aqaba,111,JO,Jordan
+Balqa,111,JO,Jordan
+Irbid,111,JO,Jordan
+Jerash,111,JO,Jordan
+Karak,111,JO,Jordan
+Ma'an,111,JO,Jordan
+Madaba,111,JO,Jordan
+Mafraq,111,JO,Jordan
+Tafilah,111,JO,Jordan
+Zarqa,111,JO,Jordan
+Akmola Region,112,KZ,Kazakhstan
+Aktobe Region,112,KZ,Kazakhstan
+Almaty,112,KZ,Kazakhstan
+Almaty Region,112,KZ,Kazakhstan
+Atyrau Region,112,KZ,Kazakhstan
+Baikonur,112,KZ,Kazakhstan
+East Kazakhstan Region,112,KZ,Kazakhstan
+Jambyl Region,112,KZ,Kazakhstan
+Karaganda Region,112,KZ,Kazakhstan
+Kostanay Region,112,KZ,Kazakhstan
+Kyzylorda Region,112,KZ,Kazakhstan
+Mangystau Region,112,KZ,Kazakhstan
+North Kazakhstan Region,112,KZ,Kazakhstan
+Nur-Sultan,112,KZ,Kazakhstan
+Pavlodar Region,112,KZ,Kazakhstan
+Turkestan Region,112,KZ,Kazakhstan
+West Kazakhstan Province,112,KZ,Kazakhstan
+Baringo,113,KE,Kenya
+Bomet,113,KE,Kenya
+Bungoma,113,KE,Kenya
+Busia,113,KE,Kenya
+Elgeyo-Marakwet,113,KE,Kenya
+Embu,113,KE,Kenya
+Garissa,113,KE,Kenya
+Homa Bay,113,KE,Kenya
+Isiolo,113,KE,Kenya
+Kajiado,113,KE,Kenya
+Kakamega,113,KE,Kenya
+Kericho,113,KE,Kenya
+Kiambu,113,KE,Kenya
+Kilifi,113,KE,Kenya
+Kirinyaga,113,KE,Kenya
+Kisii,113,KE,Kenya
+Kisumu,113,KE,Kenya
+Kitui,113,KE,Kenya
+Kwale,113,KE,Kenya
+Laikipia,113,KE,Kenya
+Lamu,113,KE,Kenya
+Machakos,113,KE,Kenya
+Makueni,113,KE,Kenya
+Mandera,113,KE,Kenya
+Marsabit,113,KE,Kenya
+Meru,113,KE,Kenya
+Migori,113,KE,Kenya
+Mombasa,113,KE,Kenya
+Murang'a,113,KE,Kenya
+Nairobi City,113,KE,Kenya
+Nakuru,113,KE,Kenya
+Nandi,113,KE,Kenya
+Narok,113,KE,Kenya
+Nyamira,113,KE,Kenya
+Nyandarua,113,KE,Kenya
+Nyeri,113,KE,Kenya
+Samburu,113,KE,Kenya
+Siaya,113,KE,Kenya
+Taita–Taveta,113,KE,Kenya
+Tana River,113,KE,Kenya
+Tharaka-Nithi,113,KE,Kenya
+Trans Nzoia,113,KE,Kenya
+Turkana,113,KE,Kenya
+Uasin Gishu,113,KE,Kenya
+Vihiga,113,KE,Kenya
+Wajir,113,KE,Kenya
+West Pokot,113,KE,Kenya
+Gilbert Islands,114,KI,Kiribati
+Line Islands,114,KI,Kiribati
+Phoenix Islands,114,KI,Kiribati
+Đakovica District (Gjakove),248,XK,Kosovo
+Gjilan District,248,XK,Kosovo
+Kosovska Mitrovica District,248,XK,Kosovo
+Peć District,248,XK,Kosovo
+Pristina (Priştine),248,XK,Kosovo
+Prizren District,248,XK,Kosovo
+Uroševac District (Ferizaj),248,XK,Kosovo
+Al Ahmadi,117,KW,Kuwait
+Al Farwaniyah,117,KW,Kuwait
+Al Jahra,117,KW,Kuwait
+Capital,117,KW,Kuwait
+Hawalli,117,KW,Kuwait
+Mubarak Al-Kabeer,117,KW,Kuwait
+Batken Region,118,KG,Kyrgyzstan
+Bishkek,118,KG,Kyrgyzstan
+Chuy Region,118,KG,Kyrgyzstan
+Issyk-Kul Region,118,KG,Kyrgyzstan
+Jalal-Abad Region,118,KG,Kyrgyzstan
+Naryn Region,118,KG,Kyrgyzstan
+Osh,118,KG,Kyrgyzstan
+Osh Region,118,KG,Kyrgyzstan
+Talas Region,118,KG,Kyrgyzstan
+Attapeu Province,119,LA,Laos
+Bokeo Province,119,LA,Laos
+Bolikhamsai Province,119,LA,Laos
+Champasak Province,119,LA,Laos
+Houaphanh Province,119,LA,Laos
+Khammouane Province,119,LA,Laos
+Luang Namtha Province,119,LA,Laos
+Luang Prabang Province,119,LA,Laos
+Oudomxay Province,119,LA,Laos
+Phongsaly Province,119,LA,Laos
+Sainyabuli Province,119,LA,Laos
+Salavan Province,119,LA,Laos
+Savannakhet Province,119,LA,Laos
+Sekong Province,119,LA,Laos
+Vientiane Prefecture,119,LA,Laos
+Vientiane Province,119,LA,Laos
+Xaisomboun,119,LA,Laos
+Xaisomboun Province,119,LA,Laos
+Xiangkhouang Province,119,LA,Laos
+Aglona Municipality,120,LV,Latvia
+Aizkraukle Municipality,120,LV,Latvia
+Aizpute Municipality,120,LV,Latvia
+Aknīste Municipality,120,LV,Latvia
+Aloja Municipality,120,LV,Latvia
+Alsunga Municipality,120,LV,Latvia
+Alūksne Municipality,120,LV,Latvia
+Amata Municipality,120,LV,Latvia
+Ape Municipality,120,LV,Latvia
+Auce Municipality,120,LV,Latvia
+Babīte Municipality,120,LV,Latvia
+Baldone Municipality,120,LV,Latvia
+Baltinava Municipality,120,LV,Latvia
+Balvi Municipality,120,LV,Latvia
+Bauska Municipality,120,LV,Latvia
+Beverīna Municipality,120,LV,Latvia
+Brocēni Municipality,120,LV,Latvia
+Burtnieki Municipality,120,LV,Latvia
+Carnikava Municipality,120,LV,Latvia
+Cēsis Municipality,120,LV,Latvia
+Cesvaine Municipality,120,LV,Latvia
+Cibla Municipality,120,LV,Latvia
+Dagda Municipality,120,LV,Latvia
+Daugavpils,120,LV,Latvia
+Daugavpils Municipality,120,LV,Latvia
+Dobele Municipality,120,LV,Latvia
+Dundaga Municipality,120,LV,Latvia
+Durbe Municipality,120,LV,Latvia
+Engure Municipality,120,LV,Latvia
+Ērgļi Municipality,120,LV,Latvia
+Garkalne Municipality,120,LV,Latvia
+Grobiņa Municipality,120,LV,Latvia
+Gulbene Municipality,120,LV,Latvia
+Iecava Municipality,120,LV,Latvia
+Ikšķile Municipality,120,LV,Latvia
+Ilūkste Municipality,120,LV,Latvia
+Inčukalns Municipality,120,LV,Latvia
+Jaunjelgava Municipality,120,LV,Latvia
+Jaunpiebalga Municipality,120,LV,Latvia
+Jaunpils Municipality,120,LV,Latvia
+Jēkabpils,120,LV,Latvia
+Jēkabpils Municipality,120,LV,Latvia
+Jelgava,120,LV,Latvia
+Jelgava Municipality,120,LV,Latvia
+Jūrmala,120,LV,Latvia
+Kandava Municipality,120,LV,Latvia
+Kārsava Municipality,120,LV,Latvia
+Ķegums Municipality,120,LV,Latvia
+Ķekava Municipality,120,LV,Latvia
+Kocēni Municipality,120,LV,Latvia
+Koknese Municipality,120,LV,Latvia
+Krāslava Municipality,120,LV,Latvia
+Krimulda Municipality,120,LV,Latvia
+Krustpils Municipality,120,LV,Latvia
+Kuldīga Municipality,120,LV,Latvia
+Lielvārde Municipality,120,LV,Latvia
+Liepāja,120,LV,Latvia
+Līgatne Municipality,120,LV,Latvia
+Limbaži Municipality,120,LV,Latvia
+Līvāni Municipality,120,LV,Latvia
+Lubāna Municipality,120,LV,Latvia
+Ludza Municipality,120,LV,Latvia
+Madona Municipality,120,LV,Latvia
+Mālpils Municipality,120,LV,Latvia
+Mārupe Municipality,120,LV,Latvia
+Mazsalaca Municipality,120,LV,Latvia
+Mērsrags Municipality,120,LV,Latvia
+Naukšēni Municipality,120,LV,Latvia
+Nereta Municipality,120,LV,Latvia
+Nīca Municipality,120,LV,Latvia
+Ogre Municipality,120,LV,Latvia
+Olaine Municipality,120,LV,Latvia
+Ozolnieki Municipality,120,LV,Latvia
+Pārgauja Municipality,120,LV,Latvia
+Pāvilosta Municipality,120,LV,Latvia
+Pļaviņas Municipality,120,LV,Latvia
+Preiļi Municipality,120,LV,Latvia
+Priekule Municipality,120,LV,Latvia
+Priekuļi Municipality,120,LV,Latvia
+Rauna Municipality,120,LV,Latvia
+Rēzekne,120,LV,Latvia
+Rēzekne Municipality,120,LV,Latvia
+Riebiņi Municipality,120,LV,Latvia
+Riga,120,LV,Latvia
+Roja Municipality,120,LV,Latvia
+Ropaži Municipality,120,LV,Latvia
+Rucava Municipality,120,LV,Latvia
+Rugāji Municipality,120,LV,Latvia
+Rūjiena Municipality,120,LV,Latvia
+Rundāle Municipality,120,LV,Latvia
+Sala Municipality,120,LV,Latvia
+Salacgrīva Municipality,120,LV,Latvia
+Salaspils Municipality,120,LV,Latvia
+Saldus Municipality,120,LV,Latvia
+Saulkrasti Municipality,120,LV,Latvia
+Sēja Municipality,120,LV,Latvia
+Sigulda Municipality,120,LV,Latvia
+Skrīveri Municipality,120,LV,Latvia
+Skrunda Municipality,120,LV,Latvia
+Smiltene Municipality,120,LV,Latvia
+Stopiņi Municipality,120,LV,Latvia
+Strenči Municipality,120,LV,Latvia
+Talsi Municipality,120,LV,Latvia
+Tērvete Municipality,120,LV,Latvia
+Tukums Municipality,120,LV,Latvia
+Vaiņode Municipality,120,LV,Latvia
+Valka Municipality,120,LV,Latvia
+Valmiera,120,LV,Latvia
+Varakļāni Municipality,120,LV,Latvia
+Vārkava Municipality,120,LV,Latvia
+Vecpiebalga Municipality,120,LV,Latvia
+Vecumnieki Municipality,120,LV,Latvia
+Ventspils,120,LV,Latvia
+Ventspils Municipality,120,LV,Latvia
+Viesīte Municipality,120,LV,Latvia
+Viļaka Municipality,120,LV,Latvia
+Viļāni Municipality,120,LV,Latvia
+Zilupe Municipality,120,LV,Latvia
+Akkar,121,LB,Lebanon
+Baalbek-Hermel,121,LB,Lebanon
+Beirut,121,LB,Lebanon
+Beqaa,121,LB,Lebanon
+Mount Lebanon,121,LB,Lebanon
+Nabatieh,121,LB,Lebanon
+North,121,LB,Lebanon
+South,121,LB,Lebanon
+Berea District,122,LS,Lesotho
+Butha-Buthe District,122,LS,Lesotho
+Leribe District,122,LS,Lesotho
+Mafeteng District,122,LS,Lesotho
+Maseru District,122,LS,Lesotho
+Mohale's Hoek District,122,LS,Lesotho
+Mokhotlong District,122,LS,Lesotho
+Qacha's Nek District,122,LS,Lesotho
+Quthing District,122,LS,Lesotho
+Thaba-Tseka District,122,LS,Lesotho
+Bomi County,123,LR,Liberia
+Bong County,123,LR,Liberia
+Gbarpolu County,123,LR,Liberia
+Grand Bassa County,123,LR,Liberia
+Grand Cape Mount County,123,LR,Liberia
+Grand Gedeh County,123,LR,Liberia
+Grand Kru County,123,LR,Liberia
+Lofa County,123,LR,Liberia
+Margibi County,123,LR,Liberia
+Maryland County,123,LR,Liberia
+Montserrado County,123,LR,Liberia
+Nimba,123,LR,Liberia
+River Cess County,123,LR,Liberia
+River Gee County,123,LR,Liberia
+Sinoe County,123,LR,Liberia
+Al Wahat District,124,LY,Libya
+Benghazi,124,LY,Libya
+Derna District,124,LY,Libya
+Ghat District,124,LY,Libya
+Jabal al Akhdar,124,LY,Libya
+Jabal al Gharbi District,124,LY,Libya
+Jafara,124,LY,Libya
+Jufra,124,LY,Libya
+Kufra District,124,LY,Libya
+Marj District,124,LY,Libya
+Misrata District,124,LY,Libya
+Murqub,124,LY,Libya
+Murzuq District,124,LY,Libya
+Nalut District,124,LY,Libya
+Nuqat al Khams,124,LY,Libya
+Sabha District,124,LY,Libya
+Sirte District,124,LY,Libya
+Tripoli District,124,LY,Libya
+Wadi al Hayaa District,124,LY,Libya
+Wadi al Shatii District,124,LY,Libya
+Zawiya District,124,LY,Libya
+Balzers,125,LI,Liechtenstein
+Eschen,125,LI,Liechtenstein
+Gamprin,125,LI,Liechtenstein
+Mauren,125,LI,Liechtenstein
+Planken,125,LI,Liechtenstein
+Ruggell,125,LI,Liechtenstein
+Schaan,125,LI,Liechtenstein
+Schellenberg,125,LI,Liechtenstein
+Triesen,125,LI,Liechtenstein
+Triesenberg,125,LI,Liechtenstein
+Vaduz,125,LI,Liechtenstein
+Akmenė District Municipality,126,LT,Lithuania
+Alytus City Municipality,126,LT,Lithuania
+Alytus County,126,LT,Lithuania
+Alytus District Municipality,126,LT,Lithuania
+Birštonas Municipality,126,LT,Lithuania
+Biržai District Municipality,126,LT,Lithuania
+Druskininkai municipality,126,LT,Lithuania
+Elektrėnai municipality,126,LT,Lithuania
+Ignalina District Municipality,126,LT,Lithuania
+Jonava District Municipality,126,LT,Lithuania
+Joniškis District Municipality,126,LT,Lithuania
+Jurbarkas District Municipality,126,LT,Lithuania
+Kaišiadorys District Municipality,126,LT,Lithuania
+Kalvarija municipality,126,LT,Lithuania
+Kaunas City Municipality,126,LT,Lithuania
+Kaunas County,126,LT,Lithuania
+Kaunas District Municipality,126,LT,Lithuania
+Kazlų Rūda municipality,126,LT,Lithuania
+Kėdainiai District Municipality,126,LT,Lithuania
+Kelmė District Municipality,126,LT,Lithuania
+Klaipeda City Municipality,126,LT,Lithuania
+Klaipėda County,126,LT,Lithuania
+Klaipėda District Municipality,126,LT,Lithuania
+Kretinga District Municipality,126,LT,Lithuania
+Kupiškis District Municipality,126,LT,Lithuania
+Lazdijai District Municipality,126,LT,Lithuania
+Marijampolė County,126,LT,Lithuania
+Marijampolė Municipality,126,LT,Lithuania
+Mažeikiai District Municipality,126,LT,Lithuania
+Molėtai District Municipality,126,LT,Lithuania
+Neringa Municipality,126,LT,Lithuania
+Pagėgiai municipality,126,LT,Lithuania
+Pakruojis District Municipality,126,LT,Lithuania
+Palanga City Municipality,126,LT,Lithuania
+Panevėžys City Municipality,126,LT,Lithuania
+Panevėžys County,126,LT,Lithuania
+Panevėžys District Municipality,126,LT,Lithuania
+Pasvalys District Municipality,126,LT,Lithuania
+Plungė District Municipality,126,LT,Lithuania
+Prienai District Municipality,126,LT,Lithuania
+Radviliškis District Municipality,126,LT,Lithuania
+Raseiniai District Municipality,126,LT,Lithuania
+Rietavas municipality,126,LT,Lithuania
+Rokiškis District Municipality,126,LT,Lithuania
+Šakiai District Municipality,126,LT,Lithuania
+Šalčininkai District Municipality,126,LT,Lithuania
+Šiauliai City Municipality,126,LT,Lithuania
+Šiauliai County,126,LT,Lithuania
+Šiauliai District Municipality,126,LT,Lithuania
+Šilalė District Municipality,126,LT,Lithuania
+Šilutė District Municipality,126,LT,Lithuania
+Širvintos District Municipality,126,LT,Lithuania
+Skuodas District Municipality,126,LT,Lithuania
+Švenčionys District Municipality,126,LT,Lithuania
+Tauragė County,126,LT,Lithuania
+Tauragė District Municipality,126,LT,Lithuania
+Telšiai County,126,LT,Lithuania
+Telšiai District Municipality,126,LT,Lithuania
+Trakai District Municipality,126,LT,Lithuania
+Ukmergė District Municipality,126,LT,Lithuania
+Utena County,126,LT,Lithuania
+Utena District Municipality,126,LT,Lithuania
+Varėna District Municipality,126,LT,Lithuania
+Vilkaviškis District Municipality,126,LT,Lithuania
+Vilnius City Municipality,126,LT,Lithuania
+Vilnius County,126,LT,Lithuania
+Vilnius District Municipality,126,LT,Lithuania
+Visaginas Municipality,126,LT,Lithuania
+Zarasai District Municipality,126,LT,Lithuania
+Canton of Capellen,127,LU,Luxembourg
+Canton of Clervaux,127,LU,Luxembourg
+Canton of Diekirch,127,LU,Luxembourg
+Canton of Echternach,127,LU,Luxembourg
+Canton of Esch-sur-Alzette,127,LU,Luxembourg
+Canton of Grevenmacher,127,LU,Luxembourg
+Canton of Luxembourg,127,LU,Luxembourg
+Canton of Mersch,127,LU,Luxembourg
+Canton of Redange,127,LU,Luxembourg
+Canton of Remich,127,LU,Luxembourg
+Canton of Vianden,127,LU,Luxembourg
+Canton of Wiltz,127,LU,Luxembourg
+Diekirch District,127,LU,Luxembourg
+Grevenmacher District,127,LU,Luxembourg
+Luxembourg District,127,LU,Luxembourg
+Antananarivo Province,130,MG,Madagascar
+Antsiranana Province,130,MG,Madagascar
+Fianarantsoa Province,130,MG,Madagascar
+Mahajanga Province,130,MG,Madagascar
+Toamasina Province,130,MG,Madagascar
+Toliara Province,130,MG,Madagascar
+Balaka District,131,MW,Malawi
+Blantyre District,131,MW,Malawi
+Central Region,131,MW,Malawi
+Chikwawa District,131,MW,Malawi
+Chiradzulu District,131,MW,Malawi
+Chitipa district,131,MW,Malawi
+Dedza District,131,MW,Malawi
+Dowa District,131,MW,Malawi
+Karonga District,131,MW,Malawi
+Kasungu District,131,MW,Malawi
+Likoma District,131,MW,Malawi
+Lilongwe District,131,MW,Malawi
+Machinga District,131,MW,Malawi
+Mangochi District,131,MW,Malawi
+Mchinji District,131,MW,Malawi
+Mulanje District,131,MW,Malawi
+Mwanza District,131,MW,Malawi
+Mzimba District,131,MW,Malawi
+Nkhata Bay District,131,MW,Malawi
+Nkhotakota District,131,MW,Malawi
+Northern Region,131,MW,Malawi
+Nsanje District,131,MW,Malawi
+Ntcheu District,131,MW,Malawi
+Ntchisi District,131,MW,Malawi
+Phalombe District,131,MW,Malawi
+Rumphi District,131,MW,Malawi
+Salima District,131,MW,Malawi
+Southern Region,131,MW,Malawi
+Thyolo District,131,MW,Malawi
+Zomba District,131,MW,Malawi
+Johor,132,MY,Malaysia
+Kedah,132,MY,Malaysia
+Kelantan,132,MY,Malaysia
+Kuala Lumpur,132,MY,Malaysia
+Labuan,132,MY,Malaysia
+Malacca,132,MY,Malaysia
+Negeri Sembilan,132,MY,Malaysia
+Pahang,132,MY,Malaysia
+Penang,132,MY,Malaysia
+Perak,132,MY,Malaysia
+Perlis,132,MY,Malaysia
+Putrajaya,132,MY,Malaysia
+Sabah,132,MY,Malaysia
+Sarawak,132,MY,Malaysia
+Selangor,132,MY,Malaysia
+Terengganu,132,MY,Malaysia
+Addu Atoll,133,MV,Maldives
+Alif Alif Atoll,133,MV,Maldives
+Alif Dhaal Atoll,133,MV,Maldives
+Central Province,133,MV,Maldives
+Dhaalu Atoll,133,MV,Maldives
+Faafu Atoll,133,MV,Maldives
+Gaafu Alif Atoll,133,MV,Maldives
+Gaafu Dhaalu Atoll,133,MV,Maldives
+Gnaviyani Atoll,133,MV,Maldives
+Haa Alif Atoll,133,MV,Maldives
+Haa Dhaalu Atoll,133,MV,Maldives
+Kaafu Atoll,133,MV,Maldives
+Laamu Atoll,133,MV,Maldives
+Lhaviyani Atoll,133,MV,Maldives
+Malé,133,MV,Maldives
+Meemu Atoll,133,MV,Maldives
+Noonu Atoll,133,MV,Maldives
+North Central Province,133,MV,Maldives
+North Province,133,MV,Maldives
+Raa Atoll,133,MV,Maldives
+Shaviyani Atoll,133,MV,Maldives
+South Central Province,133,MV,Maldives
+South Province,133,MV,Maldives
+Thaa Atoll,133,MV,Maldives
+Upper South Province,133,MV,Maldives
+Vaavu Atoll,133,MV,Maldives
+Bamako,134,ML,Mali
+Gao Region,134,ML,Mali
+Kayes Region,134,ML,Mali
+Kidal Region,134,ML,Mali
+Koulikoro Region,134,ML,Mali
+Ménaka Region,134,ML,Mali
+Mopti Region,134,ML,Mali
+Ségou Region,134,ML,Mali
+Sikasso Region,134,ML,Mali
+Taoudénit Region,134,ML,Mali
+Tombouctou Region,134,ML,Mali
+Attard,135,MT,Malta
+Balzan,135,MT,Malta
+Birgu,135,MT,Malta
+Birkirkara,135,MT,Malta
+Birżebbuġa,135,MT,Malta
+Cospicua,135,MT,Malta
+Dingli,135,MT,Malta
+Fgura,135,MT,Malta
+Floriana,135,MT,Malta
+Fontana,135,MT,Malta
+Għajnsielem,135,MT,Malta
+Għarb,135,MT,Malta
+Għargħur,135,MT,Malta
+Għasri,135,MT,Malta
+Għaxaq,135,MT,Malta
+Gudja,135,MT,Malta
+Gżira,135,MT,Malta
+Ħamrun,135,MT,Malta
+Iklin,135,MT,Malta
+Kalkara,135,MT,Malta
+Kerċem,135,MT,Malta
+Kirkop,135,MT,Malta
+Lija,135,MT,Malta
+Luqa,135,MT,Malta
+Marsa,135,MT,Malta
+Marsaskala,135,MT,Malta
+Marsaxlokk,135,MT,Malta
+Mdina,135,MT,Malta
+Mellieħa,135,MT,Malta
+Mġarr,135,MT,Malta
+Mosta,135,MT,Malta
+Mqabba,135,MT,Malta
+Msida,135,MT,Malta
+Mtarfa,135,MT,Malta
+Munxar,135,MT,Malta
+Nadur,135,MT,Malta
+Naxxar,135,MT,Malta
+Paola,135,MT,Malta
+Pembroke,135,MT,Malta
+Pietà,135,MT,Malta
+Qala,135,MT,Malta
+Qormi,135,MT,Malta
+Qrendi,135,MT,Malta
+Rabat,135,MT,Malta
+San Ġwann,135,MT,Malta
+San Lawrenz,135,MT,Malta
+Sannat,135,MT,Malta
+Santa Luċija,135,MT,Malta
+Santa Venera,135,MT,Malta
+Senglea,135,MT,Malta
+Siġġiewi,135,MT,Malta
+Sliema,135,MT,Malta
+St. Julian's,135,MT,Malta
+St. Paul's Bay,135,MT,Malta
+Swieqi,135,MT,Malta
+Ta' Xbiex,135,MT,Malta
+Tarxien,135,MT,Malta
+Valletta,135,MT,Malta
+Victoria,135,MT,Malta
+Xagħra,135,MT,Malta
+Xewkija,135,MT,Malta
+Xgħajra,135,MT,Malta
+Żabbar,135,MT,Malta
+Żebbuġ Gozo,135,MT,Malta
+Żebbuġ Malta,135,MT,Malta
+Żejtun,135,MT,Malta
+Żurrieq,135,MT,Malta
+Ralik Chain,137,MH,Marshall Islands
+Ratak Chain,137,MH,Marshall Islands
+Adrar,139,MR,Mauritania
+Assaba,139,MR,Mauritania
+Brakna,139,MR,Mauritania
+Dakhlet Nouadhibou,139,MR,Mauritania
+Gorgol,139,MR,Mauritania
+Guidimaka,139,MR,Mauritania
+Hodh Ech Chargui,139,MR,Mauritania
+Hodh El Gharbi,139,MR,Mauritania
+Inchiri,139,MR,Mauritania
+Nouakchott-Nord,139,MR,Mauritania
+Nouakchott-Ouest,139,MR,Mauritania
+Nouakchott-Sud,139,MR,Mauritania
+Tagant,139,MR,Mauritania
+Tiris Zemmour,139,MR,Mauritania
+Trarza,139,MR,Mauritania
+Agalega Islands,140,MU,Mauritius
+Black River,140,MU,Mauritius
+Flacq,140,MU,Mauritius
+Grand Port,140,MU,Mauritius
+Moka,140,MU,Mauritius
+Pamplemousses,140,MU,Mauritius
+Plaines Wilhems,140,MU,Mauritius
+Port Louis,140,MU,Mauritius
+Rivière du Rempart,140,MU,Mauritius
+Rodrigues Island,140,MU,Mauritius
+Saint Brandon Islands,140,MU,Mauritius
+Savanne,140,MU,Mauritius
+Aguascalientes,142,MX,Mexico
+Baja California,142,MX,Mexico
+Baja California Sur,142,MX,Mexico
+Campeche,142,MX,Mexico
+Chiapas,142,MX,Mexico
+Chihuahua,142,MX,Mexico
+Ciudad de México,142,MX,Mexico
+Coahuila de Zaragoza,142,MX,Mexico
+Colima,142,MX,Mexico
+Durango,142,MX,Mexico
+Estado de México,142,MX,Mexico
+Guanajuato,142,MX,Mexico
+Guerrero,142,MX,Mexico
+Hidalgo,142,MX,Mexico
+Jalisco,142,MX,Mexico
+Michoacán de Ocampo,142,MX,Mexico
+Morelos,142,MX,Mexico
+Nayarit,142,MX,Mexico
+Nuevo León,142,MX,Mexico
+Oaxaca,142,MX,Mexico
+Puebla,142,MX,Mexico
+Querétaro,142,MX,Mexico
+Quintana Roo,142,MX,Mexico
+San Luis Potosí,142,MX,Mexico
+Sinaloa,142,MX,Mexico
+Sonora,142,MX,Mexico
+Tabasco,142,MX,Mexico
+Tamaulipas,142,MX,Mexico
+Tlaxcala,142,MX,Mexico
+Veracruz de Ignacio de la Llave,142,MX,Mexico
+Yucatán,142,MX,Mexico
+Zacatecas,142,MX,Mexico
+Chuuk State,143,FM,Micronesia
+Kosrae State,143,FM,Micronesia
+Pohnpei State,143,FM,Micronesia
+Yap State,143,FM,Micronesia
+Anenii Noi District,144,MD,Moldova
+Bălți Municipality,144,MD,Moldova
+Basarabeasca District,144,MD,Moldova
+Bender Municipality,144,MD,Moldova
+Briceni District,144,MD,Moldova
+Cahul District,144,MD,Moldova
+Călărași District,144,MD,Moldova
+Cantemir District,144,MD,Moldova
+Căușeni District,144,MD,Moldova
+Chișinău Municipality,144,MD,Moldova
+Cimișlia District,144,MD,Moldova
+Criuleni District,144,MD,Moldova
+Dondușeni District,144,MD,Moldova
+Drochia District,144,MD,Moldova
+Dubăsari District,144,MD,Moldova
+Edineț District,144,MD,Moldova
+Fălești District,144,MD,Moldova
+Florești District,144,MD,Moldova
+Gagauzia,144,MD,Moldova
+Glodeni District,144,MD,Moldova
+Hîncești District,144,MD,Moldova
+Ialoveni District,144,MD,Moldova
+Nisporeni District,144,MD,Moldova
+Ocnița District,144,MD,Moldova
+Orhei District,144,MD,Moldova
+Rezina District,144,MD,Moldova
+Rîșcani District,144,MD,Moldova
+Sîngerei District,144,MD,Moldova
+Șoldănești District,144,MD,Moldova
+Soroca District,144,MD,Moldova
+Ștefan Vodă District,144,MD,Moldova
+Strășeni District,144,MD,Moldova
+Taraclia District,144,MD,Moldova
+Telenești District,144,MD,Moldova
+Transnistria autonomous territorial unit,144,MD,Moldova
+Ungheni District,144,MD,Moldova
+La Colle,145,MC,Monaco
+La Condamine,145,MC,Monaco
+Moneghetti,145,MC,Monaco
+Arkhangai Province,146,MN,Mongolia
+Bayan-Ölgii Province,146,MN,Mongolia
+Bayankhongor Province,146,MN,Mongolia
+Bulgan Province,146,MN,Mongolia
+Darkhan-Uul Province,146,MN,Mongolia
+Dornod Province,146,MN,Mongolia
+Dornogovi Province,146,MN,Mongolia
+Dundgovi Province,146,MN,Mongolia
+Govi-Altai Province,146,MN,Mongolia
+Govisümber Province,146,MN,Mongolia
+Khentii Province,146,MN,Mongolia
+Khovd Province,146,MN,Mongolia
+Khövsgöl Province,146,MN,Mongolia
+Ömnögovi Province,146,MN,Mongolia
+Orkhon Province,146,MN,Mongolia
+Övörkhangai Province,146,MN,Mongolia
+Selenge Province,146,MN,Mongolia
+Sükhbaatar Province,146,MN,Mongolia
+Töv Province,146,MN,Mongolia
+Uvs Province,146,MN,Mongolia
+Zavkhan Province,146,MN,Mongolia
+Andrijevica Municipality,147,ME,Montenegro
+Bar Municipality,147,ME,Montenegro
+Berane Municipality,147,ME,Montenegro
+Bijelo Polje Municipality,147,ME,Montenegro
+Budva Municipality,147,ME,Montenegro
+Danilovgrad Municipality,147,ME,Montenegro
+Gusinje Municipality,147,ME,Montenegro
+Kolašin Municipality,147,ME,Montenegro
+Kotor Municipality,147,ME,Montenegro
+Mojkovac Municipality,147,ME,Montenegro
+Nikšić Municipality,147,ME,Montenegro
+Old Royal Capital Cetinje,147,ME,Montenegro
+Petnjica Municipality,147,ME,Montenegro
+Plav Municipality,147,ME,Montenegro
+Pljevlja Municipality,147,ME,Montenegro
+Plužine Municipality,147,ME,Montenegro
+Podgorica Municipality,147,ME,Montenegro
+Rožaje Municipality,147,ME,Montenegro
+Šavnik Municipality,147,ME,Montenegro
+Tivat Municipality,147,ME,Montenegro
+Ulcinj Municipality,147,ME,Montenegro
+Žabljak Municipality,147,ME,Montenegro
+Agadir-Ida-Ou-Tanane,149,MA,Morocco
+Al Haouz,149,MA,Morocco
+Al Hoceïma,149,MA,Morocco
+Aousserd (EH),149,MA,Morocco
+Assa-Zag (EH-partial),149,MA,Morocco
+Azilal,149,MA,Morocco
+Béni Mellal,149,MA,Morocco
+Béni Mellal-Khénifra,149,MA,Morocco
+Benslimane,149,MA,Morocco
+Berkane,149,MA,Morocco
+Berrechid,149,MA,Morocco
+Boujdour (EH),149,MA,Morocco
+Boulemane,149,MA,Morocco
+Casablanca,149,MA,Morocco
+Casablanca-Settat,149,MA,Morocco
+Chefchaouen,149,MA,Morocco
+Chichaoua,149,MA,Morocco
+Chtouka-Ait Baha,149,MA,Morocco
+Dakhla-Oued Ed-Dahab (EH),149,MA,Morocco
+Drâa-Tafilalet,149,MA,Morocco
+Driouch,149,MA,Morocco
+El Hajeb,149,MA,Morocco
+El Jadida,149,MA,Morocco
+El Kelâa des Sraghna,149,MA,Morocco
+Errachidia,149,MA,Morocco
+Es-Semara (EH-partial),149,MA,Morocco
+Essaouira,149,MA,Morocco
+Fahs-Anjra,149,MA,Morocco
+Fès,149,MA,Morocco
+Fès-Meknès,149,MA,Morocco
+Figuig,149,MA,Morocco
+Fquih Ben Salah,149,MA,Morocco
+Guelmim,149,MA,Morocco
+Guelmim-Oued Noun (EH-partial),149,MA,Morocco
+Guercif,149,MA,Morocco
+Ifrane,149,MA,Morocco
+Inezgane-Ait Melloul,149,MA,Morocco
+Jerada,149,MA,Morocco
+Kénitra,149,MA,Morocco
+Khémisset,149,MA,Morocco
+Khénifra,149,MA,Morocco
+Khouribga,149,MA,Morocco
+L'Oriental,149,MA,Morocco
+Laâyoune (EH),149,MA,Morocco
+Laâyoune-Sakia El Hamra (EH-partial),149,MA,Morocco
+Larache,149,MA,Morocco
+M’diq-Fnideq,149,MA,Morocco
+Marrakech,149,MA,Morocco
+Marrakesh-Safi,149,MA,Morocco
+Médiouna,149,MA,Morocco
+Meknès,149,MA,Morocco
+Midelt,149,MA,Morocco
+Mohammadia,149,MA,Morocco
+Moulay Yacoub,149,MA,Morocco
+Nador,149,MA,Morocco
+Nouaceur,149,MA,Morocco
+Ouarzazate,149,MA,Morocco
+Oued Ed-Dahab (EH),149,MA,Morocco
+Ouezzane,149,MA,Morocco
+Oujda-Angad,149,MA,Morocco
+Rabat,149,MA,Morocco
+Rabat-Salé-Kénitra,149,MA,Morocco
+Rehamna,149,MA,Morocco
+Safi,149,MA,Morocco
+Salé,149,MA,Morocco
+Sefrou,149,MA,Morocco
+Settat,149,MA,Morocco
+Sidi Bennour,149,MA,Morocco
+Sidi Ifni,149,MA,Morocco
+Sidi Kacem,149,MA,Morocco
+Sidi Slimane,149,MA,Morocco
+Skhirate-Témara,149,MA,Morocco
+Souss-Massa,149,MA,Morocco
+Tan-Tan (EH-partial),149,MA,Morocco
+Tanger-Assilah,149,MA,Morocco
+Tanger-Tétouan-Al Hoceïma,149,MA,Morocco
+Taounate,149,MA,Morocco
+Taourirt,149,MA,Morocco
+Tarfaya (EH-partial),149,MA,Morocco
+Taroudannt,149,MA,Morocco
+Tata,149,MA,Morocco
+Taza,149,MA,Morocco
+Tétouan,149,MA,Morocco
+Tinghir,149,MA,Morocco
+Tiznit,149,MA,Morocco
+Youssoufia,149,MA,Morocco
+Zagora,149,MA,Morocco
+Cabo Delgado Province,150,MZ,Mozambique
+Gaza Province,150,MZ,Mozambique
+Inhambane Province,150,MZ,Mozambique
+Manica Province,150,MZ,Mozambique
+Maputo,150,MZ,Mozambique
+Maputo Province,150,MZ,Mozambique
+Nampula Province,150,MZ,Mozambique
+Niassa Province,150,MZ,Mozambique
+Sofala Province,150,MZ,Mozambique
+Tete Province,150,MZ,Mozambique
+Zambezia Province,150,MZ,Mozambique
+Ayeyarwady Region,151,MM,Myanmar
+Bago,151,MM,Myanmar
+Chin State,151,MM,Myanmar
+Kachin State,151,MM,Myanmar
+Kayah State,151,MM,Myanmar
+Kayin State,151,MM,Myanmar
+Magway Region,151,MM,Myanmar
+Mandalay Region,151,MM,Myanmar
+Mon State,151,MM,Myanmar
+Naypyidaw Union Territory,151,MM,Myanmar
+Rakhine State,151,MM,Myanmar
+Sagaing Region,151,MM,Myanmar
+Shan State,151,MM,Myanmar
+Tanintharyi Region,151,MM,Myanmar
+Yangon Region,151,MM,Myanmar
+Erongo Region,152,NA,Namibia
+Hardap Region,152,NA,Namibia
+Karas Region,152,NA,Namibia
+Kavango East Region,152,NA,Namibia
+Kavango West Region,152,NA,Namibia
+Khomas Region,152,NA,Namibia
+Kunene Region,152,NA,Namibia
+Ohangwena Region,152,NA,Namibia
+Omaheke Region,152,NA,Namibia
+Omusati Region,152,NA,Namibia
+Oshana Region,152,NA,Namibia
+Oshikoto Region,152,NA,Namibia
+Otjozondjupa Region,152,NA,Namibia
+Zambezi Region,152,NA,Namibia
+Aiwo District,153,NR,Nauru
+Anabar District,153,NR,Nauru
+Anetan District,153,NR,Nauru
+Anibare District,153,NR,Nauru
+Baiti District,153,NR,Nauru
+Boe District,153,NR,Nauru
+Buada District,153,NR,Nauru
+Denigomodu District,153,NR,Nauru
+Ewa District,153,NR,Nauru
+Ijuw District,153,NR,Nauru
+Meneng District,153,NR,Nauru
+Nibok District,153,NR,Nauru
+Uaboe District,153,NR,Nauru
+Yaren District,153,NR,Nauru
+Bagmati,154,NP,Nepal
+Gandaki,154,NP,Nepal
+Karnali,154,NP,Nepal
+Koshi,154,NP,Nepal
+Lumbini,154,NP,Nepal
+Madhesh,154,NP,Nepal
+Sudurpashchim,154,NP,Nepal
+Bonaire,156,NL,Netherlands
+Drenthe,156,NL,Netherlands
+Flevoland,156,NL,Netherlands
+Friesland,156,NL,Netherlands
+Gelderland,156,NL,Netherlands
+Groningen,156,NL,Netherlands
+Limburg,156,NL,Netherlands
+North Brabant,156,NL,Netherlands
+North Holland,156,NL,Netherlands
+Overijssel,156,NL,Netherlands
+Saba,156,NL,Netherlands
+Sint Eustatius,156,NL,Netherlands
+South Holland,156,NL,Netherlands
+Utrecht,156,NL,Netherlands
+Zeeland,156,NL,Netherlands
+Loyalty Islands Province,157,NC,New Caledonia
+North Province,157,NC,New Caledonia
+South Province,157,NC,New Caledonia
+Auckland Region,158,NZ,New Zealand
+Bay of Plenty Region,158,NZ,New Zealand
+Canterbury Region,158,NZ,New Zealand
+Chatham Islands,158,NZ,New Zealand
+Gisborne District,158,NZ,New Zealand
+Hawke's Bay Region,158,NZ,New Zealand
+Manawatu-Wanganui Region,158,NZ,New Zealand
+Marlborough Region,158,NZ,New Zealand
+Nelson Region,158,NZ,New Zealand
+Northland Region,158,NZ,New Zealand
+Otago Region,158,NZ,New Zealand
+Southland Region,158,NZ,New Zealand
+Taranaki Region,158,NZ,New Zealand
+Tasman District,158,NZ,New Zealand
+Waikato Region,158,NZ,New Zealand
+Wellington Region,158,NZ,New Zealand
+West Coast Region,158,NZ,New Zealand
+Boaco,159,NI,Nicaragua
+Carazo,159,NI,Nicaragua
+Chinandega,159,NI,Nicaragua
+Chontales,159,NI,Nicaragua
+Estelí,159,NI,Nicaragua
+Granada,159,NI,Nicaragua
+Jinotega,159,NI,Nicaragua
+León,159,NI,Nicaragua
+Madriz,159,NI,Nicaragua
+Managua,159,NI,Nicaragua
+Masaya,159,NI,Nicaragua
+Matagalpa,159,NI,Nicaragua
+North Caribbean Coast,159,NI,Nicaragua
+Nueva Segovia,159,NI,Nicaragua
+Río San Juan,159,NI,Nicaragua
+Rivas,159,NI,Nicaragua
+South Caribbean Coast,159,NI,Nicaragua
+Agadez Region,160,NE,Niger
+Diffa Region,160,NE,Niger
+Dosso Region,160,NE,Niger
+Maradi Region,160,NE,Niger
+Tahoua Region,160,NE,Niger
+Tillabéri Region,160,NE,Niger
+Zinder Region,160,NE,Niger
+Abia,161,NG,Nigeria
+Abuja Federal Capital Territory,161,NG,Nigeria
+Adamawa,161,NG,Nigeria
+Akwa Ibom,161,NG,Nigeria
+Anambra,161,NG,Nigeria
+Bauchi,161,NG,Nigeria
+Bayelsa,161,NG,Nigeria
+Benue,161,NG,Nigeria
+Borno,161,NG,Nigeria
+Cross River,161,NG,Nigeria
+Delta,161,NG,Nigeria
+Ebonyi,161,NG,Nigeria
+Edo,161,NG,Nigeria
+Ekiti,161,NG,Nigeria
+Enugu,161,NG,Nigeria
+Gombe,161,NG,Nigeria
+Imo,161,NG,Nigeria
+Jigawa,161,NG,Nigeria
+Kaduna,161,NG,Nigeria
+Kano,161,NG,Nigeria
+Katsina,161,NG,Nigeria
+Kebbi,161,NG,Nigeria
+Kogi,161,NG,Nigeria
+Kwara,161,NG,Nigeria
+Lagos,161,NG,Nigeria
+Nasarawa,161,NG,Nigeria
+Niger,161,NG,Nigeria
+Ogun,161,NG,Nigeria
+Ondo,161,NG,Nigeria
+Osun,161,NG,Nigeria
+Oyo,161,NG,Nigeria
+Plateau,161,NG,Nigeria
+Rivers,161,NG,Nigeria
+Sokoto,161,NG,Nigeria
+Taraba,161,NG,Nigeria
+Yobe,161,NG,Nigeria
+Zamfara,161,NG,Nigeria
+Chagang Province,115,KP,North Korea
+Kangwon Province,115,KP,North Korea
+North Hamgyong Province,115,KP,North Korea
+North Hwanghae Province,115,KP,North Korea
+North Pyongan Province,115,KP,North Korea
+Pyongyang,115,KP,North Korea
+Rason,115,KP,North Korea
+Ryanggang Province,115,KP,North Korea
+South Hamgyong Province,115,KP,North Korea
+South Hwanghae Province,115,KP,North Korea
+South Pyongan Province,115,KP,North Korea
+Aerodrom Municipality,129,MK,North Macedonia
+Aračinovo Municipality,129,MK,North Macedonia
+Berovo Municipality,129,MK,North Macedonia
+Bitola Municipality,129,MK,North Macedonia
+Bogdanci Municipality,129,MK,North Macedonia
+Bogovinje Municipality,129,MK,North Macedonia
+Bosilovo Municipality,129,MK,North Macedonia
+Brvenica Municipality,129,MK,North Macedonia
+Butel Municipality,129,MK,North Macedonia
+Čair Municipality,129,MK,North Macedonia
+Čaška Municipality,129,MK,North Macedonia
+Centar Municipality,129,MK,North Macedonia
+Centar Župa Municipality,129,MK,North Macedonia
+Češinovo-Obleševo Municipality,129,MK,North Macedonia
+Čučer-Sandevo Municipality,129,MK,North Macedonia
+Debarca Municipality,129,MK,North Macedonia
+Delčevo Municipality,129,MK,North Macedonia
+Demir Hisar Municipality,129,MK,North Macedonia
+Demir Kapija Municipality,129,MK,North Macedonia
+Dojran Municipality,129,MK,North Macedonia
+Dolneni Municipality,129,MK,North Macedonia
+Drugovo Municipality,129,MK,North Macedonia
+Gazi Baba Municipality,129,MK,North Macedonia
+Gevgelija Municipality,129,MK,North Macedonia
+Gjorče Petrov Municipality,129,MK,North Macedonia
+Gostivar Municipality,129,MK,North Macedonia
+Gradsko Municipality,129,MK,North Macedonia
+Greater Skopje,129,MK,North Macedonia
+Ilinden Municipality,129,MK,North Macedonia
+Jegunovce Municipality,129,MK,North Macedonia
+Karbinci,129,MK,North Macedonia
+Karpoš Municipality,129,MK,North Macedonia
+Kavadarci Municipality,129,MK,North Macedonia
+Kičevo Municipality,129,MK,North Macedonia
+Kisela Voda Municipality,129,MK,North Macedonia
+Kočani Municipality,129,MK,North Macedonia
+Konče Municipality,129,MK,North Macedonia
+Kratovo Municipality,129,MK,North Macedonia
+Kriva Palanka Municipality,129,MK,North Macedonia
+Krivogaštani Municipality,129,MK,North Macedonia
+Kruševo Municipality,129,MK,North Macedonia
+Kumanovo Municipality,129,MK,North Macedonia
+Lipkovo Municipality,129,MK,North Macedonia
+Lozovo Municipality,129,MK,North Macedonia
+Makedonska Kamenica Municipality,129,MK,North Macedonia
+Makedonski Brod Municipality,129,MK,North Macedonia
+Mavrovo and Rostuša Municipality,129,MK,North Macedonia
+Mogila Municipality,129,MK,North Macedonia
+Negotino Municipality,129,MK,North Macedonia
+Novaci Municipality,129,MK,North Macedonia
+Novo Selo Municipality,129,MK,North Macedonia
+Ohrid Municipality,129,MK,North Macedonia
+Oslomej Municipality,129,MK,North Macedonia
+Pehčevo Municipality,129,MK,North Macedonia
+Petrovec Municipality,129,MK,North Macedonia
+Plasnica Municipality,129,MK,North Macedonia
+Prilep Municipality,129,MK,North Macedonia
+Probištip Municipality,129,MK,North Macedonia
+Radoviš Municipality,129,MK,North Macedonia
+Rankovce Municipality,129,MK,North Macedonia
+Resen Municipality,129,MK,North Macedonia
+Rosoman Municipality,129,MK,North Macedonia
+Saraj Municipality,129,MK,North Macedonia
+Sopište Municipality,129,MK,North Macedonia
+Staro Nagoričane Municipality,129,MK,North Macedonia
+Štip Municipality,129,MK,North Macedonia
+Struga Municipality,129,MK,North Macedonia
+Strumica Municipality,129,MK,North Macedonia
+Studeničani Municipality,129,MK,North Macedonia
+Šuto Orizari Municipality,129,MK,North Macedonia
+Sveti Nikole Municipality,129,MK,North Macedonia
+Tearce Municipality,129,MK,North Macedonia
+Tetovo Municipality,129,MK,North Macedonia
+Valandovo Municipality,129,MK,North Macedonia
+Vasilevo Municipality,129,MK,North Macedonia
+Veles Municipality,129,MK,North Macedonia
+Vevčani Municipality,129,MK,North Macedonia
+Vinica Municipality,129,MK,North Macedonia
+Vraneštica Municipality,129,MK,North Macedonia
+Vrapčište Municipality,129,MK,North Macedonia
+Zajas Municipality,129,MK,North Macedonia
+Zelenikovo Municipality,129,MK,North Macedonia
+Želino Municipality,129,MK,North Macedonia
+Zrnovci Municipality,129,MK,North Macedonia
+Agder,165,NO,Norway
+Innlandet,165,NO,Norway
+Jan Mayen,165,NO,Norway
+Møre og Romsdal,165,NO,Norway
+Nordland,165,NO,Norway
+Oslo,165,NO,Norway
+Rogaland,165,NO,Norway
+Svalbard,165,NO,Norway
+Troms og Finnmark,165,NO,Norway
+Trøndelag,165,NO,Norway
+Vestfold og Telemark,165,NO,Norway
+Vestland,165,NO,Norway
+Viken,165,NO,Norway
+Ad Dakhiliyah,166,OM,Oman
+Ad Dhahirah,166,OM,Oman
+Al Batinah North,166,OM,Oman
+Al Batinah Region,166,OM,Oman
+Al Batinah South,166,OM,Oman
+Al Buraimi,166,OM,Oman
+Al Wusta,166,OM,Oman
+Ash Sharqiyah North,166,OM,Oman
+Ash Sharqiyah Region,166,OM,Oman
+Ash Sharqiyah South,166,OM,Oman
+Dhofar,166,OM,Oman
+Musandam,166,OM,Oman
+Muscat,166,OM,Oman
+Azad Kashmir,167,PK,Pakistan
+Balochistan,167,PK,Pakistan
+Federally Administered Tribal Areas,167,PK,Pakistan
+Gilgit-Baltistan,167,PK,Pakistan
+Islamabad Capital Territory,167,PK,Pakistan
+Khyber Pakhtunkhwa,167,PK,Pakistan
+Punjab,167,PK,Pakistan
+Sindh,167,PK,Pakistan
+Aimeliik,168,PW,Palau
+Airai,168,PW,Palau
+Angaur,168,PW,Palau
+Hatohobei,168,PW,Palau
+Kayangel,168,PW,Palau
+Koror,168,PW,Palau
+Melekeok,168,PW,Palau
+Ngaraard,168,PW,Palau
+Ngarchelong,168,PW,Palau
+Ngardmau,168,PW,Palau
+Ngatpang,168,PW,Palau
+Ngchesar,168,PW,Palau
+Ngeremlengui,168,PW,Palau
+Ngiwal,168,PW,Palau
+Peleliu,168,PW,Palau
+Sonsorol,168,PW,Palau
+Bethlehem,169,PS,Palestinian Territory Occupied
+Deir El Balah,169,PS,Palestinian Territory Occupied
+Gaza,169,PS,Palestinian Territory Occupied
+Hebron,169,PS,Palestinian Territory Occupied
+Jenin,169,PS,Palestinian Territory Occupied
+Jericho and Al Aghwar,169,PS,Palestinian Territory Occupied
+Jerusalem,169,PS,Palestinian Territory Occupied
+Khan Yunis,169,PS,Palestinian Territory Occupied
+Nablus,169,PS,Palestinian Territory Occupied
+North Gaza,169,PS,Palestinian Territory Occupied
+Qalqilya,169,PS,Palestinian Territory Occupied
+Rafah,169,PS,Palestinian Territory Occupied
+Ramallah,169,PS,Palestinian Territory Occupied
+Salfit,169,PS,Palestinian Territory Occupied
+Tubas,169,PS,Palestinian Territory Occupied
+Tulkarm,169,PS,Palestinian Territory Occupied
+Bocas del Toro Province,170,PA,Panama
+Chiriquí Province,170,PA,Panama
+Coclé Province,170,PA,Panama
+Colón Province,170,PA,Panama
+Darién Province,170,PA,Panama
+Emberá-Wounaan Comarca,170,PA,Panama
+Guna Yala,170,PA,Panama
+Herrera Province,170,PA,Panama
+Los Santos Province,170,PA,Panama
+Ngöbe-Buglé Comarca,170,PA,Panama
+Panamá Oeste Province,170,PA,Panama
+Panamá Province,170,PA,Panama
+Veraguas Province,170,PA,Panama
+Bougainville,171,PG,Papua New Guinea
+Central Province,171,PG,Papua New Guinea
+Chimbu Province,171,PG,Papua New Guinea
+East New Britain,171,PG,Papua New Guinea
+East Sepik,171,PG,Papua New Guinea
+Eastern Highlands Province,171,PG,Papua New Guinea
+Enga Province,171,PG,Papua New Guinea
+Gulf,171,PG,Papua New Guinea
+Hela,171,PG,Papua New Guinea
+Jiwaka Province,171,PG,Papua New Guinea
+Madang Province,171,PG,Papua New Guinea
+Manus Province,171,PG,Papua New Guinea
+Milne Bay Province,171,PG,Papua New Guinea
+Morobe Province,171,PG,Papua New Guinea
+New Ireland Province,171,PG,Papua New Guinea
+Oro Province,171,PG,Papua New Guinea
+Port Moresby,171,PG,Papua New Guinea
+Sandaun Province,171,PG,Papua New Guinea
+Southern Highlands Province,171,PG,Papua New Guinea
+West New Britain Province,171,PG,Papua New Guinea
+Western Highlands Province,171,PG,Papua New Guinea
+Western Province,171,PG,Papua New Guinea
+Alto Paraguay Department,172,PY,Paraguay
+Alto Paraná Department,172,PY,Paraguay
+Amambay Department,172,PY,Paraguay
+Asuncion,172,PY,Paraguay
+Boquerón Department,172,PY,Paraguay
+Caaguazú,172,PY,Paraguay
+Caazapá,172,PY,Paraguay
+Canindeyú,172,PY,Paraguay
+Central Department,172,PY,Paraguay
+Concepción Department,172,PY,Paraguay
+Cordillera Department,172,PY,Paraguay
+Guairá Department,172,PY,Paraguay
+Itapúa,172,PY,Paraguay
+Misiones Department,172,PY,Paraguay
+Ñeembucú Department,172,PY,Paraguay
+Paraguarí Department,172,PY,Paraguay
+Presidente Hayes Department,172,PY,Paraguay
+San Pedro Department,172,PY,Paraguay
+Amazonas,173,PE,Peru
+Áncash,173,PE,Peru
+Apurímac,173,PE,Peru
+Arequipa,173,PE,Peru
+Ayacucho,173,PE,Peru
+Cajamarca,173,PE,Peru
+Callao,173,PE,Peru
+Cusco,173,PE,Peru
+Huancavelica,173,PE,Peru
+Huanuco,173,PE,Peru
+Ica,173,PE,Peru
+Junín,173,PE,Peru
+La Libertad,173,PE,Peru
+Lambayeque,173,PE,Peru
+Lima,173,PE,Peru
+Loreto,173,PE,Peru
+Madre de Dios,173,PE,Peru
+Moquegua,173,PE,Peru
+Pasco,173,PE,Peru
+Piura,173,PE,Peru
+Puno,173,PE,Peru
+San Martín,173,PE,Peru
+Tacna,173,PE,Peru
+Tumbes,173,PE,Peru
+Ucayali,173,PE,Peru
+Abra,174,PH,Philippines
+Agusan del Norte,174,PH,Philippines
+Agusan del Sur,174,PH,Philippines
+Aklan,174,PH,Philippines
+Albay,174,PH,Philippines
+Antique,174,PH,Philippines
+Apayao,174,PH,Philippines
+Aurora,174,PH,Philippines
+Autonomous Region in Muslim Mindanao,174,PH,Philippines
+Basilan,174,PH,Philippines
+Bataan,174,PH,Philippines
+Batanes,174,PH,Philippines
+Batangas,174,PH,Philippines
+Benguet,174,PH,Philippines
+Bicol,174,PH,Philippines
+Biliran,174,PH,Philippines
+Bohol,174,PH,Philippines
+Bukidnon,174,PH,Philippines
+Bulacan,174,PH,Philippines
+Cagayan,174,PH,Philippines
+Cagayan Valley,174,PH,Philippines
+Calabarzon,174,PH,Philippines
+Camarines Norte,174,PH,Philippines
+Camarines Sur,174,PH,Philippines
+Camiguin,174,PH,Philippines
+Capiz,174,PH,Philippines
+Caraga,174,PH,Philippines
+Catanduanes,174,PH,Philippines
+Cavite,174,PH,Philippines
+Cebu,174,PH,Philippines
+Central Luzon,174,PH,Philippines
+Central Visayas,174,PH,Philippines
+Compostela Valley,174,PH,Philippines
+Cordillera Administrative,174,PH,Philippines
+Cotabato,174,PH,Philippines
+Davao,174,PH,Philippines
+Davao del Norte,174,PH,Philippines
+Davao del Sur,174,PH,Philippines
+Davao Occidental,174,PH,Philippines
+Davao Oriental,174,PH,Philippines
+Dinagat Islands,174,PH,Philippines
+Eastern Samar,174,PH,Philippines
+Eastern Visayas,174,PH,Philippines
+Guimaras,174,PH,Philippines
+Ifugao,174,PH,Philippines
+Ilocos,174,PH,Philippines
+Ilocos Norte,174,PH,Philippines
+Ilocos Sur,174,PH,Philippines
+Iloilo,174,PH,Philippines
+Isabela,174,PH,Philippines
+Kalinga,174,PH,Philippines
+La Union,174,PH,Philippines
+Laguna,174,PH,Philippines
+Lanao del Norte,174,PH,Philippines
+Lanao del Sur,174,PH,Philippines
+Leyte,174,PH,Philippines
+Maguindanao,174,PH,Philippines
+Marinduque,174,PH,Philippines
+Masbate,174,PH,Philippines
+Metro Manila,174,PH,Philippines
+Mimaropa,174,PH,Philippines
+Misamis Occidental,174,PH,Philippines
+Misamis Oriental,174,PH,Philippines
+Mountain Province,174,PH,Philippines
+Negros Occidental,174,PH,Philippines
+Negros Oriental,174,PH,Philippines
+Northern Mindanao,174,PH,Philippines
+Northern Samar,174,PH,Philippines
+Nueva Ecija,174,PH,Philippines
+Nueva Vizcaya,174,PH,Philippines
+Occidental Mindoro,174,PH,Philippines
+Oriental Mindoro,174,PH,Philippines
+Palawan,174,PH,Philippines
+Pampanga,174,PH,Philippines
+Pangasinan,174,PH,Philippines
+Quezon,174,PH,Philippines
+Quirino,174,PH,Philippines
+Rizal,174,PH,Philippines
+Romblon,174,PH,Philippines
+Sarangani,174,PH,Philippines
+Siquijor,174,PH,Philippines
+Soccsksargen,174,PH,Philippines
+Sorsogon,174,PH,Philippines
+South Cotabato,174,PH,Philippines
+Southern Leyte,174,PH,Philippines
+Sultan Kudarat,174,PH,Philippines
+Sulu,174,PH,Philippines
+Surigao del Norte,174,PH,Philippines
+Surigao del Sur,174,PH,Philippines
+Tarlac,174,PH,Philippines
+Tawi-Tawi,174,PH,Philippines
+Western Samar,174,PH,Philippines
+Western Visayas,174,PH,Philippines
+Zambales,174,PH,Philippines
+Zamboanga del Norte,174,PH,Philippines
+Zamboanga del Sur,174,PH,Philippines
+Zamboanga Peninsula,174,PH,Philippines
+Zamboanga Sibugay,174,PH,Philippines
+Greater Poland,176,PL,Poland
+Holy Cross,176,PL,Poland
+Kuyavia-Pomerania,176,PL,Poland
+Lesser Poland,176,PL,Poland
+Lower Silesia,176,PL,Poland
+Lublin,176,PL,Poland
+Lubusz,176,PL,Poland
+Łódź,176,PL,Poland
+Mazovia,176,PL,Poland
+Podlaskie,176,PL,Poland
+Pomerania,176,PL,Poland
+Silesia,176,PL,Poland
+Subcarpathia,176,PL,Poland
+Upper Silesia,176,PL,Poland
+Warmia-Masuria,176,PL,Poland
+West Pomerania,176,PL,Poland
+Açores,177,PT,Portugal
+Aveiro,177,PT,Portugal
+Beja,177,PT,Portugal
+Braga,177,PT,Portugal
+Bragança,177,PT,Portugal
+Castelo Branco,177,PT,Portugal
+Coimbra,177,PT,Portugal
+Évora,177,PT,Portugal
+Faro,177,PT,Portugal
+Guarda,177,PT,Portugal
+Leiria,177,PT,Portugal
+Lisbon,177,PT,Portugal
+Madeira,177,PT,Portugal
+Portalegre,177,PT,Portugal
+Porto,177,PT,Portugal
+Santarém,177,PT,Portugal
+Setúbal,177,PT,Portugal
+Viana do Castelo,177,PT,Portugal
+Vila Real,177,PT,Portugal
+Viseu,177,PT,Portugal
+Adjuntas,178,PR,Puerto Rico
+Aguada,178,PR,Puerto Rico
+Aguadilla,178,PR,Puerto Rico
+Aguas Buenas,178,PR,Puerto Rico
+Aibonito,178,PR,Puerto Rico
+Añasco,178,PR,Puerto Rico
+Arecibo,178,PR,Puerto Rico
+Arecibo,178,PR,Puerto Rico
+Arroyo,178,PR,Puerto Rico
+Barceloneta,178,PR,Puerto Rico
+Barranquitas,178,PR,Puerto Rico
+Bayamon,178,PR,Puerto Rico
+Bayamón,178,PR,Puerto Rico
+Cabo Rojo,178,PR,Puerto Rico
+Caguas,178,PR,Puerto Rico
+Caguas,178,PR,Puerto Rico
+Camuy,178,PR,Puerto Rico
+Canóvanas,178,PR,Puerto Rico
+Carolina,178,PR,Puerto Rico
+Carolina,178,PR,Puerto Rico
+Cataño,178,PR,Puerto Rico
+Cayey,178,PR,Puerto Rico
+Ceiba,178,PR,Puerto Rico
+Ciales,178,PR,Puerto Rico
+Cidra,178,PR,Puerto Rico
+Coamo,178,PR,Puerto Rico
+Comerío,178,PR,Puerto Rico
+Corozal,178,PR,Puerto Rico
+Culebra,178,PR,Puerto Rico
+Dorado,178,PR,Puerto Rico
+Fajardo,178,PR,Puerto Rico
+Florida,178,PR,Puerto Rico
+Guánica,178,PR,Puerto Rico
+Guayama,178,PR,Puerto Rico
+Guayanilla,178,PR,Puerto Rico
+Guaynabo,178,PR,Puerto Rico
+Guaynabo,178,PR,Puerto Rico
+Gurabo,178,PR,Puerto Rico
+Hatillo,178,PR,Puerto Rico
+Hormigueros,178,PR,Puerto Rico
+Humacao,178,PR,Puerto Rico
+Isabela,178,PR,Puerto Rico
+Jayuya,178,PR,Puerto Rico
+Juana Díaz,178,PR,Puerto Rico
+Juncos,178,PR,Puerto Rico
+Lajas,178,PR,Puerto Rico
+Lares,178,PR,Puerto Rico
+Las Marías,178,PR,Puerto Rico
+Las Piedras,178,PR,Puerto Rico
+Loíza,178,PR,Puerto Rico
+Luquillo,178,PR,Puerto Rico
+Manatí,178,PR,Puerto Rico
+Maricao,178,PR,Puerto Rico
+Maunabo,178,PR,Puerto Rico
+Mayagüez,178,PR,Puerto Rico
+Mayagüez,178,PR,Puerto Rico
+Moca,178,PR,Puerto Rico
+Morovis,178,PR,Puerto Rico
+Naguabo,178,PR,Puerto Rico
+Naranjito,178,PR,Puerto Rico
+Orocovis,178,PR,Puerto Rico
+Patillas,178,PR,Puerto Rico
+Peñuelas,178,PR,Puerto Rico
+Ponce,178,PR,Puerto Rico
+Ponce,178,PR,Puerto Rico
+Quebradillas,178,PR,Puerto Rico
+Rincón,178,PR,Puerto Rico
+Río Grande,178,PR,Puerto Rico
+Sabana Grande,178,PR,Puerto Rico
+Salinas,178,PR,Puerto Rico
+San Germán,178,PR,Puerto Rico
+San Juan,178,PR,Puerto Rico
+San Juan,178,PR,Puerto Rico
+San Lorenzo,178,PR,Puerto Rico
+San Sebastián,178,PR,Puerto Rico
+Santa Isabel,178,PR,Puerto Rico
+Toa Alta,178,PR,Puerto Rico
+Toa Baja,178,PR,Puerto Rico
+Toa Baja,178,PR,Puerto Rico
+Trujillo Alto,178,PR,Puerto Rico
+Trujillo Alto,178,PR,Puerto Rico
+Utuado,178,PR,Puerto Rico
+Vega Alta,178,PR,Puerto Rico
+Vega Baja,178,PR,Puerto Rico
+Vieques,178,PR,Puerto Rico
+Villalba,178,PR,Puerto Rico
+Yabucoa,178,PR,Puerto Rico
+Yauco,178,PR,Puerto Rico
+Al Daayen,179,QA,Qatar
+Al Khor,179,QA,Qatar
+Al Rayyan Municipality,179,QA,Qatar
+Al Wakrah,179,QA,Qatar
+Al-Shahaniya,179,QA,Qatar
+Doha,179,QA,Qatar
+Madinat ash Shamal,179,QA,Qatar
+Umm Salal Municipality,179,QA,Qatar
+Alba,181,RO,Romania
+Arad County,181,RO,Romania
+Arges,181,RO,Romania
+Bacău County,181,RO,Romania
+Bihor County,181,RO,Romania
+Bistrița-Năsăud County,181,RO,Romania
+Botoșani County,181,RO,Romania
+Braila,181,RO,Romania
+Brașov County,181,RO,Romania
+Bucharest,181,RO,Romania
+Buzău County,181,RO,Romania
+Călărași County,181,RO,Romania
+Caraș-Severin County,181,RO,Romania
+Cluj County,181,RO,Romania
+Constanța County,181,RO,Romania
+Covasna County,181,RO,Romania
+Dâmbovița County,181,RO,Romania
+Dolj County,181,RO,Romania
+Galați County,181,RO,Romania
+Giurgiu County,181,RO,Romania
+Gorj County,181,RO,Romania
+Harghita County,181,RO,Romania
+Hunedoara County,181,RO,Romania
+Ialomița County,181,RO,Romania
+Iași County,181,RO,Romania
+Ilfov County,181,RO,Romania
+Maramureș County,181,RO,Romania
+Mehedinți County,181,RO,Romania
+Mureș County,181,RO,Romania
+Neamț County,181,RO,Romania
+Olt County,181,RO,Romania
+Prahova County,181,RO,Romania
+Sălaj County,181,RO,Romania
+Satu Mare County,181,RO,Romania
+Sibiu County,181,RO,Romania
+Suceava County,181,RO,Romania
+Teleorman County,181,RO,Romania
+Timiș County,181,RO,Romania
+Tulcea County,181,RO,Romania
+Vâlcea County,181,RO,Romania
+Vaslui County,181,RO,Romania
+Vrancea County,181,RO,Romania
+Altai Krai,182,RU,Russia
+Altai Republic,182,RU,Russia
+Amur Oblast,182,RU,Russia
+Arkhangelsk,182,RU,Russia
+Astrakhan Oblast,182,RU,Russia
+Belgorod Oblast,182,RU,Russia
+Bryansk Oblast,182,RU,Russia
+Chechen Republic,182,RU,Russia
+Chelyabinsk Oblast,182,RU,Russia
+Chukotka Autonomous Okrug,182,RU,Russia
+Chuvash Republic,182,RU,Russia
+Irkutsk,182,RU,Russia
+Ivanovo Oblast,182,RU,Russia
+Jewish Autonomous Oblast,182,RU,Russia
+Kabardino-Balkar Republic,182,RU,Russia
+Kaliningrad,182,RU,Russia
+Kaluga Oblast,182,RU,Russia
+Kamchatka Krai,182,RU,Russia
+Karachay-Cherkess Republic,182,RU,Russia
+Kemerovo Oblast,182,RU,Russia
+Khabarovsk Krai,182,RU,Russia
+Khanty-Mansi Autonomous Okrug,182,RU,Russia
+Kirov Oblast,182,RU,Russia
+Komi Republic,182,RU,Russia
+Kostroma Oblast,182,RU,Russia
+Krasnodar Krai,182,RU,Russia
+Krasnoyarsk Krai,182,RU,Russia
+Kurgan Oblast,182,RU,Russia
+Kursk Oblast,182,RU,Russia
+Leningrad Oblast,182,RU,Russia
+Lipetsk Oblast,182,RU,Russia
+Magadan Oblast,182,RU,Russia
+Mari El Republic,182,RU,Russia
+Moscow,182,RU,Russia
+Moscow Oblast,182,RU,Russia
+Murmansk Oblast,182,RU,Russia
+Nenets Autonomous Okrug,182,RU,Russia
+Nizhny Novgorod Oblast,182,RU,Russia
+Novgorod Oblast,182,RU,Russia
+Novosibirsk,182,RU,Russia
+Omsk Oblast,182,RU,Russia
+Orenburg Oblast,182,RU,Russia
+Oryol Oblast,182,RU,Russia
+Penza Oblast,182,RU,Russia
+Perm Krai,182,RU,Russia
+Primorsky Krai,182,RU,Russia
+Pskov Oblast,182,RU,Russia
+Republic of Adygea,182,RU,Russia
+Republic of Bashkortostan,182,RU,Russia
+Republic of Buryatia,182,RU,Russia
+Republic of Dagestan,182,RU,Russia
+Republic of Ingushetia,182,RU,Russia
+Republic of Kalmykia,182,RU,Russia
+Republic of Karelia,182,RU,Russia
+Republic of Khakassia,182,RU,Russia
+Republic of Mordovia,182,RU,Russia
+Republic of North Ossetia-Alania,182,RU,Russia
+Republic of Tatarstan,182,RU,Russia
+Rostov Oblast,182,RU,Russia
+Ryazan Oblast,182,RU,Russia
+Saint Petersburg,182,RU,Russia
+Sakha Republic,182,RU,Russia
+Sakhalin,182,RU,Russia
+Samara Oblast,182,RU,Russia
+Saratov Oblast,182,RU,Russia
+Smolensk Oblast,182,RU,Russia
+Stavropol Krai,182,RU,Russia
+Sverdlovsk,182,RU,Russia
+Tambov Oblast,182,RU,Russia
+Tomsk Oblast,182,RU,Russia
+Tula Oblast,182,RU,Russia
+Tuva Republic,182,RU,Russia
+Tver Oblast,182,RU,Russia
+Tyumen Oblast,182,RU,Russia
+Udmurt Republic,182,RU,Russia
+Ulyanovsk Oblast,182,RU,Russia
+Vladimir Oblast,182,RU,Russia
+Volgograd Oblast,182,RU,Russia
+Vologda Oblast,182,RU,Russia
+Voronezh Oblast,182,RU,Russia
+Yamalo-Nenets Autonomous Okrug,182,RU,Russia
+Yaroslavl Oblast,182,RU,Russia
+Zabaykalsky Krai,182,RU,Russia
+Eastern Province,183,RW,Rwanda
+Kigali district,183,RW,Rwanda
+Northern Province,183,RW,Rwanda
+Southern Province,183,RW,Rwanda
+Western Province,183,RW,Rwanda
+Christ Church Nichola Town Parish,185,KN,Saint Kitts and Nevis
+Nevis,185,KN,Saint Kitts and Nevis
+Saint Anne Sandy Point Parish,185,KN,Saint Kitts and Nevis
+Saint George Gingerland Parish,185,KN,Saint Kitts and Nevis
+Saint James Windward Parish,185,KN,Saint Kitts and Nevis
+Saint John Capisterre Parish,185,KN,Saint Kitts and Nevis
+Saint John Figtree Parish,185,KN,Saint Kitts and Nevis
+Saint Kitts,185,KN,Saint Kitts and Nevis
+Saint Mary Cayon Parish,185,KN,Saint Kitts and Nevis
+Saint Paul Capisterre Parish,185,KN,Saint Kitts and Nevis
+Saint Paul Charlestown Parish,185,KN,Saint Kitts and Nevis
+Saint Peter Basseterre Parish,185,KN,Saint Kitts and Nevis
+Saint Thomas Lowland Parish,185,KN,Saint Kitts and Nevis
+Saint Thomas Middle Island Parish,185,KN,Saint Kitts and Nevis
+Trinity Palmetto Point Parish,185,KN,Saint Kitts and Nevis
+Anse la Raye Quarter,186,LC,Saint Lucia
+Canaries,186,LC,Saint Lucia
+Castries Quarter,186,LC,Saint Lucia
+Choiseul Quarter,186,LC,Saint Lucia
+Dauphin Quarter,186,LC,Saint Lucia
+Dennery Quarter,186,LC,Saint Lucia
+Gros Islet Quarter,186,LC,Saint Lucia
+Laborie Quarter,186,LC,Saint Lucia
+Micoud Quarter,186,LC,Saint Lucia
+Praslin Quarter,186,LC,Saint Lucia
+Soufrière Quarter,186,LC,Saint Lucia
+Vieux Fort Quarter,186,LC,Saint Lucia
+Charlotte Parish,188,VC,Saint Vincent and the Grenadines
+Grenadines Parish,188,VC,Saint Vincent and the Grenadines
+Saint Andrew Parish,188,VC,Saint Vincent and the Grenadines
+Saint David Parish,188,VC,Saint Vincent and the Grenadines
+Saint George Parish,188,VC,Saint Vincent and the Grenadines
+Saint Patrick Parish,188,VC,Saint Vincent and the Grenadines
+A'ana,191,WS,Samoa
+Aiga-i-le-Tai,191,WS,Samoa
+Atua,191,WS,Samoa
+Fa'asaleleaga,191,WS,Samoa
+Gaga'emauga,191,WS,Samoa
+Gaga'ifomauga,191,WS,Samoa
+Palauli,191,WS,Samoa
+Satupa'itea,191,WS,Samoa
+Tuamasaga,191,WS,Samoa
+Va'a-o-Fonoti,191,WS,Samoa
+Vaisigano,191,WS,Samoa
+Acquaviva,192,SM,San Marino
+Borgo Maggiore,192,SM,San Marino
+Chiesanuova,192,SM,San Marino
+Domagnano,192,SM,San Marino
+Faetano,192,SM,San Marino
+Fiorentino,192,SM,San Marino
+Montegiardino,192,SM,San Marino
+San Marino,192,SM,San Marino
+Serravalle,192,SM,San Marino
+Príncipe Province,193,ST,Sao Tome and Principe
+São Tomé Province,193,ST,Sao Tome and Principe
+'Asir,194,SA,Saudi Arabia
+Al Bahah,194,SA,Saudi Arabia
+Al Jawf,194,SA,Saudi Arabia
+Al Madinah,194,SA,Saudi Arabia
+Al-Qassim,194,SA,Saudi Arabia
+Eastern Province,194,SA,Saudi Arabia
+Ha'il,194,SA,Saudi Arabia
+Jizan,194,SA,Saudi Arabia
+Makkah,194,SA,Saudi Arabia
+Najran,194,SA,Saudi Arabia
+Northern Borders,194,SA,Saudi Arabia
+Riyadh,194,SA,Saudi Arabia
+Tabuk,194,SA,Saudi Arabia
+Dakar,195,SN,Senegal
+Diourbel Region,195,SN,Senegal
+Fatick,195,SN,Senegal
+Kaffrine,195,SN,Senegal
+Kaolack,195,SN,Senegal
+Kédougou,195,SN,Senegal
+Kolda,195,SN,Senegal
+Louga,195,SN,Senegal
+Matam,195,SN,Senegal
+Saint-Louis,195,SN,Senegal
+Sédhiou,195,SN,Senegal
+Tambacounda Region,195,SN,Senegal
+Thiès Region,195,SN,Senegal
+Ziguinchor,195,SN,Senegal
+Belgrade,196,RS,Serbia
+Bor District,196,RS,Serbia
+Braničevo District,196,RS,Serbia
+Central Banat District,196,RS,Serbia
+Jablanica District,196,RS,Serbia
+Kolubara District,196,RS,Serbia
+Mačva District,196,RS,Serbia
+Moravica District,196,RS,Serbia
+Nišava District,196,RS,Serbia
+North Bačka District,196,RS,Serbia
+North Banat District,196,RS,Serbia
+Pčinja District,196,RS,Serbia
+Pirot District,196,RS,Serbia
+Podunavlje District,196,RS,Serbia
+Pomoravlje District,196,RS,Serbia
+Rasina District,196,RS,Serbia
+Raška District,196,RS,Serbia
+South Bačka District,196,RS,Serbia
+South Banat District,196,RS,Serbia
+Srem District,196,RS,Serbia
+Šumadija District,196,RS,Serbia
+Toplica District,196,RS,Serbia
+Vojvodina,196,RS,Serbia
+West Bačka District,196,RS,Serbia
+Zaječar District,196,RS,Serbia
+Zlatibor District,196,RS,Serbia
+Anse Boileau,197,SC,Seychelles
+Anse Royale,197,SC,Seychelles
+Anse-aux-Pins,197,SC,Seychelles
+Au Cap,197,SC,Seychelles
+Baie Lazare,197,SC,Seychelles
+Baie Sainte Anne,197,SC,Seychelles
+Beau Vallon,197,SC,Seychelles
+Bel Air,197,SC,Seychelles
+Bel Ombre,197,SC,Seychelles
+Cascade,197,SC,Seychelles
+Glacis,197,SC,Seychelles
+Grand'Anse Mahé,197,SC,Seychelles
+Grand'Anse Praslin,197,SC,Seychelles
+La Digue,197,SC,Seychelles
+La Rivière Anglaise,197,SC,Seychelles
+Les Mamelles,197,SC,Seychelles
+Mont Buxton,197,SC,Seychelles
+Mont Fleuri,197,SC,Seychelles
+Plaisance,197,SC,Seychelles
+Pointe La Rue,197,SC,Seychelles
+Port Glaud,197,SC,Seychelles
+Roche Caiman,197,SC,Seychelles
+Saint Louis,197,SC,Seychelles
+Takamaka,197,SC,Seychelles
+Eastern Province,198,SL,Sierra Leone
+Northern Province,198,SL,Sierra Leone
+Southern Province,198,SL,Sierra Leone
+Western Area,198,SL,Sierra Leone
+Central Singapore,199,SG,Singapore
+North East,199,SG,Singapore
+North West,199,SG,Singapore
+South East,199,SG,Singapore
+South West,199,SG,Singapore
+Banská Bystrica Region,200,SK,Slovakia
+Bratislava Region,200,SK,Slovakia
+Košice Region,200,SK,Slovakia
+Nitra Region,200,SK,Slovakia
+Prešov Region,200,SK,Slovakia
+Trenčín Region,200,SK,Slovakia
+Trnava Region,200,SK,Slovakia
+Žilina Region,200,SK,Slovakia
+Ajdovščina Municipality,201,SI,Slovenia
+Ankaran Municipality,201,SI,Slovenia
+Beltinci Municipality,201,SI,Slovenia
+Benedikt Municipality,201,SI,Slovenia
+Bistrica ob Sotli Municipality,201,SI,Slovenia
+Bled Municipality,201,SI,Slovenia
+Bloke Municipality,201,SI,Slovenia
+Bohinj Municipality,201,SI,Slovenia
+Borovnica Municipality,201,SI,Slovenia
+Bovec Municipality,201,SI,Slovenia
+Braslovče Municipality,201,SI,Slovenia
+Brda Municipality,201,SI,Slovenia
+Brežice Municipality,201,SI,Slovenia
+Brezovica Municipality,201,SI,Slovenia
+Cankova Municipality,201,SI,Slovenia
+Cerklje na Gorenjskem Municipality,201,SI,Slovenia
+Cerknica Municipality,201,SI,Slovenia
+Cerkno Municipality,201,SI,Slovenia
+Cerkvenjak Municipality,201,SI,Slovenia
+City Municipality of Celje,201,SI,Slovenia
+City Municipality of Novo Mesto,201,SI,Slovenia
+Črenšovci Municipality,201,SI,Slovenia
+Črna na Koroškem Municipality,201,SI,Slovenia
+Črnomelj Municipality,201,SI,Slovenia
+Destrnik Municipality,201,SI,Slovenia
+Divača Municipality,201,SI,Slovenia
+Dobje Municipality,201,SI,Slovenia
+Dobrepolje Municipality,201,SI,Slovenia
+Dobrna Municipality,201,SI,Slovenia
+Dobrova–Polhov Gradec Municipality,201,SI,Slovenia
+Dobrovnik Municipality,201,SI,Slovenia
+Dol pri Ljubljani Municipality,201,SI,Slovenia
+Dolenjske Toplice Municipality,201,SI,Slovenia
+Domžale Municipality,201,SI,Slovenia
+Dornava Municipality,201,SI,Slovenia
+Dravograd Municipality,201,SI,Slovenia
+Duplek Municipality,201,SI,Slovenia
+Gorenja Vas–Poljane Municipality,201,SI,Slovenia
+Gorišnica Municipality,201,SI,Slovenia
+Gorje Municipality,201,SI,Slovenia
+Gornja Radgona Municipality,201,SI,Slovenia
+Gornji Grad Municipality,201,SI,Slovenia
+Gornji Petrovci Municipality,201,SI,Slovenia
+Grad Municipality,201,SI,Slovenia
+Grosuplje Municipality,201,SI,Slovenia
+Hajdina Municipality,201,SI,Slovenia
+Hoče–Slivnica Municipality,201,SI,Slovenia
+Hodoš Municipality,201,SI,Slovenia
+Horjul Municipality,201,SI,Slovenia
+Hrastnik Municipality,201,SI,Slovenia
+Hrpelje–Kozina Municipality,201,SI,Slovenia
+Idrija Municipality,201,SI,Slovenia
+Ig Municipality,201,SI,Slovenia
+Ivančna Gorica Municipality,201,SI,Slovenia
+Izola Municipality,201,SI,Slovenia
+Jesenice Municipality,201,SI,Slovenia
+Jezersko Municipality,201,SI,Slovenia
+Juršinci Municipality,201,SI,Slovenia
+Kamnik Municipality,201,SI,Slovenia
+Kanal ob Soči Municipality,201,SI,Slovenia
+Kidričevo Municipality,201,SI,Slovenia
+Kobarid Municipality,201,SI,Slovenia
+Kobilje Municipality,201,SI,Slovenia
+Kočevje Municipality,201,SI,Slovenia
+Komen Municipality,201,SI,Slovenia
+Komenda Municipality,201,SI,Slovenia
+Koper City Municipality,201,SI,Slovenia
+Kostanjevica na Krki Municipality,201,SI,Slovenia
+Kostel Municipality,201,SI,Slovenia
+Kozje Municipality,201,SI,Slovenia
+Kranj City Municipality,201,SI,Slovenia
+Kranjska Gora Municipality,201,SI,Slovenia
+Križevci Municipality,201,SI,Slovenia
+Kungota,201,SI,Slovenia
+Kuzma Municipality,201,SI,Slovenia
+Laško Municipality,201,SI,Slovenia
+Lenart Municipality,201,SI,Slovenia
+Lendava Municipality,201,SI,Slovenia
+Litija Municipality,201,SI,Slovenia
+Ljubljana City Municipality,201,SI,Slovenia
+Ljubno Municipality,201,SI,Slovenia
+Ljutomer Municipality,201,SI,Slovenia
+Log–Dragomer Municipality,201,SI,Slovenia
+Logatec Municipality,201,SI,Slovenia
+Loška Dolina Municipality,201,SI,Slovenia
+Loški Potok Municipality,201,SI,Slovenia
+Lovrenc na Pohorju Municipality,201,SI,Slovenia
+Luče Municipality,201,SI,Slovenia
+Lukovica Municipality,201,SI,Slovenia
+Majšperk Municipality,201,SI,Slovenia
+Makole Municipality,201,SI,Slovenia
+Maribor City Municipality,201,SI,Slovenia
+Markovci Municipality,201,SI,Slovenia
+Medvode Municipality,201,SI,Slovenia
+Mengeš Municipality,201,SI,Slovenia
+Metlika Municipality,201,SI,Slovenia
+Mežica Municipality,201,SI,Slovenia
+Miklavž na Dravskem Polju Municipality,201,SI,Slovenia
+Miren–Kostanjevica Municipality,201,SI,Slovenia
+Mirna Municipality,201,SI,Slovenia
+Mirna Peč Municipality,201,SI,Slovenia
+Mislinja Municipality,201,SI,Slovenia
+Mokronog–Trebelno Municipality,201,SI,Slovenia
+Moravče Municipality,201,SI,Slovenia
+Moravske Toplice Municipality,201,SI,Slovenia
+Mozirje Municipality,201,SI,Slovenia
+Municipality of Apače,201,SI,Slovenia
+Municipality of Cirkulane,201,SI,Slovenia
+Municipality of Ilirska Bistrica,201,SI,Slovenia
+Municipality of Krško,201,SI,Slovenia
+Municipality of Škofljica,201,SI,Slovenia
+Murska Sobota City Municipality,201,SI,Slovenia
+Muta Municipality,201,SI,Slovenia
+Naklo Municipality,201,SI,Slovenia
+Nazarje Municipality,201,SI,Slovenia
+Nova Gorica City Municipality,201,SI,Slovenia
+Odranci Municipality,201,SI,Slovenia
+Oplotnica,201,SI,Slovenia
+Ormož Municipality,201,SI,Slovenia
+Osilnica Municipality,201,SI,Slovenia
+Pesnica Municipality,201,SI,Slovenia
+Piran Municipality,201,SI,Slovenia
+Pivka Municipality,201,SI,Slovenia
+Podčetrtek Municipality,201,SI,Slovenia
+Podlehnik Municipality,201,SI,Slovenia
+Podvelka Municipality,201,SI,Slovenia
+Poljčane Municipality,201,SI,Slovenia
+Polzela Municipality,201,SI,Slovenia
+Postojna Municipality,201,SI,Slovenia
+Prebold Municipality,201,SI,Slovenia
+Preddvor Municipality,201,SI,Slovenia
+Prevalje Municipality,201,SI,Slovenia
+Ptuj City Municipality,201,SI,Slovenia
+Puconci Municipality,201,SI,Slovenia
+Rače–Fram Municipality,201,SI,Slovenia
+Radeče Municipality,201,SI,Slovenia
+Radenci Municipality,201,SI,Slovenia
+Radlje ob Dravi Municipality,201,SI,Slovenia
+Radovljica Municipality,201,SI,Slovenia
+Ravne na Koroškem Municipality,201,SI,Slovenia
+Razkrižje Municipality,201,SI,Slovenia
+Rečica ob Savinji Municipality,201,SI,Slovenia
+Renče–Vogrsko Municipality,201,SI,Slovenia
+Ribnica Municipality,201,SI,Slovenia
+Ribnica na Pohorju Municipality,201,SI,Slovenia
+Rogaška Slatina Municipality,201,SI,Slovenia
+Rogašovci Municipality,201,SI,Slovenia
+Rogatec Municipality,201,SI,Slovenia
+Ruše Municipality,201,SI,Slovenia
+Šalovci Municipality,201,SI,Slovenia
+Selnica ob Dravi Municipality,201,SI,Slovenia
+Semič Municipality,201,SI,Slovenia
+Šempeter–Vrtojba Municipality,201,SI,Slovenia
+Šenčur Municipality,201,SI,Slovenia
+Šentilj Municipality,201,SI,Slovenia
+Šentjernej Municipality,201,SI,Slovenia
+Šentjur Municipality,201,SI,Slovenia
+Šentrupert Municipality,201,SI,Slovenia
+Sevnica Municipality,201,SI,Slovenia
+Sežana Municipality,201,SI,Slovenia
+Škocjan Municipality,201,SI,Slovenia
+Škofja Loka Municipality,201,SI,Slovenia
+Slovenj Gradec City Municipality,201,SI,Slovenia
+Slovenska Bistrica Municipality,201,SI,Slovenia
+Slovenske Konjice Municipality,201,SI,Slovenia
+Šmarje pri Jelšah Municipality,201,SI,Slovenia
+Šmarješke Toplice Municipality,201,SI,Slovenia
+Šmartno ob Paki Municipality,201,SI,Slovenia
+Šmartno pri Litiji Municipality,201,SI,Slovenia
+Sodražica Municipality,201,SI,Slovenia
+Solčava Municipality,201,SI,Slovenia
+Šoštanj Municipality,201,SI,Slovenia
+Središče ob Dravi,201,SI,Slovenia
+Starše Municipality,201,SI,Slovenia
+Štore Municipality,201,SI,Slovenia
+Straža Municipality,201,SI,Slovenia
+Sveta Ana Municipality,201,SI,Slovenia
+Sveta Trojica v Slovenskih Goricah Municipality,201,SI,Slovenia
+Sveti Andraž v Slovenskih Goricah Municipality,201,SI,Slovenia
+Sveti Jurij ob Ščavnici Municipality,201,SI,Slovenia
+Sveti Jurij v Slovenskih Goricah Municipality,201,SI,Slovenia
+Sveti Tomaž Municipality,201,SI,Slovenia
+Tabor Municipality,201,SI,Slovenia
+Tišina Municipality,201,SI,Slovenia
+Tolmin Municipality,201,SI,Slovenia
+Trbovlje Municipality,201,SI,Slovenia
+Trebnje Municipality,201,SI,Slovenia
+Trnovska Vas Municipality,201,SI,Slovenia
+Tržič Municipality,201,SI,Slovenia
+Trzin Municipality,201,SI,Slovenia
+Turnišče Municipality,201,SI,Slovenia
+Velika Polana Municipality,201,SI,Slovenia
+Velike Lašče Municipality,201,SI,Slovenia
+Veržej Municipality,201,SI,Slovenia
+Videm Municipality,201,SI,Slovenia
+Vipava Municipality,201,SI,Slovenia
+Vitanje Municipality,201,SI,Slovenia
+Vodice Municipality,201,SI,Slovenia
+Vojnik Municipality,201,SI,Slovenia
+Vransko Municipality,201,SI,Slovenia
+Vrhnika Municipality,201,SI,Slovenia
+Vuzenica Municipality,201,SI,Slovenia
+Zagorje ob Savi Municipality,201,SI,Slovenia
+Žalec Municipality,201,SI,Slovenia
+Zavrč Municipality,201,SI,Slovenia
+Železniki Municipality,201,SI,Slovenia
+Žetale Municipality,201,SI,Slovenia
+Žiri Municipality,201,SI,Slovenia
+Žirovnica Municipality,201,SI,Slovenia
+Zreče Municipality,201,SI,Slovenia
+Žužemberk Municipality,201,SI,Slovenia
+Central Province,202,SB,Solomon Islands
+Choiseul Province,202,SB,Solomon Islands
+Guadalcanal Province,202,SB,Solomon Islands
+Honiara,202,SB,Solomon Islands
+Isabel Province,202,SB,Solomon Islands
+Makira-Ulawa Province,202,SB,Solomon Islands
+Malaita Province,202,SB,Solomon Islands
+Rennell and Bellona Province,202,SB,Solomon Islands
+Temotu Province,202,SB,Solomon Islands
+Western Province,202,SB,Solomon Islands
+Awdal Region,203,SO,Somalia
+Bakool,203,SO,Somalia
+Banaadir,203,SO,Somalia
+Bari,203,SO,Somalia
+Bay,203,SO,Somalia
+Galguduud,203,SO,Somalia
+Gedo,203,SO,Somalia
+Hiran,203,SO,Somalia
+Lower Juba,203,SO,Somalia
+Lower Shebelle,203,SO,Somalia
+Middle Juba,203,SO,Somalia
+Middle Shebelle,203,SO,Somalia
+Mudug,203,SO,Somalia
+Nugal,203,SO,Somalia
+Sanaag Region,203,SO,Somalia
+Togdheer Region,203,SO,Somalia
+Eastern Cape,204,ZA,South Africa
+Free State,204,ZA,South Africa
+Gauteng,204,ZA,South Africa
+KwaZulu-Natal,204,ZA,South Africa
+Limpopo,204,ZA,South Africa
+Mpumalanga,204,ZA,South Africa
+North West,204,ZA,South Africa
+Northern Cape,204,ZA,South Africa
+Western Cape,204,ZA,South Africa
+Busan,116,KR,South Korea
+Daegu,116,KR,South Korea
+Daejeon,116,KR,South Korea
+Gangwon Province,116,KR,South Korea
+Gwangju,116,KR,South Korea
+Gyeonggi Province,116,KR,South Korea
+Incheon,116,KR,South Korea
+Jeju,116,KR,South Korea
+North Chungcheong Province,116,KR,South Korea
+North Gyeongsang Province,116,KR,South Korea
+North Jeolla Province,116,KR,South Korea
+Sejong City,116,KR,South Korea
+Seoul,116,KR,South Korea
+South Chungcheong Province,116,KR,South Korea
+South Gyeongsang Province,116,KR,South Korea
+South Jeolla Province,116,KR,South Korea
+Ulsan,116,KR,South Korea
+Central Equatoria,206,SS,South Sudan
+Eastern Equatoria,206,SS,South Sudan
+Jonglei State,206,SS,South Sudan
+Lakes,206,SS,South Sudan
+Northern Bahr el Ghazal,206,SS,South Sudan
+Unity,206,SS,South Sudan
+Upper Nile,206,SS,South Sudan
+Warrap,206,SS,South Sudan
+Western Bahr el Ghazal,206,SS,South Sudan
+Western Equatoria,206,SS,South Sudan
+A Coruña,207,ES,Spain
+Albacete,207,ES,Spain
+Alicante,207,ES,Spain
+Almeria,207,ES,Spain
+Araba,207,ES,Spain
+Asturias,207,ES,Spain
+Ávila,207,ES,Spain
+Badajoz,207,ES,Spain
+Barcelona,207,ES,Spain
+Bizkaia,207,ES,Spain
+Burgos,207,ES,Spain
+Caceres,207,ES,Spain
+Cádiz,207,ES,Spain
+Canarias,207,ES,Spain
+Cantabria,207,ES,Spain
+Castellón,207,ES,Spain
+Ceuta,207,ES,Spain
+Ciudad Real,207,ES,Spain
+Córdoba,207,ES,Spain
+Cuenca,207,ES,Spain
+Gipuzkoa,207,ES,Spain
+Girona,207,ES,Spain
+Granada,207,ES,Spain
+Guadalajara,207,ES,Spain
+Huelva,207,ES,Spain
+Huesca,207,ES,Spain
+Islas Baleares,207,ES,Spain
+Jaén,207,ES,Spain
+La Rioja,207,ES,Spain
+Las Palmas,207,ES,Spain
+León,207,ES,Spain
+Lleida,207,ES,Spain
+Lugo,207,ES,Spain
+Madrid,207,ES,Spain
+Málaga,207,ES,Spain
+Melilla,207,ES,Spain
+Murcia,207,ES,Spain
+Navarra,207,ES,Spain
+Ourense,207,ES,Spain
+Palencia,207,ES,Spain
+Pontevedra,207,ES,Spain
+Salamanca,207,ES,Spain
+Santa Cruz de Tenerife,207,ES,Spain
+Segovia,207,ES,Spain
+Sevilla,207,ES,Spain
+Soria,207,ES,Spain
+Tarragona,207,ES,Spain
+Teruel,207,ES,Spain
+Toledo,207,ES,Spain
+Valencia,207,ES,Spain
+Valladolid,207,ES,Spain
+Zamora,207,ES,Spain
+Zaragoza,207,ES,Spain
+Ampara District,208,LK,Sri Lanka
+Anuradhapura District,208,LK,Sri Lanka
+Badulla District,208,LK,Sri Lanka
+Batticaloa District,208,LK,Sri Lanka
+Central Province,208,LK,Sri Lanka
+Colombo District,208,LK,Sri Lanka
+Eastern Province,208,LK,Sri Lanka
+Galle District,208,LK,Sri Lanka
+Gampaha District,208,LK,Sri Lanka
+Hambantota District,208,LK,Sri Lanka
+Jaffna District,208,LK,Sri Lanka
+Kalutara District,208,LK,Sri Lanka
+Kandy District,208,LK,Sri Lanka
+Kegalle District,208,LK,Sri Lanka
+Kilinochchi District,208,LK,Sri Lanka
+Mannar District,208,LK,Sri Lanka
+Matale District,208,LK,Sri Lanka
+Matara District,208,LK,Sri Lanka
+Monaragala District,208,LK,Sri Lanka
+Mullaitivu District,208,LK,Sri Lanka
+North Central Province,208,LK,Sri Lanka
+North Western Province,208,LK,Sri Lanka
+Northern Province,208,LK,Sri Lanka
+Nuwara Eliya District,208,LK,Sri Lanka
+Polonnaruwa District,208,LK,Sri Lanka
+Puttalam District,208,LK,Sri Lanka
+Ratnapura district,208,LK,Sri Lanka
+Sabaragamuwa Province,208,LK,Sri Lanka
+Southern Province,208,LK,Sri Lanka
+Trincomalee District,208,LK,Sri Lanka
+Uva Province,208,LK,Sri Lanka
+Vavuniya District,208,LK,Sri Lanka
+Western Province,208,LK,Sri Lanka
+Al Jazirah,209,SD,Sudan
+Al Qadarif,209,SD,Sudan
+Blue Nile,209,SD,Sudan
+Central Darfur,209,SD,Sudan
+East Darfur,209,SD,Sudan
+Kassala,209,SD,Sudan
+Khartoum,209,SD,Sudan
+North Darfur,209,SD,Sudan
+North Kordofan,209,SD,Sudan
+Northern,209,SD,Sudan
+Red Sea,209,SD,Sudan
+River Nile,209,SD,Sudan
+Sennar,209,SD,Sudan
+South Darfur,209,SD,Sudan
+South Kordofan,209,SD,Sudan
+West Darfur,209,SD,Sudan
+West Kordofan,209,SD,Sudan
+White Nile,209,SD,Sudan
+Brokopondo District,210,SR,Suriname
+Commewijne District,210,SR,Suriname
+Coronie District,210,SR,Suriname
+Marowijne District,210,SR,Suriname
+Nickerie District,210,SR,Suriname
+Para District,210,SR,Suriname
+Paramaribo District,210,SR,Suriname
+Saramacca District,210,SR,Suriname
+Sipaliwini District,210,SR,Suriname
+Wanica District,210,SR,Suriname
+Blekinge County,213,SE,Sweden
+Dalarna County,213,SE,Sweden
+Gävleborg County,213,SE,Sweden
+Gotland County,213,SE,Sweden
+Halland County,213,SE,Sweden
+Jämtland County,213,SE,Sweden
+Jönköping County,213,SE,Sweden
+Kalmar County,213,SE,Sweden
+Kronoberg County,213,SE,Sweden
+Norrbotten County,213,SE,Sweden
+Örebro County,213,SE,Sweden
+Östergötland County,213,SE,Sweden
+Skåne County,213,SE,Sweden
+Södermanland County,213,SE,Sweden
+Stockholm County,213,SE,Sweden
+Uppsala County,213,SE,Sweden
+Värmland County,213,SE,Sweden
+Västerbotten County,213,SE,Sweden
+Västernorrland County,213,SE,Sweden
+Västmanland County,213,SE,Sweden
+Västra Götaland County,213,SE,Sweden
+Aargau,214,CH,Switzerland
+Appenzell Ausserrhoden,214,CH,Switzerland
+Appenzell Innerrhoden,214,CH,Switzerland
+Basel-Land,214,CH,Switzerland
+Basel-Stadt,214,CH,Switzerland
+Bern,214,CH,Switzerland
+Fribourg,214,CH,Switzerland
+Geneva,214,CH,Switzerland
+Glarus,214,CH,Switzerland
+Graubünden,214,CH,Switzerland
+Jura,214,CH,Switzerland
+Lucerne,214,CH,Switzerland
+Neuchâtel,214,CH,Switzerland
+Nidwalden,214,CH,Switzerland
+Obwalden,214,CH,Switzerland
+Schaffhausen,214,CH,Switzerland
+Schwyz,214,CH,Switzerland
+Solothurn,214,CH,Switzerland
+St. Gallen,214,CH,Switzerland
+Thurgau,214,CH,Switzerland
+Ticino,214,CH,Switzerland
+Uri,214,CH,Switzerland
+Valais,214,CH,Switzerland
+Vaud,214,CH,Switzerland
+Zug,214,CH,Switzerland
+Zürich,214,CH,Switzerland
+Al-Hasakah,215,SY,Syria
+Al-Raqqah,215,SY,Syria
+Aleppo,215,SY,Syria
+As-Suwayda,215,SY,Syria
+Damascus,215,SY,Syria
+Daraa,215,SY,Syria
+Deir ez-Zor,215,SY,Syria
+Hama,215,SY,Syria
+Homs,215,SY,Syria
+Idlib,215,SY,Syria
+Latakia,215,SY,Syria
+Quneitra,215,SY,Syria
+Rif Dimashq,215,SY,Syria
+Tartus,215,SY,Syria
+Changhua,216,TW,Taiwan
+Chiayi,216,TW,Taiwan
+Chiayi,216,TW,Taiwan
+Hsinchu,216,TW,Taiwan
+Hsinchu,216,TW,Taiwan
+Hualien,216,TW,Taiwan
+Kaohsiung,216,TW,Taiwan
+Keelung,216,TW,Taiwan
+Kinmen,216,TW,Taiwan
+Lienchiang,216,TW,Taiwan
+Miaoli,216,TW,Taiwan
+Nantou,216,TW,Taiwan
+New Taipei,216,TW,Taiwan
+Penghu,216,TW,Taiwan
+Pingtung,216,TW,Taiwan
+Taichung,216,TW,Taiwan
+Tainan,216,TW,Taiwan
+Taipei,216,TW,Taiwan
+Taitung,216,TW,Taiwan
+Taoyuan,216,TW,Taiwan
+Yilan,216,TW,Taiwan
+Yunlin,216,TW,Taiwan
+districts of Republican Subordination,217,TJ,Tajikistan
+Gorno-Badakhshan Autonomous Province,217,TJ,Tajikistan
+Khatlon Province,217,TJ,Tajikistan
+Sughd Province,217,TJ,Tajikistan
+Arusha,218,TZ,Tanzania
+Dar es Salaam,218,TZ,Tanzania
+Dodoma,218,TZ,Tanzania
+Geita,218,TZ,Tanzania
+Iringa,218,TZ,Tanzania
+Kagera,218,TZ,Tanzania
+Katavi,218,TZ,Tanzania
+Kigoma,218,TZ,Tanzania
+Kilimanjaro,218,TZ,Tanzania
+Lindi,218,TZ,Tanzania
+Manyara,218,TZ,Tanzania
+Mara,218,TZ,Tanzania
+Mbeya,218,TZ,Tanzania
+Morogoro,218,TZ,Tanzania
+Mtwara,218,TZ,Tanzania
+Mwanza,218,TZ,Tanzania
+Njombe,218,TZ,Tanzania
+Pemba North,218,TZ,Tanzania
+Pemba South,218,TZ,Tanzania
+Pwani,218,TZ,Tanzania
+Rukwa,218,TZ,Tanzania
+Ruvuma,218,TZ,Tanzania
+Shinyanga,218,TZ,Tanzania
+Simiyu,218,TZ,Tanzania
+Singida,218,TZ,Tanzania
+Songwe,218,TZ,Tanzania
+Tabora,218,TZ,Tanzania
+Tanga,218,TZ,Tanzania
+Zanzibar North,218,TZ,Tanzania
+Zanzibar South,218,TZ,Tanzania
+Zanzibar West,218,TZ,Tanzania
+Amnat Charoen,219,TH,Thailand
+Ang Thong,219,TH,Thailand
+Bangkok,219,TH,Thailand
+Bueng Kan,219,TH,Thailand
+Buri Ram,219,TH,Thailand
+Chachoengsao,219,TH,Thailand
+Chai Nat,219,TH,Thailand
+Chaiyaphum,219,TH,Thailand
+Chanthaburi,219,TH,Thailand
+Chiang Mai,219,TH,Thailand
+Chiang Rai,219,TH,Thailand
+Chon Buri,219,TH,Thailand
+Chumphon,219,TH,Thailand
+Kalasin,219,TH,Thailand
+Kamphaeng Phet,219,TH,Thailand
+Kanchanaburi,219,TH,Thailand
+Khon Kaen,219,TH,Thailand
+Krabi,219,TH,Thailand
+Lampang,219,TH,Thailand
+Lamphun,219,TH,Thailand
+Loei,219,TH,Thailand
+Lop Buri,219,TH,Thailand
+Mae Hong Son,219,TH,Thailand
+Maha Sarakham,219,TH,Thailand
+Mukdahan,219,TH,Thailand
+Nakhon Nayok,219,TH,Thailand
+Nakhon Pathom,219,TH,Thailand
+Nakhon Phanom,219,TH,Thailand
+Nakhon Ratchasima,219,TH,Thailand
+Nakhon Sawan,219,TH,Thailand
+Nakhon Si Thammarat,219,TH,Thailand
+Nan,219,TH,Thailand
+Narathiwat,219,TH,Thailand
+Nong Bua Lam Phu,219,TH,Thailand
+Nong Khai,219,TH,Thailand
+Nonthaburi,219,TH,Thailand
+Pathum Thani,219,TH,Thailand
+Pattani,219,TH,Thailand
+Pattaya,219,TH,Thailand
+Phangnga,219,TH,Thailand
+Phatthalung,219,TH,Thailand
+Phayao,219,TH,Thailand
+Phetchabun,219,TH,Thailand
+Phetchaburi,219,TH,Thailand
+Phichit,219,TH,Thailand
+Phitsanulok,219,TH,Thailand
+Phra Nakhon Si Ayutthaya,219,TH,Thailand
+Phrae,219,TH,Thailand
+Phuket,219,TH,Thailand
+Prachin Buri,219,TH,Thailand
+Prachuap Khiri Khan,219,TH,Thailand
+Ranong,219,TH,Thailand
+Ratchaburi,219,TH,Thailand
+Rayong,219,TH,Thailand
+Roi Et,219,TH,Thailand
+Sa Kaeo,219,TH,Thailand
+Sakon Nakhon,219,TH,Thailand
+Samut Prakan,219,TH,Thailand
+Samut Sakhon,219,TH,Thailand
+Samut Songkhram,219,TH,Thailand
+Saraburi,219,TH,Thailand
+Satun,219,TH,Thailand
+Si Sa Ket,219,TH,Thailand
+Sing Buri,219,TH,Thailand
+Songkhla,219,TH,Thailand
+Sukhothai,219,TH,Thailand
+Suphan Buri,219,TH,Thailand
+Surat Thani,219,TH,Thailand
+Surin,219,TH,Thailand
+Tak,219,TH,Thailand
+Trang,219,TH,Thailand
+Trat,219,TH,Thailand
+Ubon Ratchathani,219,TH,Thailand
+Udon Thani,219,TH,Thailand
+Uthai Thani,219,TH,Thailand
+Uttaradit,219,TH,Thailand
+Yala,219,TH,Thailand
+Yasothon,219,TH,Thailand
+Acklins,17,BS,The Bahamas
+Acklins and Crooked Islands,17,BS,The Bahamas
+Berry Islands,17,BS,The Bahamas
+Bimini,17,BS,The Bahamas
+Black Point,17,BS,The Bahamas
+Cat Island,17,BS,The Bahamas
+Central Abaco,17,BS,The Bahamas
+Central Andros,17,BS,The Bahamas
+Central Eleuthera,17,BS,The Bahamas
+Crooked Island,17,BS,The Bahamas
+East Grand Bahama,17,BS,The Bahamas
+Exuma,17,BS,The Bahamas
+Freeport,17,BS,The Bahamas
+Fresh Creek,17,BS,The Bahamas
+Governor's Harbour,17,BS,The Bahamas
+Grand Cay,17,BS,The Bahamas
+Green Turtle Cay,17,BS,The Bahamas
+Harbour Island,17,BS,The Bahamas
+High Rock,17,BS,The Bahamas
+Hope Town,17,BS,The Bahamas
+Inagua,17,BS,The Bahamas
+Kemps Bay,17,BS,The Bahamas
+Long Island,17,BS,The Bahamas
+Mangrove Cay,17,BS,The Bahamas
+Marsh Harbour,17,BS,The Bahamas
+Mayaguana District,17,BS,The Bahamas
+New Providence,17,BS,The Bahamas
+Nichollstown and Berry Islands,17,BS,The Bahamas
+North Abaco,17,BS,The Bahamas
+North Andros,17,BS,The Bahamas
+North Eleuthera,17,BS,The Bahamas
+Ragged Island,17,BS,The Bahamas
+Rock Sound,17,BS,The Bahamas
+Rum Cay District,17,BS,The Bahamas
+San Salvador and Rum Cay,17,BS,The Bahamas
+San Salvador Island,17,BS,The Bahamas
+Sandy Point,17,BS,The Bahamas
+South Abaco,17,BS,The Bahamas
+South Andros,17,BS,The Bahamas
+South Eleuthera,17,BS,The Bahamas
+Spanish Wells,17,BS,The Bahamas
+West Grand Bahama,17,BS,The Bahamas
+Banjul,80,GM,The Gambia 
+Central River Division,80,GM,The Gambia 
+Lower River Division,80,GM,The Gambia 
+North Bank Division,80,GM,The Gambia 
+Upper River Division,80,GM,The Gambia 
+West Coast Division,80,GM,The Gambia 
+Aileu municipality,63,TL,Timor-Leste
+Ainaro Municipality,63,TL,Timor-Leste
+Baucau Municipality,63,TL,Timor-Leste
+Bobonaro Municipality,63,TL,Timor-Leste
+Cova Lima Municipality,63,TL,Timor-Leste
+Dili municipality,63,TL,Timor-Leste
+Ermera District,63,TL,Timor-Leste
+Lautém Municipality,63,TL,Timor-Leste
+Liquiçá Municipality,63,TL,Timor-Leste
+Manatuto District,63,TL,Timor-Leste
+Manufahi Municipality,63,TL,Timor-Leste
+Viqueque Municipality,63,TL,Timor-Leste
+Centrale Region,220,TG,Togo
+Kara Region,220,TG,Togo
+Maritime,220,TG,Togo
+Plateaux Region,220,TG,Togo
+Savanes Region,220,TG,Togo
+Haʻapai,222,TO,Tonga
+ʻEua,222,TO,Tonga
+Niuas,222,TO,Tonga
+Tongatapu,222,TO,Tonga
+Vavaʻu,222,TO,Tonga
+Arima,223,TT,Trinidad and Tobago
+Chaguanas,223,TT,Trinidad and Tobago
+Couva-Tabaquite-Talparo Regional Corporation,223,TT,Trinidad and Tobago
+Diego Martin Regional Corporation,223,TT,Trinidad and Tobago
+Eastern Tobago,223,TT,Trinidad and Tobago
+Penal-Debe Regional Corporation,223,TT,Trinidad and Tobago
+Point Fortin,223,TT,Trinidad and Tobago
+Port of Spain,223,TT,Trinidad and Tobago
+Princes Town Regional Corporation,223,TT,Trinidad and Tobago
+Rio Claro-Mayaro Regional Corporation,223,TT,Trinidad and Tobago
+San Fernando,223,TT,Trinidad and Tobago
+San Juan-Laventille Regional Corporation,223,TT,Trinidad and Tobago
+Sangre Grande Regional Corporation,223,TT,Trinidad and Tobago
+Siparia Regional Corporation,223,TT,Trinidad and Tobago
+Tunapuna-Piarco Regional Corporation,223,TT,Trinidad and Tobago
+Western Tobago,223,TT,Trinidad and Tobago
+Ariana,224,TN,Tunisia
+Béja,224,TN,Tunisia
+Ben Arous,224,TN,Tunisia
+Bizerte,224,TN,Tunisia
+Gabès,224,TN,Tunisia
+Gafsa,224,TN,Tunisia
+Jendouba,224,TN,Tunisia
+Kairouan,224,TN,Tunisia
+Kasserine,224,TN,Tunisia
+Kebili,224,TN,Tunisia
+Kef,224,TN,Tunisia
+Mahdia,224,TN,Tunisia
+Manouba,224,TN,Tunisia
+Medenine,224,TN,Tunisia
+Monastir,224,TN,Tunisia
+Nabeul,224,TN,Tunisia
+Sfax,224,TN,Tunisia
+Sidi Bouzid,224,TN,Tunisia
+Siliana,224,TN,Tunisia
+Sousse,224,TN,Tunisia
+Tataouine,224,TN,Tunisia
+Tozeur,224,TN,Tunisia
+Tunis,224,TN,Tunisia
+Zaghouan,224,TN,Tunisia
+Adana,225,TR,Turkey
+Adıyaman,225,TR,Turkey
+Afyonkarahisar,225,TR,Turkey
+Ağrı,225,TR,Turkey
+Aksaray,225,TR,Turkey
+Amasya,225,TR,Turkey
+Ankara,225,TR,Turkey
+Antalya,225,TR,Turkey
+Ardahan,225,TR,Turkey
+Artvin,225,TR,Turkey
+Aydın,225,TR,Turkey
+Balıkesir,225,TR,Turkey
+Bartın,225,TR,Turkey
+Batman,225,TR,Turkey
+Bayburt,225,TR,Turkey
+Bilecik,225,TR,Turkey
+Bingöl,225,TR,Turkey
+Bitlis,225,TR,Turkey
+Bolu,225,TR,Turkey
+Burdur,225,TR,Turkey
+Bursa,225,TR,Turkey
+Çanakkale,225,TR,Turkey
+Çankırı,225,TR,Turkey
+Çorum,225,TR,Turkey
+Denizli,225,TR,Turkey
+Diyarbakır,225,TR,Turkey
+Düzce,225,TR,Turkey
+Edirne,225,TR,Turkey
+Elazığ,225,TR,Turkey
+Erzincan,225,TR,Turkey
+Erzurum,225,TR,Turkey
+Eskişehir,225,TR,Turkey
+Gaziantep,225,TR,Turkey
+Giresun,225,TR,Turkey
+Gümüşhane,225,TR,Turkey
+Hakkâri,225,TR,Turkey
+Hatay,225,TR,Turkey
+Iğdır,225,TR,Turkey
+Isparta,225,TR,Turkey
+İstanbul,225,TR,Turkey
+İzmir,225,TR,Turkey
+Kahramanmaraş,225,TR,Turkey
+Karabük,225,TR,Turkey
+Karaman,225,TR,Turkey
+Kars,225,TR,Turkey
+Kastamonu,225,TR,Turkey
+Kayseri,225,TR,Turkey
+Kilis,225,TR,Turkey
+Kırıkkale,225,TR,Turkey
+Kırklareli,225,TR,Turkey
+Kırşehir,225,TR,Turkey
+Kocaeli,225,TR,Turkey
+Konya,225,TR,Turkey
+Kütahya,225,TR,Turkey
+Malatya,225,TR,Turkey
+Manisa,225,TR,Turkey
+Mardin,225,TR,Turkey
+Mersin,225,TR,Turkey
+Muğla,225,TR,Turkey
+Muş,225,TR,Turkey
+Nevşehir,225,TR,Turkey
+Niğde,225,TR,Turkey
+Ordu,225,TR,Turkey
+Osmaniye,225,TR,Turkey
+Rize,225,TR,Turkey
+Sakarya,225,TR,Turkey
+Samsun,225,TR,Turkey
+Şanlıurfa,225,TR,Turkey
+Siirt,225,TR,Turkey
+Sinop,225,TR,Turkey
+Sivas,225,TR,Turkey
+Şırnak,225,TR,Turkey
+Tekirdağ,225,TR,Turkey
+Tokat,225,TR,Turkey
+Trabzon,225,TR,Turkey
+Tunceli,225,TR,Turkey
+Uşak,225,TR,Turkey
+Van,225,TR,Turkey
+Yalova,225,TR,Turkey
+Yozgat,225,TR,Turkey
+Zonguldak,225,TR,Turkey
+Ahal Region,226,TM,Turkmenistan
+Ashgabat,226,TM,Turkmenistan
+Balkan Region,226,TM,Turkmenistan
+Daşoguz Region,226,TM,Turkmenistan
+Lebap Region,226,TM,Turkmenistan
+Mary Region,226,TM,Turkmenistan
+Funafuti,228,TV,Tuvalu
+Nanumanga,228,TV,Tuvalu
+Nanumea,228,TV,Tuvalu
+Niutao Island Council,228,TV,Tuvalu
+Nui,228,TV,Tuvalu
+Nukufetau,228,TV,Tuvalu
+Nukulaelae,228,TV,Tuvalu
+Vaitupu,228,TV,Tuvalu
+Abim District,229,UG,Uganda
+Adjumani District,229,UG,Uganda
+Agago District,229,UG,Uganda
+Alebtong District,229,UG,Uganda
+Amolatar District,229,UG,Uganda
+Amudat District,229,UG,Uganda
+Amuria District,229,UG,Uganda
+Amuru District,229,UG,Uganda
+Apac District,229,UG,Uganda
+Arua District,229,UG,Uganda
+Budaka District,229,UG,Uganda
+Bududa District,229,UG,Uganda
+Bugiri District,229,UG,Uganda
+Buhweju District,229,UG,Uganda
+Buikwe District,229,UG,Uganda
+Bukedea District,229,UG,Uganda
+Bukomansimbi District,229,UG,Uganda
+Bukwo District,229,UG,Uganda
+Bulambuli District,229,UG,Uganda
+Buliisa District,229,UG,Uganda
+Bundibugyo District,229,UG,Uganda
+Bunyangabu District,229,UG,Uganda
+Bushenyi District,229,UG,Uganda
+Busia District,229,UG,Uganda
+Butaleja District,229,UG,Uganda
+Butambala District,229,UG,Uganda
+Butebo District,229,UG,Uganda
+Buvuma District,229,UG,Uganda
+Buyende District,229,UG,Uganda
+Central Region,229,UG,Uganda
+Dokolo District,229,UG,Uganda
+Eastern Region,229,UG,Uganda
+Gomba District,229,UG,Uganda
+Gulu District,229,UG,Uganda
+Ibanda District,229,UG,Uganda
+Iganga District,229,UG,Uganda
+Isingiro District,229,UG,Uganda
+Jinja District,229,UG,Uganda
+Kaabong District,229,UG,Uganda
+Kabale District,229,UG,Uganda
+Kabarole District,229,UG,Uganda
+Kaberamaido District,229,UG,Uganda
+Kagadi District,229,UG,Uganda
+Kakumiro District,229,UG,Uganda
+Kalangala District,229,UG,Uganda
+Kaliro District,229,UG,Uganda
+Kalungu District,229,UG,Uganda
+Kampala District,229,UG,Uganda
+Kamuli District,229,UG,Uganda
+Kamwenge District,229,UG,Uganda
+Kanungu District,229,UG,Uganda
+Kapchorwa District,229,UG,Uganda
+Kasese District,229,UG,Uganda
+Katakwi District,229,UG,Uganda
+Kayunga District,229,UG,Uganda
+Kibaale District,229,UG,Uganda
+Kiboga District,229,UG,Uganda
+Kibuku District,229,UG,Uganda
+Kiruhura District,229,UG,Uganda
+Kiryandongo District,229,UG,Uganda
+Kisoro District,229,UG,Uganda
+Kitgum District,229,UG,Uganda
+Koboko District,229,UG,Uganda
+Kole District,229,UG,Uganda
+Kotido District,229,UG,Uganda
+Kumi District,229,UG,Uganda
+Kween District,229,UG,Uganda
+Kyankwanzi District,229,UG,Uganda
+Kyegegwa District,229,UG,Uganda
+Kyenjojo District,229,UG,Uganda
+Kyotera District,229,UG,Uganda
+Lamwo District,229,UG,Uganda
+Lira District,229,UG,Uganda
+Luuka District,229,UG,Uganda
+Luwero District,229,UG,Uganda
+Lwengo District,229,UG,Uganda
+Lyantonde District,229,UG,Uganda
+Manafwa District,229,UG,Uganda
+Maracha District,229,UG,Uganda
+Masaka District,229,UG,Uganda
+Masindi District,229,UG,Uganda
+Mayuge District,229,UG,Uganda
+Mbale District,229,UG,Uganda
+Mbarara District,229,UG,Uganda
+Mitooma District,229,UG,Uganda
+Mityana District,229,UG,Uganda
+Moroto District,229,UG,Uganda
+Moyo District,229,UG,Uganda
+Mpigi District,229,UG,Uganda
+Mubende District,229,UG,Uganda
+Mukono District,229,UG,Uganda
+Nakapiripirit District,229,UG,Uganda
+Nakaseke District,229,UG,Uganda
+Nakasongola District,229,UG,Uganda
+Namayingo District,229,UG,Uganda
+Namisindwa District,229,UG,Uganda
+Namutumba District,229,UG,Uganda
+Napak District,229,UG,Uganda
+Nebbi District,229,UG,Uganda
+Ngora District,229,UG,Uganda
+Northern Region,229,UG,Uganda
+Ntoroko District,229,UG,Uganda
+Ntungamo District,229,UG,Uganda
+Nwoya District,229,UG,Uganda
+Omoro District,229,UG,Uganda
+Otuke District,229,UG,Uganda
+Oyam District,229,UG,Uganda
+Pader District,229,UG,Uganda
+Pakwach District,229,UG,Uganda
+Pallisa District,229,UG,Uganda
+Rakai District,229,UG,Uganda
+Rubanda District,229,UG,Uganda
+Rubirizi District,229,UG,Uganda
+Rukiga District,229,UG,Uganda
+Rukungiri District,229,UG,Uganda
+Sembabule District,229,UG,Uganda
+Serere District,229,UG,Uganda
+Sheema District,229,UG,Uganda
+Sironko District,229,UG,Uganda
+Soroti District,229,UG,Uganda
+Tororo District,229,UG,Uganda
+Wakiso District,229,UG,Uganda
+Western Region,229,UG,Uganda
+Yumbe District,229,UG,Uganda
+Zombo District,229,UG,Uganda
+Autonomous Republic of Crimea,230,UA,Ukraine
+Cherkaska oblast,230,UA,Ukraine
+Chernihivska oblast,230,UA,Ukraine
+Chernivetska oblast,230,UA,Ukraine
+Dnipropetrovska oblast,230,UA,Ukraine
+Donetska oblast,230,UA,Ukraine
+Ivano-Frankivska oblast,230,UA,Ukraine
+Kharkivska oblast,230,UA,Ukraine
+Khersonska oblast,230,UA,Ukraine
+Khmelnytska oblast,230,UA,Ukraine
+Kirovohradska oblast,230,UA,Ukraine
+Kyiv,230,UA,Ukraine
+Kyivska oblast,230,UA,Ukraine
+Luhanska oblast,230,UA,Ukraine
+Lvivska oblast,230,UA,Ukraine
+Mykolaivska oblast,230,UA,Ukraine
+Odeska oblast,230,UA,Ukraine
+Poltavska oblast,230,UA,Ukraine
+Rivnenska oblast,230,UA,Ukraine
+Sevastopol,230,UA,Ukraine
+Sumska oblast,230,UA,Ukraine
+Ternopilska oblast,230,UA,Ukraine
+Vinnytska oblast,230,UA,Ukraine
+Volynska oblast,230,UA,Ukraine
+Zakarpatska Oblast,230,UA,Ukraine
+Zaporizka oblast,230,UA,Ukraine
+Zhytomyrska oblast,230,UA,Ukraine
+Abu Dhabi Emirate,231,AE,United Arab Emirates
+Ajman Emirate,231,AE,United Arab Emirates
+Dubai,231,AE,United Arab Emirates
+Fujairah,231,AE,United Arab Emirates
+Ras al-Khaimah,231,AE,United Arab Emirates
+Sharjah Emirate,231,AE,United Arab Emirates
+Umm al-Quwain,231,AE,United Arab Emirates
+Aberdeen,232,GB,United Kingdom
+Aberdeenshire,232,GB,United Kingdom
+Angus,232,GB,United Kingdom
+Antrim,232,GB,United Kingdom
+Antrim and Newtownabbey,232,GB,United Kingdom
+Ards,232,GB,United Kingdom
+Ards and North Down,232,GB,United Kingdom
+Argyll and Bute,232,GB,United Kingdom
+Armagh City and District Council,232,GB,United Kingdom
+"Armagh, Banbridge and Craigavon",232,GB,United Kingdom
+Ascension Island,232,GB,United Kingdom
+Ballymena Borough,232,GB,United Kingdom
+Ballymoney,232,GB,United Kingdom
+Banbridge,232,GB,United Kingdom
+Barnsley,232,GB,United Kingdom
+Bath and North East Somerset,232,GB,United Kingdom
+Bedford,232,GB,United Kingdom
+Belfast district,232,GB,United Kingdom
+Birmingham,232,GB,United Kingdom
+Blackburn with Darwen,232,GB,United Kingdom
+Blackpool,232,GB,United Kingdom
+Blaenau Gwent County Borough,232,GB,United Kingdom
+Bolton,232,GB,United Kingdom
+Bournemouth,232,GB,United Kingdom
+Bracknell Forest,232,GB,United Kingdom
+Bradford,232,GB,United Kingdom
+Bridgend County Borough,232,GB,United Kingdom
+Brighton and Hove,232,GB,United Kingdom
+Buckinghamshire,232,GB,United Kingdom
+Bury,232,GB,United Kingdom
+Caerphilly County Borough,232,GB,United Kingdom
+Calderdale,232,GB,United Kingdom
+Cambridgeshire,232,GB,United Kingdom
+Carmarthenshire,232,GB,United Kingdom
+Carrickfergus Borough Council,232,GB,United Kingdom
+Castlereagh,232,GB,United Kingdom
+Causeway Coast and Glens,232,GB,United Kingdom
+Central Bedfordshire,232,GB,United Kingdom
+Ceredigion,232,GB,United Kingdom
+Cheshire East,232,GB,United Kingdom
+Cheshire West and Chester,232,GB,United Kingdom
+City and County of Cardiff,232,GB,United Kingdom
+City and County of Swansea,232,GB,United Kingdom
+City of Bristol,232,GB,United Kingdom
+City of Derby,232,GB,United Kingdom
+City of Kingston upon Hull,232,GB,United Kingdom
+City of Leicester,232,GB,United Kingdom
+City of London,232,GB,United Kingdom
+City of Nottingham,232,GB,United Kingdom
+City of Peterborough,232,GB,United Kingdom
+City of Plymouth,232,GB,United Kingdom
+City of Portsmouth,232,GB,United Kingdom
+City of Southampton,232,GB,United Kingdom
+City of Stoke-on-Trent,232,GB,United Kingdom
+City of Sunderland,232,GB,United Kingdom
+City of Westminster,232,GB,United Kingdom
+City of Wolverhampton,232,GB,United Kingdom
+City of York,232,GB,United Kingdom
+Clackmannanshire,232,GB,United Kingdom
+Coleraine Borough Council,232,GB,United Kingdom
+Conwy County Borough,232,GB,United Kingdom
+Cookstown District Council,232,GB,United Kingdom
+Cornwall,232,GB,United Kingdom
+County Durham,232,GB,United Kingdom
+Coventry,232,GB,United Kingdom
+Craigavon Borough Council,232,GB,United Kingdom
+Cumbria,232,GB,United Kingdom
+Darlington,232,GB,United Kingdom
+Denbighshire,232,GB,United Kingdom
+Derbyshire,232,GB,United Kingdom
+Derry City and Strabane,232,GB,United Kingdom
+Derry City Council,232,GB,United Kingdom
+Devon,232,GB,United Kingdom
+Doncaster,232,GB,United Kingdom
+Dorset,232,GB,United Kingdom
+Down District Council,232,GB,United Kingdom
+Dudley,232,GB,United Kingdom
+Dumfries and Galloway,232,GB,United Kingdom
+Dundee,232,GB,United Kingdom
+Dungannon and South Tyrone Borough Council,232,GB,United Kingdom
+East Ayrshire,232,GB,United Kingdom
+East Dunbartonshire,232,GB,United Kingdom
+East Lothian,232,GB,United Kingdom
+East Renfrewshire,232,GB,United Kingdom
+East Riding of Yorkshire,232,GB,United Kingdom
+East Sussex,232,GB,United Kingdom
+Edinburgh,232,GB,United Kingdom
+England,232,GB,United Kingdom
+Essex,232,GB,United Kingdom
+Falkirk,232,GB,United Kingdom
+Fermanagh and Omagh,232,GB,United Kingdom
+Fermanagh District Council,232,GB,United Kingdom
+Fife,232,GB,United Kingdom
+Flintshire,232,GB,United Kingdom
+Gateshead,232,GB,United Kingdom
+Glasgow,232,GB,United Kingdom
+Gloucestershire,232,GB,United Kingdom
+Gwynedd,232,GB,United Kingdom
+Halton,232,GB,United Kingdom
+Hampshire,232,GB,United Kingdom
+Hartlepool,232,GB,United Kingdom
+Herefordshire,232,GB,United Kingdom
+Hertfordshire,232,GB,United Kingdom
+Highland,232,GB,United Kingdom
+Inverclyde,232,GB,United Kingdom
+Isle of Wight,232,GB,United Kingdom
+Isles of Scilly,232,GB,United Kingdom
+Kent,232,GB,United Kingdom
+Kirklees,232,GB,United Kingdom
+Knowsley,232,GB,United Kingdom
+Lancashire,232,GB,United Kingdom
+Larne Borough Council,232,GB,United Kingdom
+Leeds,232,GB,United Kingdom
+Leicestershire,232,GB,United Kingdom
+Limavady Borough Council,232,GB,United Kingdom
+Lincolnshire,232,GB,United Kingdom
+Lisburn and Castlereagh,232,GB,United Kingdom
+Lisburn City Council,232,GB,United Kingdom
+Liverpool,232,GB,United Kingdom
+London Borough of Barking and Dagenham,232,GB,United Kingdom
+London Borough of Barnet,232,GB,United Kingdom
+London Borough of Bexley,232,GB,United Kingdom
+London Borough of Brent,232,GB,United Kingdom
+London Borough of Bromley,232,GB,United Kingdom
+London Borough of Camden,232,GB,United Kingdom
+London Borough of Croydon,232,GB,United Kingdom
+London Borough of Ealing,232,GB,United Kingdom
+London Borough of Enfield,232,GB,United Kingdom
+London Borough of Hackney,232,GB,United Kingdom
+London Borough of Hammersmith and Fulham,232,GB,United Kingdom
+London Borough of Haringey,232,GB,United Kingdom
+London Borough of Harrow,232,GB,United Kingdom
+London Borough of Havering,232,GB,United Kingdom
+London Borough of Hillingdon,232,GB,United Kingdom
+London Borough of Hounslow,232,GB,United Kingdom
+London Borough of Islington,232,GB,United Kingdom
+London Borough of Lambeth,232,GB,United Kingdom
+London Borough of Lewisham,232,GB,United Kingdom
+London Borough of Merton,232,GB,United Kingdom
+London Borough of Newham,232,GB,United Kingdom
+London Borough of Redbridge,232,GB,United Kingdom
+London Borough of Richmond upon Thames,232,GB,United Kingdom
+London Borough of Southwark,232,GB,United Kingdom
+London Borough of Sutton,232,GB,United Kingdom
+London Borough of Tower Hamlets,232,GB,United Kingdom
+London Borough of Waltham Forest,232,GB,United Kingdom
+London Borough of Wandsworth,232,GB,United Kingdom
+Magherafelt District Council,232,GB,United Kingdom
+Manchester,232,GB,United Kingdom
+Medway,232,GB,United Kingdom
+Merthyr Tydfil County Borough,232,GB,United Kingdom
+Metropolitan Borough of Wigan,232,GB,United Kingdom
+Mid and East Antrim,232,GB,United Kingdom
+Mid Ulster,232,GB,United Kingdom
+Middlesbrough,232,GB,United Kingdom
+Midlothian,232,GB,United Kingdom
+Milton Keynes,232,GB,United Kingdom
+Monmouthshire,232,GB,United Kingdom
+Moray,232,GB,United Kingdom
+Moyle District Council,232,GB,United Kingdom
+Neath Port Talbot County Borough,232,GB,United Kingdom
+Newcastle upon Tyne,232,GB,United Kingdom
+Newport,232,GB,United Kingdom
+Newry and Mourne District Council,232,GB,United Kingdom
+"Newry, Mourne and Down",232,GB,United Kingdom
+Newtownabbey Borough Council,232,GB,United Kingdom
+Norfolk,232,GB,United Kingdom
+North Ayrshire,232,GB,United Kingdom
+North Down Borough Council,232,GB,United Kingdom
+North East Lincolnshire,232,GB,United Kingdom
+North Lanarkshire,232,GB,United Kingdom
+North Lincolnshire,232,GB,United Kingdom
+North Somerset,232,GB,United Kingdom
+North Tyneside,232,GB,United Kingdom
+North Yorkshire,232,GB,United Kingdom
+Northamptonshire,232,GB,United Kingdom
+Northern Ireland,232,GB,United Kingdom
+Northumberland,232,GB,United Kingdom
+Nottinghamshire,232,GB,United Kingdom
+Oldham,232,GB,United Kingdom
+Omagh District Council,232,GB,United Kingdom
+Orkney Islands,232,GB,United Kingdom
+Outer Hebrides,232,GB,United Kingdom
+Oxfordshire,232,GB,United Kingdom
+Pembrokeshire,232,GB,United Kingdom
+Perth and Kinross,232,GB,United Kingdom
+Poole,232,GB,United Kingdom
+Powys,232,GB,United Kingdom
+Reading,232,GB,United Kingdom
+Redcar and Cleveland,232,GB,United Kingdom
+Renfrewshire,232,GB,United Kingdom
+Rhondda Cynon Taf,232,GB,United Kingdom
+Rochdale,232,GB,United Kingdom
+Rotherham,232,GB,United Kingdom
+Royal Borough of Greenwich,232,GB,United Kingdom
+Royal Borough of Kensington and Chelsea,232,GB,United Kingdom
+Royal Borough of Kingston upon Thames,232,GB,United Kingdom
+Rutland,232,GB,United Kingdom
+Saint Helena,232,GB,United Kingdom
+Salford,232,GB,United Kingdom
+Sandwell,232,GB,United Kingdom
+Scotland,232,GB,United Kingdom
+Scottish Borders,232,GB,United Kingdom
+Sefton,232,GB,United Kingdom
+Sheffield,232,GB,United Kingdom
+Shetland Islands,232,GB,United Kingdom
+Shropshire,232,GB,United Kingdom
+Slough,232,GB,United Kingdom
+Solihull,232,GB,United Kingdom
+Somerset,232,GB,United Kingdom
+South Ayrshire,232,GB,United Kingdom
+South Gloucestershire,232,GB,United Kingdom
+South Lanarkshire,232,GB,United Kingdom
+South Tyneside,232,GB,United Kingdom
+Southend-on-Sea,232,GB,United Kingdom
+St Helens,232,GB,United Kingdom
+Staffordshire,232,GB,United Kingdom
+Stirling,232,GB,United Kingdom
+Stockport,232,GB,United Kingdom
+Stockton-on-Tees,232,GB,United Kingdom
+Strabane District Council,232,GB,United Kingdom
+Suffolk,232,GB,United Kingdom
+Surrey,232,GB,United Kingdom
+Swindon,232,GB,United Kingdom
+Tameside,232,GB,United Kingdom
+Telford and Wrekin,232,GB,United Kingdom
+Thurrock,232,GB,United Kingdom
+Torbay,232,GB,United Kingdom
+Torfaen,232,GB,United Kingdom
+Trafford,232,GB,United Kingdom
+United Kingdom,232,GB,United Kingdom
+Vale of Glamorgan,232,GB,United Kingdom
+Wakefield,232,GB,United Kingdom
+Wales,232,GB,United Kingdom
+Walsall,232,GB,United Kingdom
+Warrington,232,GB,United Kingdom
+Warwickshire,232,GB,United Kingdom
+West Berkshire,232,GB,United Kingdom
+West Dunbartonshire,232,GB,United Kingdom
+West Lothian,232,GB,United Kingdom
+West Sussex,232,GB,United Kingdom
+Wiltshire,232,GB,United Kingdom
+Windsor and Maidenhead,232,GB,United Kingdom
+Wirral,232,GB,United Kingdom
+Wokingham,232,GB,United Kingdom
+Worcestershire,232,GB,United Kingdom
+Wrexham County Borough,232,GB,United Kingdom
+Alabama,233,US,United States
+Alaska,233,US,United States
+American Samoa,233,US,United States
+Arizona,233,US,United States
+Arkansas,233,US,United States
+Baker Island,233,US,United States
+California,233,US,United States
+Colorado,233,US,United States
+Connecticut,233,US,United States
+Delaware,233,US,United States
+District of Columbia,233,US,United States
+Florida,233,US,United States
+Georgia,233,US,United States
+Guam,233,US,United States
+Hawaii,233,US,United States
+Howland Island,233,US,United States
+Idaho,233,US,United States
+Illinois,233,US,United States
+Indiana,233,US,United States
+Iowa,233,US,United States
+Jarvis Island,233,US,United States
+Johnston Atoll,233,US,United States
+Kansas,233,US,United States
+Kentucky,233,US,United States
+Kingman Reef,233,US,United States
+Louisiana,233,US,United States
+Maine,233,US,United States
+Maryland,233,US,United States
+Massachusetts,233,US,United States
+Michigan,233,US,United States
+Midway Atoll,233,US,United States
+Minnesota,233,US,United States
+Mississippi,233,US,United States
+Missouri,233,US,United States
+Montana,233,US,United States
+Navassa Island,233,US,United States
+Nebraska,233,US,United States
+Nevada,233,US,United States
+New Hampshire,233,US,United States
+New Jersey,233,US,United States
+New Mexico,233,US,United States
+New York,233,US,United States
+North Carolina,233,US,United States
+North Dakota,233,US,United States
+Northern Mariana Islands,233,US,United States
+Ohio,233,US,United States
+Oklahoma,233,US,United States
+Oregon,233,US,United States
+Palmyra Atoll,233,US,United States
+Pennsylvania,233,US,United States
+Puerto Rico,233,US,United States
+Rhode Island,233,US,United States
+South Carolina,233,US,United States
+South Dakota,233,US,United States
+Tennessee,233,US,United States
+Texas,233,US,United States
+United States Minor Outlying Islands,233,US,United States
+United States Virgin Islands,233,US,United States
+Utah,233,US,United States
+Vermont,233,US,United States
+Virginia,233,US,United States
+Wake Island,233,US,United States
+Washington,233,US,United States
+West Virginia,233,US,United States
+Wisconsin,233,US,United States
+Wyoming,233,US,United States
+Baker Island,234,UM,United States Minor Outlying Islands
+Howland Island,234,UM,United States Minor Outlying Islands
+Jarvis Island,234,UM,United States Minor Outlying Islands
+Johnston Atoll,234,UM,United States Minor Outlying Islands
+Kingman Reef,234,UM,United States Minor Outlying Islands
+Midway Islands,234,UM,United States Minor Outlying Islands
+Navassa Island,234,UM,United States Minor Outlying Islands
+Palmyra Atoll,234,UM,United States Minor Outlying Islands
+Wake Island,234,UM,United States Minor Outlying Islands
+Artigas,235,UY,Uruguay
+Canelones,235,UY,Uruguay
+Cerro Largo,235,UY,Uruguay
+Colonia,235,UY,Uruguay
+Durazno,235,UY,Uruguay
+Flores,235,UY,Uruguay
+Florida,235,UY,Uruguay
+Lavalleja,235,UY,Uruguay
+Maldonado,235,UY,Uruguay
+Montevideo,235,UY,Uruguay
+Paysandú,235,UY,Uruguay
+Río Negro,235,UY,Uruguay
+Rivera,235,UY,Uruguay
+Rocha,235,UY,Uruguay
+Salto,235,UY,Uruguay
+San José,235,UY,Uruguay
+Soriano,235,UY,Uruguay
+Tacuarembó,235,UY,Uruguay
+Treinta y Tres,235,UY,Uruguay
+Andijan Region,236,UZ,Uzbekistan
+Bukhara Region,236,UZ,Uzbekistan
+Fergana Region,236,UZ,Uzbekistan
+Jizzakh Region,236,UZ,Uzbekistan
+Karakalpakstan,236,UZ,Uzbekistan
+Namangan Region,236,UZ,Uzbekistan
+Navoiy Region,236,UZ,Uzbekistan
+Qashqadaryo Region,236,UZ,Uzbekistan
+Samarqand Region,236,UZ,Uzbekistan
+Sirdaryo Region,236,UZ,Uzbekistan
+Surxondaryo Region,236,UZ,Uzbekistan
+Tashkent,236,UZ,Uzbekistan
+Tashkent Region,236,UZ,Uzbekistan
+Xorazm Region,236,UZ,Uzbekistan
+Malampa,237,VU,Vanuatu
+Penama,237,VU,Vanuatu
+Sanma,237,VU,Vanuatu
+Shefa,237,VU,Vanuatu
+Tafea,237,VU,Vanuatu
+Torba,237,VU,Vanuatu
+Amazonas,239,VE,Venezuela
+Anzoátegui,239,VE,Venezuela
+Apure,239,VE,Venezuela
+Aragua,239,VE,Venezuela
+Barinas,239,VE,Venezuela
+Bolívar,239,VE,Venezuela
+Carabobo,239,VE,Venezuela
+Cojedes,239,VE,Venezuela
+Delta Amacuro,239,VE,Venezuela
+Distrito Capital,239,VE,Venezuela
+Falcón,239,VE,Venezuela
+Federal Dependencies of Venezuela,239,VE,Venezuela
+Guárico,239,VE,Venezuela
+La Guaira,239,VE,Venezuela
+Lara,239,VE,Venezuela
+Mérida,239,VE,Venezuela
+Miranda,239,VE,Venezuela
+Monagas,239,VE,Venezuela
+Nueva Esparta,239,VE,Venezuela
+Portuguesa,239,VE,Venezuela
+Sucre,239,VE,Venezuela
+Táchira,239,VE,Venezuela
+Trujillo,239,VE,Venezuela
+Yaracuy,239,VE,Venezuela
+Zulia,239,VE,Venezuela
+An Giang,240,VN,Vietnam
+Bà Rịa-Vũng Tàu,240,VN,Vietnam
+Bắc Giang,240,VN,Vietnam
+Bắc Kạn,240,VN,Vietnam
+Bạc Liêu,240,VN,Vietnam
+Bắc Ninh,240,VN,Vietnam
+Bến Tre,240,VN,Vietnam
+Bình Dương,240,VN,Vietnam
+Bình Định,240,VN,Vietnam
+Bình Phước,240,VN,Vietnam
+Bình Thuận,240,VN,Vietnam
+Cà Mau,240,VN,Vietnam
+Cần Thơ,240,VN,Vietnam
+Cao Bằng,240,VN,Vietnam
+Đà Nẵng,240,VN,Vietnam
+Đắk Lắk,240,VN,Vietnam
+Đắk Nông,240,VN,Vietnam
+Điện Biên,240,VN,Vietnam
+Đồng Nai,240,VN,Vietnam
+Đồng Tháp,240,VN,Vietnam
+Gia Lai,240,VN,Vietnam
+Hà Giang,240,VN,Vietnam
+Hà Nam,240,VN,Vietnam
+Hà Nội,240,VN,Vietnam
+Hà Tĩnh,240,VN,Vietnam
+Hải Dương,240,VN,Vietnam
+Hải Phòng,240,VN,Vietnam
+Hậu Giang,240,VN,Vietnam
+Hồ Chí Minh,240,VN,Vietnam
+Hòa Bình,240,VN,Vietnam
+Hưng Yên,240,VN,Vietnam
+Khánh Hòa,240,VN,Vietnam
+Kiên Giang,240,VN,Vietnam
+Kon Tum,240,VN,Vietnam
+Lai Châu,240,VN,Vietnam
+Lâm Đồng,240,VN,Vietnam
+Lạng Sơn,240,VN,Vietnam
+Lào Cai,240,VN,Vietnam
+Long An,240,VN,Vietnam
+Nam Định,240,VN,Vietnam
+Nghệ An,240,VN,Vietnam
+Ninh Bình,240,VN,Vietnam
+Ninh Thuận,240,VN,Vietnam
+Phú Thọ,240,VN,Vietnam
+Phú Yên,240,VN,Vietnam
+Quảng Bình,240,VN,Vietnam
+Quảng Nam,240,VN,Vietnam
+Quảng Ngãi,240,VN,Vietnam
+Quảng Ninh,240,VN,Vietnam
+Quảng Trị,240,VN,Vietnam
+Sóc Trăng,240,VN,Vietnam
+Sơn La,240,VN,Vietnam
+Tây Ninh,240,VN,Vietnam
+Thái Bình,240,VN,Vietnam
+Thái Nguyên,240,VN,Vietnam
+Thanh Hóa,240,VN,Vietnam
+Thừa Thiên-Huế,240,VN,Vietnam
+Tiền Giang,240,VN,Vietnam
+Trà Vinh,240,VN,Vietnam
+Tuyên Quang,240,VN,Vietnam
+Vĩnh Long,240,VN,Vietnam
+Vĩnh Phúc,240,VN,Vietnam
+Yên Bái,240,VN,Vietnam
+Saint Croix,242,VI,Virgin Islands (US)
+Saint John,242,VI,Virgin Islands (US)
+Saint Thomas,242,VI,Virgin Islands (US)
+'Adan,245,YE,Yemen
+'Amran,245,YE,Yemen
+Abyan,245,YE,Yemen
+Al Bayda',245,YE,Yemen
+Al Hudaydah,245,YE,Yemen
+Al Jawf,245,YE,Yemen
+Al Mahrah,245,YE,Yemen
+Al Mahwit,245,YE,Yemen
+Amanat Al Asimah,245,YE,Yemen
+Dhamar,245,YE,Yemen
+Hadhramaut,245,YE,Yemen
+Hajjah,245,YE,Yemen
+Ibb,245,YE,Yemen
+Lahij,245,YE,Yemen
+Ma'rib,245,YE,Yemen
+Raymah,245,YE,Yemen
+Saada,245,YE,Yemen
+Sana'a,245,YE,Yemen
+Shabwah,245,YE,Yemen
+Socotra,245,YE,Yemen
+Ta'izz,245,YE,Yemen
+Central Province,246,ZM,Zambia
+Copperbelt Province,246,ZM,Zambia
+Eastern Province,246,ZM,Zambia
+Luapula Province,246,ZM,Zambia
+Lusaka Province,246,ZM,Zambia
+Muchinga Province,246,ZM,Zambia
+Northern Province,246,ZM,Zambia
+Northwestern Province,246,ZM,Zambia
+Southern Province,246,ZM,Zambia
+Western Province,246,ZM,Zambia
+Bulawayo Province,247,ZW,Zimbabwe
+Harare Province,247,ZW,Zimbabwe
+Manicaland,247,ZW,Zimbabwe
+Mashonaland Central Province,247,ZW,Zimbabwe
+Mashonaland East Province,247,ZW,Zimbabwe
+Mashonaland West Province,247,ZW,Zimbabwe
+Masvingo Province,247,ZW,Zimbabwe
+Matabeleland North Province,247,ZW,Zimbabwe
+Matabeleland South Province,247,ZW,Zimbabwe
+Midlands Province,247,ZW,Zimbabwe
