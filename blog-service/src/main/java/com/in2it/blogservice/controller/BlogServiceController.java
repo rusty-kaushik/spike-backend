@@ -1,7 +1,6 @@
 package com.in2it.blogservice.controller;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.in2it.blogservice.customException.CommentServiceDownException;
-import com.in2it.blogservice.customException.InfoMissingException;
 import com.in2it.blogservice.customException.LikeServiceDownException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
@@ -142,10 +140,11 @@ public class BlogServiceController {
 
 	// pagination
 
-	@GetMapping("/getByUserName/{userName}")
-	@Operation(summary = "Get a blog by userName", description = "Returns a Blog as per the userName.")
-	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogsByAutherName(@PathVariable @Valid String userName) {
-		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getByAutherName(userName),
+	@GetMapping("/getByName/{name}")
+	@Operation(summary = "Get a blog by userName", description = "Returns a Blog as per the name.")
+	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogsByAutherName(@RequestParam(defaultValue = "0") int pageNum,
+			@RequestParam(defaultValue = "10") int pageSize, @PathVariable @Valid String name) {
+		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getByAutherName(pageNum,pageSize,name),
 				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value());
 
 		return ResponseEntity.ok(response);
@@ -173,18 +172,13 @@ public class BlogServiceController {
 	@GetMapping("/getByTitle/{blogTitle}")
 	@Operation(summary = "Get a blogs by blogTitle", description = "Returns a blogs as list by  blogTitle.")
 	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogByTitle(@RequestParam(defaultValue = "0") int pageNum,
-			@RequestParam(defaultValue = "10") int pageSize, @PathVariable(value = "blogTitle") String title) {
+			@RequestParam(defaultValue = "10") int pageSize, @PathVariable(value = "blogTitle") String title){
 
 		List<BlogDto> blogTitleWithPage = serviceImpl.getBlogTitleWithPage(pageNum, pageSize, title);
-
-		if (!blogTitleWithPage.isEmpty()) {
 			ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(blogTitleWithPage,
 					"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value());
 			return ResponseEntity.ok(response);
-		} else {
 
-			throw new InfoMissingException("please write valid info");
-		}
 	}
 
 }

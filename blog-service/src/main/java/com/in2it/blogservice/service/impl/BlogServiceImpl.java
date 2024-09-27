@@ -1,14 +1,11 @@
 package com.in2it.blogservice.service.impl;
 
-import java.io.Console;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.UUID;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -25,7 +22,6 @@ import com.in2it.blogservice.customException.LikeServiceDownException;
 import com.in2it.blogservice.customException.UserNotFoundException;
 import com.in2it.blogservice.dto.BlogDto;
 import com.in2it.blogservice.dto.BlogUpdateDto;
-import com.in2it.blogservice.dto.UserInfoDTO;
 import com.in2it.blogservice.feignClients.FeignClientDepartment;
 import com.in2it.blogservice.feignClients.FeignClientForComment;
 import com.in2it.blogservice.feignClients.FeignClientForLike;
@@ -69,8 +65,19 @@ public class BlogServiceImpl implements BlogService {
 	public BlogDto saveBlogWithFile(BlogDto blogDto, List<MultipartFile> multipartFile) {
 		Blog blog = null;
 		
-		
 	String name=null;
+		String department=null;
+		
+		try {
+			
+			ResponseEntity<Object> departmentById = clientDepartment.getDepartmentById(blogDto.getDepartmentId());
+			Map<String, Object> depart = (Map<String, Object>) departmentById.getBody();
+			department = (String) ((Map<String, Object>) depart.get("data")).get("name");
+			blogDto.setDepartmentName(department);
+			
+		} catch (Exception e) {
+			log.error("Please ! Check your services connection . May be down."+e);
+		}
 		
 		try {
 			
@@ -142,7 +149,7 @@ public class BlogServiceImpl implements BlogService {
 			return objectMapper.blogToDtoConverter(repo.save(blog));
 		} else {
 			
-			UserNotFoundException userNotFoundException = new UserNotFoundException(" Insufficient information, May be your userName or blogId is null. Please ! Enter correct Input");
+			UserNotFoundException userNotFoundException = new UserNotFoundException(" Insufficient information, May be your userName or blogId is incorrect. Please ! Enter correct Input");
 		log.error("userNotFoundException--------------------------------------------------"+userNotFoundException);
 			throw userNotFoundException;
 		}
@@ -266,6 +273,8 @@ public class BlogServiceImpl implements BlogService {
 
 	}
 
+	
+	
 	// Get blog with title
 	public List<BlogDto> getBlogTitle(String title) {
 
@@ -294,19 +303,24 @@ public class BlogServiceImpl implements BlogService {
 		PageRequest pageable = PageRequest.of(pageNum, pageSize);
 
 		List<Blog> blog = repo.findByTitleContainingAllIgnoringCaseAndStatus(pageable, title, true);
+		
 		List<BlogDto> blogDtoList = new ArrayList<>();
-		for (Blog blog2 : blog) {
 
-			if (blog2 != null) {
-				BlogDto blogToDtoConverter = objectMapper.blogToDtoConverter(blog2);
+		
+		if(!blog.isEmpty()) {
+		
+			for (Blog blog2 : blog) {
 
-				blogDtoList.add(blogToDtoConverter);
-			} else {
-				UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
-				log.error("userNotFoundException----------------------------"+userNotFoundException);
-				throw userNotFoundException;
+				if (blog2 != null) {
+					BlogDto blogToDtoConverter = objectMapper.blogToDtoConverter(blog2);
+					blogToDtoConverter.setProfilePic(getProfilePic(blog2.getUserId()));
+					blogDtoList.add(blogToDtoConverter);
+				}
 			}
+			
 		}
+		
+
 
 		return blogDtoList;
 	}
@@ -327,43 +341,9 @@ public class BlogServiceImpl implements BlogService {
 		for (Blog blog2 : blog) {
 
 			if (blog2 != null) {
-				String profilePicture=null;
-				String department=null;
-				
-				try {
-					
-					ResponseEntity<Object> departmentById = clientDepartment.getDepartmentById(blog2.getDepartmentId());
-					Map<String, Object> depart = (Map<String, Object>) departmentById.getBody();
-					department = (String) ((Map<String, Object>) depart.get("data")).get("name");
-					
-				} catch (Exception e) {
-					log.error("Please ! Check your services connection . May be down."+e);
-				}
-				
-				try {
-			     
-				ResponseEntity<Object> user = userFeign.getUserById(blog2.getUserId());
-             	
-				 Map<String, Object> body = (Map<String, Object>) user.getBody();
-				 profilePicture = (String) ((Map<String, Object>) body.get("data")).get("profilePicture");
-				
-				}catch (Exception e) {
-					log.error("Please ! Check your services connection . May be down."+e);
-				}
-				
-				
-				
-				
-				
 				BlogDto blogDto = objectMapper.blogToDtoConverter(blog2);
-				if(profilePicture!=null) {
-					
-					blogDto.setProfilePic(profilePicture);	
-				}
-				
-				if(department!=null) {
-					blogDto.setDepartmentName(department);
-				}
+				blogDto.setProfilePic(getProfilePic(blog2.getUserId()));
+
 				blogDtoList.add(blogDto);
 			}
 		}
@@ -383,9 +363,10 @@ public class BlogServiceImpl implements BlogService {
 
 	// Get blog by userId or we can say unique userName
 	@Override
-	public List<BlogDto> getByAutherName(String userName) {
+	public List<BlogDto> getByAutherName(int pageNum, int pageSize, String name) {
 
-		List<Blog> byAuthorId = repo.findByAuthorName(userName);
+		PageRequest pageable = PageRequest.of(pageNum, pageSize);
+		List<Blog> byAuthorId = repo.findByNameContainingAllIgnoringCaseAndStatus(pageable,name,true);
 
 		List<BlogDto> blogDtoList = new ArrayList<>();
 
@@ -395,17 +376,19 @@ public class BlogServiceImpl implements BlogService {
 
 				if (blog2 != null) {
 					BlogDto blogToDtoConverter = objectMapper.blogToDtoConverter(blog2);
+					blogToDtoConverter.setProfilePic(getProfilePic(blog2.getUserId()));
 					blogDtoList.add(blogToDtoConverter);
 				}
 			}
 
-			return blogDtoList;
-		} else {
-			
-			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
-			log.error("userNotFoundException----------------------------"+userNotFoundException);
-			throw userNotFoundException;
-		}
+		} 
+		return blogDtoList;
+//		else {
+//			
+//			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+//			log.error("userNotFoundException----------------------------"+userNotFoundException);
+//			throw userNotFoundException;
+//		}
 
 	}
 	
@@ -430,7 +413,7 @@ public class BlogServiceImpl implements BlogService {
 			return blogDtoList;
 		} else {
 			
-			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NOT_FOUND + "  Invalid userID, please ! Enter correct userId.");
 			log.error("userNotFoundException----------------------------"+userNotFoundException);
 			throw userNotFoundException;
 		}
@@ -446,7 +429,7 @@ public class BlogServiceImpl implements BlogService {
 			BlogDto blogDto = objectMapper.blogToDtoConverter(blog);
 			return blogDto;
 		} else {
-			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NO_CONTENT + "  Data not available, please ! Try again.");
+			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NOT_FOUND + "  Invalid id, please ! Enter correct BlogId.");
 			log.error("userNotFoundException----------------------------"+userNotFoundException);
 			throw userNotFoundException;
 		}
@@ -476,6 +459,25 @@ public class BlogServiceImpl implements BlogService {
 
 		}
 
+	}
+	
+	
+	
+	public String getProfilePic(long id)
+	{
+		
+		String profilePicture=null;
+		try {
+	     
+		ResponseEntity<Object> user = userFeign.getUserById(id);
+     	
+		 Map<String, Object> body = (Map<String, Object>) user.getBody();
+		 profilePicture = (String) ((Map<String, Object>) body.get("data")).get("profilePicture");
+		
+		}catch (Exception e) {
+			log.error("Please ! Check your services connection . May be down."+e);
+		}
+		return profilePicture;
 	}
 
 }

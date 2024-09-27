@@ -84,7 +84,7 @@ public class BlogServiceTest {
 	    blogDto.setMediaFile(List.of("Media.png"));
 
 	    Blog blog = new Blog();
-	    blog.setDepartmentId(12);
+	    blog.setDepartmentName("Java");
 	    blog.setName("Sumit");
 	    blog.setTitle("Java");
 	    blog.setContent("Java is a good language");
@@ -416,26 +416,30 @@ public class BlogServiceTest {
 		
 		String userName = "Sumit";		
 		
+		boolean f=true;
+		
 	    Blog existingBlog = new Blog();
 	    existingBlog.setName(userName);
 	    
 	    BlogDto blogDto = new BlogDto();
 	    blogDto.setName(userName);
 	    
+	    PageRequest pageable = PageRequest.of(0, 10);
+	    
 	    List<BlogDto> blogList = Arrays.asList(blogDto);
 
-	    when(repo.findByAuthorName(any(String.class))).thenReturn(Arrays.asList(existingBlog));
+	    when(repo.findByNameContainingAllIgnoringCaseAndStatus(any(PageRequest.class), any(String.class),any(Boolean.class))).thenReturn(Arrays.asList(existingBlog));
 	    when(objectMapper.blogToDtoConverter(any(Blog.class))).thenReturn(blogDto);
 	    
 	    
 	    // Act
-	    List<BlogDto> result = service.getByAutherName(userName);
+	    List<BlogDto> result = service.getByAutherName(0,10,userName);
 	    // Assert
 	    assertNotNull(result);
 	    assertEquals(blogList, result);
 	    	
 	    verify(objectMapper, times(1)).blogToDtoConverter(existingBlog);
-	    verify(repo, times(1)).findByAuthorName(userName);
+	    verify(repo, times(1)).findByNameContainingAllIgnoringCaseAndStatus(pageable, userName,f);
 	}
 	
 	@Test

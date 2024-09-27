@@ -24,13 +24,13 @@ public class GlobalExceptionHandler {
 
 	}
 	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ExceptionHandler(IdInvalidException.class)
 	public  ResponseEntity<?>  idInvalidExceptionhandler(IdInvalidException ex ,WebRequest request){
-
-		 ExceptionStatus status=new ExceptionStatus( HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage());		
-			
-			return new ResponseEntity(status,HttpStatus.NOT_FOUND);
+		
+		ExceptionStatus status=new ExceptionStatus( HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage());		
+		return new ResponseEntity(status,HttpStatus.NOT_FOUND);
 		
 	}
 	

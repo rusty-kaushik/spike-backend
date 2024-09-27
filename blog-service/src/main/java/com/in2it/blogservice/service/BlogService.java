@@ -28,7 +28,7 @@ public interface BlogService {
 	List<BlogDto> getBlogTitleWithPage(int pageNum, int pageSize,String title);
 	List<BlogDto> getBlog(int pageNum, int pageSize);
 	List<BlogDto> getByAutherID(long userId);
-	public List<BlogDto> getByAutherName(String userName);
+	public List<BlogDto> getByAutherName(int pageNum, int pageSize, String name);
 	
 	
 	List<BlogDto> getByVisibility(long teamId);
