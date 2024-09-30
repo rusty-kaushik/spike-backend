@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserContactsRepository extends JpaRepository<Contacts, Long>, JpaSpecificationExecutor<Contacts> {
-
+    long countByUserId(long userId);
 }

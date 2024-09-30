@@ -53,7 +53,7 @@ public interface UserService {
     
     public ContactsDto updateContact(Long contactId , ContactsDto contactDto) ;
 
-    long getTotalContact();
+    long getTotalContact(long userId);
 
     long getTotalEmployees();
 }
