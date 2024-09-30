@@ -7,8 +7,8 @@ COPY /target/*.jar /app/
 # Expose the necessary ports
 EXPOSE 8484
 # Define environment variables for each service
+
 ENV LIKE_SERVICE_PORT=8484
- 
 
 # Run all services using a shell script
 CMD ["sh", "-c", "\
