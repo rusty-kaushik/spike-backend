@@ -273,7 +273,7 @@ public class UserController {
         try {
             logger.info("getting user contact information " + name);
             List<UserContactsDTO> user = userService.getUserContacts(userId,name, pageno, pagesize, sort);
-            long totalContacts = userService.getTotalContact();
+            long totalContacts = userService.getTotalContact(userId);
             return ResponseHandler.fetchCountResponseForContact(user, "User contacts found successfully", HttpStatus.OK, totalContacts);
         } catch (UserNotFoundException ex) {
             throw ex;

@@ -499,9 +499,9 @@ public class UserServiceImpl implements UserService {
         return dto;
     }
 
-    public long getTotalContact() {
+    public long getTotalContact(long userId) {
         long totalEmployeeContacts = userRepository.count();
-        long totalPersonalContacts = userContactsRepository.count();
+        long totalPersonalContacts = userContactsRepository.countByUserId(userId);
         return totalPersonalContacts + totalEmployeeContacts;
     }
 
