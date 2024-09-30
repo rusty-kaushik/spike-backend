@@ -273,7 +273,7 @@ public class UserController {
         try {
             logger.info("getting user contact information " + name);
             List<UserContactsDTO> user = userService.getUserContacts(userId,name, pageno, pagesize, sort);
-            long totalContacts = user.size();
+            long totalContacts = userService.getTotalContact();
             return ResponseHandler.fetchCountResponseForContact(user, "User contacts found successfully", HttpStatus.OK, totalContacts);
         } catch (UserNotFoundException ex) {
             throw ex;
@@ -298,7 +298,7 @@ public class UserController {
                                                                 @RequestParam(name = "sort", defaultValue = "updatedAt,desc") String sort) {
         try {
             List<UserDashboardDTO> userDashBoard = userService.getUserFilteredDashboard(name, email, salary, page, size, sort);
-            long totalEmployees = userDashBoard.size();
+            long totalEmployees = userService.getTotalEmployees();
             return ResponseHandler.fetchCountResponseForEmployee(userDashBoard, "user info dashboard displayed successfully",HttpStatus.OK,totalEmployees);
         } catch (UserNotFoundException ex) {
             throw ex;
