@@ -47,3 +47,8 @@ Mail-Service/allMailAttachments/
 
 
 
+spike-ticket/.classpath
+spike-ticket/.factorypath
+spike-ticket/.project
+spike-ticket/.settings/
+spike-ticket/target/
