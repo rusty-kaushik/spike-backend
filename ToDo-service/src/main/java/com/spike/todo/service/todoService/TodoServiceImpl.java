@@ -42,8 +42,8 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Page<TODO> findAll(Pageable paging) {
-        return todoRepository.findAll(paging);
+    public Page<TODO> findAllByUserId(Long userId, Pageable paging) {
+        return todoRepository.findByUserId(userId, paging);
     }
 
 

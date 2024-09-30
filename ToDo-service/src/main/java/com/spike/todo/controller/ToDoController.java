@@ -85,11 +85,12 @@ public class ToDoController {
     @Operation(
             summary = "User fetch all todo task"
     )
-    @GetMapping()
+    @GetMapping("/{userId}")
     public ResponseEntity<Object> getAllTasks(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(required = false) String sort
+            @RequestParam(required = false) String sort,
+            @PathVariable Long userId
     ) {
         try {
 
@@ -106,7 +107,10 @@ public class ToDoController {
 
             Page<TODO> pageTuts;
 
-            return ResponseHandler.responseBuilder("task successfully deleted", HttpStatus.OK,  todoService.findAll(paging));
+            // Call the service method with the userId parameter
+            Page<TODO> todoPage = todoService.findAllByUserId(userId, paging);
+
+            return ResponseHandler.responseBuilder("Tasks fetched successfully", HttpStatus.OK, todoPage);
         } catch ( UnexpectedException e ) {
             throw e;
         } finally {

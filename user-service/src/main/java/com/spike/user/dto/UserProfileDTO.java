@@ -19,6 +19,7 @@ public class UserProfileDTO {
     private String primaryMobileNumber;
     private String joiningDate;
     private String salary;
+    private Long managerId;
     private Set<Department> department;
     private List<UserAddress> addresses;
     private String profilePicture;

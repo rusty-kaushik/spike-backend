@@ -268,6 +268,7 @@ public class UserHelper {
         dto.setDepartment(user.getDepartments());
         dto.setAddresses(user.getAddresses());
         dto.setSalary(String.valueOf(user.getSalary()));
+        dto.setManagerId(user.getManagerId());
         dto.setProfilePicture(base64Image);
         return dto;
     }

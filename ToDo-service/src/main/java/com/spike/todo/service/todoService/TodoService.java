@@ -14,5 +14,6 @@ public interface TodoService {
 
     void deleteTodoTask(Long taskId);
 
-    Page<TODO> findAll(Pageable paging);
+
+    Page<TODO> findAllByUserId(Long userId, Pageable paging);
 }
