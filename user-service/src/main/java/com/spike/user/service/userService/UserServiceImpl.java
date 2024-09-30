@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
             // SETS USER
             User user = userHelper.dtoToEntityForUserMaster(userRequest);
             // SETS ADDRESSES
-            if(userRequest.getAddresses() != null){
+            if (userRequest.getAddresses() != null) {
                 for (UserAddressDTO addressDTO : userRequest.getAddresses()) {
                     UserAddress userAddress = userHelper.dtoToEntityForUserAddress(addressDTO);
                     user.addAddress(userAddress);
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
             throw e;
         } catch (Exception e) {
             logger.error("Error creating user", e);
-            throw new UnexpectedException("UnexpectedException","Error creating user"+ e.getCause());
+            throw new UnexpectedException("UnexpectedException", "Error creating user" + e.getCause());
         }
 
     }
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findByUsername(username);
             if (existingUser == null) {
                 logger.warn("User not found: {}", username);
-                throw new UserNotFoundException("ValidationError","User not found");
+                throw new UserNotFoundException("ValidationError", "User not found");
             }
             if (!passwordEncoder.matches(userChangePasswordDTO.getOldPassword(), existingUser.getPassword())) {
                 logger.warn("Old password does not match for user: {}", username);
@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService {
             throw e;
         } catch (Exception e) {
             logger.error("An unexpected error occurred while updating password for user: {}", username, e);
-            throw new UnexpectedException("UnexpectedException","An unexpected error occurred while updating the password"+ e);
+            throw new UnexpectedException("UnexpectedException", "An unexpected error occurred while updating the password" + e);
         }
     }
 
@@ -143,15 +143,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUserByAdmin(Long userId, UserUpdateRequestDTO userUpdateRequestDTO) {
         logger.info("Starting update process for user ID: {}", userId);
-        try{
+        try {
             // Use the helper method to update the user
             User updatedUser = userHelper.userFullUpdateByAdmin(userId, userUpdateRequestDTO);
             logger.info("User fields updated successfully for user ID: {}", userId);
             return updatedUser;
-        }catch (UserNotFoundException e) {
+        } catch (UserNotFoundException e) {
             logger.error("Error updating user - user not found with id: {}", userId, e);
             throw e;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Unexpected error updating user with id: {}", userId, e);
             throw new RuntimeException("Unexpected error updating user", e);
         }
@@ -186,10 +186,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-
-
-
     @Override
     public void deleteUser(Long userId) {
         logger.info("Starting user deletion for user ID: {}", userId);
@@ -198,7 +194,7 @@ public class UserServiceImpl implements UserService {
             User existingUser = userRepository.findById(userId)
                     .orElseThrow(() -> {
                         logger.error("User not found with id: {}", userId);
-                        return new UserNotFoundException("ValidationError","User not found with id: " + userId);
+                        return new UserNotFoundException("ValidationError", "User not found with id: " + userId);
                     });
 
             userRepository.delete(existingUser);
@@ -331,7 +327,7 @@ public class UserServiceImpl implements UserService {
             //fetched filtered , paginated , sorted users
             Page<User> user = userRepository.findAll(specs, pageRequest);
             if (user.isEmpty()) {
-                throw new UserNotFoundException("ValidationError","No user found");
+                throw new UserNotFoundException("ValidationError", "No user found");
             }
             //convert to user dashboard dto
             return user.stream().map(this::userToUserDashboardDto).collect(Collectors.toList());
@@ -378,7 +374,7 @@ public class UserServiceImpl implements UserService {
         User byUsername = userRepository.findByUsername(username);
 
         if (byUsername == null) {
-            throw new UserNotFoundException("ValidationError","User not found with username: " + username);
+            throw new UserNotFoundException("ValidationError", "User not found with username: " + username);
         }
 
         // Convert the User entity to DTO
@@ -409,7 +405,7 @@ public class UserServiceImpl implements UserService {
 
     private User findUserById(long userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("ValidationError","User not found with id: " + userId));
+                .orElseThrow(() -> new UserNotFoundException("ValidationError", "User not found with id: " + userId));
     }
 
     private List<DepartmentDropdownDTO> convertDepartmentsToDTOs(Set<Department> departments) {
@@ -424,7 +420,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfoDTO addProfilePictureOfAUser(long userId, MultipartFile profilePicture) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError","User not found with id: " + userId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError", "User not found with id: " + userId));
         user.addPicture(userHelper.dtoToEntityForUserPicture(profilePicture, user));
         User saved = userRepository.save(user);
         String base64Image = null;
@@ -448,7 +444,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserProfileDTO getUserById(long userId) throws IOException {
-        User user = userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException("ValidationError","User not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError", "User not found"));
         String base64Image = userHelper.fetchUserProfilePicture(user);
         return userHelper.entityToUserProfileDto(user, base64Image);
     }
@@ -458,7 +454,7 @@ public class UserServiceImpl implements UserService {
 
         logger.info("Starting user creation process");
         try {
-            User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError","user_id doesn't exist"));
+            User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("ValidationError", "user_id doesn't exist"));
 
             Contacts userContacts = userHelper.contactsDtoToEntity(contactDto);
             userContacts.setUserId(user.getId());
@@ -470,35 +466,48 @@ public class UserServiceImpl implements UserService {
             throw e;
         } catch (Exception e) {
             logger.error("User_id doesn't exist", e);
-            throw new UnexpectedException("UnexpectedException","Error creating contacts"+e.getCause());
+            throw new UnexpectedException("UnexpectedException", "Error creating contacts" + e.getCause());
         }
     }
 
-    public List<ContactsDto> getAllContacts(){
-        List<Contacts> cotactsList=userContactsRepository.findAll();
-        List<ContactsDto> contactsDtoList=new ArrayList<>();
-        for(Contacts contact: cotactsList) {
-        	ContactsDto contactsDto =userHelper.entityToContactsDto(contact);
-        	contactsDtoList.add(contactsDto);
+    public List<ContactsDto> getAllContacts() {
+        List<Contacts> cotactsList = userContactsRepository.findAll();
+        List<ContactsDto> contactsDtoList = new ArrayList<>();
+        for (Contacts contact : cotactsList) {
+            ContactsDto contactsDto = userHelper.entityToContactsDto(contact);
+            contactsDtoList.add(contactsDto);
         }
         return contactsDtoList;
     }
-    
+
     public void deleteContacts(Long id) {
-    	try {
-    	Contacts con= userContactsRepository.findById(id).orElseThrow(()->new ContactNotFoundException( "contact's id doesn't exist "));
-    	 userContactsRepository.delete(con);
-    	}catch (Exception e) {
+        try {
+            Contacts con = userContactsRepository.findById(id).orElseThrow(() -> new ContactNotFoundException("contact's id doesn't exist "));
+            userContactsRepository.delete(con);
+        } catch (Exception e) {
             logger.error("Error deleting user with ID: {}", id, e);
             throw new RuntimeException("Error deleting contact", e);
         }
     }
-    public ContactsDto updateContact(Long contactId , ContactsDto contactDto) {
-    	//Contacts contacts=userContactsRepository.findById(contactId).orElseThrow(()->new ContactNotFoundException("contact of thid id doesn't exist"));
-    	
-    	Contacts con=userHelper.contactsDtoToEntity(contactDto);
-    	con.setId(contactId);
-        ContactsDto dto= userHelper.entityToContactsDto( userContactsRepository.save(con));
-    	return dto;
+
+    public ContactsDto updateContact(Long contactId, ContactsDto contactDto) {
+        //Contacts contacts=userContactsRepository.findById(contactId).orElseThrow(()->new ContactNotFoundException("contact of thid id doesn't exist"));
+
+        Contacts con = userHelper.contactsDtoToEntity(contactDto);
+        con.setId(contactId);
+        ContactsDto dto = userHelper.entityToContactsDto(userContactsRepository.save(con));
+        return dto;
+    }
+
+    public long getTotalContact() {
+        long totalEmployeeContacts = userRepository.count();
+        long totalPersonalContacts = userContactsRepository.count();
+        return totalPersonalContacts + totalEmployeeContacts;
+    }
+
+    @Override
+    public long getTotalEmployees() {
+        long count = userRepository.count();
+        return count;
     }
 }

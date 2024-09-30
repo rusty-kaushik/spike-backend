@@ -52,4 +52,8 @@ public interface UserService {
     public void deleteContacts(Long id);
     
     public ContactsDto updateContact(Long contactId , ContactsDto contactDto) ;
+
+    long getTotalContact();
+
+    long getTotalEmployees();
 }
