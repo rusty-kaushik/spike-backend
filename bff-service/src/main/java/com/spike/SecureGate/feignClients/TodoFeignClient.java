@@ -32,7 +32,7 @@ public interface TodoFeignClient {
     );
 
     // GET ALL TASKS
-    @GetMapping("/{userId}")
+    @GetMapping("/spike/todo/{userId}")
     ResponseEntity<Object> getAllTasks(
             @RequestParam int page,
             @RequestParam int size,

@@ -67,7 +67,7 @@ public class CommentServiceImpl implements CommentService{
                 logger.error("Validation failed");
                 throw new ValidationFailedException("ValidationError","Invalid CommentUpdateRequestDTO");
             }
-            return commentFeignClient.updateComment(commentId, content);
+            return commentFeignClient.updateComment(content,commentId);
         } catch ( ValidationFailedException e ) {
             throw e;
         } catch (FeignException e) {
