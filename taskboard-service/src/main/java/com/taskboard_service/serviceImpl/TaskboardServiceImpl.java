@@ -3,22 +3,26 @@ package com.taskboard_service.serviceImpl;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.taskboard_service.converter.ModelConverter;
 import com.taskboard_service.dto.Status;
 import com.taskboard_service.dto.TaskboardDto;
 import com.taskboard_service.dto.TaskboardUpdateDto;
+import com.taskboard_service.dto.UserInfoDTO;
 import com.taskboard_service.entity.Taskboard;
 import com.taskboard_service.exception.DetailsNotFoundException;
 import com.taskboard_service.exception.TaskboadNotFoundException;
 import com.taskboard_service.repository.TaskBoardRepo;
 import com.taskboard_service.service.TaskboardService;
+import com.taskboard_service.userFeign.FeignClientDepartment;
+import com.taskboard_service.userFeign.FeignClientForUser;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,12 +36,42 @@ public class TaskboardServiceImpl implements TaskboardService{
 	@Autowired
 	TaskBoardRepo repo;
 	
+	@Autowired
+	FeignClientForUser userFeign;
+	
+	
+	@Autowired
+	FeignClientDepartment clientDepartment;
+	
+//	
 	@Override
 	public TaskboardDto createTaskboard(TaskboardDto taskboardDto) throws TaskboadNotFoundException {
 
 		Taskboard taskboard = converter.dtoToEntity(taskboardDto);
+		
+		UserInfoDTO userByUsername = userFeign.getUserByUsername(taskboardDto.getUserName());
+		
+		
+		String department=null;
+		
+		try {
+			
+			ResponseEntity<Object> departmentById = clientDepartment.getDepartmentById(taskboardDto.getDepartmentId());
+			Map<String, Object> depart = (Map<String, Object>) departmentById.getBody();
+			department = (String) ((Map<String, Object>) depart.get("data")).get("name");
+			
+			System.out.println("kkkkkkkkkk"+department);
+		
+			
+		} catch (Exception e) {
+			log.error("Please ! Check your services connection . May be down."+e);
+		}
+		
+		System.out.println("===================="+userByUsername);
+		
 		Taskboard taskEntity =null;
 		if(taskboard!=null) {
+			taskboard.setDepartmentName(department);
 			 taskEntity = repo.save(taskboard);
 			 return converter.entityToDto(taskEntity);
 		}else {
@@ -147,6 +181,7 @@ public class TaskboardServiceImpl implements TaskboardService{
 		return taskboardDtos;
 	}
 
+	
 	
 
 }

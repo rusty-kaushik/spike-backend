@@ -31,7 +31,13 @@ public class TaskboardDto {
 	private UUID id;
 	@NotNull
 	private String userName;
+	
+	@JsonProperty(access = Access.READ_WRITE)
 	private long departmentId;
+	
+	@JsonProperty(access = Access.READ_ONLY)
+	private String departmentName;
+	
 	private String title;
 	@Column(name = "taskDescription")
 	private String taskDes;

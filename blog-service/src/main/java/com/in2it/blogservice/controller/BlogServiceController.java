@@ -61,8 +61,7 @@ public class BlogServiceController {
 		return ResponseEntity.ok(response);
 
 	}
-
-
+	
 	@PutMapping("/update/{blogId}")
 	@Operation(summary = "Update an blog", description = "Update an existing blog. Using blog blog id can update blog title and content only.")
 	public ResponseEntity<ResponseHandler<BlogDto>> updateBlog(@PathVariable String blogId, @RequestBody BlogUpdateDto updateDto) {
@@ -142,16 +141,19 @@ public class BlogServiceController {
 
 	@GetMapping("/getByName/{name}")
 	@Operation(summary = "Get a blog by userName", description = "Returns a Blog as per the name.")
-	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogsByAutherName(@RequestParam(defaultValue = "0") int pageNum,
+	public ResponseEntity<ResponseHandlerWithPageable<List<BlogDto>>> getBlogsByAutherName(@RequestParam(defaultValue = "0") int pageNum,
 			@RequestParam(defaultValue = "10") int pageSize, @PathVariable @Valid String name) {
-		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getByAutherName(pageNum,pageSize,name),
-				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value());
+		List<BlogDto> byAutherName = serviceImpl.getByAutherName(pageNum,pageSize,name);
+		int totalResults = byAutherName.size();
+		
+		ResponseHandlerWithPageable<List<BlogDto>> response = new ResponseHandlerWithPageable<>(byAutherName,
+				"Data retrieved successfully.", HttpStatus.OK,HttpStatus.OK.value(),totalResults,pageNum,pageSize);
 
 		return ResponseEntity.ok(response);
 	}
 	
 	@GetMapping("/getByUserId/{userId}")
-	@Operation(summary = "Get a blog by userName", description = "Returns a Blog as per the userName.")
+	@Operation(summary = "Get a blog by userId", description = "Returns a Blog as per the userName.")
 	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogsByAutherId(@PathVariable @Valid long userId) {
 		ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(serviceImpl.getByAutherID(userId),
 				"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value());
@@ -171,12 +173,12 @@ public class BlogServiceController {
 	
 	@GetMapping("/getByTitle/{blogTitle}")
 	@Operation(summary = "Get a blogs by blogTitle", description = "Returns a blogs as list by  blogTitle.")
-	public ResponseEntity<ResponseHandler<List<BlogDto>>> getBlogByTitle(@RequestParam(defaultValue = "0") int pageNum,
+	public ResponseEntity<ResponseHandlerWithPageable<List<BlogDto>>> getBlogByTitle(@RequestParam(defaultValue = "0") int pageNum,
 			@RequestParam(defaultValue = "10") int pageSize, @PathVariable(value = "blogTitle") String title){
-
 		List<BlogDto> blogTitleWithPage = serviceImpl.getBlogTitleWithPage(pageNum, pageSize, title);
-			ResponseHandler<List<BlogDto>> response = new ResponseHandler<>(blogTitleWithPage,
-					"Data retrieved successfully.", HttpStatus.OK, HttpStatus.OK.value());
+		int totalResults = blogTitleWithPage.size();
+			ResponseHandlerWithPageable<List<BlogDto>> response = new ResponseHandlerWithPageable<>(blogTitleWithPage,
+					"Data retrieved successfully.", HttpStatus.OK,HttpStatus.OK.value(),totalResults,pageNum,pageSize);
 			return ResponseEntity.ok(response);
 
 	}
