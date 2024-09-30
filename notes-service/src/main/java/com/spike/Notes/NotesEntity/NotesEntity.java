@@ -15,7 +15,7 @@ public class NotesEntity {
     private UUID id;
     @Column(name="userId")
     private Long userId;
-    @Column(name="content")
+    @Column(length=10000)
     private String content;
     @Column(name="color")
     @Enumerated(EnumType.STRING)
