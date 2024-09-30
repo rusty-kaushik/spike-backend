@@ -18,11 +18,12 @@ public interface CalenderRepository extends JpaRepository<CalenderEntity, UUID>{
 	@Query(value = "SELECT * FROM calender_entity WHERE :date BETWEEN starting_date AND ending_date and status=true", nativeQuery = true)
 	public Optional<List<CalenderEntity>> findByDate(LocalDate date);
 //	@Query(value = "SELECT * FROM calender_entity WHERE starting_date OR ending_date BETWEEN :monday and :sunday", nativeQuery = true)
-	@Query(value = "SELECT * FROM calender_entity WHERE (starting_date BETWEEN :monday AND :sunday) OR (ending_date BETWEEN :monday AND :sunday)  and status=true ", nativeQuery = true)
+	@Query(value = "SELECT * FROM calender_entity WHERE ((starting_date BETWEEN :monday AND :sunday) OR (ending_date BETWEEN :monday AND :sunday))  and status=true ", nativeQuery = true)
 	public Optional<List<CalenderEntity>> findByWeek(LocalDate monday, LocalDate sunday);
-	@Query(value = "SELECT * FROM calender_entity WHERE (starting_date BETWEEN :firstDayOfMonth AND :lastDayOfMonth) OR (ending_date BETWEEN :firstDayOfMonth AND :lastDayOfMonth) and status=true", nativeQuery = true)
+	@Query(value = "SELECT * FROM calender_entity WHERE ((starting_date BETWEEN :firstDayOfMonth AND :lastDayOfMonth) OR (ending_date BETWEEN :firstDayOfMonth AND :lastDayOfMonth)) and status=true", nativeQuery = true)
 	public Optional<List<CalenderEntity>> findByMonth(LocalDate firstDayOfMonth, LocalDate lastDayOfMonth);
 	
 	public Optional<CalenderEntity> findByEventIdAndStatus(UUID eventId, boolean status);
+	
 
 }
