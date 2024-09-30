@@ -15,6 +15,7 @@ public class UserProfileDTO {
     private String email;
     private String designation;
     private String employeeCode;
+    private String username;
     private String role;
     private String primaryMobileNumber;
     private String joiningDate;

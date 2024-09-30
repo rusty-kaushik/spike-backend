@@ -269,6 +269,7 @@ public class UserHelper {
         dto.setAddresses(user.getAddresses());
         dto.setSalary(String.valueOf(user.getSalary()));
         dto.setManagerId(user.getManagerId());
+        dto.setUsername(user.getUsername());
         dto.setProfilePicture(base64Image);
         return dto;
     }
