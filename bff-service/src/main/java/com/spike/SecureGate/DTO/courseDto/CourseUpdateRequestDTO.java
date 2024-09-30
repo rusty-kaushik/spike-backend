@@ -9,8 +9,6 @@ public class CourseUpdateRequestDTO {
 
     private String courseName;
 
-    private String title;
-
     private String content;
 
     private String departmentName;
