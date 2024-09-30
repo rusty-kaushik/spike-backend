@@ -41,6 +41,8 @@ public class Blog {
 	
 	 
 	@Column(name="userName")
+	@NotBlank(message = "Invalid name: Empty name")
+    @NotNull(message = "Invalid name: Name is NULL")
 	private String name;;     //  AUTHOR ID THAT MEANS WHOSE POSTED BLOG FOR PARTICULLER DEPARTMENT 
 	
 	
@@ -48,12 +50,12 @@ public class Blog {
 	
 
 	@NotBlank(message = "Invalid title: Empty title")
-    @NotNull(message = "Invalid title: Name is NULL")
+    @NotNull(message = "Invalid title: content is NULL")
     @Size(min = 3, max = 200, message = "Invalid title: Must be of 3 - 200 characters")
 	private String title;
 	
 	@NotBlank(message = "Invalid content: Empty content")
-    @NotNull(message = "Invalid content: Name is NULL")
+    @NotNull(message = "Invalid content: content is NULL")
     @Size(min = 3, max = 3000, message = "Invalid content: Must be of 3 - 3000 characters")
 	private String content;
 	
