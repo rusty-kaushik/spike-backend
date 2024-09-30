@@ -279,4 +279,21 @@ public class UserController {
     public List<Object> getAllManagers(){
         return dropdownHelper.getAllManagers();
     }
+
+    @PutMapping("/admin/update/{userId}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Object> adminUpdatesUser(
+            @PathVariable Long userId,
+            @RequestBody AdminUpdatesUserDTO adminUpdateUserDTO
+    )
+    {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        String userName = authentication.getName();
+        logger.info("Stared updating self details");
+        ResponseEntity<Object> user = userService.adminUpdatesUser(userId,adminUpdateUserDTO);
+        logger.info("Finished updating self details");
+        return user;
+    }
 }

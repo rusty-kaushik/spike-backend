@@ -243,5 +243,19 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public ResponseEntity<Object> adminUpdatesUser(Long userId, AdminUpdatesUserDTO adminUpdateUserDTO) {
+        try{
+            return  userFeignClient.updateUserFull(userId, adminUpdateUserDTO);
+        }catch (ValidationFailedException e) {
+            throw e;
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
+        } catch (Exception e) {
+            logger.error("Error occurred while creating a user contact: " + e.getMessage());
+            throw new UnexpectedException( "UnexpectedError","An unexpected error occurred while creating a user contact: " + e.getMessage());
+        }
+    }
+
 
 }

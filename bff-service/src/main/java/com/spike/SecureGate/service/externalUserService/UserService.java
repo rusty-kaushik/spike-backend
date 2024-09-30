@@ -37,4 +37,6 @@ public interface UserService {
     ResponseEntity<Object> updateContact(Long contactId, ContactCreationRequestDTO contactCreationRequestDTO);
 
     ResponseEntity<Object> deleteContact(Long contactId);
+
+    ResponseEntity<Object> adminUpdatesUser(Long userId, AdminUpdatesUserDTO adminUpdateUserDTO);
 }

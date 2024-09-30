@@ -138,4 +138,10 @@ public interface UserFeignClient {
             @PathVariable Long contactId,
             @RequestBody ContactCreationRequestDTO data
     );
+
+    @PutMapping("/spike/user/admin/{userId}")
+    ResponseEntity<Object> updateUserFull(
+            @PathVariable Long userId,
+            @RequestBody AdminUpdatesUserDTO adminUpdateUserDTO
+    );
 }
