@@ -65,7 +65,8 @@ public class NotesController {
             }
         } catch (NoteNotFoundException ex) {
             return responseHandler.response("Note Not Found",HttpStatus.OK, "Note not found");
-        } catch (RuntimeException ex) {
+        }
+        catch (RuntimeException ex) {
             throw new RuntimeException("Error occurred while fetching notes");
         }
     }
@@ -85,8 +86,11 @@ public class NotesController {
             NotesDto note = noteService.deleteNote(noteId, userId);
             return responseHandler.response("Note deleted successfully", HttpStatus.OK, note);
         } catch (NoteNotFoundException ex) {
-            return responseHandler.response("Note Not Found with id: "+id ,HttpStatus.OK, "Note not found");
-        } catch (RuntimeException ex) {
+            return responseHandler.response("Note Not Found with id: " + id, HttpStatus.OK, "Note not found");
+        } catch (IllegalArgumentException ex) {
+            return responseHandler.response("Invalid note ID format: " + id, HttpStatus.BAD_REQUEST, "Invalid note ID format");
+        }
+         catch (RuntimeException ex) {
             throw ex;
         }
     }
@@ -107,7 +111,9 @@ public class NotesController {
             return responseHandler.response("Note edited successfully", HttpStatus.OK, note);
         } catch (NoteNotFoundException ex) {
             return responseHandler.response("Note Not Found with id: "+id ,HttpStatus.OK, "Note not found");
-        } catch (RuntimeException ex) {
+        } catch (IllegalArgumentException ex) {
+            return responseHandler.response("Invalid note ID format: " + id, HttpStatus.BAD_REQUEST, "Invalid note ID format");}
+        catch (RuntimeException ex) {
             throw new RuntimeException("Error occurred while editing a note");
         }
     }
@@ -121,7 +127,9 @@ public class NotesController {
             return responseHandler.response("Color changed successfully", HttpStatus.OK, response);
         } catch (NoteNotFoundException ex) {
             return responseHandler.response("Note Not Found with id: "+id ,HttpStatus.OK, "Note not found");
-        } catch (Exception e) {
+        } catch (IllegalArgumentException ex) {
+            return responseHandler.response("Invalid note ID format: " + id, HttpStatus.BAD_REQUEST, "Invalid note ID format");}
+        catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
     }
