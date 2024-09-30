@@ -73,6 +73,7 @@ public class BlogServiceImpl implements BlogService {
 			ResponseEntity<Object> departmentById = clientDepartment.getDepartmentById(blogDto.getDepartmentId());
 			Map<String, Object> depart = (Map<String, Object>) departmentById.getBody();
 			department = (String) ((Map<String, Object>) depart.get("data")).get("name");
+			
 			blogDto.setDepartmentName(department);
 			
 		} catch (Exception e) {
@@ -121,6 +122,7 @@ public class BlogServiceImpl implements BlogService {
 		dtoToBlogConverter.setMediaPath(objectMapper.genrateUriLink(multipartFile));
 		
 		blog = repo.save(dtoToBlogConverter);
+		
 
 		return objectMapper.blogToDtoConverter(blog);
 
@@ -406,6 +408,7 @@ public class BlogServiceImpl implements BlogService {
 				
 				if (blog2 != null) {
 					BlogDto blogToDtoConverter = objectMapper.blogToDtoConverter(blog2);
+					blogToDtoConverter.setProfilePic(getProfilePic(blog2.getUserId()));
 					blogDtoList.add(blogToDtoConverter);
 				}
 			}
@@ -427,6 +430,8 @@ public class BlogServiceImpl implements BlogService {
 		Blog blog = repo.getByBlogId(id);
 		if (blog != null) {
 			BlogDto blogDto = objectMapper.blogToDtoConverter(blog);
+			blogDto.setProfilePic(getProfilePic(blogDto.getUserId()));
+			
 			return blogDto;
 		} else {
 			UserNotFoundException userNotFoundException = new UserNotFoundException(HttpStatus.NOT_FOUND + "  Invalid id, please ! Enter correct BlogId.");

@@ -205,7 +205,7 @@ public class BlogControllerTest {
 		    
 	        when(serviceImpl.getByAutherName(any(Integer.class), any(Integer.class), any(String.class))).thenReturn(allBlogDto);
 
-	        ResponseEntity<ResponseHandler<List<BlogDto>>>  response = blogController.getBlogsByAutherName(0, 10, userId);
+	        ResponseEntity<ResponseHandlerWithPageable<List<BlogDto>>>  response = blogController.getBlogsByAutherName(0, 10, userId);
 	        
 	        assertEquals(HttpStatus.OK, response.getStatusCode());
 	        assertEquals("Data retrieved successfully.", response.getBody().getMessage());
@@ -266,7 +266,7 @@ public class BlogControllerTest {
 	    	
 	        when(serviceImpl.getBlogTitleWithPage(any(Integer.class),any(Integer.class),any(String.class))).thenReturn(allBlogDto);
 
-	        ResponseEntity<ResponseHandler<List<BlogDto>>> response = blogController.getBlogByTitle(0, 5,"blogTitle");
+	        ResponseEntity<ResponseHandlerWithPageable<List<BlogDto>>> response = blogController.getBlogByTitle(0, 5,"blogTitle");
 	        
 	        assertEquals(HttpStatus.OK, response.getStatusCode());
 	        assertEquals("Data retrieved successfully.", response.getBody().getMessage());
