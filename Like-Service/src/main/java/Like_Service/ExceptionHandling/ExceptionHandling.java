@@ -19,7 +19,7 @@ public class ExceptionHandling {
         response.put("httpStatusCode", HttpStatus.NO_CONTENT.value());
         response.put("error", "Blog Not found Error Occured");
         response.put("message", ex.getMessage());
-        return ResponseEntity.badRequest().body(response);
+        return ResponseEntity.ok().body(response);
     }
 
 
@@ -31,7 +31,7 @@ public class ExceptionHandling {
         response.put("httpStatusCode", HttpStatus.NO_CONTENT.value());
         response.put("error", "User Not found Error Occurred");
         response.put("message", ex.getMessage());
-        return ResponseEntity.badRequest().body(response);
+        return ResponseEntity.ok().body(response);
     }
 
     @ExceptionHandler(RuntimeException.class)
