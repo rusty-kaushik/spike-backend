@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,11 +46,15 @@ public class Blog {
 	
 	private long userId; // Taking autherId as userName
 	
-	@NotBlank(message = "title cannot be blank") 
+
+	@NotBlank(message = "Invalid title: Empty title")
+    @NotNull(message = "Invalid title: Name is NULL")
+    @Size(min = 3, max = 200, message = "Invalid title: Must be of 3 - 200 characters")
 	private String title;
 	
-	@NotBlank(message = "content cannot be blank")
-	@Column(length = 10000)
+	@NotBlank(message = "Invalid content: Empty content")
+    @NotNull(message = "Invalid content: Name is NULL")
+    @Size(min = 3, max = 3000, message = "Invalid content: Must be of 3 - 3000 characters")
 	private String content;
 	
 

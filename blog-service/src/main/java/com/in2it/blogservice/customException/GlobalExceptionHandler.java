@@ -77,6 +77,7 @@ public class GlobalExceptionHandler {
 	        }
 	        return false;
 	    }
+	    
 	    @SuppressWarnings("unchecked")
 		@ExceptionHandler(LikeServiceDownException.class)
 	    public  ResponseEntity<?> likeServiceDownException(LikeServiceDownException ex, WebRequest request){

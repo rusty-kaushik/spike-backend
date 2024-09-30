@@ -131,7 +131,6 @@ public class TaskboardServiceImpl implements TaskboardService{
 	
 	
 	@Override
-	@Deprecated
 	public List<TaskboardDto>  getAllTask() throws TaskboadNotFoundException{
 		
 		
