@@ -6,7 +6,7 @@ COPY /target/*.jar /app/
 # Expose the necessary ports
 EXPOSE 9292
 # Define environment variables for each service
-ENV Taskboard-Service=9292
+ENV Taskboard_Service_PORT=9292
 
 # Create the directory for the pictures inside the container
 RUN mkdir -p /app/pictures
