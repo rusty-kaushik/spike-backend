@@ -174,8 +174,8 @@ public class BlogServiceController {
 	@GetMapping("/getByTitle/{blogTitle}")
 	@Operation(summary = "Get a blogs by blogTitle", description = "Returns a blogs as list by  blogTitle.")
 	public ResponseEntity<ResponseHandlerWithPageable<List<BlogDto>>> getBlogByTitle(@RequestParam(defaultValue = "0") int pageNum,
-			@RequestParam(defaultValue = "10") int pageSize, @PathVariable(value = "blogTitle") String title){
-		List<BlogDto> blogTitleWithPage = serviceImpl.getBlogTitleWithPage(pageNum, pageSize, title);
+			@RequestParam(defaultValue = "10") int pageSize, @PathVariable String blogTitle){
+		List<BlogDto> blogTitleWithPage = serviceImpl.getBlogTitleWithPage(pageNum, pageSize, blogTitle);
 		int totalResults = blogTitleWithPage.size();
 			ResponseHandlerWithPageable<List<BlogDto>> response = new ResponseHandlerWithPageable<>(blogTitleWithPage,
 					"Data retrieved successfully.", HttpStatus.OK,HttpStatus.OK.value(),totalResults,pageNum,pageSize);

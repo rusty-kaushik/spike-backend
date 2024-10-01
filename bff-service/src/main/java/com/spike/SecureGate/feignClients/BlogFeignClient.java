@@ -1,10 +1,7 @@
 package com.spike.SecureGate.feignClients;
 
 import com.spike.SecureGate.DTO.blogDto.BlogCreationFeignDTO;
-import com.spike.SecureGate.DTO.blogDto.BlogCreationRequestDTO;
 import com.spike.SecureGate.DTO.blogDto.BlogUpdateFeignDTO;
-import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.UUID;
 
 @FeignClient(name = "userClient",  url = "${spike.service.blog_service}")
 public interface BlogFeignClient {
@@ -66,7 +62,7 @@ public interface BlogFeignClient {
     ResponseEntity<Object> getBlogByTitle(
             @RequestParam int pageNum,
             @RequestParam int pageSize,
-            @PathVariable String title
+            @PathVariable String blogTitle
     );
 
 }
