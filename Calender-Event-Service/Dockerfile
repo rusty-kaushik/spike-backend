@@ -7,7 +7,7 @@ COPY /target/*.jar /app/
 # Expose the necessary ports
 EXPOSE 8989
 # Define environment variables for each service
-ENV Calender-Event-Service=8989
+ENV Calender_Event_Service_PORT=8989
  
 
 # Run all services using a shell script
