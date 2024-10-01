@@ -215,10 +215,8 @@ public class UserServiceImpl implements UserService {
             }
 
             String[] sortParams = sort.split(",");
-            String sortBy = sortParams[0];
             Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);
-            Sort sortObject = Sort.by(direction, sortBy);
-
+            PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
 
             List<UserContactsDTO> combinedContactsDto = new ArrayList<>();
 
@@ -228,26 +226,27 @@ public class UserServiceImpl implements UserService {
                         .where(userHelper.hasName(name))
                         .and(userHelper.filterByUserId(userId)); // Filter by userId
 
-                List<Contacts> personalContacts = userContactsRepository.findAll(personalContactsSpec,Sort.by(direction, sortBy));
+                Page<Contacts> personalContacts = userContactsRepository.findAll(personalContactsSpec,pageRequest);
 
                 // Convert personal contacts to DTO
                 List<UserContactsDTO> personalContactsDto = personalContacts.stream()
                         .map(this::personalContactsToContactDto)
                         .collect(Collectors.toList());
 
-                combinedContactsDto.addAll(personalContactsDto);
-                // Add personal contacts
+                combinedContactsDto.addAll(personalContactsDto); // Add personal contacts
             }
 
             // Fetch user contacts of all  employees, filtered by name if provided
             Specification<User> userSpec = Specification.where(userHelper.filterByName(name));
-            List<User> userContacts = userRepository.findAll(userSpec,Sort.by(direction, sortBy));
+            Page<User> userContacts = userRepository.findAll(userSpec, pageRequest);
 
             // Convert user contacts to DTO
             List<UserContactsDTO> userContactsDto = userContacts.stream()
                     .map(this::userToUserContacsDto)
                     .collect(Collectors.toList());
 
+
+            combinedContactsDto.addAll(userContactsDto);
             //applied pagination
             int start = Math.min(pageno * pagesize, combinedContactsDto.size());
             int end = Math.min((pageno + 1) * pagesize, combinedContactsDto.size());
