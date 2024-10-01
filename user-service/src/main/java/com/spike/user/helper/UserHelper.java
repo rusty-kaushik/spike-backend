@@ -361,7 +361,7 @@ public class UserHelper {
                 String newFileName = user.getEmployeeCode() + "_profile_picture" + fileExtension;
 
                 // Define the file path where the profile picture will be saved
-                String filePath = oldFilePath != null ? oldFilePath : (uploadDir + File.separator + newFileName);
+                String filePath = oldFilePath != null ? (uploadDir + File.separator + newFileName) : oldFilePath;
                 Path path = Paths.get(filePath);
 
                 // If an old file path exists, delete the old file

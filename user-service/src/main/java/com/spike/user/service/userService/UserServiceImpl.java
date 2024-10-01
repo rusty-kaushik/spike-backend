@@ -170,19 +170,24 @@ public class UserServiceImpl implements UserService {
 
         // Get the current profile picture to delete if necessary
         UserProfilePicture currentProfilePicture = existingUser.getProfilePicture();
-        String oldFilePath = currentProfilePicture != null ? currentProfilePicture.getFilePath() : null;
+        if(currentProfilePicture == null) {
+            addProfilePictureOfAUser(userId,profilePicture);
+        } else{
+            String oldFilePath = currentProfilePicture != null ? currentProfilePicture.getFilePath() : null;
 
-        // Update the profile picture using the helper method
-        UserProfilePicture updatedProfilePicture = userHelper.updateUserProfilePicture(profilePicture, existingUser, oldFilePath);
+            // Update the profile picture using the helper method
+            UserProfilePicture updatedProfilePicture = userHelper.updateUserProfilePicture(profilePicture, existingUser, oldFilePath);
 
-        // Save the new profile picture entity if created
-        if (updatedProfilePicture != null) {
-            existingUser.setProfilePicture(updatedProfilePicture);
-            userRepository.save(existingUser);
-            logger.info("Profile picture updated successfully for user ID: {}", userId);
-        } else {
-            logger.warn("No profile picture was provided for user ID: {}", userId);
+            // Save the new profile picture entity if created
+            if (updatedProfilePicture != null) {
+                existingUser.setProfilePicture(updatedProfilePicture);
+                userRepository.save(existingUser);
+                logger.info("Profile picture updated successfully for user ID: {}", userId);
+            } else {
+                logger.warn("No profile picture was provided for user ID: {}", userId);
+            }
         }
+
     }
 
 
