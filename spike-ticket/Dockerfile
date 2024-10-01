@@ -6,7 +6,7 @@ COPY /target/*.jar /app/
 # Expose the necessary ports
 EXPOSE 8686
 # Define environment variables for each service
-ENV Spike-ticket=8686
+ENV spike-ticket_PORT=8686
 
 # Create the directory for the pictures inside the container
 RUN mkdir -p /app/pictures
