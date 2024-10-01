@@ -9,7 +9,7 @@ import java.util.List;
 public interface TicketService {
 
 
-    ResponseEntity<Object> createTicket(TicketCreationDTO ticketCreationDTO);
+    ResponseEntity<Object> createTicket(TicketCreationDTO ticketCreationDTO, String username);
 
     ResponseEntity<Object> searchTicket(String keyword, int page, int size, List<String> sortList, String sortOrder);
 

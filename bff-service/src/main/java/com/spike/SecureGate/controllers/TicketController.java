@@ -41,8 +41,9 @@ public class TicketController {
         logger.info("Started authenticating");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         logger.info("Authentication Successful");
+        String userName = authentication.getName();
         logger.info("Started creating new ticket");
-        ResponseEntity<Object> user = ticketService.createTicket(ticketCreationDTO);
+        ResponseEntity<Object> user = ticketService.createTicket(ticketCreationDTO,userName);
         logger.info("Finished creating new ticket");
         return user;
     }

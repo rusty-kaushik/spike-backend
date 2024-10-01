@@ -1,6 +1,7 @@
 package com.spike.SecureGate.feignClients;
 
 import com.spike.SecureGate.DTO.ticketDto.TicketCreationDTO;
+import com.spike.SecureGate.DTO.ticketDto.TicketCreationFeignDTO;
 import com.spike.SecureGate.enums.TicketStatus;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ public interface TicketsFeignClient {
 
     @PostMapping("/tickets/create-ticket")
     ResponseEntity<Object> raiseTicket(
-            @RequestBody TicketCreationDTO dto
+            @RequestBody TicketCreationFeignDTO dto
     );
 
     @GetMapping("/tickets/search-ticket")

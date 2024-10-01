@@ -1,5 +1,6 @@
 package com.spike.SecureGate.service.externalTicketService;
 import com.spike.SecureGate.DTO.ticketDto.TicketCreationDTO;
+import com.spike.SecureGate.DTO.ticketDto.TicketCreationFeignDTO;
 import com.spike.SecureGate.controllers.TicketController;
 import com.spike.SecureGate.enums.TicketStatus;
 import com.spike.SecureGate.exceptions.UnexpectedException;
@@ -23,9 +24,14 @@ public class TicketServiceImpl implements TicketService {
     private static final Logger logger = LoggerFactory.getLogger(TicketServiceImpl.class);
 
     @Override
-    public ResponseEntity<Object> createTicket(TicketCreationDTO ticketCreationDTO) {
+    public ResponseEntity<Object> createTicket(TicketCreationDTO ticketCreationDTO, String username) {
         try{
-           return ticketsFeignClient.raiseTicket(ticketCreationDTO);
+            TicketCreationFeignDTO dto = new TicketCreationFeignDTO();
+            dto.setTitle(ticketCreationDTO.getTitle());
+            dto.setDescription(ticketCreationDTO.getDescription());
+            dto.setAssignTo(ticketCreationDTO.getAssignTo());
+            dto.setAssignBy(username);
+           return ticketsFeignClient.raiseTicket(dto);
         } catch (FeignException e) {
             return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
