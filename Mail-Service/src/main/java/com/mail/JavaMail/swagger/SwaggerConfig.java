@@ -14,6 +14,6 @@ public class SwaggerConfig {
 	OpenAPI customOpenAPI() {
 
 		return new OpenAPI().info(new Info().title("Spike")
-				.description("This API exposes endpoints to manage blog-service."));
+				.description("This API exposes endpoints to manage Mail-Service."));
 	}
 }
