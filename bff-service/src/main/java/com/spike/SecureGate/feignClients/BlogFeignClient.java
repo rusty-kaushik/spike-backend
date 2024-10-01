@@ -3,6 +3,8 @@ package com.spike.SecureGate.feignClients;
 import com.spike.SecureGate.DTO.blogDto.BlogCreationFeignDTO;
 import com.spike.SecureGate.DTO.blogDto.BlogCreationRequestDTO;
 import com.spike.SecureGate.DTO.blogDto.BlogUpdateFeignDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +48,25 @@ public interface BlogFeignClient {
     ResponseEntity<Object> fetchAllBlogs(
             @RequestParam int pageNum,
             @RequestParam int pageSize
+    );
+
+    @GetMapping("/spike/blog/getByName/{name}")
+    ResponseEntity<Object> getBlogsByAutherName(
+            @RequestParam int pageNum,
+            @RequestParam int pageSize,
+            @PathVariable String name
+    );
+
+    @GetMapping("/spike/blog/getByUserId/{userId}")
+    ResponseEntity<Object> getBlogsByAutherId(
+            @PathVariable long userId
+    );
+
+    @GetMapping("/spike/blog/getByTitle/{blogTitle}")
+    ResponseEntity<Object> getBlogByTitle(
+            @RequestParam int pageNum,
+            @RequestParam int pageSize,
+            @PathVariable String title
     );
 
 }

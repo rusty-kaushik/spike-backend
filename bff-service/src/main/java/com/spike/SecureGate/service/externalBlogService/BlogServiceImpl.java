@@ -141,4 +141,40 @@ public class BlogServiceImpl implements BlogService{
             throw new UnexpectedException("UnexpectedError","An unexpected error occurred while deleting a blog: " + e.getMessage());
         }
     }
+
+    @Override
+    public ResponseEntity<Object> fetchAllBlogsByName(int pageNum, int pageSize, String name) {
+        try {
+            return blogFeignClient.getBlogsByAutherName(pageNum, pageSize,name);
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
+        } catch (Exception e) {
+            logger.error("An unexpected error occurred while fetching all blogs" + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while fetching all blogs: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> fetchAllBlogsByAuthorId(long userId) {
+        try {
+            return blogFeignClient.getBlogsByAutherId(userId);
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
+        } catch (Exception e) {
+            logger.error("An unexpected error occurred while fetching all blogs" + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while fetching all blogs: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> fetchAllBlogsByTitle(int pageNum, int pageSize, String title) {
+        try {
+            return blogFeignClient.getBlogByTitle(pageNum, pageSize, title);
+        } catch (FeignException e) {
+            return ResponseEntity.status(e.status()).body(e.contentUTF8());
+        } catch (Exception e) {
+            logger.error("An unexpected error occurred while fetching all blogs" + e.getMessage());
+            throw new UnexpectedException("UnexpectedError","An unexpected error occurred while fetching all blogs: " + e.getMessage());
+        }
+    }
 }

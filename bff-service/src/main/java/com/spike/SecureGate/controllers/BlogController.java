@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,6 +118,67 @@ public class BlogController {
         String userName = authentication.getName();
         logger.info("Started creating new Blog");
         ResponseEntity<Object> user = blogService.deleteBlogById(blogId,userName);
+        logger.info("Finished creating new Blog");
+        return user;
+    }
+
+    @Operation(
+            summary = "Fetch all blogs by name",
+            description = "Any user can fetch all blogs by name"
+    )
+    @GetMapping("/name/{name}")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> fetchAllBlogsByName(
+            @RequestParam(defaultValue = "0") int pageNum,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @PathVariable String name
+    )
+    {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        logger.info("Started creating new Blog");
+        ResponseEntity<Object> user = blogService.fetchAllBlogsByName(pageNum,pageSize,name);
+        logger.info("Finished creating new Blog");
+        return user;
+    }
+
+    @Operation(
+            summary = "Fetch all blogs",
+            description = "Any user can fetch all blogs"
+    )
+    @GetMapping("/userId/{userId}")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> fetchAllBlogsByAuthorId(
+            @PathVariable long userId
+    )
+    {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        logger.info("Started creating new Blog");
+        ResponseEntity<Object> user = blogService.fetchAllBlogsByAuthorId(userId);
+        logger.info("Finished creating new Blog");
+        return user;
+    }
+
+    @Operation(
+            summary = "Fetch all blogs",
+            description = "Any user can fetch all blogs"
+    )
+    @GetMapping("/title/{title}")
+    @PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE','MANAGER')")
+    public ResponseEntity<Object> fetchAllBlogsByTitle(
+            @RequestParam(defaultValue = "0") int pageNum,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @PathVariable String title
+    )
+    {
+        logger.info("Started authenticating");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        logger.info("Authentication Successful");
+        logger.info("Started creating new Blog");
+        ResponseEntity<Object> user = blogService.fetchAllBlogsByTitle(pageNum,pageSize,title);
         logger.info("Finished creating new Blog");
         return user;
     }

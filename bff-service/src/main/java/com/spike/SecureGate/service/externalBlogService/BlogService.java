@@ -16,4 +16,10 @@ public interface BlogService {
     ResponseEntity<Object> fetchAllBlogs(int pageNum, int pageSize);
 
     ResponseEntity<Object> deleteBlogById(String blogId, String userName);
+
+    ResponseEntity<Object> fetchAllBlogsByName(int pageNum, int pageSize, String name);
+
+    ResponseEntity<Object> fetchAllBlogsByAuthorId(long userId);
+
+    ResponseEntity<Object> fetchAllBlogsByTitle(int pageNum, int pageSize, String title);
 }
