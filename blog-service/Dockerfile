@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy all JAR files into the container
 COPY /target/*.jar /app/
 
-# RUN mkdir -p /app/profile_pictures
+RUN mkdir -p /app/blog-media
 
 
 # COPY /opt/java-app/user/profile_pictures /app/profile_pictures
