@@ -9,7 +9,7 @@ EXPOSE 8686
 ENV spike-ticket_PORT=8686
 
 # Create the directory for the pictures inside the container
-RUN mkdir -p /app/pictures
+RUN mkdir -p /app/.PdfReports/
 
 # Run all services using a shell script
 CMD ["sh", "-c", "\
