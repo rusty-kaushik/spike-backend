@@ -14,5 +14,5 @@ ENV Courses_SERVICE_PORT=8787
 
 # Run all services using a shell script
 CMD ["sh", "-c", "\
-    java -jar User_Service-0.0.1-SNAPSHOT.jar --server.port=${Courses_SERVICE_PORT} & \
+    java -jar *.jar --server.port=${Courses_SERVICE_PORT} & \
     wait"]
