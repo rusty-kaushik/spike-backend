@@ -215,8 +215,10 @@ public class UserServiceImpl implements UserService {
             }
 
             String[] sortParams = sort.split(",");
+            String sortBy = sortParams[0];
             Sort.Direction direction = Sort.Direction.fromString(sortParams[1]);
-            PageRequest pageRequest = PageRequest.of(pageno, pagesize, Sort.by(direction, sortParams[0]));
+            Sort sortObject = Sort.by(direction, sortBy);
+
 
             List<UserContactsDTO> combinedContactsDto = new ArrayList<>();
 
@@ -226,32 +228,34 @@ public class UserServiceImpl implements UserService {
                         .where(userHelper.hasName(name))
                         .and(userHelper.filterByUserId(userId)); // Filter by userId
 
-                Page<Contacts> personalContacts = userContactsRepository.findAll(personalContactsSpec, pageRequest);
+                List<Contacts> personalContacts = userContactsRepository.findAll(personalContactsSpec,Sort.by(direction, sortBy));
 
                 // Convert personal contacts to DTO
                 List<UserContactsDTO> personalContactsDto = personalContacts.stream()
                         .map(this::personalContactsToContactDto)
                         .collect(Collectors.toList());
 
-                combinedContactsDto.addAll(personalContactsDto); // Add personal contacts
+                combinedContactsDto.addAll(personalContactsDto);
+                // Add personal contacts
             }
 
             // Fetch user contacts of all  employees, filtered by name if provided
             Specification<User> userSpec = Specification.where(userHelper.filterByName(name));
-            Page<User> userContacts = userRepository.findAll(userSpec, pageRequest);
+            List<User> userContacts = userRepository.findAll(userSpec,Sort.by(direction, sortBy));
 
             // Convert user contacts to DTO
             List<UserContactsDTO> userContactsDto = userContacts.stream()
                     .map(this::userToUserContacsDto)
                     .collect(Collectors.toList());
 
-            // Add all user contacts
-            combinedContactsDto.addAll(userContactsDto);
+            //applied pagination
+            int start = Math.min(pageno * pagesize, combinedContactsDto.size());
+            int end = Math.min((pageno + 1) * pagesize, combinedContactsDto.size());
 
             if (combinedContactsDto.isEmpty()) {
                 throw new UserNotFoundException("ValidationError", "No contacts found for the user with the given name: " + name);
             }
-            return combinedContactsDto;
+            return combinedContactsDto.subList(start, end);
         } catch (UserNotFoundException e) {
             logger.error("User doesn't exist: {}", e.getMessage());
             throw e;
