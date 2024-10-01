@@ -44,8 +44,6 @@ public class BlogDto {
 	@NotNull
 	private long userId; // Taking autherId as userName
 
-	@Size(max = 50, min = 2, message = "title must not be longer than 50 characters and not be less than 3 characters")
-	@NotBlank(message = "title cannot be blank")
 	private String title;
 
 	@NotBlank(message = "content cannot be blank")

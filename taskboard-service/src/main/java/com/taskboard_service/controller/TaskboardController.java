@@ -50,7 +50,7 @@ public ResponseEntity<ResponseHandler<TaskboardDto>> createTaskboard(@RequestBod
 	public ResponseEntity<ResponseHandler<TaskboardDto>> updateTaskboard(@RequestBody TaskboardUpdateDto taskboardDto,@PathVariable String taskId) throws DetailsNotFoundException {
 		UUID id = UUID.fromString(taskId);
 	
-		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.updateTaskboard(taskboardDto, id), "Task update successfully", HttpStatus.ACCEPTED, HttpStatus.ACCEPTED.value());
+		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.updateTaskboard(taskboardDto, id), "Task update successfully", HttpStatus.OK, HttpStatus.OK.value());
 
 		return ResponseEntity.status(HttpStatus.OK).body(resHandler);
 			
@@ -62,7 +62,7 @@ public ResponseEntity<ResponseHandler<TaskboardDto>> createTaskboard(@RequestBod
 		
 		UUID id = UUID.fromString(taskId);
 		
-		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.updateTaskboardStatus(status, id), "Task status has been changed successfully", HttpStatus.ACCEPTED, HttpStatus.ACCEPTED.value());
+		ResponseHandler<TaskboardDto> resHandler=new ResponseHandler<TaskboardDto>(service.updateTaskboardStatus(status, id), "Task status has been changed successfully", HttpStatus.OK, HttpStatus.OK.value());
 
 		return ResponseEntity.status(HttpStatus.OK).body(resHandler);
 	
@@ -82,8 +82,6 @@ public ResponseEntity<ResponseHandler<TaskboardDto>> createTaskboard(@RequestBod
 	
 	
 	@GetMapping("/getAll")
-	@Hidden
-	@Deprecated
 	public ResponseEntity<ResponseHandler<List<TaskboardDto>>>  getAllTask() throws TaskboadNotFoundException{
 		
 		ResponseHandler<List<TaskboardDto>> resHandler=new ResponseHandler<List<TaskboardDto>>(service.getAllTask(), "Successfully retrieve all task.", HttpStatus.OK, HttpStatus.OK.value());

@@ -183,7 +183,7 @@ public class BlogControllerTest {
 	    }
 	    
 	    @Test
-	    public void getAllBlog() 
+	    public void getAllBlog() throws CommentServiceDownException 
 	    {
 	    	List<BlogDto> allBlogDto = new ArrayList<>();
 	        when(serviceImpl.getBlog(any(Integer.class), any(Integer.class))).thenReturn(allBlogDto);
@@ -197,7 +197,7 @@ public class BlogControllerTest {
 	    }
 	    
 	    @Test
-	    public void getBlogsByAutherName() 
+	    public void getBlogsByAutherName() throws CommentServiceDownException 
 	    {
 	    	String userId="user-1";
 	        
@@ -214,7 +214,7 @@ public class BlogControllerTest {
 	    }
 	    
 	    @Test
-	    public void getBlogsByAutherId() 
+	    public void getBlogsByAutherId() throws CommentServiceDownException 
 	    {
 	    	long userId=12;
 	    	
@@ -231,7 +231,7 @@ public class BlogControllerTest {
 	    }
 	    
 	    @Test
-	    public void getBlogById() 
+	    public void getBlogById() throws CommentServiceDownException 
 	    {
 	    	UUID id=UUID.randomUUID();
 	    	BlogDto blogDto = new BlogDto();
@@ -247,7 +247,7 @@ public class BlogControllerTest {
 	    }
 	    
 	    @Test
-	    public void getBlogByTitle() throws InfoMissingException
+	    public void getBlogByTitle() throws InfoMissingException, CommentServiceDownException
 	    {
 //	    	UUID id=UUID.randomUUID();
 
