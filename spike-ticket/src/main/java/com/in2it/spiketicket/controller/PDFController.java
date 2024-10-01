@@ -24,4 +24,6 @@ public class PDFController {
             return ResponseEntity.status(500).body("Error generating PDF report: " + e.getMessage());
         }
     }
+    
+
 }
