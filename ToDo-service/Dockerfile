@@ -7,7 +7,7 @@ COPY /target/*.jar /app/
 # Expose the necessary ports
 EXPOSE 9090
 # Define environment variables for each service
-ENV ToDo-Service=9090
+ENV ToDo_Service_PORT=9090
  
 
 # Run all services using a shell script
