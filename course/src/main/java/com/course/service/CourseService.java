@@ -15,5 +15,5 @@ public interface CourseService {
 	
 	public List<CourseDto> getByCourseName(String courseName);
 	
-	public void deleteCourse(String courseId);
+	public String deleteCourse(String courseId);
 }

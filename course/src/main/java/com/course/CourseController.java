@@ -62,10 +62,15 @@ public class CourseController {
 				new Response<List<CourseDto>>(course, "Get all the course", HttpStatus.OK, HttpStatus.OK.value()));
 	}
 
-	@DeleteMapping("/delete-by-courseId/{id}")
-	public ResponseEntity<Object> deleteCourseById(@PathVariable String id) {
-		courseService.deleteCourse(id);
-		return ResponseEntity.status(HttpStatus.OK).body(HttpStatus.OK.value() + " Deleted Successfully");
-	}
+//	@DeleteMapping("/delete-by-courseId/{id}")
+//	public ResponseEntity<Object> deleteCourseById(@PathVariable String id) {
+//		courseService.deleteCourse(id);
+//		return ResponseEntity.status(HttpStatus.OK).body(HttpStatus.OK.value() + " Deleted Successfully");
+//	}
 
+	@DeleteMapping("/delete-by-courseId/{id}")
+	public ResponseEntity<Response<String>> deleteCourseById1(@PathVariable String id) {
+		courseService.deleteCourse(id);
+		return ResponseEntity.status(HttpStatus.OK).body(new Response<String>("Course-Id:- "+id,"Deleted Successfully", HttpStatus.OK, HttpStatus.OK.value()));
+	}
 }

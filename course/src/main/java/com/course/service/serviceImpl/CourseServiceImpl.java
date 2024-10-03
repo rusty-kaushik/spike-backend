@@ -79,9 +79,16 @@ public class CourseServiceImpl implements CourseService {
 		return courseDto;
 	}
 
-	public void deleteCourse(String courseId) {
+//	public void deleteCourse(String courseId) {
+//		Course course=courseRepo.findById(courseId).orElseThrow(()->new CourseNotFoundException("Course with given id doesn't exist "));
+//		courseRepo.deleteById(courseId);
+//		
+//	}
+	
+	public String deleteCourse(String courseId) {
 		Course course=courseRepo.findById(courseId).orElseThrow(()->new CourseNotFoundException("Course with given id doesn't exist "));
 		courseRepo.deleteById(courseId);
+		return "Deleted Successfully";
 		
 	}
 }
