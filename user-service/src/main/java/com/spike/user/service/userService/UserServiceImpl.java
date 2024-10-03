@@ -252,14 +252,12 @@ public class UserServiceImpl implements UserService {
 
 
             combinedContactsDto.addAll(userContactsDto);
-            //applied pagination
-            int start = Math.min(pageno * pagesize, combinedContactsDto.size());
-            int end = Math.min((pageno + 1) * pagesize, combinedContactsDto.size());
+
 
             if (combinedContactsDto.isEmpty()) {
                 throw new UserNotFoundException("ValidationError", "No contacts found for the user with the given name: " + name);
             }
-            return combinedContactsDto.subList(start, end);
+        return combinedContactsDto;
         } catch (UserNotFoundException e) {
             logger.error("User doesn't exist: {}", e.getMessage());
             throw e;
