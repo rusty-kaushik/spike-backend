@@ -83,9 +83,16 @@ public class UserServiceImpl implements UserService{
                 logger.error("Validation failed");
                 throw new ValidationFailedException( "ValidationError","Invalid data");
             }
+
+            // Validate the number of addresses in the DTO
+            if (userUpdateRequestDTO.getAddresses() != null) {
+                if (userUpdateRequestDTO.getAddresses().size() > 2) {
+                    throw new ValidationFailedException("ValidationError", "A maximum of 2 addresses is allowed.");
+                }
+            }
             return userFeignClient.updateUser(userId, userUpdateRequestDTO);
         } catch (ValidationFailedException e) {
-            throw e;
+            return ResponseHandler.responseBuilder("ValidationFailed due to address",HttpStatus.BAD_REQUEST,"Only 2 address allowed");
         } catch (FeignException e) {
             return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
@@ -245,17 +252,35 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ResponseEntity<Object> adminUpdatesUser(Long userId, AdminUpdatesUserDTO adminUpdateUserDTO) {
-        try{
-            return  userFeignClient.updateUserFull(userId, adminUpdateUserDTO);
-        }catch (ValidationFailedException e) {
-            throw e;
+        try {
+            // Validate the number of addresses in the DTO
+            if (adminUpdateUserDTO.getAddresses() != null) {
+                if (adminUpdateUserDTO.getAddresses().size() > 2) {
+                    throw new ValidationFailedException("ValidationError", "A maximum of 2 addresses is allowed.");
+                }
+            }
+
+            // Make the Feign client call to update the user
+            ResponseEntity<Object> response = userFeignClient.updateUserFull(userId, adminUpdateUserDTO);
+
+            // If necessary, handle the response from the user service here
+            // This could include logging, additional checks, etc.
+
+            return response;
+        } catch (ValidationFailedException e) {
+            // Return a bad request response for validation errors
+            return ResponseHandler.responseBuilder("ValidationFailed due to address",HttpStatus.BAD_REQUEST,"Only 2 address allowed");
         } catch (FeignException e) {
+            // Handle exceptions from the Feign client
             return ResponseEntity.status(e.status()).body(e.contentUTF8());
         } catch (Exception e) {
-            logger.error("Error occurred while creating a user contact: " + e.getMessage());
-            throw new UnexpectedException( "UnexpectedError","An unexpected error occurred while creating a user contact: " + e.getMessage());
+            // Log unexpected errors and return a server error response
+            logger.error("Error occurred while updating user: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An unexpected error occurred while updating the user: " + e.getMessage());
         }
     }
+
 
 
 }
