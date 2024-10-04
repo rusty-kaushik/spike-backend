@@ -325,11 +325,16 @@ public class UserHelper {
 
             // Handle addresses
             if (userUpdateRequestDTO.getAddresses() != null) {
+                // Validate the number of addresses
+                if (userUpdateRequestDTO.getAddresses().size() > 2) {
+                    throw new ValidationFailedException("ValidationError", "A maximum of 2 addresses is allowed.");
+                }
+
                 existingUser.getAddresses().clear(); // Clear existing addresses
                 for (UserAddressDTO addressDTO : userUpdateRequestDTO.getAddresses()) {
                     UserAddress address = userMapper.dtoToEntityAddress(addressDTO);
-                    address.setUser(existingUser);
-                    existingUser.getAddresses().add(address);
+                    address.setUser(existingUser); // Link the address to the user
+                    existingUser.getAddresses().add(address); // Add new address
                 }
             }
 
@@ -340,7 +345,7 @@ public class UserHelper {
             throw e;
         } catch (Exception e) {
             logger.error("Could not update user with id: {}", userId, e);
-            throw new DtoToEntityConversionException("ConversionError", "Could not update user" + e);
+            throw new ValidationFailedException("Validation Error ", "Could not update user" + e);
         }
     }
 
