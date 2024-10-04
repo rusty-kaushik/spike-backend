@@ -151,9 +151,9 @@ public class UserServiceImpl implements UserService {
         } catch (UserNotFoundException e) {
             logger.error("Error updating user - user not found with id: {}", userId, e);
             throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error updating user with id: {}", userId, e);
-            throw new RuntimeException("Unexpected error updating user", e);
+        } catch (ValidationFailedException e) {
+            logger.error("Validation failed for address : {}", userId, e);
+            throw new ValidationFailedException("Validation Exception","Only 2 addresses allowed");
         }
     }
 

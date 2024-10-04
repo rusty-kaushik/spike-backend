@@ -193,14 +193,10 @@ public class UserController {
             logger.error("User with ID {} not found: {}", userId, e.getMessage());
             // Return 404 Not Found with a user-friendly error message
             return ResponseHandler.responseBuilder("User not found with this id -> " + userId, HttpStatus.NOT_FOUND, "No user found with the provided ID -> " + userId);
-        } catch (DtoToEntityConversionException e) {
-            logger.error("Error during DTO to entity conversion: {}", e.getMessage());
-            // Return 422 Unprocessable Entity for validation errors
-            return ResponseHandler.responseBuilder("Validation error during update.", HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage());
-        } catch (Exception e) {
+        } catch (ValidationFailedException e) {
             logger.error("Error updating user: {}", e.getMessage());
-            // Return 500 Internal Server Error with a clear error message
-            return ResponseHandler.responseBuilder("User update unsuccessful.", HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred while updating the user. Please try again later.");
+            // Return 400 Internal Server Error with a clear error message
+            return ResponseHandler.responseBuilder("User update unsuccessful due to more than 2 address.", HttpStatus.BAD_REQUEST, "An error occurred while updating the user. Please try again later.");
         } finally {
             logger.info("Clearing current auditor");
             AuditorAwareImpl.clear();
