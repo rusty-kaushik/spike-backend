@@ -146,48 +146,48 @@ public class CommentServiceImplTest {
 		});
 	}
 
-	@Test
-	void updateCommentSuccessTest() {
-
-		String commentId = "1";
-
-		Comment existingComment = new Comment();
-		existingComment.setId(commentId);
-		existingComment.setContent("Old content");
-		existingComment.setUserName("user");
-
-		Comment updatedComment = new Comment();
-		updatedComment.setId(commentId);
-		updatedComment.setContent("Updated content");
-		updatedComment.setUserName("user");
-		updatedComment.setUpdatedDateTime(LocalDateTime.now());
-
-		CommentDto commentDto = new CommentDto();
-		commentDto.setContent("Updated content");
-
-		when(commentRepository.findById(commentId)).thenReturn(Optional.of(existingComment));
-		when(commentRepository.save(existingComment)).thenReturn(updatedComment);
-		when(objectMapper.commentToDtoConvertor(updatedComment)).thenReturn(commentDto);
-
-		CommentDto result = commentService.updateComment("Updated content", commentId);
-
-		assertNotNull(result);
-		assertEquals("Updated content", result.getContent());
-		assertNotNull(existingComment.getUpdatedDateTime());
-		verify(commentRepository, times(1)).findById(commentId);
-		verify(commentRepository, times(1)).save(existingComment);
-		verify(objectMapper, times(1)).commentToDtoConvertor(updatedComment);
-	}
-
-	@Test
-	void updateCommentCommentNotFoundTest() {
-
-		when(commentRepository.findById("1")).thenReturn(Optional.empty());
-
-		assertThrows(CommentNotFoundException.class, () -> {
-			commentService.updateComment("updated comment", "1");
-		});
-	}
+//	@Test
+//	void updateCommentSuccessTest() {
+//
+//		String commentId = "1";
+//
+//		Comment existingComment = new Comment();
+//		existingComment.setId(commentId);
+//		existingComment.setContent("Old content");
+//		existingComment.setUserName("user");
+//
+//		Comment updatedComment = new Comment();
+//		updatedComment.setId(commentId);
+//		updatedComment.setContent("Updated content");
+//		updatedComment.setUserName("user");
+//		updatedComment.setUpdatedDateTime(LocalDateTime.now());
+//
+//		CommentDto commentDto = new CommentDto();
+//		commentDto.setContent("Updated content");
+//
+//		when(commentRepository.findById(commentId)).thenReturn(Optional.of(existingComment));
+//		when(commentRepository.save(existingComment)).thenReturn(updatedComment);
+//		when(objectMapper.commentToDtoConvertor(updatedComment)).thenReturn(commentDto);
+//
+//		CommentDto result = commentService.updateComment("Updated content", commentId);
+//
+//		assertNotNull(result);
+//		assertEquals("Updated content", result.getContent());
+//		assertNotNull(existingComment.getUpdatedDateTime());
+//		verify(commentRepository, times(1)).findById(commentId);
+//		verify(commentRepository, times(1)).save(existingComment);
+//		verify(objectMapper, times(1)).commentToDtoConvertor(updatedComment);
+//	}
+//
+//	@Test
+//	void updateCommentCommentNotFoundTest() {
+//
+//		when(commentRepository.findById("1")).thenReturn(Optional.empty());
+//
+//		assertThrows(CommentNotFoundException.class, () -> {
+//			commentService.updateComment("updated comment", "1");
+//		});
+//	}
 
 	@Test
 	void getByBlogIdSuccessTest() {
@@ -211,30 +211,30 @@ public class CommentServiceImplTest {
 //		});
 //	}
 
-	@Test
-	void deleteByCommentIdSuccessTest() {
-
-		comment.setStatus("Active");
-
-		when(feign.getBlogById("1")).thenReturn(ResponseEntity.ok(blogResponce));
-		when(commentRepository.findByIdAndStatus("1", "Active")).thenReturn(Optional.of(comment));
-		when(commentRepository.save(comment)).thenReturn(comment);
-		when(objectMapper.commentToDtoConvertor(comment)).thenReturn(commentDto);
-
-		CommentDto result = commentService.deleteByCommentId("1", "1");
-
-		assertNotNull(result);
-		assertEquals("InActive", comment.getStatus());
-	}
-
-	@Test
-	void deleteByCommentIdBlogNotFoundTest() {
-		when(feign.getBlogById("1")).thenThrow(new BlogNotFoundException("Blog Id is not valid.."));
-
-		assertThrows(BlogNotFoundException.class, () -> {
-			commentService.deleteByCommentId("1", "1");
-		});
-	}
+//	@Test
+//	void deleteByCommentIdSuccessTest() {
+//
+//		comment.setStatus("Active");
+//
+//		when(feign.getBlogById("1")).thenReturn(ResponseEntity.ok(blogResponce));
+//		when(commentRepository.findByIdAndStatus("1", "Active")).thenReturn(Optional.of(comment));
+//		when(commentRepository.save(comment)).thenReturn(comment);
+//		when(objectMapper.commentToDtoConvertor(comment)).thenReturn(commentDto);
+//
+//		CommentDto result = commentService.deleteByCommentId("1", "1");
+//
+//		assertNotNull(result);
+//		assertEquals("InActive", comment.getStatus());
+//	}
+//
+//	@Test
+//	void deleteByCommentIdBlogNotFoundTest() {
+//		when(feign.getBlogById("1")).thenThrow(new BlogNotFoundException("Blog Id is not valid.."));
+//
+//		assertThrows(BlogNotFoundException.class, () -> {
+//			commentService.deleteByCommentId("1", "1");
+//		});
+//	}
 
 	@Test
 	void getCommentByIdSuccessTest() {

@@ -28,7 +28,7 @@ public class CommentDto {
 	@Hidden
 	private String id;
 	private String content;
-	@JsonIgnore
+	@JsonProperty(access = Access.READ_ONLY)
 	private String blogId;
 
 	private String userName;

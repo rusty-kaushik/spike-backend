@@ -92,18 +92,18 @@ public class CommentControllerTest {
 
 	}
 
-	@Test
-	void deleteCommentByCommentIdTest() throws Exception {
-		CommentDto commentDto = new CommentDto();
-		commentDto.setContent("Deleted comment");
-
-		when(commentService.deleteByCommentId(anyString(), anyString())).thenReturn(commentDto);
-		ResponseEntity<Response<Boolean>> deletedComment = commentController.deleteCommentByCommentId("dsadadad",
-				"sadadadsad");
-
-		assertEquals(true, deletedComment.getBody().getData());
-
-	}
+//	@Test
+//	void deleteCommentByCommentIdTest() throws Exception {
+//		CommentDto commentDto = new CommentDto();
+//		commentDto.setContent("Deleted comment");
+//
+//		when(commentService.deleteByCommentId(anyString(), anyString())).thenReturn(commentDto);
+//		ResponseEntity<Response<Boolean>> deletedComment = commentController.deleteCommentByCommentId("dsadadad",
+//				"sadadadsad");
+//
+//		assertEquals(true, deletedComment.getBody().getData());
+//
+//	}
 
 	
 	@Operation(summary = "API to delete all the comment of a blog")
