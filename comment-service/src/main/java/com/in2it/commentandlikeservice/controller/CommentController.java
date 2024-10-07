@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.in2it.commentandlikeservice.dto.CommentDto;
 import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
+import com.in2it.commentandlikeservice.model.Comment;
 import com.in2it.commentandlikeservice.response.Response;
 import com.in2it.commentandlikeservice.service.CommentService;
 
@@ -48,9 +50,9 @@ public class CommentController {
 	@Operation(summary = "API to update the comment of a blog")
 	@PutMapping(path = "/update/comment/{commentId}")
 	public ResponseEntity<Response<CommentDto>> updateComment(@RequestBody String content,
-			@Valid @PathVariable("commentId") String commentId) {
+			@Valid @PathVariable("commentId") String commentId,@RequestParam String updatedBy) {
 
-		CommentDto comment = commentService.updateComment(content, commentId);
+		CommentDto comment = commentService.updateComment(content, commentId, updatedBy);
 
 		return ResponseEntity.status(HttpStatus.OK).body(new Response<CommentDto>(comment,
 				"Comment successfully updated", HttpStatus.OK, HttpStatus.OK.value()));
@@ -79,10 +81,10 @@ public class CommentController {
 	@Operation(summary = "API to delete the comment of a blog with commentId")
 	@DeleteMapping("/delete/comment/{blogId}/{commentId}")
 	public ResponseEntity<Response<Boolean>> deleteCommentByCommentId(@PathVariable String blogId,
-			@PathVariable String commentId) {
+			@PathVariable String commentId,@RequestParam String updatedBy) {
 		Boolean flag = false;
 
-		CommentDto deleteByCommentId = commentService.deleteByCommentId(blogId, commentId);
+		CommentDto deleteByCommentId = commentService.deleteByCommentId(blogId, commentId,updatedBy);
 
 		if (deleteByCommentId != null) {
 			flag = true;
@@ -103,5 +105,15 @@ public class CommentController {
 				"All comments are deleted", HttpStatus.NO_CONTENT, HttpStatus.NO_CONTENT.value()));
 
 	}
+	
+	@Operation(summary = "API to find all comment")
+	@GetMapping("/comment")
+	public ResponseEntity<Response<List<CommentDto> >> getAllComments() {
+		List<CommentDto> commentDto = commentService.getAllComment();
+
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(new Response<List<CommentDto>>(commentDto, "Comment found  ", HttpStatus.OK, HttpStatus.OK.value()));
+	}
+
 
 }
