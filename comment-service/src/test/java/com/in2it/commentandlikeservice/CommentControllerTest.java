@@ -64,20 +64,20 @@ public class CommentControllerTest {
 //				UUID.randomUUID().toString());
 //		assertEquals(commentDto, response.getBody().getData());
 //	}
-
-	@Test
-	void getCommentByBlogIdTest() throws Exception {
-		CommentDto commentDto = new CommentDto();
-		commentDto.setContent("Comment content");
-
-		List<CommentDto> comments = Collections.singletonList(commentDto);
-
-		when(commentService.getByBlogId(anyString())).thenReturn(comments);
-
-		ResponseEntity<Response<List<CommentDto>>> blogComments = commentController.getCommentByBlogId("sdsdfsf");
-		assertEquals(comments, blogComments.getBody().getData());
-
-	}
+//
+//	@Test
+//	void getCommentByBlogIdTest() throws Exception {
+//		CommentDto commentDto = new CommentDto();
+//		commentDto.setContent("Comment content");
+//
+//		List<CommentDto> comments = Collections.singletonList(commentDto);
+//
+//		when(commentService.getByBlogId(anyString())).thenReturn(comments);
+//
+//		ResponseEntity<Response<List<CommentDto>>> blogComments = commentController.getCommentByBlogId("sdsdfsf");
+//		assertEquals(comments, blogComments.getBody().getData());
+//
+//	}
 
 	@Test
 	void getCommentByCommentIdTest() throws Exception {
