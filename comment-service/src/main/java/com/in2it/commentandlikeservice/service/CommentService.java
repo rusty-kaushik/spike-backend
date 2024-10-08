@@ -12,7 +12,7 @@ public interface CommentService {
 
 	public CommentDto getCommentById(String commentId);
 
-//	public List<CommentDto> getByBlogId(String blogId);
+	public List<CommentDto> getByBlogId(String blogId);
 	public List<CommentDto> getByBlogId(String blogId,Integer pageNumber, Integer pageSize);
 
 //	public CommentDto updateComment(CommentUpdateDto updateDto, String commentId);

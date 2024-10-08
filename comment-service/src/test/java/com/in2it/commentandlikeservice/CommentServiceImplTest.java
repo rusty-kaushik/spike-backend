@@ -189,27 +189,27 @@ public class CommentServiceImplTest {
 //		});
 //	}
 
-//	@Test
-//	void getByBlogIdSuccessTest() {
-//
-//		when(commentRepository.findByBlogIdAndStatus("1", "Active")).thenReturn(Collections.singletonList(comment));
-//		when(objectMapper.commentToDtoConvertor(comment)).thenReturn(commentDto);
-//
-//		List<CommentDto> result = commentService.getByBlogId("1");
-//
-//		assertNotNull(result);
-//		assertFalse(result.isEmpty());
-//		assertEquals("This is a comment", result.get(0).getContent());
-//	}
+	@Test
+	void getByBlogIdSuccessTest() {
 
-//	@Test
-//	void getByBlogIdNoCommentsTest() {
-//		when(commentRepository.findByBlogIdAndStatus("1", "Active")).thenReturn(Collections.emptyList());
-//
-//		assertThrows(CommentNotFoundException.class, () -> {
-//			commentService.getByBlogId("1");
-//		});
-//	}
+		when(commentRepository.findByBlogIdAndStatus("1", "Active")).thenReturn(Collections.singletonList(comment));
+		when(objectMapper.commentToDtoConvertor(comment)).thenReturn(commentDto);
+
+		List<CommentDto> result = commentService.getByBlogId("1");
+
+		assertNotNull(result);
+		assertFalse(result.isEmpty());
+		assertEquals("This is a comment", result.get(0).getContent());
+	}
+
+	@Test
+	void getByBlogIdNoCommentsTest() {
+		when(commentRepository.findByBlogIdAndStatus("1", "Active")).thenReturn(Collections.emptyList());
+
+		assertThrows(CommentNotFoundException.class, () -> {
+			commentService.getByBlogId("1");
+		});
+	}
 
 //	@Test
 //	void deleteByCommentIdSuccessTest() {

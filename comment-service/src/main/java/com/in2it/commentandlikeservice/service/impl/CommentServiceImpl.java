@@ -111,6 +111,27 @@ public class CommentServiceImpl implements CommentService {
 		}
 	}
 
+	public List<CommentDto> getByBlogId(String blogId) {
+		List<CommentDto> commentListDto = new ArrayList<>();
+
+		List<Comment> commentList = commentRepository.findByBlogIdAndStatus(blogId, "Active");
+
+		log.info("commentList---------------------------------" + commentList);
+//		if (commentList.isEmpty()) {
+//			throw new CommentNotFoundException(HttpStatus.NOT_FOUND + " Data not available, please ! Try again.");
+//		} else {
+
+		for (Comment com : commentList) {
+
+			CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
+			commentListDto.add(commentDtoConvertor);
+			System.out.println(commentDtoConvertor + "***********");
+		}
+//		}
+
+		return commentListDto;
+	}
+
 	public List<CommentDto> getByBlogId(String blogId, Integer pageNumber, Integer pageSize) {
 		List<CommentDto> commentListDto = new ArrayList<>();
 
@@ -227,7 +248,5 @@ public class CommentServiceImpl implements CommentService {
 		return commentDto;
 //		return comments.stream().map(objectMapper.commentToDtoConvertor(comments)).collect(Collectors.toList());
 	}
-
-	
 
 }
