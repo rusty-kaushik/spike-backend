@@ -202,14 +202,14 @@ public class CommentServiceImplTest {
 		assertEquals("This is a comment", result.get(0).getContent());
 	}
 
-//	@Test
-//	void getByBlogIdNoCommentsTest() {
-//		when(commentRepository.findByBlogIdAndStatus("1", "Active")).thenReturn(Collections.emptyList());
-//
-//		assertThrows(CommentNotFoundException.class, () -> {
-//			commentService.getByBlogId("1");
-//		});
-//	}
+	@Test
+	void getByBlogIdNoCommentsTest() {
+		when(commentRepository.findByBlogIdAndStatus("1", "Active")).thenReturn(Collections.emptyList());
+
+		assertThrows(CommentNotFoundException.class, () -> {
+			commentService.getByBlogId("1");
+		});
+	}
 
 //	@Test
 //	void deleteByCommentIdSuccessTest() {

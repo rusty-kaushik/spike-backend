@@ -61,9 +61,11 @@ public class CommentController {
 
 	@Operation(summary = "API to get all the comment of a blog with blogId")
 	@GetMapping("/get-all/comment/{blogId}")
-	public ResponseEntity<Response<List<CommentDto>>> getCommentByBlogId(@PathVariable String blogId) {
+	public ResponseEntity<Response<List<CommentDto>>> getCommentByBlogId(@PathVariable String blogId,
+			@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize) {
 
-		List<CommentDto> comments = commentService.getByBlogId(blogId);
+		List<CommentDto> comments = commentService.getByBlogId(blogId,pageNumber,pageSize);
 
 		return ResponseEntity.status(HttpStatus.OK).body(new Response<List<CommentDto>>(comments,
 				"Found all the comments of this blog " + blogId, HttpStatus.OK, HttpStatus.OK.value()));
@@ -108,8 +110,10 @@ public class CommentController {
 	
 	@Operation(summary = "API to find all comment")
 	@GetMapping("/comment")
-	public ResponseEntity<Response<List<CommentDto> >> getAllComments() {
-		List<CommentDto> commentDto = commentService.getAllComment();
+	public ResponseEntity<Response<List<CommentDto> >> getAllComments(
+			@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize) {
+		List<CommentDto> commentDto = commentService.getAllComment(pageNumber,pageSize);
 
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(new Response<List<CommentDto>>(commentDto, "Comment found  ", HttpStatus.OK, HttpStatus.OK.value()));

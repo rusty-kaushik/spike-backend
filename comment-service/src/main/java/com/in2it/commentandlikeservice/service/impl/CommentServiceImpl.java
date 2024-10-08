@@ -3,18 +3,19 @@ package com.in2it.commentandlikeservice.service.impl;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.in2it.commentandlikeservice.dto.BlogDto;
 import com.in2it.commentandlikeservice.dto.CommentDto;
-import com.in2it.commentandlikeservice.dto.CommentUpdateDto;
 import com.in2it.commentandlikeservice.exception.BlogNotFoundException;
 import com.in2it.commentandlikeservice.exception.CommentNotFoundException;
 import com.in2it.commentandlikeservice.exception.ServiceDownException;
@@ -89,7 +90,7 @@ public class CommentServiceImpl implements CommentService {
 
 	// This method is used to update BLOG with Blog_id with limited permissions
 	@Override
-	public CommentDto updateComment(String content, String commentId,String updatedBy) {
+	public CommentDto updateComment(String content, String commentId, String updatedBy) {
 
 		Comment comment = null;
 
@@ -97,16 +98,15 @@ public class CommentServiceImpl implements CommentService {
 				.orElseThrow(() -> new CommentNotFoundException("Comment dosen't exist with given id"));
 
 		log.info("===================" + content);
-		if(comment.getUserName().equals(updatedBy)) {
-		if (content != null)
-			comment.setContent(content);
+		if (comment.getUserName().equals(updatedBy)) {
+			if (content != null)
+				comment.setContent(content);
 
-		comment.setUpdatedDateTime(LocalDateTime.now());
-		comment.setUpdatedBy(updatedBy);
+			comment.setUpdatedDateTime(LocalDateTime.now());
+			comment.setUpdatedBy(updatedBy);
 
-		return objectMapper.commentToDtoConvertor(commentRepository.save(comment));
-		}
-		else {
+			return objectMapper.commentToDtoConvertor(commentRepository.save(comment));
+		} else {
 			throw new UserNotFoundException("User not authorized to update this comment");
 		}
 	}
@@ -115,23 +115,46 @@ public class CommentServiceImpl implements CommentService {
 		List<CommentDto> commentListDto = new ArrayList<>();
 
 		List<Comment> commentList = commentRepository.findByBlogIdAndStatus(blogId, "Active");
+
 		log.info("commentList---------------------------------" + commentList);
 //		if (commentList.isEmpty()) {
 //			throw new CommentNotFoundException(HttpStatus.NOT_FOUND + " Data not available, please ! Try again.");
 //		} else {
 
-			for (Comment com : commentList) {
+		for (Comment com : commentList) {
 
-				CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
-				commentListDto.add(commentDtoConvertor);
-				System.out.println(commentDtoConvertor + "***********");
-			}
+			CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
+			commentListDto.add(commentDtoConvertor);
+			System.out.println(commentDtoConvertor + "***********");
+		}
 //		}
 
 		return commentListDto;
 	}
 
-	public CommentDto deleteByCommentId(String blogId, String commentId,String updatedBy) {
+	public List<CommentDto> getByBlogId(String blogId, Integer pageNumber, Integer pageSize) {
+		List<CommentDto> commentListDto = new ArrayList<>();
+
+		Pageable p = PageRequest.of(pageNumber, pageSize, Sort.by("updatedAt"));
+		Page<Comment> commentData = commentRepository.findByBlogIdAndStatus(blogId, "Active", p);
+		List<Comment> commentList = commentData.getContent();
+		log.info("commentList---------------------------------" + commentList);
+//		if (commentList.isEmpty()) {
+//			throw new CommentNotFoundException(HttpStatus.NOT_FOUND + " Data not available, please ! Try again.");
+//		} else {
+
+		for (Comment com : commentList) {
+
+			CommentDto commentDtoConvertor = objectMapper.commentToDtoConvertor(com);
+			commentListDto.add(commentDtoConvertor);
+			System.out.println(commentDtoConvertor + "***********");
+		}
+//		}
+
+		return commentListDto;
+	}
+
+	public CommentDto deleteByCommentId(String blogId, String commentId, String updatedBy) {
 
 		ResponseEntity<BlogResponce<BlogDto>> response = null;
 
@@ -156,31 +179,29 @@ public class CommentServiceImpl implements CommentService {
 			throw new BlogNotFoundException("Blog Id is not valid..");
 		}
 
-		
 		Comment comment2 = commentRepository.findByIdAndStatus(commentId, "Active")
 				.orElseThrow(() -> new CommentNotFoundException("Comment dosen't exist with given Id."));
 
-		if(comment2.getUserName().equals(updatedBy)) {
-		comment2.setStatus("InActive");
-		long commentCount = commentRepository.findByBlogIdAndStatus(blogId, "Active").size() - 1;
-		try {
+		if (comment2.getUserName().equals(updatedBy)) {
+			comment2.setStatus("InActive");
+			long commentCount = commentRepository.findByBlogIdAndStatus(blogId, "Active").size() - 1;
+			try {
 
-			feign.updateComment(blogId, commentCount);
-		} catch (RetryableException e) {
+				feign.updateComment(blogId, commentCount);
+			} catch (RetryableException e) {
 
-			throw new ServiceDownException("--------------blog service is down please try after sometime");
+				throw new ServiceDownException("--------------blog service is down please try after sometime");
 
-		} catch (BlogNotFoundException e) {
-			throw new BlogNotFoundException(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			} catch (BlogNotFoundException e) {
+				throw new BlogNotFoundException(e.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
-		Comment deletedComment = commentRepository.save(comment2);
+			Comment deletedComment = commentRepository.save(comment2);
 
-		return objectMapper.commentToDtoConvertor(deletedComment);
-		}
-		else {
+			return objectMapper.commentToDtoConvertor(deletedComment);
+		} else {
 			throw new UserNotFoundException("User not authorized to update this comment");
 		}
 	}
@@ -208,15 +229,20 @@ public class CommentServiceImpl implements CommentService {
 		}
 
 	}
-	
-	public List<CommentDto> getAllComment(){
+
+	public List<CommentDto> getAllComment(Integer pageNumber, Integer pageSize) {
+
+		Pageable p = PageRequest.of(pageNumber, pageSize, Sort.by("updatedAt"));
+
 //		List<Comment> comments=commentRepository.findAll();
-		List<Comment> comments=commentRepository.findByStatus("Active");
+
+		Page<Comment> commentData = commentRepository.findByStatus("Active", p);
+		List<Comment> comments = commentData.getContent();
 		System.out.println(comments);
-		List<CommentDto> commentDto=new ArrayList<>();
-		for(Comment com:comments) {
-			CommentDto dto=objectMapper.commentToDtoConvertor(com);
-			System.out.println("comment======"+dto);
+		List<CommentDto> commentDto = new ArrayList<>();
+		for (Comment com : comments) {
+			CommentDto dto = objectMapper.commentToDtoConvertor(com);
+			System.out.println("comment======" + dto);
 			commentDto.add(dto);
 		}
 		return commentDto;
