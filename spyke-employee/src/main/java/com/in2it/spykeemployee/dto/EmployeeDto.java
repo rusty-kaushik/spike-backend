@@ -10,8 +10,13 @@ import com.in2it.spykeemployee.entity.Contact;
 import com.in2it.spykeemployee.entity.Department;
 import com.in2it.spykeemployee.entity.Project;
 import com.in2it.spykeemployee.entity.Role;
+import lombok.*;
 
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class EmployeeDto {
 
 	private UUID id;

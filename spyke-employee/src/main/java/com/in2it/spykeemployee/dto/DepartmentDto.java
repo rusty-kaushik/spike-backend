@@ -4,7 +4,14 @@ import java.util.List;
 import java.util.UUID;
 
 import com.in2it.spykeemployee.entity.Employee;
+import lombok.*;
 
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class DepartmentDto {
 	
 	private UUID id;

@@ -6,7 +6,14 @@ import java.util.UUID;
 import com.in2it.spykeemployee.entity.Employee;
 
 import jakarta.persistence.ManyToMany;
+import lombok.*;
 
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class ProjectDto {
 	
 	private UUID id;
